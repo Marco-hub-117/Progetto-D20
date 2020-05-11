@@ -10,7 +10,6 @@ public class Payment {
 	
 	private double amount;
 	private double price;
-	private boolean isAccepted;
 	private double change;
 	
 	public Payment(double amount, double price) throws PaymentNotValidException {
@@ -26,15 +25,10 @@ public class Payment {
 	
 	public boolean check() {
 		if (amount>=price) {
-			isAccepted=true;
 			return true;
 		}
 		else 
 			return false;
-	}
-	
-	public boolean isAccepted() {
-		return isAccepted;
 	}
 	
 	public double getChange() {
