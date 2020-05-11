@@ -7,7 +7,7 @@ package it.unipv.ingsw.d20.paymentsystem.payment.exception;
 @SuppressWarnings("serial")
 public class InvalidPaymentException extends Exception {
 	
-	public InvalidPaymentException (){
+	public InvalidPaymentException() {
 		super("Payment rejected");
 	}
 

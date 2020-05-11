@@ -4,12 +4,13 @@ import java.util.Date;
 
 import it.unipv.ingsw.d20.beverage.Beverage;
 import it.unipv.ingsw.d20.beverage.BeverageDescription;
+import it.unipv.ingsw.d20.beverage.exception.InsufficientIngredientsException;
 import it.unipv.ingsw.d20.paymentsystem.payment.Payment;
 import it.unipv.ingsw.d20.paymentsystem.payment.exception.InvalidPaymentException;
 
 /**
  * 
- * @author Nicolò Fasulo <fasulo.nicol@gmail.com>
+ * @author Nicolò Fasulo 
  *
  */
 @SuppressWarnings("unused")
@@ -28,14 +29,13 @@ public class Sale {
 		price = beverageDescription.getPrice();
 		
 		try {
-			Payment payment = new Payment(this.amount, price); //checks whether the payment was successful or not 
+			Payment payment = new Payment(this.amount, price); //checks whether the payment was successful or not (InvalidPaymentException)
 			change = payment.getChange();
 			
-			Beverage beverage = new Beverage(beverageDescription);
-			if (beverage.hasBeenDelivered()) { //checks whether the beverage was correctly delivered or not
-				completed = true;
-			}
-		} catch (InvalidPaymentException e) {
+			Beverage beverage = new Beverage(beverageDescription); //checks whether the beverage was correctly delivered or not (InsufficientIngredientsException)
+			
+			completed = true;			
+		} catch (InvalidPaymentException | InsufficientIngredientsException e) {
 			e.printStackTrace();
 		}
 	}
