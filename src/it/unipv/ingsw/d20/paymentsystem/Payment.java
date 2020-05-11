@@ -20,4 +20,9 @@ public class Payment {
 		return -1;
 	}
 
+	public boolean isAccepted() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

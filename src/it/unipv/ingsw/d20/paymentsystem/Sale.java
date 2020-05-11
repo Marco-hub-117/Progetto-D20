@@ -2,6 +2,7 @@ package it.unipv.ingsw.d20.paymentsystem;
 
 import java.util.Date;
 
+import it.unipv.ingsw.d20.beverage.Beverage;
 import it.unipv.ingsw.d20.beverage.BeverageDescription;
 
 /**
@@ -14,18 +15,21 @@ public class Sale {
 	
 	private Date date;
 	private BeverageDescription beverageDescription;
-	private double price;
-	private boolean isComplete;
+	private double amount;
+	private boolean isComplete = false;
 	
-	public Sale(BeverageDescription beverageDescription, double price) {
+	public Sale(BeverageDescription beverageDescription, double amount) {
 		this.beverageDescription = beverageDescription;
-		this.price = price;
+		this.amount = amount;
 		date = new Date();
-		isComplete = false;
-	}
-
-	public double getPrice() {
-		return price;
+		
+		Payment payment = new Payment(amount, beverageDescription.getPrice());
+		if (payment.isAccepted()) {
+			Beverage beverage = new Beverage(beverageDescription);
+			if (beverage.hasBeenDelivered()) {
+				isComplete = true;
+			}
+		}
 	}
 
 	public boolean isComplete() {
