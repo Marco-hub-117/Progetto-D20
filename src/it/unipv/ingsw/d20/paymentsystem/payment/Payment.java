@@ -16,14 +16,14 @@ public class Payment {
 		this.amount = amount;
 		this.price = price;
 		
-		if (check())
+		if (checkPayment())
 			setChange(amount, price);
 		else 
 			throw new PaymentNotValidException();
 			
 	}
 	
-	public boolean check() {
+	public boolean checkPayment() {
 		if (amount>=price) {
 			return true;
 		}
