@@ -4,6 +4,7 @@ import java.util.Date;
 
 import it.unipv.ingsw.d20.beverage.Beverage;
 import it.unipv.ingsw.d20.beverage.BeverageDescription;
+import it.unipv.ingsw.d20.paymentsystem.payment.Payment;
 
 /**
  * 
