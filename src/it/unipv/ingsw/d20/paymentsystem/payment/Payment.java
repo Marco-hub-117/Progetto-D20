@@ -1,8 +1,9 @@
 package it.unipv.ingsw.d20.paymentsystem.payment;
 
+import it.unipv.ingsw.d20.paymentsystem.payment.exception.InvalidPaymentException;
+
 /**
- * 
- * @author 
+ *
  * @author Luigi Zaccaria Del Pio
  *
  */
@@ -12,23 +13,24 @@ public class Payment {
 	private double price;
 	private double change;
 	
-	public Payment(double amount, double price) throws PaymentNotValidException {
+	public Payment(double amount, double price) throws InvalidPaymentException {
 		this.amount = amount;
 		this.price = price;
 		
-		if (checkPayment())
+		if (checkPayment()) {
 			setChange(amount, price);
-		else 
-			throw new PaymentNotValidException();
-			
+		} else { 
+			throw new InvalidPaymentException();
+		}			
 	}
 	
 	public boolean checkPayment() {
-		if (amount>=price) {
+		if (amount >= price) {
 			return true;
 		}
-		else 
+		else {
 			return false;
+		}
 	}
 	
 	public double getChange() {
@@ -36,11 +38,7 @@ public class Payment {
 	}
 
 	public void setChange(double amount, double price) {
-		this.change = amount-price;
-	}
-	
-	
-
-	
+		this.change = amount - price;
+	}	
 
 }

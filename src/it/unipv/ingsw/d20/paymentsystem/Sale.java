@@ -5,10 +5,10 @@ import java.util.Date;
 import it.unipv.ingsw.d20.beverage.Beverage;
 import it.unipv.ingsw.d20.beverage.BeverageDescription;
 import it.unipv.ingsw.d20.paymentsystem.payment.Payment;
+import it.unipv.ingsw.d20.paymentsystem.payment.exception.InvalidPaymentException;
 
 /**
  * 
- * @author 
  * @author Nicolò Fasulo <fasulo.nicol@gmail.com>
  *
  */
@@ -27,14 +27,16 @@ public class Sale {
 		date = new Date();
 		price = beverageDescription.getPrice();
 		
-		Payment payment = new Payment(amount, price);
-		
-		if (payment.isAccepted()) { //checks whether the payment was successful or not 
+		try {
+			Payment payment = new Payment(this.amount, price); //checks whether the payment was successful or not 
 			change = payment.getChange();
+			
 			Beverage beverage = new Beverage(beverageDescription);
 			if (beverage.hasBeenDelivered()) { //checks whether the beverage was correctly delivered or not
 				completed = true;
 			}
+		} catch (InvalidPaymentException e) {
+			e.printStackTrace();
 		}
 	}
 
