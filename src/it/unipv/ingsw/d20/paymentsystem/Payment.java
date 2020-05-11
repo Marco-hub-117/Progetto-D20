@@ -7,5 +7,17 @@ package it.unipv.ingsw.d20.paymentsystem;
  *
  */
 public class Payment {
+	
+	private double amount;
+	private double price;
+	
+	public Payment(double amount, double price) {
+		this.amount = amount;
+		this.price = price;
+	}
+	
+	public double getChange() {
+		return -1;
+	}
 
 }
