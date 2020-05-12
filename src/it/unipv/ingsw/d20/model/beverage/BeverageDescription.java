@@ -9,15 +9,16 @@ public class BeverageDescription {
 	double price;
 	private Map<Ingredient, Double> ingredients;  
 	
-	public BeverageDescription(String code,double price) {
-		this.code=code;
-		this.price=price;
-		this.ingredients=new HashMap<Ingredient, Double>();
+	public BeverageDescription(String code, double price) {
+		this.code = code;
+		this.price = price;
+		this.ingredients = new HashMap<Ingredient, Double>();
 	}
 
-	public void addIngredient(Ingredient i,double q) { //aggiunge un ingrediente e la sua quantità nella mappa
+	public void addIngredient(Ingredient i, double q) { //aggiunge un ingrediente e la sua quantità nella mappa
 		ingredients.put(i, q);
 	}
+	
 	public void setIngredientQuantity(Ingredient i, double q){ //cambia la quantità di un ingrediente già presente
 		ingredients.replace(i, q); //cambia la quantità solo se la chiave esiste
 	}
@@ -33,14 +34,30 @@ public class BeverageDescription {
 	public double getPrice() {
 		return price;
 	}
+	
 	public String toString() {
-		String x="";
-		String q="";
+		String description = "";
+		String ingredientList = "";
+		
 		for (Map.Entry<Ingredient, Double> entry : ingredients.entrySet()) {
-		   q=q+"ingrediente: "+entry.getKey().getNome()+"|"+"quantitita: "+entry.getValue()+"\n";
+		   ingredientList = ingredientList + "Ingredient: " + entry.getKey().getName() + " | Quantity: " + entry.getValue() + "\n";
 	    }
-		x="code: "+code+", price: "+price+", ingredienti:\n"+q+"\n";
-		return x;
+		
+		/* FOR ALTERNATIVO
+		 * for (Ingredient i : ingredients.keySet()) {
+		 *     recipe = recipe + "Ingredient: " + i.getNome() + "| Quantity: " + ingredients.get(i) + "\n";
+		 * }
+		 */
+		
+		description = "Code: " + code + " | Price: " + price + " | Ingredients:\n" + ingredientList + "\n";
+		return description;
 	}
 
 }
+
+
+
+
+
+
+
