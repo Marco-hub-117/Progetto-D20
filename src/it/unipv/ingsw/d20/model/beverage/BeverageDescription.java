@@ -14,6 +14,7 @@ public class BeverageDescription {
 		this.price=price;
 		this.ingredients=new HashMap<Ingredient, Double>();
 	}
+	//aaaa
 	//ATTENZIONE: serve ingredient? si riduce ad una stringa...
 	public void addIngredient(Ingredient i,double q) {
 		ingredients.put(i, q);
