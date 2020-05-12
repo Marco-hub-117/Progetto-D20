@@ -19,7 +19,7 @@ public class BeverageDescription {
 		ingredients.put(i, q);
 	}
 	public void setIngredientQuantity(Ingredient i,double q){
-		//da fare
+		ingredients.replace(i, q);
 	}
 
 	public String getCode() {
