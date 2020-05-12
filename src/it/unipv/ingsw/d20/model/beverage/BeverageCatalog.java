@@ -22,5 +22,6 @@ public class BeverageCatalog {
 	public Map<String, BeverageDescription> getCatalog() { //METODO GET DI CATALOG
 		return catalog;
 	}
+	
 
 }

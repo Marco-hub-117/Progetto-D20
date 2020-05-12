@@ -11,5 +11,6 @@ public class Ingredient {
 	public Ingredient(String nome) {
 		this.nome=nome;
 	}
+
 	
 }
