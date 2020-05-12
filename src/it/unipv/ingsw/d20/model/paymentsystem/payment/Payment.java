@@ -1,6 +1,6 @@
-package it.unipv.ingsw.d20.paymentsystem.payment;
+package it.unipv.ingsw.d20.model.paymentsystem.payment;
 
-import it.unipv.ingsw.d20.paymentsystem.payment.exception.InvalidPaymentException;
+import it.unipv.ingsw.d20.model.paymentsystem.payment.exception.InvalidPaymentException;
 
 /**
  *

@@ -1,4 +1,4 @@
-package it.unipv.ingsw.d20.beverage.exception;
+package it.unipv.ingsw.d20.model.beverage.exception;
 
 @SuppressWarnings("serial")
 public class InsufficientIngredientsException extends Exception {

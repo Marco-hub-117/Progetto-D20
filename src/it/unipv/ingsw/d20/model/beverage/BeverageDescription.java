@@ -1,4 +1,4 @@
-package it.unipv.ingsw.d20.beverage;
+package it.unipv.ingsw.d20.model.beverage;
 
 import java.util.HashMap;
 import java.util.Map;

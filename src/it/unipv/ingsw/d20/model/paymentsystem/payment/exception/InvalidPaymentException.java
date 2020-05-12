@@ -1,4 +1,4 @@
-package it.unipv.ingsw.d20.paymentsystem.payment.exception;
+package it.unipv.ingsw.d20.model.paymentsystem.payment.exception;
 
 /**
  * @author Luigi Zaccaria Del Pio
