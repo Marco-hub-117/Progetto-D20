@@ -1,12 +1,12 @@
-package it.unipv.ingsw.d20.paymentsystem;
+package it.unipv.ingsw.d20.model.paymentsystem;
 
 import java.util.Date;
 
-import it.unipv.ingsw.d20.beverage.Beverage;
-import it.unipv.ingsw.d20.beverage.BeverageDescription;
-import it.unipv.ingsw.d20.beverage.exception.InsufficientIngredientsException;
-import it.unipv.ingsw.d20.paymentsystem.payment.Payment;
-import it.unipv.ingsw.d20.paymentsystem.payment.exception.InvalidPaymentException;
+import it.unipv.ingsw.d20.model.beverage.Beverage;
+import it.unipv.ingsw.d20.model.beverage.BeverageDescription;
+import it.unipv.ingsw.d20.model.beverage.exception.InsufficientIngredientsException;
+import it.unipv.ingsw.d20.model.paymentsystem.payment.Payment;
+import it.unipv.ingsw.d20.model.paymentsystem.payment.exception.InvalidPaymentException;
 
 /**
  * 

@@ -1,6 +1,6 @@
-package it.unipv.ingsw.d20.beverage;
+package it.unipv.ingsw.d20.model.beverage;
 
-import it.unipv.ingsw.d20.beverage.exception.InsufficientIngredientsException;
+import it.unipv.ingsw.d20.model.beverage.exception.InsufficientIngredientsException;
 
 public class Beverage {
 	
