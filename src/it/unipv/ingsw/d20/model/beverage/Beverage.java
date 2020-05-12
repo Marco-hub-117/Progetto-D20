@@ -12,8 +12,4 @@ public class Beverage {
 		//L'ECCEZIONE DEVE ESSERE LANCIATA DAL COSTRUTTORE
 	}
 	
-	public void makeNewBeverage(BeverageDescription b) {
-		//da fare
-	}
-
 }

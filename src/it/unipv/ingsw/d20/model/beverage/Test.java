@@ -19,9 +19,10 @@ public class Test {
 		b2.addIngredient(caffe, 0.2);
 		b2.addIngredient(acqua, 0.8);
 		b2.addIngredient(latte, 0.3);
-		//catalogo.addBeverageDescription(b1);
-		//catalogo.addBeverageDescription(b2);
-	
+		
+		catalogo.addBeverageDescription(b1);
+		catalogo.addBeverageDescription(b2);
+		System.out.println(catalogo.toString());
 		
 		
 		

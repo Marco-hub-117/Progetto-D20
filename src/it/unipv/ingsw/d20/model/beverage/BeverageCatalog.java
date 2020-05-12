@@ -25,8 +25,10 @@ public class BeverageCatalog {
 
 	public String toString() {
 		String q="";
+		int w=1;
 		for (Map.Entry<String, BeverageDescription> i : catalog.entrySet()) {
-			q=q+i.toString();
+			q=q+"BEVANDA_"+w+":\n"+i.getValue().toString();
+			w++;
 		}
 		return q;
 	}

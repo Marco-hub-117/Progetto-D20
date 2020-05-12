@@ -37,9 +37,9 @@ public class BeverageDescription {
 		String x="";
 		String q="";
 		for (Map.Entry<Ingredient, Double> entry : ingredients.entrySet()) {
-		   q=q+"ingrediente= "+entry.getKey().getNome()+"|"+"quantitita: "+entry.getValue()+"\n";
+		   q=q+"ingrediente: "+entry.getKey().getNome()+"|"+"quantitita: "+entry.getValue()+"\n";
 	    }
-		x="code: "+code+", price: "+price+", ingredienti:\n"+q;
+		x="code: "+code+", price: "+price+", ingredienti:\n"+q+"\n";
 		return x;
 	}
 
