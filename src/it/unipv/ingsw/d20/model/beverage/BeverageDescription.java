@@ -14,24 +14,23 @@ public class BeverageDescription {
 		this.price=price;
 		this.ingredients=new HashMap<Ingredient, Double>();
 	}
-	//ATTENZIONE: serve ingredient? si riduce ad una stringa...
-	public void addIngredient(Ingredient i,double q) {
+	public void addIngredient(Ingredient i,double q) { //aggiunge un ingrediente e la sua quantità nella mappa
 		ingredients.put(i, q);
 	}
-	public void setIngredientQuantity(Ingredient i,double q){
-		ingredients.replace(i, q);
+	public void setIngredientQuantity(Ingredient i, double q){ //cambia la quantità di un ingrediente già presente
+		ingredients.replace(i, q); //cambia la quantità solo se la chiave esiste
 	}
 
 	public String getCode() {
 		return code;
 	}
 
-	public Map<Ingredient, Double> getIngredients() {
+	public Map<Ingredient, Double> getIngredients() { //resituisce la tutta la mappa degli ingredienti
 		return ingredients;
 	}
 
 	public double getPrice() {
-		return 0;
+		return price;
 	}
 
 }

@@ -1,4 +1,8 @@
-package it.unipv.ingsw.d20.beverage;
+package it.unipv.ingsw.d20.model.beverage;
+
+
+import it.unipv.ingsw.d20.model.beverage.BeverageCatalog;
+
 
 public class Test {
 
