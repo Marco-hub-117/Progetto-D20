@@ -22,5 +22,12 @@ public class BeverageCatalog {
 	public Map<String, BeverageDescription> getCatalog() { //METODO GET DI CATALOG
 		return catalog;
 	}
+	public String toString() {
+		String q="";
+		for (Map.Entry<String, BeverageDescription> i : catalog.entrySet()) {
+			q=q+i.toString();
+		}
+		return q;
+	}
 
 }
