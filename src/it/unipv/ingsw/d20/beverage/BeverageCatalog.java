@@ -21,4 +21,5 @@ public class BeverageCatalog {
 	public Map<String, BeverageDescription> getCatalog() {
 		return catalog;
 	}
+
 }
