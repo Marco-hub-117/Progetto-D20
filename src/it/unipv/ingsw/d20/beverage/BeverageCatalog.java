@@ -18,6 +18,7 @@ public class BeverageCatalog {
 	
 	public void addBeverageDescription(BeverageDescription b) {
 		//catalog.put(, )
+		String a;
 	}
 	public Map<String, BeverageDescription> getCatalog() {
 		return catalog;
