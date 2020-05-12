@@ -45,7 +45,7 @@ public class BeverageDescription {
 		
 		/* FOR ALTERNATIVO
 		 * for (Ingredient i : ingredients.keySet()) {
-		 *     recipe = recipe + "Ingredient: " + i.getNome() + "| Quantity: " + ingredients.get(i) + "\n";
+		 *     recipe = recipe + "Ingredient: " + i.getName() + "| Quantity: " + ingredients.get(i) + "\n";
 		 * }
 		 */
 		
