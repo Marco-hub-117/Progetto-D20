@@ -12,6 +12,7 @@ public class BeverageCatalog {
 	
 	public BeverageDescription getBeverageDesc(String code) {
 		//da fare
+		//commento di prova
 		return null;
 	}
 	
