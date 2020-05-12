@@ -21,7 +21,7 @@ public class Sale {
 	private double price;
 	
 	private double change;
-	private boolean completed = false;
+	private boolean completed;
 	
 	public Sale(BeverageDescription beverageDescription, double amount) {
 		this.amount = amount;
