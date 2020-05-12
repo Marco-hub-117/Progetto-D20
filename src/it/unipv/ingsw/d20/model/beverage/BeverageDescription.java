@@ -14,6 +14,7 @@ public class BeverageDescription {
 		this.price=price;
 		this.ingredients=new HashMap<Ingredient, Double>();
 	}
+
 	public void addIngredient(Ingredient i,double q) { //aggiunge un ingrediente e la sua quantità nella mappa
 		ingredients.put(i, q);
 	}
@@ -31,6 +32,15 @@ public class BeverageDescription {
 
 	public double getPrice() {
 		return price;
+	}
+	public String toString() {
+		String x="";
+		String q="";
+		for (Map.Entry<Ingredient, Double> entry : ingredients.entrySet()) {
+		   q=q+"ingrediente= "+entry.getKey()+"|"+"quantit�: "+entry.getValue()+"\n";
+	    }
+		x="code: "+code+", price: "+price+", ingredienti:\n"+q;
+		return x;
 	}
 
 }
