@@ -7,7 +7,6 @@ import java.util.Date;
 import it.unipv.ingsw.d20.model.beverage.Beverage;
 import it.unipv.ingsw.d20.model.beverage.BeverageDescription;
 import it.unipv.ingsw.d20.model.beverage.exceptions.DeliveryFailedException;
-import it.unipv.ingsw.d20.model.paymentsystem.exceptions.SaleFailedException;
 import it.unipv.ingsw.d20.model.paymentsystem.payment.Payment;
 import it.unipv.ingsw.d20.model.paymentsystem.payment.exceptions.InvalidPaymentException;
 
