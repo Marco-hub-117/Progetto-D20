@@ -1,6 +1,9 @@
 package it.unipv.ingsw.d20.model.vendingmachine;
 
+import java.util.HashMap;
 import java.util.Map;
+
+import it.unipv.ingsw.d20.model.vendingmachine.exceptions.AddingMachineException;
 
 public class Company {
 	
@@ -11,18 +14,22 @@ public class Company {
 	
 	public Company(String name) {
 		this.name = name;
+		vendingMachineList = new HashMap<>();
 	}
 	
 	public void sendAllInfo() {
 		
 	}
 	
-	public void selectVendinMachine(String id) {
+	public void selectVendingMachine(String id) {
 		
 	}
 	
-	public void addVendingMachine (String id) {
-		//aggiungere eccezione se la vending machine non viene creata?
+	public void addVendingMachine (String id, double totalAmount) throws AddingMachineException {
+		if(vendingMachineList.containsKey(id) == true) {
+			throw new AddingMachineException("ID già presente");
+		}
+		vendingMachineList.put(id, new VendingMachine(id, totalAmount));
 	}
 	
 	public void addOperator (String id) {
@@ -32,6 +39,8 @@ public class Company {
 	public void addRemoteOperator (String id) {
 		//aggiungere eccezione se remote operator non viene aggiunto?
 	}
+	
+	
 	
 	// aggiungere getter per operatori passando come argomento id dell'operatore?
 }
