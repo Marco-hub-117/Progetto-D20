@@ -3,6 +3,7 @@ package it.unipv.ingsw.d20.model.beverage;
 
 import it.unipv.ingsw.d20.model.beverage.BeverageCatalog;
 import it.unipv.ingsw.d20.model.paymentsystem.Sale;
+import it.unipv.ingsw.d20.model.paymentsystem.exceptions.SaleFailedException;
 
 
 public class Test {
@@ -13,10 +14,10 @@ public class Test {
 		Ingredient the=new Ingredient("THE");
 		Ingredient latte=new Ingredient("LATTE");
 		Ingredient acqua=new Ingredient("ACQUA");
-		BeverageDescription b1=new BeverageDescription("caffè espresso", 0.5);
+		BeverageDescription b1=new BeverageDescription("caffï¿½ espresso", 0.5);
 		b1.addIngredient(caffe, 0.2);
 		b1.addIngredient(acqua, 0.5);
-		BeverageDescription b2=new BeverageDescription("caffè macchiato", 0.7);
+		BeverageDescription b2=new BeverageDescription("caffï¿½ macchiato", 0.7);
 		b2.addIngredient(caffe, 0.2);
 		b2.addIngredient(acqua, 0.8);
 		b2.addIngredient(latte, 0.3);
@@ -25,9 +26,14 @@ public class Test {
 		catalogo.addBeverageDescription(b2);
 		System.out.println(catalogo.toString());
 		
-		Sale sale = new Sale(b2, 10);
-		System.out.println(sale.toString());
-		
+		Sale sale;
+		try {
+			sale = new Sale(b2, 10);
+			System.out.println(sale.toString());
+		} catch (SaleFailedException e) {
+			System.out.println(e.getMessage());
+		}
+
 		
 		
 
