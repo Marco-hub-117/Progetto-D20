@@ -6,9 +6,10 @@ import java.util.Date;
 
 import it.unipv.ingsw.d20.model.beverage.Beverage;
 import it.unipv.ingsw.d20.model.beverage.BeverageDescription;
-import it.unipv.ingsw.d20.model.beverage.exception.InsufficientIngredientsException;
+import it.unipv.ingsw.d20.model.beverage.exceptions.DeliveryFailedException;
+import it.unipv.ingsw.d20.model.paymentsystem.exceptions.SaleFailedException;
 import it.unipv.ingsw.d20.model.paymentsystem.payment.Payment;
-import it.unipv.ingsw.d20.model.paymentsystem.payment.exception.InvalidPaymentException;
+import it.unipv.ingsw.d20.model.paymentsystem.payment.exceptions.InvalidPaymentException;
 
 /**
  * 
@@ -26,7 +27,7 @@ public class Sale {
 	private double change;
 	private boolean completed;
 	
-	public Sale(BeverageDescription beverageDescription, double amount) {
+	public Sale(BeverageDescription beverageDescription, double amount) throws SaleFailedException {
 		this.beverageDescription = beverageDescription;
 		this.amount = amount;
 		date = new Date();
@@ -39,8 +40,8 @@ public class Sale {
 			Beverage beverage = new Beverage(beverageDescription); //checks whether the beverage was correctly delivered or not (InsufficientIngredientsException)
 			
 			completed = true;			
-		} catch (InvalidPaymentException | InsufficientIngredientsException e) {
-			e.printStackTrace();
+		} catch (InvalidPaymentException | DeliveryFailedException e) {
+			throw new SaleFailedException();
 		}
 	}
 	
@@ -62,9 +63,9 @@ public class Sale {
 		saleInfo += "Product: " + beverageDescription.getCode() + "\n";
 		
 		DecimalFormat df = new DecimalFormat("0.00");
-		saleInfo += "Total: €" + df.format(price) + "\n";
-		saleInfo += "Cash: €" + df.format(amount) + "\n";
-		saleInfo += "Change: €" + df.format(change);
+		saleInfo += "Total: ï¿½" + df.format(price) + "\n";
+		saleInfo += "Cash: ï¿½" + df.format(amount) + "\n";
+		saleInfo += "Change: ï¿½" + df.format(change);
 		
 		return saleInfo;
 	}
