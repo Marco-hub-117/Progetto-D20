@@ -25,7 +25,6 @@ public class Sale {
 	private double price;
 	
 	private double change;
-	private boolean completed;
 	
 	public Sale(BeverageDescription beverageDescription, double amount) throws SaleFailedException {
 		this.beverageDescription = beverageDescription;
@@ -37,25 +36,15 @@ public class Sale {
 			Payment payment = new Payment(this.amount, price); //checks whether the payment was successful or not (InvalidPaymentException)
 			change = payment.getChange();
 			
-			Beverage beverage = new Beverage(beverageDescription); //checks whether the beverage was correctly delivered or not (InsufficientIngredientsException)
-			
-			completed = true;			
+			Beverage beverage = new Beverage(beverageDescription); //checks whether the beverage was correctly delivered or not (InsufficientIngredientsException)	
 		} catch (InvalidPaymentException | DeliveryFailedException e) {
 			throw new SaleFailedException();
 		}
 	}
 	
-	public boolean isComplete() {
-		return completed;
-	}
-	
 	@Override
 	public String toString() { //to modify in case other payment method are implemented
 		String saleInfo = "";
-		
-		if (!completed) { //returns an empty string in case the sale wasn't successful
-			return saleInfo;
-		}
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
 		saleInfo = "Date: " + sdf.format(date) + "\n";
