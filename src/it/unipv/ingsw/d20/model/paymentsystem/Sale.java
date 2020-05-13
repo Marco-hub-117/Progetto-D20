@@ -1,5 +1,7 @@
 package it.unipv.ingsw.d20.model.paymentsystem;
 
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import it.unipv.ingsw.d20.model.beverage.Beverage;
@@ -17,6 +19,7 @@ import it.unipv.ingsw.d20.model.paymentsystem.payment.exception.InvalidPaymentEx
 public class Sale {
 	
 	private Date date;
+	private BeverageDescription beverageDescription;
 	private double amount;
 	private double price;
 	
@@ -24,6 +27,7 @@ public class Sale {
 	private boolean completed;
 	
 	public Sale(BeverageDescription beverageDescription, double amount) {
+		this.beverageDescription = beverageDescription;
 		this.amount = amount;
 		date = new Date();
 		price = beverageDescription.getPrice();
@@ -39,9 +43,30 @@ public class Sale {
 			e.printStackTrace();
 		}
 	}
-
+	
 	public boolean isComplete() {
 		return completed;
+	}
+	
+	@Override
+	public String toString() { //to modify in case other payment method are implemented
+		String saleInfo = "";
+		
+		if (!completed) { //returns an empty string in case the sale wasn't successful
+			return saleInfo;
+		}
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
+		saleInfo = "Date: " + sdf.format(date) + "\n";
+		
+		saleInfo += "Product: " + beverageDescription.getCode() + "\n";
+		
+		DecimalFormat df = new DecimalFormat("0.00");
+		saleInfo += "Total: €" + df.format(price) + "\n";
+		saleInfo += "Cash: €" + df.format(amount) + "\n";
+		saleInfo += "Change: €" + df.format(change);
+		
+		return saleInfo;
 	}
 
 }

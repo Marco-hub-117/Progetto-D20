@@ -2,6 +2,7 @@ package it.unipv.ingsw.d20.model.beverage;
 
 
 import it.unipv.ingsw.d20.model.beverage.BeverageCatalog;
+import it.unipv.ingsw.d20.model.paymentsystem.Sale;
 
 
 public class Test {
@@ -23,6 +24,9 @@ public class Test {
 		catalogo.addBeverageDescription(b1);
 		catalogo.addBeverageDescription(b2);
 		System.out.println(catalogo.toString());
+		
+		Sale sale = new Sale(b2, 10);
+		System.out.println(sale.toString());
 		
 		
 		
