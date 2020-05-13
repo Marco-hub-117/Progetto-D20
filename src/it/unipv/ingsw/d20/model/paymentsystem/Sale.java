@@ -44,19 +44,19 @@ public class Sale {
 	
 	@Override
 	public String toString() { //to modify in case other payment method are implemented
-		String saleInfo = "";
+		StringBuilder saleInfo=new StringBuilder();
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
-		saleInfo = "Date: " + sdf.format(date) + "\n";
+		saleInfo.append("Date: " + sdf.format(date) + "\n");
 		
-		saleInfo += "Product: " + beverageDescription.getCode() + "\n";
+		saleInfo.append("Product: " + beverageDescription.getCode() + "\n");
 		
 		DecimalFormat df = new DecimalFormat("0.00");
-		saleInfo += "Total: �" + df.format(price) + "\n";
-		saleInfo += "Cash: �" + df.format(amount) + "\n";
-		saleInfo += "Change: �" + df.format(change);
+		saleInfo.append("Total: �" + df.format(price) + "\n");
+		saleInfo.append("Cash: �" + df.format(amount) + "\n");
+		saleInfo.append("Change: �" + df.format(change));
 		
-		return saleInfo;
+		return saleInfo.toString();
 	}
 
 }
