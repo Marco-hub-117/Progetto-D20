@@ -26,20 +26,16 @@ public class Sale {
 	
 	private double change;
 	
-	public Sale(BeverageDescription beverageDescription, double amount) throws SaleFailedException {
+	public Sale(BeverageDescription beverageDescription, double amount) throws InvalidPaymentException, DeliveryFailedException {
 		this.beverageDescription = beverageDescription;
 		this.amount = amount;
 		date = new Date();
 		price = beverageDescription.getPrice();
 		
-		try {
-			Payment payment = new Payment(this.amount, price); //checks whether the payment was successful or not (InvalidPaymentException)
-			change = payment.getChange();
+		Payment payment = new Payment(this.amount, price); //checks whether the payment was successful or not (InvalidPaymentException)
+		change = payment.getChange();
 			
-			Beverage beverage = new Beverage(beverageDescription); //checks whether the beverage was correctly delivered or not (InsufficientIngredientsException)	
-		} catch (InvalidPaymentException | DeliveryFailedException e) {
-			throw new SaleFailedException();
-		}
+		Beverage beverage = new Beverage(beverageDescription); //checks whether the beverage was correctly delivered or not (InsufficientIngredientsException)	
 	}
 	
 	@Override

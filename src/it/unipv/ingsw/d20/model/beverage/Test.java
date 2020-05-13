@@ -2,8 +2,10 @@ package it.unipv.ingsw.d20.model.beverage;
 
 
 import it.unipv.ingsw.d20.model.beverage.BeverageCatalog;
+import it.unipv.ingsw.d20.model.beverage.exceptions.DeliveryFailedException;
 import it.unipv.ingsw.d20.model.paymentsystem.Sale;
 import it.unipv.ingsw.d20.model.paymentsystem.exceptions.SaleFailedException;
+import it.unipv.ingsw.d20.model.paymentsystem.payment.exceptions.InvalidPaymentException;
 
 
 public class Test {
@@ -30,8 +32,10 @@ public class Test {
 		try {
 			sale = new Sale(b2, 10);
 			System.out.println(sale.toString());
-		} catch (SaleFailedException e) {
-			System.out.println(e.getMessage());
+		} catch (InvalidPaymentException e) {
+			e.printStackTrace();
+		} catch (DeliveryFailedException e) {
+			e.printStackTrace();
 		}
 
 		
