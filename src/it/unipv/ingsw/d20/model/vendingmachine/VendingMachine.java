@@ -98,7 +98,10 @@ public class VendingMachine {
 
 	public void sendInfo() {				//DA CHIARIRE
 
-		
+		/*
+		 * Pensata la creazione Di una classe VendingMachineInfo che contiene al suo interno tutte le informazioni che servono.
+		 * 
+		 */
 		
 	}
 
