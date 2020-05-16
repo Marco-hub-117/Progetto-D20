@@ -1,9 +1,8 @@
 package it.unipv.ingsw.d20.model.vendingmachine.exceptions;
 
-public class AddingMachineException extends Exception{
+public class TankAbsentException extends Exception{
 	
-	
-	public AddingMachineException(String message) {
+	public TankAbsentException(String message) {
 		super(message);
 	}
 	
@@ -11,7 +10,5 @@ public class AddingMachineException extends Exception{
 		System.out.println(super.getMessage());
 
 	}
-	
-	
 
 }

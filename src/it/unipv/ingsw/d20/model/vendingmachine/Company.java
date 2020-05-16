@@ -9,6 +9,7 @@ public class Company {
 	
 	private String name;
 	private Map<String,VendingMachine> vendingMachineList;
+	
 	//private Map<String,Operator> operatorList;
 	//private Map<String,RemoteOperator> remoteOperatorList;
 	
