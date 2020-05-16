@@ -115,8 +115,11 @@ public class VendingMachine {
 		}
 	}
 
-	public void setIngredient(String code, String name, Double quantity) {		//BEVERAGEDESCRIPTION TROPPO LONTANO --> AGGIUNGERE SETDESC IN CATALOG
-		
+	public void setIngredient(String code, String name, Double quantity) {		// commenti dentro
+		/*
+		 *  Pensare di togliere la classe ingredient perchè inutile. Non possiamo accedere alla set desc perchè non abbiamo l'ingrediente, ma il nome.
+		 *  
+		 */
 	}
 
 	
