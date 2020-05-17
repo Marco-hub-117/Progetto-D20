@@ -9,7 +9,8 @@ import it.unipv.ingsw.d20.vendingmachine.model.beverage.BeverageDescription;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.exceptions.DeliveryFailedException;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.payment.CashPayment;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.payment.IPaymentStrategy;
-import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.payment.exceptions.InvalidPaymentException;
+import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.payment.PaymentStrategyFactory;
+import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.payment.exceptions.*;
 
 /**
  * 
@@ -35,7 +36,7 @@ public class Sale {
 		CashPayment payment = new CashPayment(this.amount, price); //checks whether the payment was successful or not (InvalidPaymentException)
 		change = payment.getChange();
 		
-		//elaboratePayment();
+		//elaboratePayment(amount, price, method);
 			
 		Beverage beverage = new Beverage(beverageDescription); //checks whether the beverage was correctly delivered or not (InsufficientIngredientsException)	
 	}
@@ -57,9 +58,10 @@ public class Sale {
 		return saleInfo.toString();
 	}
 	
-	/*
-	void elaboratePayment(IPaymentStrategy strategy){
-		strategy.elaborate();
-	}*/
+	
+	private void elaboratePayment(double amount, double price, String method) throws InsufficientCreditException, InvalidPaymentException {
+		IPaymentStrategy strategy=PaymentStrategyFactory.getStrategy(method);
+		strategy.elaboratePayment(amount, price); 
+	}
 	
 }

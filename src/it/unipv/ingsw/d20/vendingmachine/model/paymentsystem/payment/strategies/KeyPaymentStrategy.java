@@ -1,17 +1,16 @@
-package it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.payment;
+package it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.payment.strategies;
 
-import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.payment.exceptions.InvalidPaymentException;
+import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.payment.exceptions.*;
 
-public class KeyStrategy extends AbstractPaymentStrategy{
+public class KeyPaymentStrategy extends AbstractPaymentStrategy {
 
-	double elaboratePayment(double amount, double price) throws InvalidPaymentException {
+	public double elaboratePayment(double amount, double price) throws InsufficientCreditException, InvalidPaymentException {
 		
-		//logica per vedere se la chiavetta è valida
+		//controllo di validità: se chiavetta non riconosciuta solleva InvalidPaymentException
 		
 		double change=quickCheck(amount, price);
 		
 		return change;
-		
-		
 	}
+	
 }
