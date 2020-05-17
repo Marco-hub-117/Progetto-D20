@@ -7,19 +7,19 @@ public class BeverageDescription {
 
 	String code;
 	double price;
-	private Map<Ingredient, Double> ingredients;  
+	private Map<Ingredients, Double> ingredients;  
 	
 	public BeverageDescription(String code, double price) {
 		this.code = code;
 		this.price = price;
-		this.ingredients = new HashMap<Ingredient, Double>();
+		this.ingredients = new HashMap<Ingredients, Double>();
 	}
 
-	public void addIngredient(Ingredient i, double q) { //aggiunge un ingrediente e la sua quantità nella mappa
+	public void addIngredient(Ingredients i, double q) { //aggiunge un ingrediente e la sua quantità nella mappa
 		ingredients.put(i, q);
 	}
 	
-	public void setIngredientQuantity(Ingredient i, double q){ //cambia la quantità di un ingrediente già presente
+	public void setIngredientQuantity(Ingredients i, double q){ //cambia la quantità di un ingrediente già presente
 		ingredients.replace(i, q); //cambia la quantità solo se la chiave esiste
 	}
 
@@ -27,7 +27,7 @@ public class BeverageDescription {
 		return code;
 	}
 
-	public Map<Ingredient, Double> getIngredients() { //resituisce la tutta la mappa degli ingredienti
+	public Map<Ingredients, Double> getIngredients() { //resituisce la tutta la mappa degli ingredienti
 		return ingredients;
 	}
 
@@ -39,8 +39,8 @@ public class BeverageDescription {
 		String description = "";
 		String ingredientList = "";
 		
-		for (Map.Entry<Ingredient, Double> entry : ingredients.entrySet()) {
-		   ingredientList = ingredientList + "Ingredient: " + entry.getKey().getName() + " | Quantity: " + entry.getValue() + "\n";
+		for (Map.Entry<Ingredients, Double> entry : ingredients.entrySet()) {
+		   ingredientList = ingredientList + "Ingredient: " + entry.getKey() + " | Quantity: " + entry.getValue() + "\n";
 	    }
 		
 		/* FOR ALTERNATIVO
