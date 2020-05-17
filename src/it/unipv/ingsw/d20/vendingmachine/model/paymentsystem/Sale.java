@@ -7,7 +7,8 @@ import java.util.Date;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.Beverage;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.BeverageDescription;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.exceptions.DeliveryFailedException;
-import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.payment.Payment;
+import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.payment.CashPayment;
+import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.payment.IPaymentStrategy;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.payment.exceptions.InvalidPaymentException;
 
 /**
@@ -31,8 +32,10 @@ public class Sale {
 		date = new Date();
 		price = beverageDescription.getPrice();
 		
-		Payment payment = new Payment(this.amount, price); //checks whether the payment was successful or not (InvalidPaymentException)
+		CashPayment payment = new CashPayment(this.amount, price); //checks whether the payment was successful or not (InvalidPaymentException)
 		change = payment.getChange();
+		
+		//elaboratePayment();
 			
 		Beverage beverage = new Beverage(beverageDescription); //checks whether the beverage was correctly delivered or not (InsufficientIngredientsException)	
 	}
@@ -53,5 +56,10 @@ public class Sale {
 		
 		return saleInfo.toString();
 	}
-
+	
+	/*
+	void elaboratePayment(IPaymentStrategy strategy){
+		strategy.elaborate();
+	}*/
+	
 }

@@ -7,13 +7,13 @@ import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.payment.exceptions.
  * @author Luigi Zaccaria Del Pio
  *
  */
-public class Payment {
+public class CashPayment {
 	
 	private double amount;
 	private double price;
 	private double change;
 	
-	public Payment(double amount, double price) throws InvalidPaymentException {
+	public CashPayment(double amount, double price) throws InvalidPaymentException {
 		this.amount = amount;
 		this.price = price;
 		
