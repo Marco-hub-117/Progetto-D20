@@ -1,8 +1,38 @@
 package it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.payment;
 
+import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.payment.strategies.*;
+
 public class PaymentStrategyFactory {
-//in base a quello che le passo nel costruttore, capisce qual è la strategia da usare e ha un metodo che restituisce
-//la strategy giusta (come interfaccia), in modo che sale possa	chiamare elaboratePayment.
+	private static PaymentStrategyFactory factory;
+	private static CashPaymentStrategy cash;
+	private static KeyPaymentStrategy key;
+	private static AppPaymentStrategy app;
+
+	private PaymentStrategyFactory() {
+		cash=new CashPaymentStrategy();
+		key=new KeyPaymentStrategy();
+		app=new AppPaymentStrategy();
+	}
 	
-//provvisorio: potrebbe essere modo sbagliato.
+	public static PaymentStrategyFactory getPaymentStrategyFactory() {
+		if (factory==null) {
+			factory=new PaymentStrategyFactory();
+		}
+		
+		return factory;	
+	}
+	
+	//si potrebbe fare enumerazione invece di stringhe
+	public static IPaymentStrategy getStrategy(String strategy) {
+		switch(strategy) {
+		case "CASH":
+			return cash;
+		case "KEY":
+			return key;
+		case "APP":
+			return app;
+		}
+		return null;
+	}
+	
 }
