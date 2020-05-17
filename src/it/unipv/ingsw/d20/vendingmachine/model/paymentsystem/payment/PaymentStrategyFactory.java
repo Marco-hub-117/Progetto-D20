@@ -7,13 +7,14 @@ public class PaymentStrategyFactory {
 	private static CashPaymentStrategy cash;
 	private static KeyPaymentStrategy key;
 	private static AppPaymentStrategy app;
-
+	
 	private PaymentStrategyFactory() {
 		cash=new CashPaymentStrategy();
 		key=new KeyPaymentStrategy();
 		app=new AppPaymentStrategy();
 	}
 	
+	//andrebbe invocato nel costruttore della vending
 	public static PaymentStrategyFactory getPaymentStrategyFactory() {
 		if (factory==null) {
 			factory=new PaymentStrategyFactory();
