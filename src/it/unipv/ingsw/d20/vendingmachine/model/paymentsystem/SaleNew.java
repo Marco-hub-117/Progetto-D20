@@ -8,28 +8,24 @@ import it.unipv.ingsw.d20.vendingmachine.model.beverage.Beverage;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.BeverageDescription;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.exceptions.DeliveryFailedException;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.payment.IPaymentStrategy;
-import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.payment.PaymentStrategyFactory;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.payment.exceptions.*;
 
-@SuppressWarnings("unused")
-public class Sale {
+public class SaleNew {
 	
 	private Date date;
 	private BeverageDescription beverageDescription;
-	private double amount;
 	private double price;
+	private IPaymentStrategy strategy;
 	
 	private double change;
 	
-	public Sale(BeverageDescription beverageDescription, double amount) throws InvalidPaymentException, DeliveryFailedException {
+	public SaleNew(BeverageDescription beverageDescription, Object creditInfo, IPaymentStrategy strategy) throws InvalidPaymentException, InsufficientCreditException, DeliveryFailedException {
 		this.beverageDescription = beverageDescription;
-		this.amount = amount;
-		date = new Date();
 		price = beverageDescription.getPrice();
+		date = new Date();
 		
-		//CashPayment payment = new CashPayment(this.amount, price); //checks whether the payment was successful or not (InvalidPaymentException)
-		//change = payment.getChange();
-			
+		strategy.elaboratePayment(price, creditInfo);
+		
 		Beverage beverage = new Beverage(beverageDescription); //checks whether the beverage was correctly delivered or not (InsufficientIngredientsException)	
 	}
 	
@@ -43,11 +39,11 @@ public class Sale {
 		saleInfo.append("Product: " + beverageDescription.getCode() + "\n");
 		
 		DecimalFormat df = new DecimalFormat("0.00");
+		saleInfo.append("Payment method: �"+ strategy.toString() + "\n");
 		saleInfo.append("Total: �" + df.format(price) + "\n");
-		saleInfo.append("Cash: �" + df.format(amount) + "\n");
-		saleInfo.append("Change: �" + df.format(change));
+		saleInfo.append("Change: �" + df.format(change) + "\n");
 		
 		return saleInfo.toString();
 	}
-	
+
 }
