@@ -1,12 +1,15 @@
 package it.unipv.ingsw.d20.company.model;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import it.unipv.ingsw.d20.company.model.net.CompanyServer;
 import it.unipv.ingsw.d20.vendingmachine.model.VendingMachine;
 import it.unipv.ingsw.d20.vendingmachine.model.exceptions.AddingMachineException;
 import it.unipv.ingsw.d20.vendingmachine.model.exceptions.AddingOperatorException;
 import it.unipv.ingsw.d20.vendingmachine.model.exceptions.VendingMachineAbsentException;
+import it.unipv.ingsw.d20.company.model.net.CompanyServer;
 
 public class Company {
 	
@@ -19,6 +22,14 @@ public class Company {
 	public Company(String name) {
 		this.name = name;
 		vendingMachineList = new HashMap<>();
+		
+		int port = 8888;
+        CompanyServer server = new CompanyServer();
+        try {
+        	server.serverLoop(port);
+        } catch (IOException e) {
+        	e.printStackTrace();
+        }    	
 	}
 	
 	public void sendAllInfo() {
