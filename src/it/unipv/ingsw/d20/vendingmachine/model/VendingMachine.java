@@ -47,6 +47,7 @@ public class VendingMachine {
 	
 	public void insertCode(String code) {
 		this.currentCode = code;
+		startTransaction();
 	}
 	
 	public void startTransaction() {

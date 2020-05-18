@@ -11,11 +11,6 @@ import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.payment.CashPayment
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.payment.IPaymentStrategy;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.payment.exceptions.InvalidPaymentException;
 
-/**
- * 
- * @author Nicolò Fasulo 
- *
- */
 @SuppressWarnings("unused")
 public class Sale {
 	
@@ -42,7 +37,7 @@ public class Sale {
 	
 	@Override
 	public String toString() { //to modify in case other payment method are implemented
-		StringBuilder saleInfo=new StringBuilder();
+		StringBuilder saleInfo = new StringBuilder();
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
 		saleInfo.append("Date: " + sdf.format(date) + "\n");
