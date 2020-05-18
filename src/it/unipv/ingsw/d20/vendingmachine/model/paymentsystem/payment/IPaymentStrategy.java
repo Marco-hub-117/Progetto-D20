@@ -12,6 +12,6 @@ public interface IPaymentStrategy {
 	
 	public double checkCredit(double amount, double price) throws InsufficientCreditException;
 	
-	public void elaboratePayment(double price, Object creditInfo) throws InsufficientCreditException, InvalidPaymentException;
+	public double elaboratePayment(double price, Object creditInfo) throws InsufficientCreditException, InvalidPaymentException;
 
 }

@@ -24,7 +24,7 @@ public class SaleNew {
 		price = beverageDescription.getPrice();
 		date = new Date();
 		
-		strategy.elaboratePayment(price, creditInfo);
+		change=strategy.elaboratePayment(price, creditInfo);
 		
 		Beverage beverage = new Beverage(beverageDescription); //checks whether the beverage was correctly delivered or not (InsufficientIngredientsException)	
 	}

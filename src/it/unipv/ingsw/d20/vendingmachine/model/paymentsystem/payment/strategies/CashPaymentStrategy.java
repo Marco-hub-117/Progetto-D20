@@ -8,7 +8,7 @@ import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.payment.exceptions.
 public class CashPaymentStrategy extends AbstractPaymentStrategy {
 	String serial;
 	
-	public void elaboratePayment(double price, Object creditInfo) throws InsufficientCreditException, InvalidPaymentException {
+	public double elaboratePayment(double price, Object creditInfo) throws InsufficientCreditException, InvalidPaymentException {
 
 		serial=serialize(creditInfo);
 		
@@ -21,6 +21,7 @@ public class CashPaymentStrategy extends AbstractPaymentStrategy {
 		}
 				
 		double change=checkCredit(amount, price);
+		return change;
 	}
 	
 	public String serialize(Object creditInfo) throws InvalidPaymentException {

@@ -23,8 +23,9 @@ public class AppPaymentStrategy extends AbstractPaymentStrategy {
 	}
 
 	@Override
-	public void elaboratePayment(double price, Object creditInfo)
+	public double elaboratePayment(double price, Object creditInfo)
 			throws InsufficientCreditException, InvalidPaymentException {
+				return 0;
 		// TODO Auto-generated method stub
 		
 	}
