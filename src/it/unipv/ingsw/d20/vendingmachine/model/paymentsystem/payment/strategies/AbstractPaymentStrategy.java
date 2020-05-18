@@ -5,7 +5,7 @@ import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.payment.exceptions.
 
 public abstract class AbstractPaymentStrategy implements IPaymentStrategy {
 	
-	public double quickCheck(double amount, double price) throws InsufficientCreditException {
+	public double checkCredit(double amount, double price) throws InsufficientCreditException {
 		if (amount >= price) {
 			return amount-price;
 		} else { 
