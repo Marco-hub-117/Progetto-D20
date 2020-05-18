@@ -24,6 +24,7 @@ public class PaymentStrategyFactory {
 	}
 	
 	//si potrebbe fare enumerazione invece di stringhe
+	//oppure il controllore della gui ha il modo di passare una strategy alla sale a seconda dell'evento ricevuto
 	public static IPaymentStrategy getStrategy(String strategy) {
 		switch(strategy) {
 		case "CASH":
