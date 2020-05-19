@@ -1,62 +1,31 @@
 package it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.payment.strategies;
 
-import java.util.HashMap;
-import java.util.Map;
-
+import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.CashContainer;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.payment.exceptions.*;
 
 public class CashCreditStrategy extends AbstractCreditStrategy {
-	String serial;
-	
-	public double elaborateCredit(Object creditInfo) throws InsufficientCreditException, InvalidPaymentException {
-
-		serial=serialize(creditInfo);
-		
-		double amount=0;
-		if (checkValidity(serial)) {
-			amount=getAmount(serial);
-		}
-		else {
-			throw new InvalidPaymentException();
-		}
-				
-		
-		return amount;
-	}
 	
 	public String serialize(Object creditInfo) throws InvalidPaymentException {
+		double value;
 		
-		//non sarà piu una map ma un double solo quindi questa parte semplificata
-		Map<Double, Integer> coins=new HashMap<>();
 		try {
-			coins=(Map)creditInfo;
+			value=(double)creditInfo;
 		} catch (ClassCastException e) {
 			throw new InvalidPaymentException();
 		}
 		
-		StringBuilder serial=new StringBuilder();
-		for (Map.Entry<Double, Integer> coin: coins.entrySet()) {
-			for (int i=0; i<coin.getValue(); i++) {
-				char nextCh;
-				if (Math.random()<0.1) { //simula una probabilità del 10% di inserire una moneta non valida
-					nextCh='z';
-				}
-				else {
-					nextCh=CoinSerial.associateSerialCharacter(coin.getKey());
-				}	
-				serial.append(nextCh);
-			}
+		String serial="";
+		if (Math.random()<0.1) { //simula una probabilità del 10% di inserire una moneta non valida
+			serial="INVALID";
 		}
-	
-		return serial.toString();
+		else {
+			serial=CoinSerializer.associateSerialString(value);
+		}	
+		return serial;
 	}
 	
 	public boolean checkValidity(String serial) {
-		
-		if (serial.contains("z")) {
-			serial.replace("z", ""); //comunque tengo buone quelle valide
-		}
-		if (serial.equals("")) { //erano tutte non valide
+		if (serial.equals("INVALID")) { 
 			return false;
 		}
 		else {
@@ -65,24 +34,17 @@ public class CashCreditStrategy extends AbstractCreditStrategy {
 	}
 	
 	public double getAmount(String serial) {
-		double amount=0;
-		for (int i=0; i<serial.length(); i++) {
-			amount+=CoinSerial.convertToDouble(serial.charAt(i));
-		}
+		double coin=CoinSerializer.convertToDouble(serial);
+		//CashContainer.addCoin(coin); //magari rendere statico addCoin, in modo che non debba conoscere per forze l'istanza, 
+		//tanto è 1 per tutto il programma (eventualmente Sinlgeton?).
+		//addCoin non dovrebbe lanciare InvalidPayment perchè a questo punto ho già verificato che la moneta sia valida
 		
-		return amount;
-	}
-	
-	@Override
-	public double completeSale(double change) {
-		
-		return change;
+		return coin;
 	}
 	
 	@Override
 	public String toString() {
 		return ("Cash");
 	}
-
 
 }

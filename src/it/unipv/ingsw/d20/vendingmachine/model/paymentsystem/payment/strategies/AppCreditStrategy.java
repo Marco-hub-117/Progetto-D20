@@ -21,24 +21,10 @@ public class AppCreditStrategy extends AbstractCreditStrategy {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
-	@Override
-	public double elaborateCredit(Object creditInfo)
-			throws InvalidPaymentException {
-				return 0;
-		// TODO Auto-generated method stub
-		
-	}
 	
 	@Override
 	public String toString() {
 		return ("App");
-	}
-
-	@Override
-	public double completeSale(double change) {
-		// TODO Auto-generated method stub
-		return 0;
 	}
 
 }

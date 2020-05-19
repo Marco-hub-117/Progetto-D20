@@ -4,18 +4,6 @@ import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.payment.exceptions.
 
 public class KeyCreditStrategy extends AbstractCreditStrategy {
 	
-	public double elaborateCredit(Object creditInfo) throws InvalidPaymentException {
-
-		String serial=serialize(creditInfo);
-		
-		double amount=0;
-		if (checkValidity(serial)) {
-			amount=getAmount(serial);
-		}
-		
-		return amount;
-	}
-	
 	public String serialize(Object creditInfo) throws InvalidPaymentException {
 		String id;
 		try {
@@ -39,13 +27,6 @@ public class KeyCreditStrategy extends AbstractCreditStrategy {
 		double amount=0;
 		
 		return amount;
-	}
-	
-	public double completeSale(double change) {
-		
-		//va a scrivere l'ammontare rimasto sul DB
-		
-		return change; 
 	}
 	
 	@Override

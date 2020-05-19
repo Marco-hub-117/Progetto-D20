@@ -3,27 +3,26 @@ package it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.payment.strategies
 import java.util.HashMap;
 import java.util.Map;
 
-public class CoinSerial {
-	private final static Map<Double, Character> coder;
+public class CoinSerializer {
+	private final static Map<Double, String> coder;
 	    static
 	    {
 	        coder = new HashMap<>();
-	        coder.put(0.1, 'a');
-	        coder.put(0.2, 'b');
-	        coder.put(0.5, 'c');
-	        coder.put(1.0, 'd');
-	        coder.put(2.0, 'e');
+	        coder.put(0.1, "CENTS_10");
+	        coder.put(0.2, "CENTS_20");
+	        coder.put(0.5, "CENTS_50");
+	        coder.put(1.0, "EUROS_1");
+	        coder.put(2.0, "EUROS_2");
 	    }
 	
 	
-	public static char associateSerialCharacter(double value) {
+	public static String associateSerialString(double value) {
 		return coder.get(value);
 	}
 	
-	public static double convertToDouble(char ch) {
-		
-		for (Map.Entry<Double, Character> entry: coder.entrySet()) {
-			if ((char)entry.getValue()==ch) { //forse cast non necessario
+	public static double convertToDouble(String serial) {
+		for (Map.Entry<Double, String> entry: coder.entrySet()) {
+			if (((entry.getValue()).equals(serial))) { 
 				return entry.getKey();
 			}
 		}

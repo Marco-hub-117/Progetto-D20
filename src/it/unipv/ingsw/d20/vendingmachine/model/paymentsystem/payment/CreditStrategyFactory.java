@@ -23,7 +23,7 @@ public class CreditStrategyFactory {
 		return factory;	
 	}
 	
-	//il controllore della gui prende quella che vuole, passando la stringa apposita, e la passa alla sale
+	//il controllore della gui prende quella che vuole
 	public static ICreditStrategy getStrategy(String strategy) {
 		switch(strategy) {
 		case "CASH":

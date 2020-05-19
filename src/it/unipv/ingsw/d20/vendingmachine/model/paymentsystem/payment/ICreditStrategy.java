@@ -10,8 +10,6 @@ public interface ICreditStrategy {
 	
 	public double getAmount(String serial);
 	
-	public double completeSale(double change); 
-	
 	public double elaborateCredit(Object creditInfo) throws InvalidPaymentException;
 
 }
