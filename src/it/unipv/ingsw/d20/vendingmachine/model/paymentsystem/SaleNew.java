@@ -7,24 +7,26 @@ import java.util.Date;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.Beverage;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.BeverageDescription;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.exceptions.DeliveryFailedException;
-import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.payment.IPaymentStrategy;
+import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.payment.ICreditStrategy;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.payment.exceptions.*;
 
+
+//VECCHIA LOGICA, NON GUARDARE QUESTA CLASSE!!!
 public class SaleNew {
 	
 	private Date date;
 	private BeverageDescription beverageDescription;
 	private double price;
-	private IPaymentStrategy strategy;
+	private ICreditStrategy strategy;
 	
 	private double change;
 	
-	public SaleNew(BeverageDescription beverageDescription, Object creditInfo, IPaymentStrategy strategy) throws InvalidPaymentException, InsufficientCreditException, DeliveryFailedException {
+	public SaleNew(BeverageDescription beverageDescription, Object creditInfo, ICreditStrategy strategy) throws InvalidPaymentException, InsufficientCreditException, DeliveryFailedException {
 		this.beverageDescription = beverageDescription;
 		price = beverageDescription.getPrice();
 		date = new Date();
 		
-		change=strategy.elaboratePayment(price, creditInfo);
+		//change=strategy.elaborateCredit(price, creditInfo);
 		
 		Beverage beverage = new Beverage(beverageDescription); //checks whether the beverage was correctly delivered or not (InsufficientIngredientsException)	
 	}

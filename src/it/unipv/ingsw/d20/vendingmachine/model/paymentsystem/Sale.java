@@ -7,8 +7,8 @@ import java.util.Date;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.Beverage;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.BeverageDescription;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.exceptions.DeliveryFailedException;
-import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.payment.IPaymentStrategy;
-import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.payment.PaymentStrategyFactory;
+import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.payment.ICreditStrategy;
+import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.payment.CreditStrategyFactory;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.payment.exceptions.*;
 
 @SuppressWarnings("unused")

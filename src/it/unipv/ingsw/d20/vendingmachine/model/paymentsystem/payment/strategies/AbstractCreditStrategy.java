@@ -1,9 +1,9 @@
 package it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.payment.strategies;
 
-import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.payment.IPaymentStrategy;
+import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.payment.ICreditStrategy;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.payment.exceptions.*;
 
-public abstract class AbstractPaymentStrategy implements IPaymentStrategy {
+public abstract class AbstractCreditStrategy implements ICreditStrategy {
 	
 	public double checkCredit(double amount, double price) throws InsufficientCreditException {
 		if (amount >= price) {

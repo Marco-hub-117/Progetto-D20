@@ -7,6 +7,7 @@ import it.unipv.ingsw.d20.vendingmachine.model.exceptions.RefillMachineException
 import it.unipv.ingsw.d20.vendingmachine.model.exceptions.TankAbsentException;
 import it.unipv.ingsw.d20.vendingmachine.model.exceptions.WithdrawAmountException;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.Sale;
+import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.payment.ICreditStrategy;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.payment.exceptions.InvalidPaymentException;
 
 import java.util.ArrayList;
@@ -134,6 +135,10 @@ public class VendingMachine {
 	public Double getCurrentAmount() {
 		return currentAmount;
 	}
+	
+	public void setCurrentAmount(double amount) {
+		currentAmount=amount;
+	}
 
 	public void setTotalAmount(double totalAmount) {
 		this.totalAmount = totalAmount;
@@ -147,7 +152,17 @@ public class VendingMachine {
 		return status;
 	}
 	
-	
-	
+	//metodo provvisorio per un'opzione di gestione dei pagamenti
+	public double elaborateCredit(ICreditStrategy strategy, Object creditInfo) {
+		try {
+			double amount=strategy.elaborateCredit(creditInfo);
+			currentAmount+=amount;
+			return currentAmount;
+		} catch (InvalidPaymentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return 0;
+	}
 
 }

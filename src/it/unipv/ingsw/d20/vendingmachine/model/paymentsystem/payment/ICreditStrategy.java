@@ -2,7 +2,7 @@ package it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.payment;
 
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.payment.exceptions.*;
 
-public interface IPaymentStrategy {
+public interface ICreditStrategy {
 	
 	public String serialize(Object creditInfo) throws InvalidPaymentException;
 
@@ -10,8 +10,8 @@ public interface IPaymentStrategy {
 	
 	public double getAmount(String serial);
 	
-	public double checkCredit(double amount, double price) throws InsufficientCreditException;
+	public double completeSale(double change); 
 	
-	public double elaboratePayment(double price, Object creditInfo) throws InsufficientCreditException, InvalidPaymentException;
+	public double elaborateCredit(Object creditInfo) throws InvalidPaymentException;
 
 }

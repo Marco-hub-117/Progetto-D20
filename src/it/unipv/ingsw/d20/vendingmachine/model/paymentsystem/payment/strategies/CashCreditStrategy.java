@@ -5,10 +5,10 @@ import java.util.Map;
 
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.payment.exceptions.*;
 
-public class CashPaymentStrategy extends AbstractPaymentStrategy {
+public class CashCreditStrategy extends AbstractCreditStrategy {
 	String serial;
 	
-	public double elaboratePayment(double price, Object creditInfo) throws InsufficientCreditException, InvalidPaymentException {
+	public double elaborateCredit(Object creditInfo) throws InsufficientCreditException, InvalidPaymentException {
 
 		serial=serialize(creditInfo);
 		
@@ -20,12 +20,13 @@ public class CashPaymentStrategy extends AbstractPaymentStrategy {
 			throw new InvalidPaymentException();
 		}
 				
-		double change=checkCredit(amount, price);
-		return change;
+		
+		return amount;
 	}
 	
 	public String serialize(Object creditInfo) throws InvalidPaymentException {
 		
+		//non sarà piu una map ma un double solo quindi questa parte semplificata
 		Map<Double, Integer> coins=new HashMap<>();
 		try {
 			coins=(Map)creditInfo;
@@ -73,8 +74,15 @@ public class CashPaymentStrategy extends AbstractPaymentStrategy {
 	}
 	
 	@Override
+	public double completeSale(double change) {
+		
+		return change;
+	}
+	
+	@Override
 	public String toString() {
 		return ("Cash");
 	}
+
 
 }

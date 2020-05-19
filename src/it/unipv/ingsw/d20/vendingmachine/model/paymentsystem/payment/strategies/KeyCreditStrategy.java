@@ -2,9 +2,9 @@ package it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.payment.strategies
 
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.payment.exceptions.*;
 
-public class KeyPaymentStrategy extends AbstractPaymentStrategy {
+public class KeyCreditStrategy extends AbstractCreditStrategy {
 	
-	public double elaboratePayment(double price, Object creditInfo) throws InsufficientCreditException, InvalidPaymentException {
+	public double elaborateCredit(Object creditInfo) throws InvalidPaymentException {
 
 		String serial=serialize(creditInfo);
 		
@@ -12,11 +12,8 @@ public class KeyPaymentStrategy extends AbstractPaymentStrategy {
 		if (checkValidity(serial)) {
 			amount=getAmount(serial);
 		}
-				
-		double change=checkCredit(amount, price);
 		
-		setAmount(change);
-		return change;
+		return amount;
 	}
 	
 	public String serialize(Object creditInfo) throws InvalidPaymentException {
@@ -44,11 +41,11 @@ public class KeyPaymentStrategy extends AbstractPaymentStrategy {
 		return amount;
 	}
 	
-	public boolean setAmount(double change) {
+	public double completeSale(double change) {
 		
-		//va a scrivere l'ammontare rimasto sulla chiavetta sul DB
+		//va a scrivere l'ammontare rimasto sul DB
 		
-		return true;
+		return change; 
 	}
 	
 	@Override
