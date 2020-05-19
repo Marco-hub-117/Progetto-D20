@@ -1,5 +1,6 @@
 package it.unipv.ingsw.d20.vendingmachine.model.paymentsystem;
 
+import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.payment.exceptions.InsufficientCashForRestException;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.payment.exceptions.InvalidPaymentException;
 
 public class Test {
@@ -17,7 +18,20 @@ public class Test {
 		}
 		System.out.println(cc.getTotalAmount());
 		
-		cc.dispenseRest(5);
+		try {
+			cc.dispenseRest(5);
+			cc.dispenseRest(5);
+			cc.dispenseRest(5);
+		} catch (InsufficientCashForRestException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			cc.dispenseRest(50);
+		} catch (InsufficientCashForRestException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		System.out.println(cc.getTotalAmount());
 

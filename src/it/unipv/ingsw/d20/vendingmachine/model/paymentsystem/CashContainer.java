@@ -1,5 +1,6 @@
 package it.unipv.ingsw.d20.vendingmachine.model.paymentsystem;
 
+import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.payment.exceptions.InsufficientCashForRestException;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.payment.exceptions.InvalidPaymentException;
 
 public class CashContainer {
@@ -47,28 +48,47 @@ public class CashContainer {
 		return amount;
 	}
 	
-	public void dispenseRest(double credit) {		
+	public void dispenseRest(double credit) throws InsufficientCashForRestException {	
+		if(credit > getTotalAmount()) {
+			throw new InsufficientCashForRestException();
+		}
+		
 		while (credit >= 2) {
+			if (EUROS_2 == 0) {
+				break;
+			}
 			EUROS_2--;
 			credit -= 2;
 		}
 		
 		while (credit >= 1) {
+			if (EUROS_1 == 0) {
+				break;
+			}
 			EUROS_1--;
 			credit -= 1;
 		}
 		
 		while (credit >= 0.5) {
+			if (CENTS_50 == 0) {
+				break;
+			}
 			CENTS_50--;
 			credit -= 0.5;
 		}
 		
 		while (credit >= 0.2) {
+			if (CENTS_20 == 0) {
+				break;
+			}
 			CENTS_20--;
 			credit -= 0.2;
 		}
 		
 		while (credit >= 0.1) {
+			if (CENTS_10 == 0) {
+				break;
+			}
 			CENTS_10--;
 			credit -= 0.1;
 		}
