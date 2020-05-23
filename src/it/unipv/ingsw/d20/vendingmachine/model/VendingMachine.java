@@ -96,6 +96,15 @@ public class VendingMachine {
 	public void insertCode(String code) {
 		this.currentCode = code;
 		startTransaction();
+		
+		
+		/* CODICE ALTERNATIVO: ESEGUE UN CONTROLLO SULLA VALDITA' DELLA BEVANDA SELEZIONATA (POTREBBE NON ESISTERE)
+		 * if (bvCatalog.containsKey(code) { --> metodo da aggiungere in BeverageCatalog
+		 *     startTransaction(bvCatalog.getBeverageDesc(code));
+		 * } else {
+		 *     throw new NonExistentCodeException();
+		 * }
+		 */
 	}
 	
 	public void startTransaction() {
