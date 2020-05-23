@@ -6,9 +6,9 @@ import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.payment.exceptions.
 public class Test {
 
 	public static void main(String[] args) {
-		CashContainer cc = new CashContainer(10, 10, 10, 10, 10);
+		CashHandler cc = new CashHandler(10, 10, 10, 10, 10);
 		
-		System.out.println(cc.getTotalAmount());
+		System.out.println(cc.refreshTotalAmount());
 		
 		try {
 			cc.addCoin(0.50);
@@ -16,7 +16,7 @@ public class Test {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println(cc.getTotalAmount());
+		System.out.println(cc.refreshTotalAmount());
 		
 		try {
 			cc.dispenseRest(5);
@@ -33,7 +33,7 @@ public class Test {
 			e.printStackTrace();
 		}
 		
-		System.out.println(cc.getTotalAmount());
+		System.out.println(cc.refreshTotalAmount());
 
 	}
 

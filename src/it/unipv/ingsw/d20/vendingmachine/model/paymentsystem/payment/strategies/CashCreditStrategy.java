@@ -1,6 +1,6 @@
 package it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.payment.strategies;
 
-import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.CashContainer;
+import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.CashHandler;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.payment.exceptions.*;
 
 public class CashCreditStrategy extends AbstractCreditStrategy {

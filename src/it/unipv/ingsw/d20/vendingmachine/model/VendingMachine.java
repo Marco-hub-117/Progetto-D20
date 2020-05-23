@@ -6,9 +6,14 @@ import it.unipv.ingsw.d20.vendingmachine.model.beverage.exceptions.DeliveryFaile
 import it.unipv.ingsw.d20.vendingmachine.model.exceptions.RefillMachineException;
 import it.unipv.ingsw.d20.vendingmachine.model.exceptions.TankAbsentException;
 import it.unipv.ingsw.d20.vendingmachine.model.exceptions.WithdrawAmountException;
+import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.CashHandler;
+import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.KeyHandler;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.Sale;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.payment.ICreditStrategy;
+import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.payment.exceptions.InsufficientCashForRestException;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.payment.exceptions.InvalidPaymentException;
+import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.payment.exceptions.KeyNotInsertedException;
+import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.payment.exceptions.UnrecognisedKeyException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,10 +24,13 @@ public class VendingMachine {
 	private VendingMachineStatus status;
 	private double totalAmount;
 	private ArrayList<Sale> salesRegister;
-	private Double currentAmount;
+	private double credit;
 	private String currentCode;
 	private HashMap<String,Tank> tankList;
 	private BeverageCatalog bvCatalog;	//catalogo delle bevande
+	
+	private CashHandler cashHandler; //classi che gestiscono il pagamento
+	private KeyHandler keyHandler;
 	
 /**
  * 
@@ -35,15 +43,54 @@ public class VendingMachine {
 		this.id = id;
 		this.setStatus(VendingMachineStatus.OFF);	//LASCIATO OFF PER POI RIEMPIRE SERBATOI LA PRIMA VOLTA
 		this.totalAmount = totalAmount;
-		this.currentAmount = 0.0;
-		salesRegister = new ArrayList<Sale>();
-		tankList = new HashMap<>();
-		//INIT TANK
+		this.credit = 0.0;
 		
+		salesRegister = new ArrayList<Sale>();
+		tankList = new HashMap<>(); //INIT TANK
+		
+		cashHandler = new CashHandler(15, 15, 15, 15, 15); //Gli argomenti sono il numero di monete per tipo con cui viene inizializzata 
+														   //la macchinetta -> da valutare se passargliele con un array di int o cambiare 
+		keyHandler = new KeyHandler();
 	}
 	
-	public void insertAmount(Double amount) {
-		this.currentAmount += amount;
+	public void insertCoin(double coinValue) { 
+		try {
+			cashHandler.addCoin(coinValue); //se la moneta è valida la aggiunge al CashHandler
+			credit += coinValue;			//e aggiorna il credito
+		} catch (InvalidPaymentException e) { //altrimenti viene raccolta la relativa eccezione
+			e.printStackTrace();
+		}
+	}
+	
+	public void insertKey(String serialCode) {
+		try {
+			keyHandler.insertKey(serialCode); //se la chiavetta è riconosciuta viene inserita
+			credit += keyHandler.getCreditOnKey(); //e si aggiorna il credito della macchinetta con quello
+												   //disponibile sulla chiavetta
+		} catch (UnrecognisedKeyException e) { //altrimenti viene raccolta la relativa eccezione
+			
+		}
+	}
+	
+	public void ejectKey(double credit) {
+		try {
+			keyHandler.ejectKey(credit); //se c'è una chiavetta inserita la si toglie (passandole il nuovo credito)
+			credit = 0;					 //e si azzera il credito corrente della macchinetta
+		} catch (KeyNotInsertedException e) { //altrimenti viene raccolta la relativa eccezione
+			e.printStackTrace();
+		}
+	}
+	
+	public void dispenseCash() {
+		if (keyHandler.keyIsInserted()) { //controlla che non ci sia una chiavetta inserita, si potrebbe usare un'eccezione
+			return;
+		}
+		
+		try {
+			cashHandler.dispenseRest(credit);
+		} catch (InsufficientCashForRestException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void insertCode(String code) {
@@ -53,7 +100,7 @@ public class VendingMachine {
 	
 	public void startTransaction() {
 		try {
-			Sale s = new Sale(bvCatalog.getBeverageDesc(currentCode), currentAmount);
+			Sale s = new Sale(bvCatalog.getBeverageDesc(currentCode), credit);
 			salesRegister.add(s);
 		}catch(InvalidPaymentException e) {
 			//IN ATTESA DI IMPLEMENTAZIONE DELLE ECCEZIONI
@@ -133,11 +180,11 @@ public class VendingMachine {
 	}
 	
 	public Double getCurrentAmount() {
-		return currentAmount;
+		return credit;
 	}
 	
 	public void setCurrentAmount(double amount) {
-		currentAmount=amount;
+		credit=amount;
 	}
 
 	public void setTotalAmount(double totalAmount) {
@@ -152,7 +199,7 @@ public class VendingMachine {
 		return status;
 	}
 	
-	//metodo provvisorio per un'opzione di gestione dei pagamenti
+	/* metodo provvisorio per un'opzione di gestione dei pagamenti
 	public double elaborateCredit(ICreditStrategy strategy, Object creditInfo) {
 		try {
 			double amount=strategy.elaborateCredit(creditInfo);
@@ -162,7 +209,9 @@ public class VendingMachine {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return 0;
-	}
+		return 0; 
+	}*/
+	
+	
 
 }
