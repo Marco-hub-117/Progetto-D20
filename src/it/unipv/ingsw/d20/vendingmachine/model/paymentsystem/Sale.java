@@ -14,18 +14,14 @@ public class Sale {
 	
 	private Date date;
 	private BeverageDescription beverageDescription;
-	private double amount;
 	private double price;
 	
-	private double change;
-	
-	public Sale(BeverageDescription beverageDescription, double amount) throws InsufficientCreditException, DeliveryFailedException {
+	public Sale(BeverageDescription beverageDescription, double credit) throws InsufficientCreditException, DeliveryFailedException {
 		this.beverageDescription = beverageDescription;
-		this.amount = amount;
 		date = new Date();
 		price = beverageDescription.getPrice();
 		
-		change=checkCredit(amount, price);
+		checkCredit(credit, price);
 			
 		Beverage beverage = new Beverage(beverageDescription); //checks whether the beverage was correctly delivered or not (InsufficientIngredientsException)	
 	}
@@ -36,10 +32,6 @@ public class Sale {
 		} else { 
 			throw new InsufficientCreditException();
 		}		
-	}
-	
-	public double getChange() {
-		return change;
 	}
 
 	@Override
@@ -53,7 +45,6 @@ public class Sale {
 		
 		DecimalFormat df = new DecimalFormat("0.00");
 		saleInfo.append("Total: �" + df.format(price) + "\n");
-		saleInfo.append("Change: �" + df.format(change));
 		
 		return saleInfo.toString();
 	}
