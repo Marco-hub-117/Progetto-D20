@@ -15,20 +15,21 @@ public class Sale {
 	private Date date;
 	private BeverageDescription beverageDescription;
 	private double price;
+	private double rest;
 	
 	public Sale(BeverageDescription beverageDescription, double credit) throws InsufficientCreditException, DeliveryFailedException {
 		this.beverageDescription = beverageDescription;
 		date = new Date();
 		price = beverageDescription.getPrice();
 		
-		checkCredit(credit, price);
+		rest = checkCredit(credit, price);
 			
 		Beverage beverage = new Beverage(beverageDescription); //checks whether the beverage was correctly delivered or not (InsufficientIngredientsException)	
 	}
 	
-	public double checkCredit(double amount, double price) throws InsufficientCreditException {
-		if (amount >= price) {
-			return amount-price;
+	public double checkCredit(double credit, double price) throws InsufficientCreditException {
+		if (credit >= price) {
+			return credit - price;
 		} else { 
 			throw new InsufficientCreditException();
 		}		
@@ -47,6 +48,10 @@ public class Sale {
 		saleInfo.append("Total: �" + df.format(price) + "\n");
 		
 		return saleInfo.toString();
+	}
+	
+	public double getRest() {
+		return rest;
 	}
 	
 }

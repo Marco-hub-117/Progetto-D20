@@ -1,7 +1,6 @@
 package it.unipv.ingsw.d20.vendingmachine.model;
 
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.BeverageCatalog;
-import it.unipv.ingsw.d20.vendingmachine.model.beverage.BeverageDescription;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.Tank;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.exceptions.DeliveryFailedException;
 import it.unipv.ingsw.d20.vendingmachine.model.exceptions.RefillMachineException;
@@ -101,10 +100,8 @@ public class VendingMachine {
 	
 	public void startTransaction() {
 		try {
-			BeverageDescription bvDescription = bvCatalog.getBeverageDesc(currentCode);
-			
-			Sale s = new Sale(bvDescription, credit);
-			credit -= bvDescription.getPrice();
+			Sale s = new Sale(bvCatalog.getBeverageDesc(currentCode), credit);
+			credit = s.getRest();
 			salesRegister.add(s);
 		}catch(InvalidPaymentException e) {
 			//IN ATTESA DI IMPLEMENTAZIONE DELLE ECCEZIONI
