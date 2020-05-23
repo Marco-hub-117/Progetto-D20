@@ -1,6 +1,7 @@
 package it.unipv.ingsw.d20.vendingmachine.model;
 
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.BeverageCatalog;
+import it.unipv.ingsw.d20.vendingmachine.model.beverage.BeverageDescription;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.Tank;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.exceptions.DeliveryFailedException;
 import it.unipv.ingsw.d20.vendingmachine.model.exceptions.RefillMachineException;
@@ -94,22 +95,18 @@ public class VendingMachine {
 	}
 	
 	public void insertCode(String code) {
-		this.currentCode = code;
-		startTransaction();
+		BeverageDescription bvDesc = bvCatalog.getBeverageDesc(code);
 		
-		
-		/* CODICE ALTERNATIVO: ESEGUE UN CONTROLLO SULLA VALDITA' DELLA BEVANDA SELEZIONATA (POTREBBE NON ESISTERE)
-		 * if (bvCatalog.containsKey(code) { --> metodo da aggiungere in BeverageCatalog
-		 *     startTransaction(bvCatalog.getBeverageDesc(code));
-		 * } else {
-		 *     throw new NonExistentCodeException();
-		 * }
-		 */
+		if (bvDesc == null) {
+			//throw new NonExistentCodeException();
+		} else {
+			startTransaction(bvDesc);
+		}
 	}
 	
-	public void startTransaction() {
+	public void startTransaction(BeverageDescription bvDesc) {
 		try {
-			Sale s = new Sale(bvCatalog.getBeverageDesc(currentCode), credit);
+			Sale s = new Sale(bvDesc, credit);
 			credit = s.getRest();
 			salesRegister.add(s);
 		}catch(InvalidPaymentException e) {
