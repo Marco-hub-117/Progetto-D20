@@ -1,5 +1,5 @@
 package it.unipv.ingsw.d20.vendingmachine.model.beverage;
-
+//hh
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,7 +10,7 @@ public class BeverageCatalog {
 	public BeverageCatalog() {
 		catalog = new HashMap<String, BeverageDescription>();
 	}
-	
+	//hh
 	public BeverageDescription getBeverageDesc(String code) { //DATO LA STRINGA RESTITUISCE L'OGGETTO CORRISPONDENTE NELLA MAPPA
 		if(catalog.containsKey(code)) {	
 			return catalog.get(code);

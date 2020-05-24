@@ -1,5 +1,5 @@
 package it.unipv.ingsw.d20.vendingmachine.model.beverage;
-
+//hh
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.exceptions.DeliveryFailedException;
 
 public class Beverage implements Runnable{

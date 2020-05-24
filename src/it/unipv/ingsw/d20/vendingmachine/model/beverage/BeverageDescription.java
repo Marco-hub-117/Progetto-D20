@@ -1,5 +1,5 @@
 package it.unipv.ingsw.d20.vendingmachine.model.beverage;
-
+//hhh
 import java.util.HashMap;
 import java.util.Map;
 
