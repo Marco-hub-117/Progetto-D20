@@ -18,6 +18,11 @@ public class BeverageCatalog {
 			return null;
 		}
 	}
+	public void setIngredient(String code, Ingredients i, Double q) {
+		if(catalog.containsKey(code)) {
+			catalog.get(code).setIngredientQuantity(i, q);
+		}
+	}
 	
 	public void addBeverageDescription(BeverageDescription b) {//AGGIUNGE UNA NUOVA BEVERAGE DESCRIPTION NELLA MAPPA
 		catalog.put(b.getCode(), b);

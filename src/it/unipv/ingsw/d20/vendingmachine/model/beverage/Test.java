@@ -8,13 +8,13 @@ public class Test {
 
 	public static void main(String[] args) {
 		BeverageCatalog catalogo=new BeverageCatalog();
-		BeverageDescription b1=new BeverageDescription("caffè espresso", 0.5);
-		b1.addIngredient(Ingredients.COFFEE, 0.2);
-		b1.addIngredient(Ingredients.WATER, 0.5);
-		BeverageDescription b2=new BeverageDescription("caffè macchiato", 0.7);
-		b2.addIngredient(Ingredients.COFFEE, 0.2);
-		b2.addIngredient(Ingredients.WATER, 0.8);
-		b2.addIngredient(Ingredients.MILK, 0.3);
+		BeverageDescription b1=new BeverageDescription("A","caffè espresso", 0.5);
+		b1.addIngredient(Ingredients.COFFEE);
+		b1.addIngredient(Ingredients.WATER);
+		BeverageDescription b2=new BeverageDescription("B","caffè macchiato", 0.7);
+		b2.addIngredient(Ingredients.COFFEE);
+		b2.addIngredient(Ingredients.WATER);
+		b2.addIngredient(Ingredients.MILK);
 		
 		catalogo.addBeverageDescription(b1);
 		catalogo.addBeverageDescription(b2);

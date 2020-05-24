@@ -5,24 +5,34 @@ import java.util.Map;
 
 public class BeverageDescription {
 
-	String code;
-	double price;
+	private String code;
+	private String name;
+	private double price;
 	private Map<Ingredients, Double> ingredients;  
 	
-	public BeverageDescription(String code, double price) {
+	public BeverageDescription(String code,String name, double price) {
 		this.code = code;
+		this.name=name;
 		this.price = price;
 		this.ingredients = new HashMap<Ingredients, Double>();
+		
+		
 	}
-
-	public void addIngredient(Ingredients i, double q) { //aggiunge un ingrediente e la sua quantità nella mappa
-		ingredients.put(i, q);
+	//Non mi sembra una buona pratica quella di aggiungere al momento dell'instanziazione di 
+	//BeverageDescription una lista di ingredienti, per evitare di scrivere valori specifici 
+	//direttamente nel codice. 
+	//In ogni caso con la modifica del metodo addInredient, il valore di ciascun ingrediente 
+	//viene settato a zero.
+	public void addIngredient(Ingredients i) {
+		//aggiunge un ingrediente e setta la sua quantit� a 0.0
+		ingredients.put(i, 0.0);
 	}
-	
 	public void setIngredientQuantity(Ingredients i, double q){ //cambia la quantità di un ingrediente già presente
 		ingredients.replace(i, q); //cambia la quantità solo se la chiave esiste
 	}
-
+	public String getName() {
+		return name;
+	}
 	public String getCode() {
 		return code;
 	}
