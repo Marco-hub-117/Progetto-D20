@@ -29,14 +29,11 @@ public class NumberPanel extends JPanel {
 		this.setLayout(new GridLayout(4,3,2,2));
 		ordinaPulsanti();
 		for(Pulsante p:l) {
-			//for-each
-			//aggiungo i pulsanti al pannello dei tasti
 			this.add(p);
 		}
 	
 	}
 	private void ordinaPulsanti() { 
-		//creo un metodo che mi ordini i pulsanti secondo la loro posizione (definita in PulsanteComparator)
 		PulsanteComparator p=new PulsanteComparator();
 		l.sort(p);
 	}

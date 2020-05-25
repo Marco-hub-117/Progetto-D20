@@ -12,20 +12,25 @@ import javax.swing.JTextField;
 public class Panel_A extends JPanel{
 	private NumberPanel p;
 	private JTextField display;
-	private JButton operator;
+	
 	
 	public Panel_A(){
-		display=new JTextField("display");
+		display=new JTextField(10);
+		
 		p=new NumberPanel();
-		operator=new JButton("operator");
 		this.setLayout(new BorderLayout());
 		add(display, BorderLayout.NORTH);
 		add(p, BorderLayout.CENTER);
-		add(operator, BorderLayout.SOUTH);
+	
 	 }
 	public List<Pulsante> getL() {
 		return p.getL();
 	}
-
+	public void setDisplay(String text) {
+		display.setText(text);
+	}
+	public String getDisplay() {
+		return display.getText();
+	}
 	
 }

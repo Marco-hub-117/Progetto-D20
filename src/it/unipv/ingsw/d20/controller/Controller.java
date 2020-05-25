@@ -21,12 +21,12 @@ public class Controller {
 
 	private void addListenerA() {
 		for(Pulsante puls:gui.getLA()) {
-			puls.addActionListener(new Listener(puls.getValue(), m, gui)); 
+			puls.addActionListener(new ListenerA(puls.getValue(), m, gui)); 
 		}
 	}
 	private void addListenerB() {
 		for(Pulsante puls:gui.getLB()) {
-			puls.addActionListener(new Listener(puls.getValue(), m, gui));
+			puls.addActionListener(new ListenerB(puls.getValue(), m, gui));
 		}
 	}
 	
