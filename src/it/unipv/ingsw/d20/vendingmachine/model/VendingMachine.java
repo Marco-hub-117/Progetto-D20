@@ -39,7 +39,9 @@ public class VendingMachine {
  * @param totalAmount Inizialmente totalAmount viene impostato dalla company per i resti. Riscuotendo dalla macchinetta, per hp lasciamo 10€
  * 
  */
-	
+	public VendingMachine() {
+		//for testing
+	}
 	public VendingMachine(String id, double totalAmount) {	
 		this.id = id;
 		this.setStatus(VendingMachineStatus.OFF);	//LASCIATO OFF PER POI RIEMPIRE SERBATOI LA PRIMA VOLTA
