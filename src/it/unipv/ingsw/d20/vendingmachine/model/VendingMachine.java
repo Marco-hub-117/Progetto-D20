@@ -33,25 +33,17 @@ public class VendingMachine {
 	private CashHandler cashHandler; //classi che gestiscono il pagamento
 	private KeyHandler keyHandler;
 	
-<<<<<<< HEAD
+
+	public VendingMachine() {
+		//for testing
+	}
+	
 	/**
 	 * Costruttore della classe VendingMachine
 	 * @param id Stringa che rappresenta l'ID univoco della macchinetta
 	 * @param totalAmount Inizialmente totalAmount viene impostato dalla company per i resti. 
 	 * 
 	 */
-	
-=======
-/**
- * 
- * @param id
- * @param totalAmount Inizialmente totalAmount viene impostato dalla company per i resti. Riscuotendo dalla macchinetta, per hp lasciamo 10€
- * 
- */
-	public VendingMachine() {
-		//for testing
-	}
->>>>>>> 05b6e0f50dcbf4cfdc32d681eeb8e0841f931a08
 	public VendingMachine(String id, double totalAmount) {	
 		this.id = id;
 		this.setStatus(VendingMachineStatus.OFF);	//LASCIATO OFF PER POI RIEMPIRE SERBATOI LA PRIMA VOLTA
