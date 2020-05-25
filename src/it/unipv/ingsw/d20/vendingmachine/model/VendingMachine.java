@@ -33,13 +33,25 @@ public class VendingMachine {
 	private CashHandler cashHandler; //classi che gestiscono il pagamento
 	private KeyHandler keyHandler;
 	
+<<<<<<< HEAD
+	/**
+	 * Costruttore della classe VendingMachine
+	 * @param id Stringa che rappresenta l'ID univoco della macchinetta
+	 * @param totalAmount Inizialmente totalAmount viene impostato dalla company per i resti. 
+	 * 
+	 */
+	
+=======
 /**
  * 
  * @param id
  * @param totalAmount Inizialmente totalAmount viene impostato dalla company per i resti. Riscuotendo dalla macchinetta, per hp lasciamo 10â‚¬
  * 
  */
-	
+	public VendingMachine() {
+		//for testing
+	}
+>>>>>>> 05b6e0f50dcbf4cfdc32d681eeb8e0841f931a08
 	public VendingMachine(String id, double totalAmount) {	
 		this.id = id;
 		this.setStatus(VendingMachineStatus.OFF);	//LASCIATO OFF PER POI RIEMPIRE SERBATOI LA PRIMA VOLTA
@@ -134,27 +146,34 @@ public class VendingMachine {
 			throw new RefillMachineException("Stato della macchinetta non corretto");
 		}
 	}
+	
+	/**
+	 * Metodo che gestisce il ritiro del credito dalla VendingMachine.
+	 * @throws WithdrawAmountException
+	 * @throws RefillMachineException
+	 */
 
 	public void withdrawAmount() throws WithdrawAmountException, RefillMachineException{		//Vedere se refill o OFF
 		
-		if(this.getStatus().equals(VendingMachineStatus.REFILL)) {
-			if(this.getTotalAmount() < Constants.IMPORTOMIN) {
-				throw new WithdrawAmountException("Importo minore di 10 â‚¬");
-			}else {
-				this.setTotalAmount(Constants.IMPORTOMIN);
-			}
-		}else {
+		if(this.getStatus() != VendingMachineStatus.REFILL) { // Controllare se lo stato della macchinetta è corretto
 			throw new RefillMachineException("Stato della macchinetta non corretto");
 		}
-	}
-
-	public void sendInfo() {				//DA CHIARIRE
-
-		/*
-		 * Pensata la creazione Di una classe VendingMachineInfo che contiene al suo interno tutte le informazioni che servono.
-		 * 
-		 */
 		
+		if(this.getTotalAmount() < Constants.IMPORTOMIN) { // verificare che se per qualche motivo il credito attuale della macchinetta è minore dell'importo minimo.
+			throw new WithdrawAmountException("Importo minore di 10 €");
+		}
+		
+		// Se tutte le verifiche hanno riportato esito negativo, il totalAmount viene aggiornato correttamente.
+		this.totalAmount = Constants.IMPORTOMIN;
+	}
+	
+	/**
+	 * Questo metodo crea una nuova istanza della classe VendingMachineInfo e la restituisce.
+	 * @return VendingMachineInfo contiene al suo interno le informazioni di questa VendingMachine.
+	 */
+
+	public VendingMachineInfo sendInfo() {				
+		return new VendingMachineInfo(id, status, totalAmount, tankList);	
 	}
 
 	public void setTankSettings(String id, Double temp) throws RefillMachineException, TankAbsentException{
@@ -170,11 +189,12 @@ public class VendingMachine {
 		}
 	}
 
-	public void setIngredient(String code, String name, Double quantity) {		// commenti dentro
+	public void setIngredient(String code, String name, Double quantity) {		
 		/*
-		 *  Pensare di togliere la classe ingredient perchï¿½ inutile. Non possiamo accedere alla set desc perchï¿½ non abbiamo l'ingrediente, ma il nome.
-		 *  
+		 * Creare nella classe beverageCatalog un metodo che permette l'aggiunta di un ingrediente 
+		 * passando come argomento il nome dell'ingrediente, e non un'oggetto Ingredients.
 		 */
+		//this.bvCatalog.setIngredient(code, name, quantity);
 	}
 
 	

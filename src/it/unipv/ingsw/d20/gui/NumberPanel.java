@@ -1,37 +1,48 @@
 package it.unipv.ingsw.d20.gui;
 
 import java.awt.GridLayout;
+import java.util.ArrayList;
+import java.util.List;
 
-import javax.swing.JButton;
 import javax.swing.JPanel;
 
+
+
 public class NumberPanel extends JPanel {
+	private List<Pulsante> l;
 	public NumberPanel() {
-		JButton zero=new JButton("0");
-		JButton uno=new JButton("1");
-		JButton due=new JButton("2");
-		JButton tre=new JButton("3");
-		JButton quat=new JButton("4");
-		JButton cinq=new JButton("5");
-		JButton sei=new JButton("6");
-		JButton sett=new JButton ("7"); 
-		JButton otto=new JButton("8");
-		JButton nove=new JButton("9");
-		JButton ok=new JButton("Ok");
-		JButton canc=new JButton("Canc");
-		this.setLayout(new GridLayout(4,3,2,2));
+		this.l=new ArrayList<>();
 		
-		add(uno);
-		add(due);
-		add(tre);
-		add(quat);
-		add(cinq);
-		add(sei);
-		add(sett);
-		add(otto);
-		add(nove);
-		add(canc);
-		add(zero);
-		add(ok);
+		l.add(new Pulsante(0,11,"0"));
+		l.add(new Pulsante(1,1,"1"));
+		l.add(new Pulsante(2,2,"2"));
+		l.add(new Pulsante(3,3,"3"));
+		l.add(new Pulsante(4,4,"4"));
+		l.add(new Pulsante(5,5,"5"));
+		l.add(new Pulsante(6,6,"6"));
+		l.add(new Pulsante(7,7,"7"));
+		l.add(new Pulsante(8,8,"8"));
+		l.add(new Pulsante(9,9,"9"));
+		l.add(new Pulsante(-1,10,"Canc"));
+		l.add(new Pulsante(10,12,"Ok"));
+		
+		this.setLayout(new GridLayout(4,3,2,2));
+		ordinaPulsanti();
+		for(Pulsante p:l) {
+			//for-each
+			//aggiungo i pulsanti al pannello dei tasti
+			this.add(p);
+		}
+	
 	}
+	private void ordinaPulsanti() { 
+		//creo un metodo che mi ordini i pulsanti secondo la loro posizione (definita in PulsanteComparator)
+		PulsanteComparator p=new PulsanteComparator();
+		l.sort(p);
+	}
+	public List<Pulsante> getL() {
+		return l;
+	}
+
+
 }

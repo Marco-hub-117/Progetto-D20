@@ -2,6 +2,7 @@ package it.unipv.ingsw.d20.gui;
 
 import java.awt.Container;
 import java.awt.FlowLayout;
+import java.util.List;
 
 import javax.swing.JFrame;
 
@@ -16,6 +17,12 @@ public class CustomerGui extends JFrame{
 		this.setLayout(new FlowLayout());
 		add(pa); 
 		add(pb);
+	}
+	public List<Pulsante> getLA() {
+		return pa.getL();
+	}
+	public List<Pulsante> getLB() {
+		return pb.getL();
 	}
 	
 }
