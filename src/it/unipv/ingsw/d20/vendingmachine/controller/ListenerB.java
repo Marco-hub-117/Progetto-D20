@@ -1,9 +1,9 @@
-package it.unipv.ingsw.d20.controller;
+package it.unipv.ingsw.d20.vendingmachine.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import it.unipv.ingsw.d20.gui.CustomerGui;
+import it.unipv.ingsw.d20.vendingmachine.gui.CustomerGui;
 import it.unipv.ingsw.d20.vendingmachine.model.VendingMachine;
 
 public class ListenerB implements ActionListener{

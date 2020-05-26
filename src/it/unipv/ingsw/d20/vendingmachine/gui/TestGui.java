@@ -1,8 +1,8 @@
-package it.unipv.ingsw.d20.gui;
+package it.unipv.ingsw.d20.vendingmachine.gui;
 
 import javax.swing.JFrame;
 
-import it.unipv.ingsw.d20.controller.Controller;
+import it.unipv.ingsw.d20.vendingmachine.controller.Controller;
 import it.unipv.ingsw.d20.vendingmachine.model.VendingMachine;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.BeverageCatalog;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.BeverageDescription;

@@ -1,4 +1,4 @@
-package it.unipv.ingsw.d20.gui;
+package it.unipv.ingsw.d20.vendingmachine.gui;
 
 import javax.swing.JButton;
 

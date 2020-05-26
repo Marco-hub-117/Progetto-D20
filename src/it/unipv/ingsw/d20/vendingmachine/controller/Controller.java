@@ -1,7 +1,7 @@
-package it.unipv.ingsw.d20.controller;
+package it.unipv.ingsw.d20.vendingmachine.controller;
 
-import it.unipv.ingsw.d20.gui.CustomerGui;
-import it.unipv.ingsw.d20.gui.Pulsante;
+import it.unipv.ingsw.d20.vendingmachine.gui.CustomerGui;
+import it.unipv.ingsw.d20.vendingmachine.gui.Pulsante;
 import it.unipv.ingsw.d20.vendingmachine.model.VendingMachine;
 
 public class Controller {
