@@ -4,7 +4,8 @@ import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.payment.exceptions.
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.payment.exceptions.InvalidPaymentException;
 
 public class CashHandler {
-	//aggiungere 5 centesimi
+	
+	private int CENTS_5;
 	private int CENTS_10;
 	private int CENTS_20;
 	private int CENTS_50;
@@ -13,7 +14,8 @@ public class CashHandler {
 	
 	private double totalAmount;
 	
-	public CashHandler(int cents10, int cents20, int cents50, int euros1, int euros2) {
+	public CashHandler(int cents5, int cents10, int cents20, int cents50, int euros1, int euros2) {
+		CENTS_5 = cents5;
 		CENTS_10 = cents10;
 		CENTS_20 = cents20;
 		CENTS_50 = cents50;
@@ -31,6 +33,9 @@ public class CashHandler {
 		String coinString = String.valueOf(coin);
 		
 		switch (coinString) {
+		case "0.05":
+			CENTS_5++;
+			break;
 		case "0.1":
 			CENTS_10++;
 			break;
@@ -52,7 +57,7 @@ public class CashHandler {
 	}
 	
 	public double refreshTotalAmount() {
-		double amount = 0.1 * CENTS_10 + 0.2 * CENTS_20 + 0.5 * CENTS_50 + EUROS_1 + 2 * EUROS_2;
+		double amount = 0.05 * CENTS_5 + 0.1 * CENTS_10 + 0.2 * CENTS_20 + 0.5 * CENTS_50 + EUROS_1 + 2 * EUROS_2;
 		return amount;
 	}
 	
@@ -99,6 +104,14 @@ public class CashHandler {
 			}
 			CENTS_10--;
 			credit -= 0.1;
+		}
+		
+		while (credit >= 0.05) {
+			if (CENTS_5 == 0) {
+				break;
+			}
+			CENTS_5--;
+			credit -= 0.05;
 		}
 	}
 	

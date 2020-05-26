@@ -6,7 +6,7 @@ import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.payment.exceptions.
 public class Test {
 
 	public static void main(String[] args) {
-		CashHandler cc = new CashHandler(10, 10, 10, 10, 10);
+		CashHandler cc = new CashHandler(10, 10, 10, 10, 10, 10);
 		
 		System.out.println(cc.refreshTotalAmount());
 		

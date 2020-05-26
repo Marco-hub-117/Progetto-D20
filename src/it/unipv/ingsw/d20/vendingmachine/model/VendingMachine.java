@@ -53,7 +53,7 @@ public class VendingMachine {
 		salesRegister = new ArrayList<Sale>();
 		tankList = new HashMap<>(); //INIT TANK
 		
-		cashHandler = new CashHandler(15, 15, 15, 15, 15); //Gli argomenti sono il numero di monete per tipo con cui viene inizializzata 
+		cashHandler = new CashHandler(15, 15, 15, 15, 15, 15); //Gli argomenti sono il numero di monete per tipo con cui viene inizializzata 
 														   //la macchinetta -> da valutare se passargliele con un array di int o cambiare 
 		keyHandler = new KeyHandler();
 	}
