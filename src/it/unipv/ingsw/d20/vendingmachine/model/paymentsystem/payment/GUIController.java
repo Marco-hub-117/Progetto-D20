@@ -23,7 +23,7 @@ public class GUIController {
 	
 	creditInfo=code;
 	
-	double currentAmount=vending.elaborateCredit(strategy, creditInfo);
+	//double currentAmount=vending.elaborateCredit(strategy, creditInfo);
 	//verrà mostrato a video
 	}
 	
@@ -56,7 +56,7 @@ public class GUIController {
 	
 	creditInfo=coin;
 	
-	double currentAmount=vending.elaborateCredit(strategy, creditInfo);
+	//double currentAmount=vending.elaborateCredit(strategy, creditInfo);
 	
 	//se viene inserita un'altra moneta-- rieseguite queste 3 righe
 		
