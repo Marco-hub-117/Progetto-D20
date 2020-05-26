@@ -54,6 +54,12 @@ public class CustomerGui extends JFrame{
 	public String getPrice() {
 		return pb.getPrice();
 	}
+	public String getText() {
+		return pa.getText();
+	}
+	public void setText(String s) {
+		pa.setText(s);
+	}
 	
 }
 

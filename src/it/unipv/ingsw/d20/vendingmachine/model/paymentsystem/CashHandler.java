@@ -4,7 +4,7 @@ import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.payment.exceptions.
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.payment.exceptions.InvalidPaymentException;
 
 public class CashHandler {
-	
+	//aggiungere 5 centesimi
 	private int CENTS_10;
 	private int CENTS_20;
 	private int CENTS_50;
@@ -40,10 +40,10 @@ public class CashHandler {
 		case "0.5":
 			CENTS_50++;
 			break;
-		case "1":
+		case "1.0":
 			EUROS_1++;
 			break;
-		case "2":
+		case "2.0":
 			EUROS_2++;
 			break;
 		default:

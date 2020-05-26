@@ -6,8 +6,6 @@ import java.util.List;
 
 import javax.swing.JPanel;
 
-
-
 public class NumberPanel extends JPanel {
 	private List<Pulsante> l;
 	public NumberPanel() {

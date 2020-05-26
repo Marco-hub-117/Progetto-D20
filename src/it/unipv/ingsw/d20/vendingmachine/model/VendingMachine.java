@@ -147,12 +147,12 @@ public class VendingMachine {
 
 	public void withdrawAmount() throws WithdrawAmountException, RefillMachineException{		//Vedere se refill o OFF
 		
-		if(this.getStatus() != VendingMachineStatus.REFILL) { // Controllare se lo stato della macchinetta è corretto
+		if(this.getStatus() != VendingMachineStatus.REFILL) { // Controllare se lo stato della macchinetta ï¿½ corretto
 			throw new RefillMachineException("Stato della macchinetta non corretto");
 		}
 		
-		if(this.getTotalAmount() < Constants.IMPORTOMIN) { // verificare che se per qualche motivo il credito attuale della macchinetta è minore dell'importo minimo.
-			throw new WithdrawAmountException("Importo minore di 10 €");
+		if(this.getTotalAmount() < Constants.IMPORTOMIN) { // verificare che se per qualche motivo il credito attuale della macchinetta ï¿½ minore dell'importo minimo.
+			throw new WithdrawAmountException("Importo minore di 10 ï¿½");
 		}
 		
 		// Se tutte le verifiche hanno riportato esito negativo, il totalAmount viene aggiornato correttamente.
@@ -216,6 +216,10 @@ public class VendingMachine {
 
 	public VendingMachineStatus getStatus() {
 		return status;
+	}
+	public BeverageCatalog getCatalog() {
+		return bvCatalog;
+		
 	}
 	
 	/* metodo provvisorio per un'opzione di gestione dei pagamenti

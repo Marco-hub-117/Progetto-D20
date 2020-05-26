@@ -4,15 +4,15 @@ import javax.swing.JButton;
 
 public class Pulsante extends JButton {
 	private int pos;
-	private int value;
+	private double value;
 	
-	public Pulsante(int value, int pos, String string) {
+	public Pulsante(double value, int pos, String string) {
 		super(string);
 		this.value=value;
 		this.pos=pos; 
 	}
 
-	public int getValue() {
+	public double getValue() {
 		return value;
 	}
 
