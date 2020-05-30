@@ -9,7 +9,7 @@ public class test {
 		pf = pf.getInstance();
 		
 		IVendingDao a = pf.getVendingDao();
-		System.out.println(a.getAddressById("id2"));
+		System.out.println(a.getAddressById("id3"));
 
 
 	}
