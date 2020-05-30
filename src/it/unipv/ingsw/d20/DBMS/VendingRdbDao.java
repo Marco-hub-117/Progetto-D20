@@ -18,4 +18,10 @@ public class VendingRdbDao implements IVendingDao{
 		return op.getAddressById(id);
 	}
 
+	@Override
+	public void addVending(String Id, String Address) {
+		// TODO Auto-generated method stub
+		op.addVending(Id, Address);
+	}
+
 }

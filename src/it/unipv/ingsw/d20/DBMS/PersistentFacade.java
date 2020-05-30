@@ -2,8 +2,7 @@ package it.unipv.ingsw.d20.DBMS;
 
 public class PersistentFacade {
 	
-	
-	
+
 /**
  * Classe facade verso DBMS implementata con singleton 
  */
@@ -23,6 +22,8 @@ public class PersistentFacade {
 	public IVendingDao getVendingDao() {
 		return new VendingRdbDao();
 	}
+	
+	
 
 
 }

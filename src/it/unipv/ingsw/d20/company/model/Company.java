@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import it.unipv.ingsw.d20.DBMS.IVendingDao;
+import it.unipv.ingsw.d20.DBMS.PersistentFacade;
 import it.unipv.ingsw.d20.company.model.net.CompanyServer;
 import it.unipv.ingsw.d20.vendingmachine.model.VendingMachine;
 import it.unipv.ingsw.d20.vendingmachine.model.exceptions.AddingMachineException;
@@ -18,6 +20,7 @@ public class Company {
 	private Map<String,VendingMachine> vendingMachineList;
 	private Map<String,Operator> operatorList;
 	private Map<String,RemoteOperator> remoteOperatorList;
+	
 	
 	public Company(String name) {
 		this.name = name;
@@ -45,6 +48,10 @@ public class Company {
 	}
 	
 	public void addVendingMachine (String id, double totalAmount) throws AddingMachineException {
+		/*PersistentFacade fc = null;
+		fc.getInstance();
+		IVendingDao a = fc.getVendingDao();*/
+		
 		if(vendingMachineList.containsKey(id)) {
 			throw new AddingMachineException("ID già presente");
 		}

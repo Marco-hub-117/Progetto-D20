@@ -10,6 +10,7 @@ public class RdbOperations {
 	
 	Connection con;
 	Statement st;
+	ResultSet rs;
 
 	public Connection connect() {
 	try {
@@ -17,7 +18,7 @@ public class RdbOperations {
 		con = DriverManager.getConnection(
 				"jdbc:mysql://34.65.222.216:3306/prova","root",""); 
 		
-				///ingsw20?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC"
+			//nasce per un problema relativo all'ora	///ingsw20?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC"
 		}catch(Exception e){ System.out.println(e);}  			// TODO Auto-generated catch block
 	
 	return con;
@@ -25,7 +26,7 @@ public class RdbOperations {
 	
 	
 	public String getAddressById(String Id) {
-		ResultSet rs;
+		
 		this.connect();
 		String query = "SELECT Address FROM Vending WHERE idVending = '" + Id + "'";
 		String result = null;
@@ -44,6 +45,18 @@ public class RdbOperations {
 
 	}
 	
-	
+	public void addVending(String Id, String Address) {
+		this.connect();
+		String query = "INSERT INTO Vending values ('" + Id +"','"+ Address + "')";
+		try {
+			st = con.createStatement();
+			st.executeUpdate(query);
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 
 }

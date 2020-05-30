@@ -8,5 +8,7 @@ public interface IVendingDao {
 	
 	public String getAddressById(String id);
 	
+	public void addVending(String Id, String Address);
+	
 
 }
