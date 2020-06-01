@@ -6,13 +6,17 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+/**
+ * Classe che implementa la connessione con il database. Implementa tutte le possibili operazioni con esso.
+ *
+ */
 public class RdbOperations {
 	
 	Connection con;
 	Statement st;
 	ResultSet rs;
 
-	public Connection connect() {
+	public Connection connect() { // DA RIVEDERE; SISTEMARE COME IMPLEMENTAZIONE DI NOCERA (Relativamente alla connessione)?
 	try {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		con = DriverManager.getConnection(

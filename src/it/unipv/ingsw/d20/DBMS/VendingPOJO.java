@@ -1,8 +1,17 @@
 package it.unipv.ingsw.d20.DBMS;
 
+/**
+ * Classe che serve come "contenitore" di informazioni di una table Vending del database.
+ * 
+ */
 public class VendingPOJO {
 	
 	private String idVending, address;
+	
+	public VendingPOJO(String idVending, String address) {
+		this.idVending = idVending;
+		this.address = address;
+	}
 
 	public String getIdVending() {
 		return idVending;

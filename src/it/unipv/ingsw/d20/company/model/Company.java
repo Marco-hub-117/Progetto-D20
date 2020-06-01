@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import it.unipv.ingsw.d20.DBMS.IVendingDao;
-import it.unipv.ingsw.d20.DBMS.PersistentFacade;
+import it.unipv.ingsw.d20.DBMS.PersistenceFacade;
 import it.unipv.ingsw.d20.company.model.net.CompanyServer;
 import it.unipv.ingsw.d20.vendingmachine.model.VendingMachine;
 import it.unipv.ingsw.d20.vendingmachine.model.exceptions.AddingMachineException;
