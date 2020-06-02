@@ -5,8 +5,7 @@ public class test {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		PersistenceFacade pf = null;
-		pf = pf.getInstance();
+		PersistenceFacade pf = PersistenceFacade.getInstance();
 		
 		IVendingDao a = pf.getVendingDao();
 		a.addVending("id4", "Roma");

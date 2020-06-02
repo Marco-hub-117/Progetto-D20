@@ -16,7 +16,7 @@ public class VendingRdbDao implements IVendingDao{
 	}
 	
 	public String getAddressById(String id) {
-		return op.getAddressById(id);
+		return op.getVendingAddressById(id);
 	}
 
 	@Override

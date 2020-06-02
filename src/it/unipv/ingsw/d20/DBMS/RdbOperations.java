@@ -12,12 +12,18 @@ import java.sql.Statement;
  */
 public class RdbOperations {
 	
-	Connection con;
-	Statement st;
-	ResultSet rs;
+	private Connection con;
+	
+	public RdbOperations () {
+		this.con = null;
+	}
 
-	public Connection connect() { // DA RIVEDERE; SISTEMARE COME IMPLEMENTAZIONE DI NOCERA (Relativamente alla connessione)?
-	try {
+	// CODICE FUNZIONANTE, ma modificato introducendo i metodi startConnection, isOpen e CloseConnection.
+	
+	/*
+	public Connection startConnection() { // DA RIVEDERE; SISTEMARE COME IMPLEMENTAZIONE DI NOCERA (Relativamente alla connessione)?
+
+		try {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		con = DriverManager.getConnection(
 				"jdbc:mysql://34.65.222.216:3306/prova","root",""); 
@@ -25,15 +31,65 @@ public class RdbOperations {
 			//nasce per un problema relativo all'ora	///ingsw20?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC"
 		}catch(Exception e){ System.out.println(e);}  			// TODO Auto-generated catch block
 	
-	return con;
+		return con;
 	}  
+	*/ 
 	
-	
-	public String getAddressById(String Id) {
+	public Connection startConnection(Connection conn) { // codice rivisto, corretto come nocera.
 		
-		this.connect();
-		String query = "SELECT Address FROM Vending WHERE idVending = '" + Id + "'";
+		String DbDriver = null;
+		String DbUrl=null;
+		String username=null;
+		String password = null;
+		
+		DbDriver = "com.mysql.cj.jdbc.Driver";
+		DbUrl = "jdbc:mysql://34.65.222.216:3306/prova"; // è possibile implementare una connessione a uno schema particolare, in questo caso usiamo di default lo schema "prova"
+		username = "root";
+		password = "";
+		if (isOpen (conn)) // se la connessione al database è già aperta viene chiusa, per poi riaprirne una nuova
+			closeConnection(conn); // conn viene chiusa.
+		
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			conn = DriverManager.getConnection(DbUrl,username,password); // apertura della connessione
+			//nasce per un problema relativo all'ora	///ingsw20?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC"
+			}
+		catch(Exception e){
+			e.printStackTrace();
+			return null;
+		}  				
+		return conn; // se tutto va a buon fine la connessione viene aperta e restituita.
+	}
+	
+	public boolean isOpen(Connection conn) {
+		if (conn == null) 
+			return false;
+		else 
+			return true;
+	}
+	
+	public Connection closeConnection (Connection conn) {
+		if ( !isOpen(conn) ) // se la connessione è già chiusa.
+			return null;
+		try {
+			conn.close(); // se la chiusura della connessione va a buon fine,
+			conn = null;  // conn viene posto a null. Viene poi restituito alla fine del blocco try catch.
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+		return conn; // se tutto va a buon fine, la connessione viene chiusa e viene restituito il valore null.
+	}
+		
+	public String getVendingAddressById(String Id) {
+		
 		String result = null;
+		String query = "SELECT Address FROM Vending WHERE idVending = '" + Id + "'";
+		
+		con = this.startConnection(con);
+		Statement st;
+		ResultSet rs;
 		
 		try {
 			st = con.createStatement();
@@ -42,24 +98,29 @@ public class RdbOperations {
 				result = rs.getString(1);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		this.closeConnection(con);
 		return result;
 
 	}
 	
 	public void addVending(String Id, String Address) {
-		this.connect();
+		
 		String query = "INSERT INTO Vending values ('" + Id +"','"+ Address + "')";
+		
+		con = this.startConnection(con);
+		Statement st;	
 		try {
 			st = con.createStatement();
-			st.executeUpdate(query);
+			st.executeUpdate(query); // usato per eseguire una query di inserimento.
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		this.closeConnection(con);
 		
 	}
 
