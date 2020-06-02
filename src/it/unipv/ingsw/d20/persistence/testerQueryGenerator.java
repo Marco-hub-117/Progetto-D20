@@ -1,5 +1,6 @@
 package it.unipv.ingsw.d20.persistence;
 
+
 import java.util.ArrayList;
 
 import it.unipv.ingsw.d20.persistence.sale.SalePOJO;
@@ -18,11 +19,12 @@ public class testerQueryGenerator {
 		values.add("ids1");
 		values.add("id1");
 		values.add("idbv1");
-		values.add("02/06/2020");
+		values.add("2020-06-02");
 		String query3 = QueryGenerator.getInsertIntoValuesQuery("Sale", values);
 		System.out.println("Query: " + query3);
 		
-		SalePOJO sale = new SalePOJO("ids1","id1","idbv1","02/06/2020");
+
+		SalePOJO sale = new SalePOJO("ids1","id1","idbv1","2020-06-02");
 		ArrayList<String> values2 = new ArrayList<>();
 		values2.add(sale.getIdSale()); // primo attributo nella table
 		values2.add(sale.getIdVending()); // secondo attributo nella table

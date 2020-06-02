@@ -158,7 +158,7 @@ public class RdbOperations {
 		values.add(sale.getIdSale()); // primo attributo nella table
 		values.add(sale.getIdVending()); // secondo attributo nella table
 		values.add(sale.getIdBeverage()); // terzo attributo nella table
-		values.add(sale.getDate()); // qurto attributo nella table
+		values.add(sale.getDate()); // quarto attributo nella table
 		
 		String query = QueryGenerator.getInsertIntoValuesQuery("Sale", values);	
 		con = this.startConnection(con);
@@ -176,7 +176,7 @@ public class RdbOperations {
 
 	}
 
-	public SalePOJO getSaleById (String id) {		
+	public SalePOJO getSaleById (String id) {
 		SalePOJO result = null;
 		String whereStatement = "idSale = '"+id+"'";
 		String query = QueryGenerator.getSelectFromWhereQuery("*", "Sale", whereStatement);
@@ -189,7 +189,7 @@ public class RdbOperations {
 			st = con.createStatement();
 			rs = st.executeQuery(query);
 			while(rs.next()) {
-				result = new SalePOJO(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4));
+				result = new SalePOJO (rs.getString(1),rs.getString(2),rs.getString(3),rs.getDate(4).toString());
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -212,7 +212,7 @@ public class RdbOperations {
 			st = con.createStatement();
 			rs = st.executeQuery(query);
 			while(rs.next()) {
-				SalePOJO res = new SalePOJO(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4));
+				SalePOJO res = new SalePOJO (rs.getString(1),rs.getString(2),rs.getString(3),rs.getDate(4).toString());
 				result.add(res);
 			}
 		} catch (SQLException e) {
