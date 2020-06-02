@@ -22,8 +22,7 @@ public class RdbOperations {
 		this.con = null;
 	}
 
-	// CODICE FUNZIONANTE, ma modificato introducendo i metodi startConnection, isOpen e CloseConnection.
-	
+	// CODICE FUNZIONANTE, ma modificato introducendo i metodi startConnection, isOpen e CloseConnection.	
 	/*
 	public Connection startConnection() { // DA RIVEDERE; SISTEMARE COME IMPLEMENTAZIONE DI NOCERA (Relativamente alla connessione)?
 
@@ -176,4 +175,53 @@ public class RdbOperations {
 
 
 	}
+
+	public SalePOJO getSaleById (String id) {		
+		SalePOJO result = null;
+		String whereStatement = "idSale = '"+id+"'";
+		String query = QueryGenerator.getSelectFromWhereQuery("*", "Sale", whereStatement);
+		
+		con = this.startConnection(con);
+		Statement st;
+		ResultSet rs;
+		
+		try {
+			st = con.createStatement();
+			rs = st.executeQuery(query);
+			while(rs.next()) {
+				result = new SalePOJO(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		this.closeConnection(con);
+		return result;
+		
+	}
+
+	public ArrayList<SalePOJO> getAllSaleByIdVending (String idVending) {
+		ArrayList<SalePOJO> result = new ArrayList<>();
+		String whereStatement = "idVending = '" +idVending+"'";
+		String query = QueryGenerator.getSelectFromWhereQuery("*", "Sale", whereStatement);
+		System.out.println(query); // per debugging
+		
+		con = this.startConnection(con);
+		Statement st;
+		ResultSet rs;
+		try {
+			st = con.createStatement();
+			rs = st.executeQuery(query);
+			while(rs.next()) {
+				SalePOJO res = new SalePOJO(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4));
+				result.add(res);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		this.closeConnection(con);
+		
+		return result;
+	}
+
 }
