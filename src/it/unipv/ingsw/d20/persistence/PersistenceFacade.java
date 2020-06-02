@@ -1,5 +1,9 @@
 package it.unipv.ingsw.d20.persistence;
 
+import it.unipv.ingsw.d20.persistence.BvCatalog.BvCatalogRdbDao;
+import it.unipv.ingsw.d20.persistence.BvCatalog.IBvCatalogDao;
+import it.unipv.ingsw.d20.persistence.sale.ISaleDao;
+import it.unipv.ingsw.d20.persistence.sale.SaleRdbDao;
 import it.unipv.ingsw.d20.persistence.vending.IVendingDao;
 import it.unipv.ingsw.d20.persistence.vending.VendingRdbDao;
 
@@ -22,6 +26,14 @@ public class PersistenceFacade {
 
 	public IVendingDao getVendingDao() {
 		return new VendingRdbDao();
+	}
+	
+	public ISaleDao getSaleDao() {
+		return new SaleRdbDao();
+	}
+	
+	public IBvCatalogDao getBvCatalogDao() {
+		return new BvCatalogRdbDao();
 	}
 	
 	

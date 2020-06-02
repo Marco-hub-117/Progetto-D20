@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import it.unipv.ingsw.d20.persistence.BvCatalog.BvCatalogPOJO;
 import it.unipv.ingsw.d20.persistence.sale.SalePOJO;
 import it.unipv.ingsw.d20.persistence.vending.VendingPOJO;
 
@@ -224,4 +225,28 @@ public class RdbOperations {
 		return result;
 	}
 
+	// DI SEGUITO CI SARANNO LE QUERY RELATIVE ALLA TABLE BvCatalog
+	
+	public BvCatalogPOJO getBeverage(String id) {
+		BvCatalogPOJO result = null;
+		String whereStatement = "idBev = '"+id+"'";
+		String query = QueryGenerator.getSelectFromWhereQuery("*","BvCatalog", whereStatement);
+		
+		con = this.startConnection(con);
+		Statement st;
+		ResultSet rs;
+		
+		try {
+			st = con.createStatement();
+			rs = st.executeQuery(query);
+			while(rs.next()) {
+				result = new BvCatalogPOJO(rs.getString(1),rs.getDouble(2),rs.getString(3),rs.getInt(4));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		this.closeConnection(con);
+		return result;
+	}
+ 
 }
