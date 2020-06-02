@@ -1,4 +1,4 @@
-package it.unipv.ingsw.d20.DBMS;
+package it.unipv.ingsw.d20.persistence.sale;
 
 
 public class SalePOJO {

@@ -1,4 +1,4 @@
-package it.unipv.ingsw.d20.DBMS;
+package it.unipv.ingsw.d20.persistence.vending;
 
 /**
  * Classe che serve come "contenitore" di informazioni di una table Vending del database.

@@ -1,4 +1,4 @@
-package it.unipv.ingsw.d20.DBMS;
+package it.unipv.ingsw.d20.persistence;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -6,6 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+
+import it.unipv.ingsw.d20.persistence.sale.SalePOJO;
+import it.unipv.ingsw.d20.persistence.vending.VendingPOJO;
 
 /**
  * Classe che implementa la connessione con il database. Implementa tutte le possibili operazioni con esso.

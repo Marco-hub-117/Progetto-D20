@@ -1,4 +1,4 @@
-package it.unipv.ingsw.d20.DBMS;
+package it.unipv.ingsw.d20.persistence;
 
 import java.util.ArrayList;
 

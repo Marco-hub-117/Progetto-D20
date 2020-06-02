@@ -1,4 +1,7 @@
-package it.unipv.ingsw.d20.DBMS;
+package it.unipv.ingsw.d20.persistence;
+
+import it.unipv.ingsw.d20.persistence.vending.IVendingDao;
+import it.unipv.ingsw.d20.persistence.vending.VendingRdbDao;
 
 /**
  * Classe facade verso DBMS implementata con singleton. 

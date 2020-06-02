@@ -1,6 +1,8 @@
-package it.unipv.ingsw.d20.DBMS;
+package it.unipv.ingsw.d20.persistence.vending;
 
 import java.util.ArrayList;
+
+import it.unipv.ingsw.d20.persistence.RdbOperations;
 
 /**
  * Implementazione dell'interfaccia IVendingDao. Implementa il DAO relativo al database relazionale.

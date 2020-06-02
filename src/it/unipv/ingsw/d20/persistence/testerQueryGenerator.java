@@ -1,6 +1,8 @@
-package it.unipv.ingsw.d20.DBMS;
+package it.unipv.ingsw.d20.persistence;
 
 import java.util.ArrayList;
+
+import it.unipv.ingsw.d20.persistence.sale.SalePOJO;
 
 public class testerQueryGenerator {
 
