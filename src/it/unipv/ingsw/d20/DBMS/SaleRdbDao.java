@@ -1,11 +1,25 @@
 package it.unipv.ingsw.d20.DBMS;
 
+import java.util.ArrayList;
+
 public class SaleRdbDao implements ISaleDao{
 
 	@Override
-	public void addSale() {
-		// TODO Auto-generated method stub
+	public void addSale(SalePOJO sale) {
+		
 		
 	}
+
+	@Override
+	public SalePOJO getSaleById(String id) {
+		return null;
+	}
+
+	@Override
+	public ArrayList<SalePOJO> getAllSaleByIdVending(String idVending) {
+		return null;
+	}
+
+
 
 }

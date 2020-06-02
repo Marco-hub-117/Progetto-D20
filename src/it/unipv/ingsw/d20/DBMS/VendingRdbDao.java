@@ -1,6 +1,6 @@
 package it.unipv.ingsw.d20.DBMS;
 
-import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  * Implementazione dell'interfaccia IVendingDao. Implementa il DAO relativo al database relazionale.
@@ -9,7 +9,6 @@ import java.sql.SQLException;
 public class VendingRdbDao implements IVendingDao{
 
 	private RdbOperations op;
-	
 	
 	public VendingRdbDao() {
 		op = new RdbOperations();
@@ -22,6 +21,11 @@ public class VendingRdbDao implements IVendingDao{
 	@Override
 	public void addVending(String Id, String Address) {
 		op.addVending(Id, Address);
+	}
+
+	@Override
+	public ArrayList<VendingPOJO> getAllVending() {
+		return op.getAllVending();
 	}
 
 }

@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 /**
  * Classe che implementa la connessione con il database. Implementa tutte le possibili operazioni con esso.
@@ -81,7 +82,9 @@ public class RdbOperations {
 		}
 		return conn; // se tutto va a buon fine, la connessione viene chiusa e viene restituito il valore null.
 	}
-		
+	
+	// DI SEGUITO CI SARANNO LE QUERY RELATIVA ALLA TABLE VENDING
+	
 	public String getVendingAddressById(String Id) {
 		
 		String result = null;
@@ -105,6 +108,28 @@ public class RdbOperations {
 
 	}
 	
+	public ArrayList<VendingPOJO> getAllVending () {
+		ArrayList<VendingPOJO> result = new ArrayList<>();
+		String query = "SELECT * FROM Vending";
+		
+		con = this.startConnection(con);
+		Statement st;
+		ResultSet rs;
+		try {
+			st = con.createStatement();
+			rs = st.executeQuery(query);
+			while(rs.next()) {
+				VendingPOJO res = new VendingPOJO(rs.getString(1),rs.getString(2));
+				result.add(res);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		this.closeConnection(con);
+		return result;
+	}
+	
 	public void addVending(String Id, String Address) {
 		
 		String query = "INSERT INTO Vending values ('" + Id +"','"+ Address + "')";
@@ -119,9 +144,33 @@ public class RdbOperations {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 		this.closeConnection(con);
 		
 	}
 
+	// DI SEGUITO CI SARANNO LE QUERY RELATIVE ALLA SALE
+	
+	public void addSale(SalePOJO sale) {
+		
+		ArrayList<String> values = new ArrayList<>();
+		values.add(sale.getIdSale()); // primo attributo nella table
+		values.add(sale.getIdVending()); // secondo attributo nella table
+		values.add(sale.getIdBeverage()); // terzo attributo nella table
+		values.add(sale.getDate()); // qurto attributo nella table
+		
+		String query = QueryGenerator.getInsertIntoValuesQuery("Sale", values);	
+		con = this.startConnection(con);
+		Statement st;	
+		try {
+			st = con.createStatement();
+			st.executeUpdate(query); // usato per eseguire una query di inserimento.
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		this.closeConnection(con);
+
+
+	}
 }

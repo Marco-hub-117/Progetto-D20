@@ -1,5 +1,7 @@
 package it.unipv.ingsw.d20.DBMS;
 
+import java.util.ArrayList;
+
 /**
  * Interfaccia per Accedere a un VendingDao. é possibile utilizzarla per ottenere le informazioni necessarie.
  *
@@ -24,6 +26,8 @@ public interface IVendingDao {
 	 * @param Address indirizzo, riferito alla posizione della vending machine.
 	 */
 	public void addVending(String Id, String Address);
+	
+	public ArrayList<VendingPOJO> getAllVending();
 	
 
 }
