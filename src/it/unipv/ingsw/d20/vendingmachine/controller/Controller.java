@@ -29,7 +29,10 @@ public class Controller {
 			puls.addActionListener(new ListenerB(puls.getValue(), m, gui));
 		}
 	}
-	
+	private void addListenerOp() {
+		gui.getOperator().addActionListener(new ListenerOperator(m, gui));
+		
+	}
 
 }
 

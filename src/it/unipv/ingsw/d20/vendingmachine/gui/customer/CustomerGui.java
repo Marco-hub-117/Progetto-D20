@@ -16,6 +16,9 @@ public class CustomerGui extends JFrame{
 	private Panel_B pb;
 	private JButton operator;
 	
+	public JButton getOperator() {
+		return operator;
+	}
 	public CustomerGui() {
 		setSize(600,400);
 		setTitle("Interfaccia cliente");
