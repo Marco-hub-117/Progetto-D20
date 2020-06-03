@@ -21,8 +21,8 @@ public class VendingRdbDao implements IVendingDao{
 	}
 
 	@Override
-	public void addVending(String Id, String Address) {
-		op.addVending(Id, Address);
+	public void addVending(VendingPOJO vending) {
+		op.addVending(vending);
 	}
 
 	@Override

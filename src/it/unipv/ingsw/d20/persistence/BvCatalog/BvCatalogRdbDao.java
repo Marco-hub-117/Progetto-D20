@@ -13,16 +13,9 @@ public class BvCatalogRdbDao implements IBvCatalogDao{
 	}
 
 	@Override
-	public BvCatalogPOJO getBeverage(String idBeverage) {
-		
-		return op.getBeverage(idBeverage);
-	
-	}
-
-	@Override
 	public ArrayList<BvCatalogPOJO> getBeverageCatalogByType(int type) {
 		
-		return null;
+		return op.getBeverageCatalogByType(type);
 	}
 	
 	

@@ -25,7 +25,7 @@ public interface IVendingDao {
 	 * @param Id id della vending machine.
 	 * @param Address indirizzo, riferito alla posizione della vending machine.
 	 */
-	public void addVending(String Id, String Address);
+	public void addVending(VendingPOJO vending);
 	
 	public ArrayList<VendingPOJO> getAllVending();
 	

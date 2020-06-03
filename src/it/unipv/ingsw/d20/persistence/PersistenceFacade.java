@@ -1,5 +1,7 @@
 package it.unipv.ingsw.d20.persistence;
 
+import it.unipv.ingsw.d20.persistence.BeverageDescription.BeverageDescriptionRdbDao;
+import it.unipv.ingsw.d20.persistence.BeverageDescription.IBeverageDescriptionDao;
 import it.unipv.ingsw.d20.persistence.BvCatalog.BvCatalogRdbDao;
 import it.unipv.ingsw.d20.persistence.BvCatalog.IBvCatalogDao;
 import it.unipv.ingsw.d20.persistence.sale.ISaleDao;
@@ -34,6 +36,10 @@ public class PersistenceFacade {
 	
 	public IBvCatalogDao getBvCatalogDao() {
 		return new BvCatalogRdbDao();
+	}
+	
+	public IBeverageDescriptionDao getBeverageDescriptionDao() {
+		return new BeverageDescriptionRdbDao();
 	}
 	
 	

@@ -2,32 +2,13 @@ package it.unipv.ingsw.d20.persistence.BvCatalog;
 
 public class BvCatalogPOJO {
 	
-	private String idBev;
-	private double price;
 	private String idBevDesc;
 	private int type;
 	
-	public BvCatalogPOJO(String idBev, double price, String idBevDesc, int type) {
-		this.idBev = idBev;
-		this.price = price;
+	public BvCatalogPOJO(String idBevDesc, int type) {
+
 		this.idBevDesc = idBevDesc;
 		this.type = type;
-	}
-
-	public String getIdBev() {
-		return idBev;
-	}
-
-	public void setIdBev(String idBev) {
-		this.idBev = idBev;
-	}
-
-	public double getPrice() {
-		return price;
-	}
-
-	public void setPrice(double price) {
-		this.price = price;
 	}
 
 	public String getIdBevDesc() {

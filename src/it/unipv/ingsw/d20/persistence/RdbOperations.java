@@ -133,9 +133,9 @@ public class RdbOperations {
 		return result;
 	}
 	
-	public void addVending(String Id, String Address) {
+	public void addVending(VendingPOJO vending) {
 		
-		String query = "INSERT INTO Vending values ('" + Id +"','"+ Address + "')";
+		String query = "INSERT INTO Vending values ('" + vending.getIdVending() +"','"+ vending.getAddress() + "')";
 		
 		con = this.startConnection(con);
 		Statement st;	
@@ -204,7 +204,6 @@ public class RdbOperations {
 		ArrayList<SalePOJO> result = new ArrayList<>();
 		String whereStatement = "idVending = '" +idVending+"'";
 		String query = QueryGenerator.getSelectFromWhereQuery("*", "Sale", whereStatement);
-		System.out.println(query); // per debugging
 		
 		con = this.startConnection(con);
 		Statement st;
@@ -224,23 +223,47 @@ public class RdbOperations {
 		
 		return result;
 	}
-
-	// DI SEGUITO CI SARANNO LE QUERY RELATIVE ALLA TABLE BvCatalog
 	
-	public BvCatalogPOJO getBeverage(String id) {
-		BvCatalogPOJO result = null;
-		String whereStatement = "idBev = '"+id+"'";
-		String query = QueryGenerator.getSelectFromWhereQuery("*","BvCatalog", whereStatement);
+	public ArrayList<SalePOJO> getAllSaleByIdVending (String idVending,String date) {
+		ArrayList<SalePOJO> result = new ArrayList<>();
+		String whereStatement = "idVending = '" +idVending+"'"+" and Date = '"+date+"'";
+		String query = QueryGenerator.getSelectFromWhereQuery("*", "Sale", whereStatement);
 		
 		con = this.startConnection(con);
 		Statement st;
 		ResultSet rs;
-		
 		try {
 			st = con.createStatement();
 			rs = st.executeQuery(query);
 			while(rs.next()) {
-				result = new BvCatalogPOJO(rs.getString(1),rs.getDouble(2),rs.getString(3),rs.getInt(4));
+				SalePOJO res = new SalePOJO (rs.getString(1),rs.getString(2),rs.getString(3),rs.getDate(4).toString());
+				result.add(res);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		this.closeConnection(con);
+		
+		return result;
+	}
+	
+	// DI SEGUITO CI SARANNO LE QUERY RELATIVE ALLA TABLE BvCatalog
+	
+	public ArrayList<BvCatalogPOJO> getBeverageCatalogByType(int type) {
+		ArrayList<BvCatalogPOJO> result = new ArrayList<>();
+		String whereStatement = "type = '" +type +"'";
+		String query = QueryGenerator.getSelectFromWhereQuery("*", "BvCatalog", whereStatement);
+		
+		con = this.startConnection(con);
+		Statement st;
+		ResultSet rs;	
+		try {
+			st = con.createStatement();
+			rs = st.executeQuery(query);
+			while(rs.next()) {
+				BvCatalogPOJO res = new BvCatalogPOJO (rs.getString(1),rs.getInt(2));
+				result.add(res);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -249,4 +272,39 @@ public class RdbOperations {
 		return result;
 	}
  
+	// DI SEGUITO CI SRANNO LE QUERY RELATIVE ALLA TABLE BeverageDescription
+	
+	public double getPriceByBevName(String bevName) {
+		double result = 0;
+		String whereStatement = "BevName = '"+bevName+"'";
+		String query = QueryGenerator.getSelectFromWhereQuery("price", "BeverageDescriptions", whereStatement);
+		
+		con = this.startConnection(con);
+		Statement st;
+		ResultSet rs;
+		try {
+			st = con.createStatement();
+			rs = st.executeQuery(query);
+			while(rs.next()) {
+				result = rs.getDouble(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		this.closeConnection(con);
+		return result;
+	}
+	
+	/*
+	public void addBeverageDescription(BeverageDescriptionPOJO bv,ArrayList<IngredientRecipePOJO> ingr) {
+		
+	}
+	
+	
+	/*
+	public void addIngredientRecipe(ArrayList<IngredientRecipePOJO> ingr) {
+		
+	}
+	*/
+	
 }

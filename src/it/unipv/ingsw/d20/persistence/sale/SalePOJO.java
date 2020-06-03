@@ -6,7 +6,7 @@ public class SalePOJO {
 	private String idSale;
 	private String idVending;
 	private String idBeverage;
-	private String date; // nel formato yyyy-mm-dd
+	private String date; // nel formato yy-mm-dd
 	
 	public SalePOJO(String idSale, String idVending, String idBeverage, String date) {
 		this.idSale = idSale;
@@ -40,7 +40,7 @@ public class SalePOJO {
 	}
 	
 	/**
-	 * La data deve essere nel formato yyyy-mm-dd
+	 * La data deve essere nel formato yy-mm-dd
 	 * @param date
 	 */
 	public void setDate(String date) {
@@ -48,7 +48,7 @@ public class SalePOJO {
 	}
 	
 	/**
-	 * La data è nel formato yyyy-mm-dd
+	 * La data è nel formato yy-mm-dd
 	 * @return
 	 */
 	public String getDate() {

@@ -24,4 +24,8 @@ public interface ISaleDao {
 	 */
 	public ArrayList<SalePOJO> getAllSaleByIdVending (String idVending);
 	
+	public ArrayList<SalePOJO> getAllSaleByIdVending (String idVending,String date);
+	
+
+	
 }
