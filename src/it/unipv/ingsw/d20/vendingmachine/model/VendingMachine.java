@@ -56,6 +56,11 @@ public class VendingMachine {
 		cashHandler = new CashHandler(15, 15, 15, 15, 15, 15); //Gli argomenti sono il numero di monete per tipo con cui viene inizializzata 
 														   //la macchinetta -> da valutare se passargliele con un array di int o cambiare 
 		keyHandler = new KeyHandler();
+		makeCatalog();//la vending istanzia il catalogo delle bevande
+	}
+	
+	public void makeCatalog() { //la vending istanzia il catalogo delle bevande per ora vuoto, poi sarà da prelevare dal db
+		bvCatalog=new BeverageCatalog();
 	}
 	
 	public void insertCoin(double coinValue) { 
@@ -219,7 +224,6 @@ public class VendingMachine {
 	}
 	public BeverageCatalog getCatalog() {
 		return bvCatalog;
-		
 	}
 	
 	/* metodo provvisorio per un'opzione di gestione dei pagamenti
