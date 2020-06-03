@@ -1,4 +1,4 @@
-package it.unipv.ingsw.d20.vendingmachine.gui;
+package it.unipv.ingsw.d20.vendingmachine.gui.customer;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
