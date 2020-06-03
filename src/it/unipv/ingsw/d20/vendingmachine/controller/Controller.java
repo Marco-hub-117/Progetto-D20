@@ -17,7 +17,7 @@ public class Controller {
 		addListenerB();
 	}
 	private void setText() {
-		gui.setText(m.getCatalog().toString());
+		//gui.setText(m.getCatalog().toString());
 	}
 	private void addListenerA() {
 		for(Pulsante puls:gui.getLA()) {

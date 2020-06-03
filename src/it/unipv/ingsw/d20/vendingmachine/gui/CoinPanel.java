@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 public class CoinPanel extends JPanel {
 	private List<Pulsante> l;
 	public CoinPanel() {
+		this.setSize(100, 199);
 		this.l=new ArrayList<>();
 		l.add(new Pulsante(2,1,"2.0E"));
 		l.add(new Pulsante(1,2,"1.0E"));
