@@ -124,7 +124,12 @@ public class VendingMachine {
 			
 		}
 	}
-
+	
+	public void createTanks() {
+		//creare una serie di tank e aggiungerli alla variabile tankList
+		aa
+	}
+	
 	public HashMap<String, Double> getTanksLevels() {
 		HashMap<String, Double> tanksLevel;
 		tanksLevel = new HashMap<>(); 
@@ -224,6 +229,9 @@ public class VendingMachine {
 	}
 	public BeverageCatalog getCatalog() {
 		return bvCatalog;
+	}
+	public int nTank() {
+		return tankList.size();
 	}
 	
 	/* metodo provvisorio per un'opzione di gestione dei pagamenti
