@@ -1,17 +1,17 @@
 package it.unipv.ingsw.d20.vendingmachine.gui.operator;
 
-import java.awt.BorderLayout;
+
 
 import javax.swing.JFrame;
 
 public class OperatorGui extends JFrame {
-		Pannello p;
-		public OperatorGui() {
+		private Pannello p;
+		public OperatorGui(int numeroTank) {
 			
 			setSize(600,400);
 			setTitle("Interfaccia operatore");
-			setLayout(new BorderLayout());
-			//p=new Pannello();
+			//setLayout(new BorderLayout());
+			p=new Pannello(numeroTank);
 			this.add(p);
 		}
 }
