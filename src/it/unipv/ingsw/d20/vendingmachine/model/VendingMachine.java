@@ -143,7 +143,7 @@ public class VendingMachine {
 	public void setTankLevel(String id, Double level) throws RefillMachineException{
 		
 		if(this.getStatus().equals(VendingMachineStatus.REFILL)) {
-			tankList.get(id).setLevel(level);
+			tankList.get(id).refil(); //modifica, vedi tank
 		}else {
 			throw new RefillMachineException("Stato della macchinetta non corretto");
 		}
