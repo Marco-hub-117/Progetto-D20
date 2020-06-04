@@ -2,22 +2,28 @@ package it.unipv.ingsw.d20.vendingmachine.controller;
 
 import it.unipv.ingsw.d20.vendingmachine.gui.customer.CustomerGui;
 import it.unipv.ingsw.d20.vendingmachine.gui.customer.Pulsante;
+import it.unipv.ingsw.d20.vendingmachine.gui.operator.OperatorGui;
 import it.unipv.ingsw.d20.vendingmachine.model.VendingMachine;
 
 public class Controller {
 	private VendingMachine m;
 	private CustomerGui gui;
-	
-
-
-	
-	public Controller(VendingMachine m,CustomerGui gui) {
+	private OperatorGui opgui;
+		
+	public Controller(VendingMachine m, CustomerGui gui) {
 		this.gui=gui;
 		this.m=m;
 		setText();
 		addListenerA();
 		addListenerB();
+		addListenerOp();
 	}
+	public Controller(VendingMachine m, OperatorGui gui) {
+		this.m=m;
+		this.opgui=gui;
+		addListenerTank();
+	}
+	
 	private void setText() {
 		gui.setText(m.getCatalog().toString());
 	}
@@ -33,7 +39,11 @@ public class Controller {
 	}
 	private void addListenerOp() {
 		gui.getOperator().addActionListener(new ListenerOperator(m, gui));
-		
+	}
+	private void addListenerTank() {
+		for(int i=0; i<m.nTank(); i++) {
+			//gui.getPulsanti().addActionListener(new ListenerOperator(m, gui));
+		}
 	}
 
 }
