@@ -127,6 +127,14 @@ public class VendingMachine {
 	
 	public void createTanks() {
 		//creare una serie di tank e aggiungerli alla variabile tankList
+		Tank t1=new Tank("caffe");
+		Tank t2=new Tank("latte");
+		Tank t3=new Tank("putredine liquida");
+		t3.refil();
+		tankList=new HashMap<String, Tank>();
+		tankList.put(t1.getId(), t1);
+		tankList.put(t2.getId(), t2);
+		tankList.put(t3.getId(), t3);
 
 	}
 	
