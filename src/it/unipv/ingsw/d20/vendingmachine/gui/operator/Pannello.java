@@ -37,4 +37,7 @@ public class Pannello extends JPanel {
 			livello_serbatoio[i].setText(livello);
 		}
 	}
+	public Pulsante[] getPulsanti() {
+		return riempimento_serbatoio;
+	}
 }
