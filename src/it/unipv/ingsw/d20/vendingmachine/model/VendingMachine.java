@@ -140,7 +140,7 @@ public class VendingMachine {
 		return tanksLevel;		//Warning: Eccezione da fare?
 	}
 
-	public void setTankLevel(String id, Double level) throws RefillMachineException{
+	public void setTankLevel(String id) throws RefillMachineException{
 		
 		if(this.getStatus().equals(VendingMachineStatus.REFILL)) {
 			tankList.get(id).refil(); //modifica, vedi tank

@@ -22,19 +22,18 @@ public class Pannello extends JPanel {
 		for(int i=0; i<numeroTank;i++) {
 			nome_serbatoio[i]=new JLabel(""+i);
 			livello_serbatoio[i]=new JLabel(""+i);
-			riempimento_serbatoio[i]=new Pulsante(i,i,"Riempi");
+			riempimento_serbatoio[i]=new Pulsante(i,"Riempi", "");
 			this.add(nome_serbatoio[i]);
 			this.add(livello_serbatoio[i]);
 			this.add(riempimento_serbatoio[i]);
 		}
-		
-		
-		
 	}
 	public void setElements(String nome,String livello, int pos) {
 		nome_serbatoio[pos].setText(nome);
 		livello_serbatoio[pos].setText(livello);
+		riempimento_serbatoio[pos].setIdTank(nome);
 	}
+	
 	public Pulsante[] getPulsanti() {
 		return riempimento_serbatoio;
 	}

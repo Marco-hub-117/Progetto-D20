@@ -26,7 +26,6 @@ public class ListenerA implements ActionListener{
 		break;
 		case(-1): //canc
 			gui.setDisplay("");
-			gui.setText("voleeeeeeeeeeeevi");
 		break;
 		default:
 			String s="";
