@@ -3,7 +3,7 @@ package it.unipv.ingsw.d20.vendingmachine.model.beverage;
 public class Tank {
 	
 	private String id;
-	private double level;
+	private double level; //
 	private double temperature;
 	
 	//quando viene instanziato un serbatoio, Ã¨ vuoto.
@@ -26,8 +26,9 @@ public class Tank {
 		return temperature;
 	}
 	
-	public void setLevel(double level) {
-		this.level = level;
+	public void refil() {
+		//il livello del serbatoio è in percentuale
+		this.level = 100.0;
 	}
 	
 	public void setTemperature(double temperature) {
