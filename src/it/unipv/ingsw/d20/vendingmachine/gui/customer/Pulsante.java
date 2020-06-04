@@ -7,10 +7,15 @@ public class Pulsante extends JButton {
 	private double value;
 	
 	public Pulsante(double value, int pos, String string) {
-		
 		super(string);
 		super.setSize(10, 60);
 		this.value=value;
+		this.pos=pos; 
+	}
+	
+	public Pulsante(int pos, String string) {
+		super(string);
+		super.setSize(10, 60);
 		this.pos=pos; 
 	}
 
