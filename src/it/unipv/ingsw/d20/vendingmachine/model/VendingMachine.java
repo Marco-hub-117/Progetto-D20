@@ -127,7 +127,7 @@ public class VendingMachine {
 	
 	public void createTanks() {
 		//creare una serie di tank e aggiungerli alla variabile tankList
-		aa
+
 	}
 	
 	public HashMap<String, Double> getTanksLevels() {

@@ -4,10 +4,12 @@ public class BeverageDescriptionPOJO {
 	
 	private String bvName;
 	private double price;
+	private String idRecipe;
 	
-	public BeverageDescriptionPOJO(String bvName, double price) {
+	public BeverageDescriptionPOJO(String bvName, double price,String idRecipe) {
 		this.bvName = bvName;
 		this.price = price;
+		this.idRecipe = idRecipe;
 	}
 
 	public String getBvName() {
@@ -25,5 +27,14 @@ public class BeverageDescriptionPOJO {
 	public void setPrice(double price) {
 		this.price = price;
 	}
+
+	public String getIdRecipe() {
+		return idRecipe;
+	}
+
+	public void setIdRecipe(String idRecipe) {
+		this.idRecipe = idRecipe;
+	}
+
 	
 }

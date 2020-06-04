@@ -7,7 +7,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import it.unipv.ingsw.d20.persistence.BeverageDescription.BeverageDescriptionPOJO;
 import it.unipv.ingsw.d20.persistence.BvCatalog.BvCatalogPOJO;
+import it.unipv.ingsw.d20.persistence.ingredientRecipe.IngredientRecipePOJO;
 import it.unipv.ingsw.d20.persistence.sale.SalePOJO;
 import it.unipv.ingsw.d20.persistence.vending.VendingPOJO;
 
@@ -173,8 +175,6 @@ public class RdbOperations {
 			e.printStackTrace();
 		}
 		this.closeConnection(con);
-
-
 	}
 
 	public SalePOJO getSaleById (String id) {
@@ -295,16 +295,72 @@ public class RdbOperations {
 		return result;
 	}
 	
-	/*
+	public void addBeverageDescription(BeverageDescriptionPOJO bv) {
+		ArrayList<String> values = new ArrayList<>();
+		values.add(bv.getBvName()); // primo attributo nella table
+		values.add(String.valueOf(bv.getPrice())); // secondo attributo nella table
+		values.add(bv.getIdRecipe()); // terzo attributo nella table
+
+		String query = QueryGenerator.getInsertIntoValuesQuery("BeverageDescriptions", values);	
+
+		con = this.startConnection(con);
+		Statement st;	
+		try {
+			st = con.createStatement();
+			st.executeUpdate(query); // usato per eseguire una query di inserimento.
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		this.closeConnection(con);
+	}
+	
+	
+	/**
+	 * L'idRecipe della beverage descriptione deve essere uguale ad almeno un idRecipe della ingredient recipe.
+	 * @param bv
+	 * @param ingr
+	 */
 	public void addBeverageDescription(BeverageDescriptionPOJO bv,ArrayList<IngredientRecipePOJO> ingr) {
+		addIngredientRecipe(ingr);
+		addBeverageDescription(bv);
+	}
+	
+	// DI SEGUITO CI SRANNO LE QUERY RELATIVE ALLA TABLE IngredientRecipe
+	
+	/**
+	 * Gli ingredienti possono essere aggiunti senza aggiungere subito una BeverageDescription.
+	 * @param ingr
+	 */
+	public void addIngredientRecipe(IngredientRecipePOJO ingr) {
+		
+		ArrayList<String> values = new ArrayList<>();
+		values.add(ingr.getIdRecipe()); // primo attributo nella table
+		values.add(ingr.getIngredientName()); // secondo attributo nella table
+		values.add(String.valueOf(ingr.getQuantity())); // terzo attributo nella table
+		String query = QueryGenerator.getInsertIntoValuesQuery("IngredientRecipe", values);	
+		
+		con = this.startConnection(con);
+		Statement st;	
+		try {
+			st = con.createStatement();
+			st.executeUpdate(query); // usato per eseguire una query di inserimento.
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		this.closeConnection(con);
 		
 	}
 	
-	
-	/*
 	public void addIngredientRecipe(ArrayList<IngredientRecipePOJO> ingr) {
-		
+		for (IngredientRecipePOJO ir : ingr) {
+			addIngredientRecipe(ir);
+		}
 	}
-	*/
+	
+
 	
 }

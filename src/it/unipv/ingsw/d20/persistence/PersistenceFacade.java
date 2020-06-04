@@ -1,13 +1,10 @@
 package it.unipv.ingsw.d20.persistence;
 
-import it.unipv.ingsw.d20.persistence.BeverageDescription.BeverageDescriptionRdbDao;
-import it.unipv.ingsw.d20.persistence.BeverageDescription.IBeverageDescriptionDao;
-import it.unipv.ingsw.d20.persistence.BvCatalog.BvCatalogRdbDao;
-import it.unipv.ingsw.d20.persistence.BvCatalog.IBvCatalogDao;
-import it.unipv.ingsw.d20.persistence.sale.ISaleDao;
-import it.unipv.ingsw.d20.persistence.sale.SaleRdbDao;
-import it.unipv.ingsw.d20.persistence.vending.IVendingDao;
-import it.unipv.ingsw.d20.persistence.vending.VendingRdbDao;
+import it.unipv.ingsw.d20.persistence.BeverageDescription.*;
+import it.unipv.ingsw.d20.persistence.BvCatalog.*;
+import it.unipv.ingsw.d20.persistence.ingredientRecipe.*;
+import it.unipv.ingsw.d20.persistence.sale.*;
+import it.unipv.ingsw.d20.persistence.vending.*;
 
 /**
  * Classe facade verso DBMS implementata con singleton. 
@@ -42,7 +39,9 @@ public class PersistenceFacade {
 		return new BeverageDescriptionRdbDao();
 	}
 	
+	public IingredientRecipeDao getIngredientRecipeDao() {
+		return new IngredientRecipeRdbDao();
+	}
 	
-
 
 }

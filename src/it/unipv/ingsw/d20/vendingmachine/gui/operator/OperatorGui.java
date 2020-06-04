@@ -11,7 +11,7 @@ public class OperatorGui extends JFrame {
 			setSize(600,400);
 			setTitle("Interfaccia operatore");
 			setLayout(new BorderLayout());
-			p=new Pannello();
+			//p=new Pannello();
 			this.add(p);
 		}
 }
