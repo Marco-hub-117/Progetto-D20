@@ -57,6 +57,7 @@ public class VendingMachine {
 														   //la macchinetta -> da valutare se passargliele con un array di int o cambiare 
 		keyHandler = new KeyHandler();
 		makeCatalog();//la vending istanzia il catalogo delle bevande
+		createTanks();
 	}
 	
 	public void makeCatalog() { //la vending istanzia il catalogo delle bevande per ora vuoto, poi sarà da prelevare dal db
@@ -150,11 +151,11 @@ public class VendingMachine {
 
 	public void setTankLevel(String id) throws RefillMachineException{
 		
-		if(this.getStatus().equals(VendingMachineStatus.REFILL)) {
+		//if(this.getStatus().equals(VendingMachineStatus.REFILL)) {
 			tankList.get(id).refil(); //modifica, vedi tank
-		}else {
-			throw new RefillMachineException("Stato della macchinetta non corretto");
-		}
+		//}else {
+		//	throw new RefillMachineException("Stato della macchinetta non corretto");
+		//}
 	}
 	
 	/**

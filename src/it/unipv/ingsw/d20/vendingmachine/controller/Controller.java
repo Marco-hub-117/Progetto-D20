@@ -62,8 +62,8 @@ public class Controller {
 		puls=opgui.getPulsanti();
 		for(int i=0; i<m.nTank(); i++) {
 			puls[i].addActionListener(new ListenerTank(puls[i].getPos(), m, opgui));
-			
 		}
+		
 	}
 
 }
