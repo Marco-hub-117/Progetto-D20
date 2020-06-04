@@ -1,7 +1,5 @@
 package it.unipv.ingsw.d20.vendingmachine.gui.operator;
 
-
-
 import javax.swing.JFrame;
 
 public class OperatorGui extends JFrame {
