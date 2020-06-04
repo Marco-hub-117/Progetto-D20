@@ -1,9 +1,13 @@
 package it.unipv.ingsw.d20.vendingmachine.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import it.unipv.ingsw.d20.vendingmachine.gui.customer.CustomerGui;
 import it.unipv.ingsw.d20.vendingmachine.gui.customer.Pulsante;
 import it.unipv.ingsw.d20.vendingmachine.gui.operator.OperatorGui;
 import it.unipv.ingsw.d20.vendingmachine.model.VendingMachine;
+import it.unipv.ingsw.d20.vendingmachine.model.beverage.Tank;
 
 public class Controller {
 	private VendingMachine m;
@@ -43,7 +47,15 @@ public class Controller {
 	}
 	
 	private void setTankText() {
-		//opgui.setElements(nome,);
+		HashMap<String,Double> tankLevels=new HashMap<String, Double>();
+		tankLevels=m.getTanksLevels();
+		int k=0;
+		for(Map.Entry<String, Double> i : tankLevels.entrySet()) {
+			opgui.setElements(i.getKey(),i.getValue()+"",k);
+			k++;
+		}
+		
+		
 	}
 	private void addListenerTank() {
 		Pulsante[] puls=new Pulsante[m.nTank()];
