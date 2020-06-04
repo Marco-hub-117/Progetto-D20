@@ -25,23 +25,7 @@ public class RdbOperations {
 		this.con = null;
 	}
 
-	// CODICE FUNZIONANTE, ma modificato introducendo i metodi startConnection, isOpen e CloseConnection.	
-	/*
-	public Connection startConnection() { // DA RIVEDERE; SISTEMARE COME IMPLEMENTAZIONE DI NOCERA (Relativamente alla connessione)?
-
-		try {
-		Class.forName("com.mysql.cj.jdbc.Driver");
-		con = DriverManager.getConnection(
-				"jdbc:mysql://34.65.222.216:3306/prova","root",""); 
-		
-			//nasce per un problema relativo all'ora	///ingsw20?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC"
-		}catch(Exception e){ System.out.println(e);}  			// TODO Auto-generated catch block
-	
-		return con;
-	}  
-	*/ 
-	
-	public Connection startConnection(Connection conn) { // codice rivisto, corretto come nocera.
+	public Connection startConnection(Connection conn) { 
 		
 		String DbDriver = null;
 		String DbUrl=null;
@@ -316,9 +300,8 @@ public class RdbOperations {
 		this.closeConnection(con);
 	}
 	
-	
 	/**
-	 * L'idRecipe della beverage descriptione deve essere uguale ad almeno un idRecipe della ingredient recipe.
+	 * L'idRecipe della beverage descriptione deve essere uguale ad almeno un idRecipe dell'arraylist ingredient recipe.
 	 * @param bv
 	 * @param ingr
 	 */
