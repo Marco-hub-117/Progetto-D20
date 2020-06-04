@@ -22,12 +22,11 @@ public class ListenerOperator implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		 gui.dispose();
-		 //OperatorGui gui= new OperatorGui(m.nTank());
-		 OperatorGui gui= new OperatorGui(5);
+		 OperatorGui gui= new OperatorGui(m.nTank());
+		 //OperatorGui gui= new OperatorGui(5);
 		 Controller c=new Controller(this.m, gui);
 		 gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		 gui.setVisible(true);
-		
 	}
 
 }

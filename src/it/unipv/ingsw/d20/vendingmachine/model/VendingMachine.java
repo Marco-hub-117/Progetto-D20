@@ -231,7 +231,8 @@ public class VendingMachine {
 		return bvCatalog;
 	}
 	public int nTank() {
-		return tankList.size();
+		return 5;
+		//return tankList.size();
 	}
 	
 	/* metodo provvisorio per un'opzione di gestione dei pagamenti

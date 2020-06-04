@@ -21,6 +21,7 @@ public class Controller {
 	public Controller(VendingMachine m, OperatorGui gui) {
 		this.m=m;
 		this.opgui=gui;
+		setTankText();
 		addListenerTank();
 	}
 	
@@ -40,9 +41,16 @@ public class Controller {
 	private void addListenerOp() {
 		gui.getOperator().addActionListener(new ListenerOperator(m, gui));
 	}
+	
+	private void setTankText() {
+		//opgui.setElements(nome,);
+	}
 	private void addListenerTank() {
+		Pulsante[] puls=new Pulsante[m.nTank()];
+		puls=opgui.getPulsanti();
 		for(int i=0; i<m.nTank(); i++) {
-			//gui.getPulsanti().addActionListener(new ListenerOperator(m, gui));
+			puls[i].addActionListener(new ListenerTank(m, opgui));
+			
 		}
 	}
 

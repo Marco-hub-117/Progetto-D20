@@ -18,4 +18,7 @@ public class OperatorGui extends JFrame {
 		public Pulsante[] getPulsanti() {
 			return p.getPulsanti();
 		}
+		public void setElements(String nome,String livello, int pos) {
+			p.setElements(nome, livello, pos);
+		}
 }

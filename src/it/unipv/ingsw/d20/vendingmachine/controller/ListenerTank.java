@@ -16,7 +16,7 @@ public class ListenerTank implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		//m.setTankLevel(id, level);
-		
+		System.out.println("ciao");
 	}
 
 }
