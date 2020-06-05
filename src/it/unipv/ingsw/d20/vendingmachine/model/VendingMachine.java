@@ -10,11 +10,11 @@ import it.unipv.ingsw.d20.vendingmachine.model.exceptions.WithdrawAmountExceptio
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.CashHandler;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.KeyHandler;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.Sale;
+import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.InsufficientCashForRestException;
+import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.InvalidPaymentException;
+import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.KeyNotInsertedException;
+import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.UnrecognisedKeyException;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.payment.ICreditStrategy;
-import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.payment.exceptions.InsufficientCashForRestException;
-import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.payment.exceptions.InvalidPaymentException;
-import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.payment.exceptions.KeyNotInsertedException;
-import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.payment.exceptions.UnrecognisedKeyException;
 
 import java.util.ArrayList;
 import java.util.HashMap;

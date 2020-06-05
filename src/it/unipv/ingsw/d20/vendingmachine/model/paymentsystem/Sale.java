@@ -7,7 +7,8 @@ import java.util.Date;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.Beverage;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.BeverageDescription;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.exceptions.DeliveryFailedException;
-import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.payment.exceptions.*;
+import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.InsufficientCreditException;
+import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.*;
 
 @SuppressWarnings("unused")
 public class Sale {
