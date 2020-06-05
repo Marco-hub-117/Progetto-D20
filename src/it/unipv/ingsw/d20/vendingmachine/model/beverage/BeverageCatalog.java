@@ -51,4 +51,11 @@ public class BeverageCatalog {
 		
 		return beverageList;
 	}
+	public String toStringGui() {
+		String beverageList = "";		
+		for (Map.Entry<String, BeverageDescription> i : catalog.entrySet()) {
+			beverageList = beverageList  + i.getValue().toStringGui();	
+		}
+		return beverageList;
+	}
 }

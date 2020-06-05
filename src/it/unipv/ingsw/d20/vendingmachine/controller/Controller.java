@@ -28,10 +28,12 @@ public class Controller {
 		this.opgui=gui;
 		setTankText();
 		addListenerTank();
+		addListenerCust();
+		
 	}
 	
 	private void setText() { //setta la TextArea per visualizzare il catalogo della vending machine
-		gui.setText(m.getCatalog().toString());
+		gui.setText(m.getCatalog().toStringGui());
 	}
 	private void addListenerA() {
 		for(Pulsante puls:gui.getLA()) { //aggiunge i listener ai pulsanti per selezionare la bevanda nell'interfaccia cliente
@@ -48,16 +50,17 @@ public class Controller {
 		gui.getOut().addActionListener(new ListenerKey(false,m, gui));
 	}
 	private void addListenerOp() { //aggiunge il listener al pulsante per entrare nella modalità operatore
-		gui.getOperator().addActionListener(new ListenerOperator(m, gui));
+		gui.getOperator().addActionListener(new ToOperator(m, gui));
+	}
+	private void addListenerCust() { //aggiunge il listener al pulsante per entrare nella modalità cliente
+		opgui.getCustomer().addActionListener(new ToCustomer(m, opgui));
 	}
 	
 	private void setTankText() { //setta il nome dei tank e i livelli attuali
 		HashMap<String,Double> tankLevels=new HashMap<String, Double>();
 		tankLevels=m.getTanksLevels();
-		System.out.println(tankLevels);
 		int k=0;
 		for(Map.Entry<String, Double> i : tankLevels.entrySet()) {
-			System.out.println("settt");
 			opgui.setElements(i.getKey(),i.getValue()+"",k);
 			k++;
 		}

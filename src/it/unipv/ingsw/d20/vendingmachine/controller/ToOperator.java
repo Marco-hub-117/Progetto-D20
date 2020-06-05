@@ -9,13 +9,12 @@ import it.unipv.ingsw.d20.vendingmachine.gui.customer.CustomerGui;
 import it.unipv.ingsw.d20.vendingmachine.gui.operator.OperatorGui;
 import it.unipv.ingsw.d20.vendingmachine.model.VendingMachine;
 
-public class ListenerOperator implements ActionListener{
+public class ToOperator implements ActionListener{
 
 	private VendingMachine m;
 	private CustomerGui gui;
 	
-	public ListenerOperator(VendingMachine m, CustomerGui gui) {
-	
+	public ToOperator(VendingMachine m, CustomerGui gui) {
 		this.m=m;
 		this.gui=gui;
 	}
@@ -23,7 +22,7 @@ public class ListenerOperator implements ActionListener{
 	public void actionPerformed(ActionEvent arg0) {
 		 gui.dispose(); //chiudo l'interfaccia del cliente
 		 OperatorGui gui= new OperatorGui(m.nTank()); //istanzio una nuova interfaccia dell'operatore
-		 Controller c=new Controller(this.m, gui); //controller associato all'interfaccia dell'operatore
+		 Controller c=new Controller(m, gui); //controller associato all'interfaccia dell'operatore
 		 gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		 gui.setVisible(true);
 	}

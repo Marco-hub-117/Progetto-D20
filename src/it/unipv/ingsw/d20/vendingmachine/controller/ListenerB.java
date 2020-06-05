@@ -20,10 +20,8 @@ public class ListenerB implements ActionListener{
 	public void actionPerformed(ActionEvent arg0) {
 		m.insertCoin(this.value);
 		Double p=m.getCurrentAmount();
-		System.out.println(p);
 		String y;
 		y= String.format ("%.2f", p);
-		//System.out.println(y);
 		gui.setAmount(y);
 	}
 	

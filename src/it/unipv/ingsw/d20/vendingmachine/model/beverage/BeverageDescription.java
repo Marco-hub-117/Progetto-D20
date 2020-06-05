@@ -55,7 +55,12 @@ public class BeverageDescription {
 		 * }
 		 */
 		
-		description = "Code: " + code + " | Price: " + price + " | Ingredients:\n" + ingredientList + "\n";
+		description = "Code: " + code +" | Nome: " + name +  " | Price: " + price + " | Ingredients:\n" + ingredientList + "\n";
+		return description;
+	}
+	public String toStringGui() {
+		String description = "";
+		description = "Codice bevanda: " + code +" | Nome: " + name+  " | Prezzo: " + price + "€"+"\n\n";
 		return description;
 	}
 
