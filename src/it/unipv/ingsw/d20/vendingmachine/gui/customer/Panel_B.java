@@ -16,17 +16,20 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 public class Panel_B extends JPanel{ 
-	private JTextField price;
+	
 	private JTextField amount;
-	private JLabel l1;
+	
 	private JLabel l2;
 	private CoinPanel p;
+	private JButton in;  //inserimento chiavetta
+	private JButton out; //estrazione chiavetta
 	
 	public Panel_B(){
-		price=new JTextField(10);
+		JPanel x=new JPanel();
 		amount=new JTextField(10);
 		BufferedImage myPicture;
-		
+		in=new JButton("Inserisci chiavetta");
+		out=new JButton("Estrai chiavetta");
 		p=new CoinPanel();
 		this.setLayout(new BorderLayout());
 		JPanel pan=new JPanel();
@@ -34,12 +37,12 @@ public class Panel_B extends JPanel{
 
 		add(pan, BorderLayout.NORTH);
 		add(p, BorderLayout.SOUTH);
-		l1=new JLabel("Prezzo bevanda");
+	
 		l2=new JLabel("Credito");
-		pan.add(l1);
-		pan.add(price);
+		
 		pan.add(l2);
 		pan.add(amount);
+	
 		try {
 			myPicture=ImageIO.read(new File("images/img_tazza.png"));
 			JLabel picLabel = new JLabel(new ImageIcon(myPicture));
@@ -48,6 +51,10 @@ public class Panel_B extends JPanel{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		x.setLayout(new GridLayout(2,1));
+		x.add(in);
+		x.add(out);
+		this.add(x,BorderLayout.LINE_START);
 		
 
 		
@@ -58,16 +65,18 @@ public class Panel_B extends JPanel{
 		return p.getL();
 	}
 	
-	public void setPrice(String text) {
-		price.setText(text);
-	}
+	
 	public void setAmount(String text) {
 		amount.setText(text);
 	}
 	public String getAmount() {
 		return amount.getText();
 	}
-	public String getPrice() {
-		return price.getText();
+	public JButton getIn() {
+		return in;
 	}
+	public JButton getOut() {
+		return out;
+	}
+	
 }

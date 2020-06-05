@@ -45,23 +45,25 @@ public class CustomerGui extends JFrame{
 	public void setAmount(String text) {
 		pb.setAmount(text);
 	}
-	public void setPrice(String text) {
-		pb.setPrice(text);
-	}
+	
 	public String getDisplay() {
 		return pa.getDisplay();
 	}
 	public String getAmount() {
 		return pb.getAmount();
 	}
-	public String getPrice() {
-		return pb.getPrice();
-	}
+	
 	public String getText() {
 		return pa.getText();
 	}
 	public void setText(String s) {
 		pa.setText(s);
+	}
+	public JButton getIn() {
+		return pb.getIn();
+	}
+	public JButton getOut() {
+		return pb.getOut();
 	}
 	
 }

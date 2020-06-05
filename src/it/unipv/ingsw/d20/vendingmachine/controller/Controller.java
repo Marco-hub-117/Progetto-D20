@@ -42,6 +42,10 @@ public class Controller {
 			puls.addActionListener(new ListenerB(puls.getValue(), m, gui));
 		}
 	}
+	private void addListenerKey() {
+		gui.getIn().addActionListener(new ListenerKey(true,m, gui));
+		gui.getOut().addActionListener(new ListenerKey(false,m, gui));
+	}
 	private void addListenerOp() {
 		gui.getOperator().addActionListener(new ListenerOperator(m, gui));
 	}
