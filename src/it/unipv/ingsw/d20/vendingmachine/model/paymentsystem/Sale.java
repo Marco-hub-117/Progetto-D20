@@ -25,7 +25,15 @@ public class Sale {
 		
 		rest = checkCredit(credit, price);
 			
-		Beverage beverage = new Beverage(beverageDescription); //checks whether the beverage was correctly delivered or not (InsufficientIngredientsException)	
+		try {
+			Beverage beverage = new Beverage(beverageDescription);
+		} catch (DeliveryFailedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InterruptedException e) { //eccezione per il l'interruzione dello sleep della classe Beverage
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} //checks whether the beverage was correctly delivered or not (InsufficientIngredientsException)	
 	}
 	
 	public double checkCredit(double credit, double price) throws InsufficientCreditException {

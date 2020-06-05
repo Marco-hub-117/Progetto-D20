@@ -21,10 +21,9 @@ public class ListenerOperator implements ActionListener{
 	}
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		 gui.dispose();
-		 OperatorGui gui= new OperatorGui(m.nTank());
-		 //OperatorGui gui= new OperatorGui(5);
-		 Controller c=new Controller(this.m, gui);
+		 gui.dispose(); //chiudo l'interfaccia del cliente
+		 OperatorGui gui= new OperatorGui(m.nTank()); //istanzio una nuova interfaccia dell'operatore
+		 Controller c=new Controller(this.m, gui); //controller associato all'interfaccia dell'operatore
 		 gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		 gui.setVisible(true);
 	}

@@ -24,12 +24,12 @@ public class ListenerTank implements ActionListener{
 	public void actionPerformed(ActionEvent arg0) {
 		Pulsante p=gui.getPulsanti()[pos];
 		try {
-			m.setTankLevel(p.getIdTank());
+			m.setTankLevel(p.getIdTank()); //SERVE QUESTA ECCEZIONE???
 		} catch (RefillMachineException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		//aggiornare solo serbatoio corretto e non tutti i serbatoi
+		//aggiorno i tank
 		HashMap<String,Double> tankLevels=new HashMap<String, Double>();
 		tankLevels=m.getTanksLevels();
 		System.out.println(tankLevels);

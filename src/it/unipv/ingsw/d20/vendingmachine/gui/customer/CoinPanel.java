@@ -23,7 +23,6 @@ public class CoinPanel extends JPanel {
 		for(Pulsante p:l) {
 			this.add(p);
 		}
-		
 	}
 	private void ordinaPulsanti() { 
 		PulsanteComparator p=new PulsanteComparator();
@@ -32,5 +31,4 @@ public class CoinPanel extends JPanel {
 	public List<Pulsante> getL() {
 		return l;
 	}
-
 }

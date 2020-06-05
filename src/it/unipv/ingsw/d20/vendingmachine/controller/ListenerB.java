@@ -23,7 +23,7 @@ public class ListenerB implements ActionListener{
 		System.out.println(p);
 		String y;
 		y= String.format ("%.2f", p);
-		System.out.println(y);
+		//System.out.println(y);
 		gui.setAmount(y);
 	}
 	

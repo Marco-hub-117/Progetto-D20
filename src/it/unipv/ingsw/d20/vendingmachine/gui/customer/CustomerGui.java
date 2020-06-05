@@ -1,9 +1,7 @@
 package it.unipv.ingsw.d20.vendingmachine.gui.customer;
 
 import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
+
 import java.awt.GridLayout;
 import java.util.List;
 
@@ -16,9 +14,6 @@ public class CustomerGui extends JFrame{
 	private Panel_B pb;
 	private JButton operator;
 	
-	public JButton getOperator() {
-		return operator;
-	}
 	public CustomerGui() {
 		setSize(600,400);
 		setTitle("Interfaccia cliente");
@@ -45,14 +40,15 @@ public class CustomerGui extends JFrame{
 	public void setAmount(String text) {
 		pb.setAmount(text);
 	}
-	
 	public String getDisplay() {
 		return pa.getDisplay();
 	}
 	public String getAmount() {
 		return pb.getAmount();
 	}
-	
+	public JButton getOperator() {
+		return operator;
+	}
 	public String getText() {
 		return pa.getText();
 	}
@@ -64,7 +60,5 @@ public class CustomerGui extends JFrame{
 	}
 	public JButton getOut() {
 		return pb.getOut();
-	}
-	
+	}	
 }
-

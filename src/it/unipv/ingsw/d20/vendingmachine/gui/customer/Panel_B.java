@@ -12,7 +12,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 public class Panel_B extends JPanel{ 
@@ -48,24 +47,16 @@ public class Panel_B extends JPanel{
 			JLabel picLabel = new JLabel(new ImageIcon(myPicture));
 			add(picLabel,BorderLayout.CENTER);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			
 		}
 		x.setLayout(new GridLayout(2,1));
 		x.add(in);
 		x.add(out);
 		this.add(x,BorderLayout.LINE_START);
-		
-
-		
-
-		
 	}
 	public List<Pulsante> getL() {
 		return p.getL();
 	}
-	
-	
 	public void setAmount(String text) {
 		amount.setText(text);
 	}
@@ -78,5 +69,4 @@ public class Panel_B extends JPanel{
 	public JButton getOut() {
 		return out;
 	}
-	
 }

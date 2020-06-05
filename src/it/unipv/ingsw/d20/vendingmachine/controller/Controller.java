@@ -20,6 +20,7 @@ public class Controller {
 		setText();
 		addListenerA();
 		addListenerB();
+		addListenerKey();
 		addListenerOp();
 	}
 	public Controller(VendingMachine m, OperatorGui gui) {
@@ -29,28 +30,28 @@ public class Controller {
 		addListenerTank();
 	}
 	
-	private void setText() {
+	private void setText() { //setta la TextArea per visualizzare il catalogo della vending machine
 		gui.setText(m.getCatalog().toString());
 	}
 	private void addListenerA() {
-		for(Pulsante puls:gui.getLA()) {
+		for(Pulsante puls:gui.getLA()) { //aggiunge i listener ai pulsanti per selezionare la bevanda nell'interfaccia cliente
 			puls.addActionListener(new ListenerA(puls.getValue(), m, gui)); 
 		}
 	}
 	private void addListenerB() {
-		for(Pulsante puls:gui.getLB()) {
+		for(Pulsante puls:gui.getLB()) { //aggiunge i listener ai pulsanti dei soldi nell'interfaccia cliente
 			puls.addActionListener(new ListenerB(puls.getValue(), m, gui));
 		}
 	}
-	private void addListenerKey() {
+	private void addListenerKey() { //aggiunge i listener ai pulsanti per la chiavetta nell'interfaccia cliente
 		gui.getIn().addActionListener(new ListenerKey(true,m, gui));
 		gui.getOut().addActionListener(new ListenerKey(false,m, gui));
 	}
-	private void addListenerOp() {
+	private void addListenerOp() { //aggiunge il listener al pulsante per entrare nella modalità operatore
 		gui.getOperator().addActionListener(new ListenerOperator(m, gui));
 	}
 	
-	private void setTankText() {
+	private void setTankText() { //setta il nome dei tank e i livelli attuali
 		HashMap<String,Double> tankLevels=new HashMap<String, Double>();
 		tankLevels=m.getTanksLevels();
 		System.out.println(tankLevels);
@@ -61,13 +62,12 @@ public class Controller {
 			k++;
 		}
 	}
-	private void addListenerTank() {
+	private void addListenerTank() { //aggiunge i listener ai pulsanti dell'interfaccia Operatore
 		Pulsante[] puls=new Pulsante[m.nTank()];
 		puls=opgui.getPulsanti();
 		for(int i=0; i<m.nTank(); i++) {
 			puls[i].addActionListener(new ListenerTank(puls[i].getPos(), m, opgui));
 		}
-		
 	}
 
 }
