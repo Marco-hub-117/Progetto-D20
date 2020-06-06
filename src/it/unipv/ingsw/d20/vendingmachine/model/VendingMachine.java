@@ -331,20 +331,5 @@ public class VendingMachine {
 		return 5;
 		//return tankList.size();
 	}
-	
-	/* metodo provvisorio per un'opzione di gestione dei pagamenti
-	public double elaborateCredit(ICreditStrategy strategy, Object creditInfo) {
-		try {
-			double amount=strategy.elaborateCredit(creditInfo);
-			currentAmount+=amount;
-			return currentAmount;
-		} catch (InvalidPaymentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return 0; 
-	}*/
-	
-	
 
 }
