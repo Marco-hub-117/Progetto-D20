@@ -16,7 +16,7 @@ public class testCatalogo {
 		v.getCatalogFromLocal();
 		v.saveCatalogIntoLocal(); 
 		v.getTanksFromLocal();
-		
+		v.saveTankIntoLocal();
 
 	}
 

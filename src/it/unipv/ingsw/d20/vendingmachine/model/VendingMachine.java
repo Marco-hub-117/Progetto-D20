@@ -1,6 +1,8 @@
 package it.unipv.ingsw.d20.vendingmachine.model;
 
-import it.unipv.ingsw.d20.persistence.IOhandler.IO;
+
+import it.unipv.ingsw.d20.persistence.PersistenceFacade;
+import it.unipv.ingsw.d20.persistence.LocalIOHandler.VendingLocalIO;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.BeverageCatalog;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.BeverageDescription;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.Ingredients;
@@ -68,8 +70,7 @@ public class VendingMachine {
 		keyHandler = new KeyHandler();
 		makeCatalog();//la vending istanzia il catalogo delle bevande
 		createTanks();
-		
-		IO files = new IO(id); // Per creare i file dove scrivere le informazioni.
+
 	}
 	
 	public void makeCatalog() { //la vending istanzia il catalogo delle bevande per ora vuoto, poi sarà da prelevare dal db
@@ -214,87 +215,27 @@ public class VendingMachine {
 	}
 	
 	public void getCatalogFromLocal() {
-		bvCatalog = new BeverageCatalog();
-		String nomeFile = Constants.FILEPATH + Constants.BVCATPATH+"_"+this.id;
-		Scanner inputStream = null;
-		
-		try {
-			inputStream = new Scanner(new BufferedReader(new FileReader(nomeFile)));
-			String riga;
-			String[] result = null;
-
-			while(inputStream.hasNext()) {
-				riga = inputStream.nextLine();
-				result = riga.split(",");
-				BeverageDescription bvdesc = new BeverageDescription(result[0],result[1],Double.valueOf(result[2]));
-				for (int i = 3;i<result.length;i= i+2) {
-					bvdesc.addIngredient(Ingredients.valueOf(result[i]),Double.valueOf(result[i+1]));
-				}
-				bvCatalog.addBeverageDescription(bvdesc);
-				result = null;
-			}
-			System.out.println(this.bvCatalog.toString());
-			
-		} catch(FileNotFoundException e) {
-			System.out.println(e);
-		} finally {
-			if (inputStream != null)
-				inputStream.close();
-		}
-		
-
+		PersistenceFacade pf = PersistenceFacade.getInstance();
+		VendingLocalIO v = pf.getVendingLocalIO(this.id);
+		this.bvCatalog = v.getCatalogFromLocal();
 	}
 
 	public void saveCatalogIntoLocal () {
-		String nomeFile = Constants.FILEPATH + Constants.BVCATPATH+"_"+this.id;
-		try {
-			FileWriter myWriter = new FileWriter(nomeFile);
-			PrintWriter myPrintWriter   = new PrintWriter(myWriter);
-			for (String code : bvCatalog.getCatalog().keySet()) {
-				BeverageDescription bd = bvCatalog.getBeverageDesc(code);
-				String line = bd.getCode()+","+bd.getName()+","+bd.getPrice();
-				Map<Ingredients,Double> ingr = bd.getIngredients();
-				for (Ingredients key : ingr.keySet()) {
-					line +=","+key+","+ingr.get(key);
-				}
-				System.out.println(line);
-				myPrintWriter.println(line);
-			}
-			myWriter.close();
-		} catch (IOException e) {
-			System.out.println("An error occurred.");
-			e.printStackTrace();
-		} 
-		
+		PersistenceFacade pf = PersistenceFacade.getInstance();
+		VendingLocalIO v = pf.getVendingLocalIO(this.id);
+		v.saveCatalogIntoLocal(bvCatalog);
 	}
 	
 	public void getTanksFromLocal() {
-		tankList = new HashMap<>();
-		String nomeFile = Constants.FILEPATH + Constants.TANKSPATH+"_"+this.id;
-		Scanner inputStream = null;
-		
-		try {
-			inputStream = new Scanner(new BufferedReader(new FileReader(nomeFile)));
-			String riga;
-			String[] result = null;
-
-			while(inputStream.hasNext()) {
-				riga = inputStream.nextLine();
-				result = riga.split(",");
-				Tank t = new Tank(Ingredients.valueOf(result[0]),Double.valueOf(result[1]),Double.valueOf(result[2]));
-				if (!(tankList.containsKey(t.getId()))) 
-					tankList.put(t.getId(), t);
-				result = null;
-			}
-			for(Ingredients i : tankList.keySet()) {
-				System.out.println(tankList.get(i));
-			}
-		} catch(FileNotFoundException e) {
-			System.out.println(e);
-		} finally {
-			if (inputStream != null)
-				inputStream.close();
-		}
+		PersistenceFacade pf = PersistenceFacade.getInstance();
+		VendingLocalIO v = pf.getVendingLocalIO(this.id);
+		this.tankList = v.getTanksFromLocal();
+	}
+	
+	public void saveTankIntoLocal() {
+		PersistenceFacade pf = PersistenceFacade.getInstance();
+		VendingLocalIO v = pf.getVendingLocalIO(this.id);
+		v.saveTankIntoLocal(tankList);
 	}
 	
 	public void setStatus(VendingMachineStatus status) {

@@ -2,6 +2,7 @@ package it.unipv.ingsw.d20.persistence;
 
 import it.unipv.ingsw.d20.persistence.BeverageDescription.*;
 import it.unipv.ingsw.d20.persistence.BvCatalog.*;
+import it.unipv.ingsw.d20.persistence.LocalIOHandler.VendingLocalIO;
 import it.unipv.ingsw.d20.persistence.ingredientRecipe.*;
 import it.unipv.ingsw.d20.persistence.sale.*;
 import it.unipv.ingsw.d20.persistence.vending.*;
@@ -41,6 +42,10 @@ public class PersistenceFacade {
 	
 	public IingredientRecipeDao getIngredientRecipeDao() {
 		return new IngredientRecipeRdbDao();
+	}
+	
+	public VendingLocalIO getVendingLocalIO(String idVending) {
+		return new VendingLocalIO(idVending);
 	}
 	
 
