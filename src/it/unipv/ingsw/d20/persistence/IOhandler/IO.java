@@ -5,14 +5,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import it.unipv.ingsw.d20.vendingmachine.model.Constants;
+
 public class IO {
 	
-	private String nomeFile;
-	private Scanner inputStream;
-		
-	public IO(String nomeFile) {
-		this.nomeFile = "localFile/"+nomeFile;
-		this.createFile(this.nomeFile);
+	public IO(String idVending) {
+		createFile(Constants.FILEPATH+Constants.BVCATPATH+"_"+idVending);
+		createFile(Constants.FILEPATH+Constants.TANKSPATH+"_"+idVending);
+		createFile(Constants.FILEPATH+Constants.VENDINGPATH+"_"+idVending);
 	}
 	
 	public void createFile(String name) {
@@ -28,7 +28,6 @@ public class IO {
 		      e.printStackTrace();
 		 }
 	}
-	
-	
+
 }
 

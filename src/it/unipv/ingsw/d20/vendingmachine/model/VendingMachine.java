@@ -1,5 +1,6 @@
 package it.unipv.ingsw.d20.vendingmachine.model;
 
+import it.unipv.ingsw.d20.persistence.IOhandler.IO;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.BeverageCatalog;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.BeverageDescription;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.Ingredients;
@@ -16,10 +17,16 @@ import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.InvalidP
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.KeyNotInsertedException;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.UnrecognisedKeyException;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class VendingMachine {
@@ -30,7 +37,7 @@ public class VendingMachine {
 	private ArrayList<Sale> salesRegister;
 	private double credit;
 	private String currentCode;
-	private HashMap<String,Tank> tankList;
+	private HashMap<Ingredients,Tank> tankList;
 	private BeverageCatalog bvCatalog;	//catalogo delle bevande
 	
 	private CashHandler cashHandler; //classi che gestiscono il pagamento
@@ -61,6 +68,8 @@ public class VendingMachine {
 		keyHandler = new KeyHandler();
 		makeCatalog();//la vending istanzia il catalogo delle bevande
 		createTanks();
+		
+		IO files = new IO(id); // Per creare i file dove scrivere le informazioni.
 	}
 	
 	public void makeCatalog() { //la vending istanzia il catalogo delle bevande per ora vuoto, poi sarà da prelevare dal db
@@ -131,22 +140,15 @@ public class VendingMachine {
 	
 	public void createTanks() {
 		//creare una serie di tank e aggiungerli alla variabile tankList
-		Tank t1=new Tank("caffe");
-		Tank t2=new Tank("latte");
-		Tank t3=new Tank("putredine liquida");
-		t3.refil();
-		tankList=new HashMap<String, Tank>();
-		tankList.put(t1.getId(), t1);
-		tankList.put(t2.getId(), t2);
-		tankList.put(t3.getId(), t3);
+		
 
 	}
 	
-	public HashMap<String, Double> getTanksLevels() {
-		HashMap<String, Double> tanksLevel;
+	public HashMap<Ingredients, Double> getTanksLevels() {
+		HashMap<Ingredients, Double> tanksLevel;
 		tanksLevel = new HashMap<>(); 
 		
-		for(String id : tankList.keySet()) {
+		for(Ingredients id : tankList.keySet()) {
 			tanksLevel.put(id, tankList.get(id).getLevel());
 		}
 		return tanksLevel;		//Warning: Eccezione da fare?
@@ -211,13 +213,13 @@ public class VendingMachine {
 		//this.bvCatalog.setIngredient(code, name, quantity);
 	}
 	
-	public void popolaCatalogo() {
+	public void getCatalogFromLocal() {
 		bvCatalog = new BeverageCatalog();
-		String nomeFile = "localFile/beverageCatalog";
+		String nomeFile = Constants.FILEPATH + Constants.BVCATPATH+"_"+this.id;
 		Scanner inputStream = null;
 		
 		try {
-			inputStream = new Scanner(new File(nomeFile));
+			inputStream = new Scanner(new BufferedReader(new FileReader(nomeFile)));
 			String riga;
 			String[] result = null;
 
@@ -238,12 +240,62 @@ public class VendingMachine {
 		} finally {
 			if (inputStream != null)
 				inputStream.close();
-			
 		}
 		
 
 	}
 
+	public void saveCatalogIntoLocal () {
+		String nomeFile = Constants.FILEPATH + Constants.BVCATPATH+"_"+this.id;
+		try {
+			FileWriter myWriter = new FileWriter(nomeFile);
+			PrintWriter myPrintWriter   = new PrintWriter(myWriter);
+			for (String code : bvCatalog.getCatalog().keySet()) {
+				BeverageDescription bd = bvCatalog.getBeverageDesc(code);
+				String line = bd.getCode()+","+bd.getName()+","+bd.getPrice();
+				Map<Ingredients,Double> ingr = bd.getIngredients();
+				for (Ingredients key : ingr.keySet()) {
+					line +=","+key+","+ingr.get(key);
+				}
+				System.out.println(line);
+				myPrintWriter.println(line);
+			}
+			myWriter.close();
+		} catch (IOException e) {
+			System.out.println("An error occurred.");
+			e.printStackTrace();
+		} 
+		
+	}
+	
+	public void getTanksFromLocal() {
+		tankList = new HashMap<>();
+		String nomeFile = Constants.FILEPATH + Constants.TANKSPATH+"_"+this.id;
+		Scanner inputStream = null;
+		
+		try {
+			inputStream = new Scanner(new BufferedReader(new FileReader(nomeFile)));
+			String riga;
+			String[] result = null;
+
+			while(inputStream.hasNext()) {
+				riga = inputStream.nextLine();
+				result = riga.split(",");
+				Tank t = new Tank(Ingredients.valueOf(result[0]),Double.valueOf(result[1]),Double.valueOf(result[2]));
+				if (!(tankList.containsKey(t.getId()))) 
+					tankList.put(t.getId(), t);
+				result = null;
+			}
+			for(Ingredients i : tankList.keySet()) {
+				System.out.println(tankList.get(i));
+			}
+		} catch(FileNotFoundException e) {
+			System.out.println(e);
+		} finally {
+			if (inputStream != null)
+				inputStream.close();
+		}
+	}
 	
 	public void setStatus(VendingMachineStatus status) {
 		this.status = status;

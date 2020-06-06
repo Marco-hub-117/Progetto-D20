@@ -2,6 +2,7 @@ package it.unipv.ingsw.d20.vendingmachine.model;
 
 import java.util.HashMap;
 
+import it.unipv.ingsw.d20.vendingmachine.model.beverage.Ingredients;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.Tank;
 
 public class VendingMachineInfo {
@@ -9,11 +10,11 @@ public class VendingMachineInfo {
 	private String id;
 	private VendingMachineStatus status;
 	private double totalAmount;
-	private HashMap<String,Tank> tankList;
+	private HashMap<Ingredients,Tank> tankList;
 	// mettere anche il catalogo delle bevande?
 	
 	
-	public VendingMachineInfo(String id, VendingMachineStatus status, double totalAmount,HashMap<String, Tank> tankList) {
+	public VendingMachineInfo(String id, VendingMachineStatus status, double totalAmount,HashMap<Ingredients, Tank> tankList) {
 		this.id = id;
 		this.status = status;
 		this.totalAmount = totalAmount;
@@ -36,7 +37,7 @@ public class VendingMachineInfo {
 	}
 
 
-	public HashMap<String, Tank> getTankList() {
+	public HashMap<Ingredients, Tank> getTankList() {
 		return tankList;
 	}
 	

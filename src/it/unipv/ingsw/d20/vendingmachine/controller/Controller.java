@@ -7,6 +7,7 @@ import it.unipv.ingsw.d20.vendingmachine.gui.customer.CustomerGui;
 import it.unipv.ingsw.d20.vendingmachine.gui.customer.Pulsante;
 import it.unipv.ingsw.d20.vendingmachine.gui.operator.OperatorGui;
 import it.unipv.ingsw.d20.vendingmachine.model.VendingMachine;
+import it.unipv.ingsw.d20.vendingmachine.model.beverage.Ingredients;
 
 
 public class Controller {
@@ -57,11 +58,11 @@ public class Controller {
 	}
 	
 	private void setTankText() { //setta il nome dei tank e i livelli attuali
-		HashMap<String,Double> tankLevels=new HashMap<String, Double>();
+		HashMap<Ingredients,Double> tankLevels=new HashMap<Ingredients, Double>();
 		tankLevels=m.getTanksLevels();
 		int k=0;
-		for(Map.Entry<String, Double> i : tankLevels.entrySet()) {
-			opgui.setElements(i.getKey(),i.getValue()+"",k);
+		for(Map.Entry<Ingredients, Double> i : tankLevels.entrySet()) {
+			opgui.setElements(String.valueOf(i.getKey()),i.getValue()+"",k);
 			k++;
 		}
 	}

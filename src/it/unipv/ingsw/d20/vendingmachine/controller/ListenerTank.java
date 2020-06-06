@@ -8,6 +8,7 @@ import java.util.Map;
 import it.unipv.ingsw.d20.vendingmachine.gui.customer.Pulsante;
 import it.unipv.ingsw.d20.vendingmachine.gui.operator.OperatorGui;
 import it.unipv.ingsw.d20.vendingmachine.model.VendingMachine;
+import it.unipv.ingsw.d20.vendingmachine.model.beverage.Ingredients;
 import it.unipv.ingsw.d20.vendingmachine.model.exceptions.RefillMachineException;
 
 public class ListenerTank implements ActionListener{
@@ -30,13 +31,13 @@ public class ListenerTank implements ActionListener{
 			e.printStackTrace();
 		}
 		//aggiorno i tank
-		HashMap<String,Double> tankLevels=new HashMap<String, Double>();
+		HashMap<Ingredients,Double> tankLevels=new HashMap<Ingredients, Double>();
 		tankLevels=m.getTanksLevels();
 		System.out.println(tankLevels);
 		int k=0;
-		for(Map.Entry<String, Double> i : tankLevels.entrySet()) {
+		for(Map.Entry<Ingredients, Double> i : tankLevels.entrySet()) {
 			System.out.println("settt");
-			gui.setElements(i.getKey(),i.getValue()+"",k);
+			gui.setElements(String.valueOf(i.getKey()),i.getValue()+"",k);
 			k++;
 		}
 	}
