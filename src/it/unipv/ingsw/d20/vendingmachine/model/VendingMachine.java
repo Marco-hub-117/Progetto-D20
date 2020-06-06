@@ -2,6 +2,7 @@ package it.unipv.ingsw.d20.vendingmachine.model;
 
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.BeverageCatalog;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.BeverageDescription;
+import it.unipv.ingsw.d20.vendingmachine.model.beverage.Ingredients;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.Tank;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.exceptions.DeliveryFailedException;
 import it.unipv.ingsw.d20.vendingmachine.model.exceptions.RefillMachineException;
@@ -15,8 +16,11 @@ import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.InvalidP
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.KeyNotInsertedException;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.UnrecognisedKeyException;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Scanner;
 
 public class VendingMachine {
 
@@ -205,6 +209,39 @@ public class VendingMachine {
 		 * passando come argomento il nome dell'ingrediente, e non un'oggetto Ingredients.
 		 */
 		//this.bvCatalog.setIngredient(code, name, quantity);
+	}
+	
+	public void popolaCatalogo() {
+		bvCatalog = new BeverageCatalog();
+		String nomeFile = "localFile/beverageCatalog";
+		Scanner inputStream = null;
+		
+		try {
+			inputStream = new Scanner(new File(nomeFile));
+			String riga;
+			String[] result = null;
+
+			while(inputStream.hasNext()) {
+				riga = inputStream.nextLine();
+				result = riga.split(",");
+				BeverageDescription bvdesc = new BeverageDescription(result[0],result[1],Double.valueOf(result[2]));
+				for (int i = 3;i<result.length;i= i+2) {
+					bvdesc.addIngredient(Ingredients.valueOf(result[i]),Double.valueOf(result[i+1]));
+				}
+				bvCatalog.addBeverageDescription(bvdesc);
+				result = null;
+			}
+			System.out.println(this.bvCatalog.toString());
+			
+		} catch(FileNotFoundException e) {
+			System.out.println(e);
+		} finally {
+			if (inputStream != null)
+				inputStream.close();
+			
+		}
+		
+
 	}
 
 	
