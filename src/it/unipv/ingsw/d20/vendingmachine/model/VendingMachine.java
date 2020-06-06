@@ -127,6 +127,7 @@ public class VendingMachine {
 	}
 	
 	public void startTransaction(BeverageDescription bvDesc) {
+		setStatus(VendingMachineStatus.DISPENSING);
 		try {
 			Sale s = new Sale(bvDesc, credit);
 			credit = s.getRest();
@@ -135,6 +136,8 @@ public class VendingMachine {
 			//IN ATTESA DI IMPLEMENTAZIONE DELLE ECCEZIONI
 		}catch(DeliveryFailedException e) {
 			
+		} finally {
+			setStatus(VendingMachineStatus.READY);
 		}
 	}
 	
