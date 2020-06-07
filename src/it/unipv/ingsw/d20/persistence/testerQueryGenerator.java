@@ -24,14 +24,6 @@ public class testerQueryGenerator {
 		System.out.println("Query: " + query3);
 		
 
-		SalePOJO sale = new SalePOJO("ids1","id1","idbv1","2020-06-02");
-		ArrayList<String> values2 = new ArrayList<>();
-		values2.add(sale.getIdSale()); // primo attributo nella table
-		values2.add(sale.getIdVending()); // secondo attributo nella table
-		values2.add(sale.getIdBeverage()); // terzo attributo nella table
-		values2.add(sale.getDate()); // qurto attributo nella table
-		String query4 = QueryGenerator.getInsertIntoValuesQuery("Sale", values2);	
-		System.out.println("Query: " + query4);
 	}
 
 }

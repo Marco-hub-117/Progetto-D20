@@ -1,28 +1,49 @@
 package it.unipv.ingsw.d20.persistence.sale;
 
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+/**
+ * Classe che replica la Table "Sale" del database.
+ * La chiave primaria è composta dagli attributi idVending e Date.
+ * L'alttributo date è nel formato java.sql.Timestamp
+ * Gli attributi sono nel seguente ordine: idVending, idBeverage, Date.
+ */
+
 public class SalePOJO {
 	
-	private String idSale;
+
 	private String idVending;
 	private String idBeverage;
-	private String date; // nel formato yy-mm-dd
+	private String date; // Data nel formato yyyy/MM/dd hh:mm:ss
 	
-	public SalePOJO(String idSale, String idVending, String idBeverage, String date) {
-		this.idSale = idSale;
+	/**
+	 * Costruttore con la date nel formato String
+	 * @param idVending
+	 * @param idBeverage
+	 * @param date passata nel formato di Stringa
+	 */
+	public SalePOJO(String idVending, String idBeverage, String date) {
 		this.idVending = idVending;
 		this.idBeverage = idBeverage;
-		this.date = date;
+		this.date = date;	
 	}
-
-	public String getIdSale() {
-		return idSale;
+	
+	/**
+	 * Costruttore con la date nel formato java.util.Date
+	 * @param idVending
+	 * @param idBeverage
+	 * @param date formato java.util.Date
+	 */
+	public SalePOJO(String idVending, String idBeverage, Date date) {
+		this.idVending = idVending;
+		this.idBeverage = idBeverage;
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
+		this.date = sdf.format(date);	
 	}
-
-	public void setIdSale(String idSale) {
-		this.idSale = idSale;
-	}
-
+	
+	
 	public String getIdVending() {
 		return idVending;
 	}
@@ -38,22 +59,22 @@ public class SalePOJO {
 	public void setIdBeverage(String idBeverage) {
 		this.idBeverage = idBeverage;
 	}
-	
-	/**
-	 * La data deve essere nel formato yy-mm-dd
-	 * @param date
-	 */
-	public void setDate(String date) {
-		this.date = date;
-	}
-	
-	/**
-	 * La data è nel formato yy-mm-dd
-	 * @return
-	 */
+
 	public String getDate() {
 		return date;
 	}
+
+	public void setDate(String date) {
+		this.date = date;
+	}
+
+	@Override
+	public String toString() {
+		return "SalePOJO [idVending=" + idVending + ", idBeverage=" + idBeverage + ", date=" + date + "]";
+	}
+	
+	
+	
 	
 	
 }

@@ -5,7 +5,9 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 
 import it.unipv.ingsw.d20.persistence.BeverageDescription.BeverageDescriptionPOJO;
 import it.unipv.ingsw.d20.persistence.BvCatalog.BvCatalogPOJO;
@@ -143,10 +145,9 @@ public class RdbOperations {
 	public void addSale(SalePOJO sale) {
 		
 		ArrayList<String> values = new ArrayList<>();
-		values.add(sale.getIdSale()); // primo attributo nella table
-		values.add(sale.getIdVending()); // secondo attributo nella table
-		values.add(sale.getIdBeverage()); // terzo attributo nella table
-		values.add(sale.getDate()); // quarto attributo nella table
+		values.add(sale.getIdVending()); // primo attributo nella table
+		values.add(sale.getIdBeverage()); // secondo attributo nella table
+		values.add(sale.getDate()); // terzo attributo nella table
 		
 		String query = QueryGenerator.getInsertIntoValuesQuery("Sale", values);	
 		con = this.startConnection(con);
@@ -162,11 +163,10 @@ public class RdbOperations {
 		this.closeConnection(con);
 	}
 
-	public SalePOJO getSaleById (String id) {
+	public SalePOJO getSaleByKey (String idVending,String date) {
 		SalePOJO result = null;
-		String whereStatement = "idSale = '"+id+"'";
+		String whereStatement = "idVending = '"+idVending+"' and Date = '"+date+"'";
 		String query = QueryGenerator.getSelectFromWhereQuery("*", "Sale", whereStatement);
-		
 		con = this.startConnection(con);
 		Statement st;
 		ResultSet rs;
@@ -175,12 +175,13 @@ public class RdbOperations {
 			st = con.createStatement();
 			rs = st.executeQuery(query);
 			while(rs.next()) {
-				result = new SalePOJO (rs.getString(1),rs.getString(2),rs.getString(3),rs.getDate(4).toString());
+				result = new SalePOJO (rs.getString(1),rs.getString(2),rs.getString(3));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		this.closeConnection(con);
+		// Fare un controllo if result = null e lanciare una eccezione?
 		return result;
 		
 	}
@@ -197,7 +198,7 @@ public class RdbOperations {
 			st = con.createStatement();
 			rs = st.executeQuery(query);
 			while(rs.next()) {
-				SalePOJO res = new SalePOJO (rs.getString(1),rs.getString(2),rs.getString(3),rs.getDate(4).toString());
+				SalePOJO res =  new SalePOJO (rs.getString(1),rs.getString(2),rs.getString(3));
 				result.add(res);
 			}
 		} catch (SQLException e) {
@@ -208,31 +209,7 @@ public class RdbOperations {
 		
 		return result;
 	}
-	
-	public ArrayList<SalePOJO> getAllSaleByIdVending (String idVending,String date) {
-		ArrayList<SalePOJO> result = new ArrayList<>();
-		String whereStatement = "idVending = '" +idVending+"'"+" and Date = '"+date+"'";
-		String query = QueryGenerator.getSelectFromWhereQuery("*", "Sale", whereStatement);
-		
-		con = this.startConnection(con);
-		Statement st;
-		ResultSet rs;
-		try {
-			st = con.createStatement();
-			rs = st.executeQuery(query);
-			while(rs.next()) {
-				SalePOJO res = new SalePOJO (rs.getString(1),rs.getString(2),rs.getString(3),rs.getDate(4).toString());
-				result.add(res);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-		this.closeConnection(con);
-		
-		return result;
-	}
-	
+
 	// DI SEGUITO CI SARANNO LE QUERY RELATIVE ALLA TABLE BvCatalog
 	
 	public ArrayList<BvCatalogPOJO> getBeverageCatalogByType(int type) {
