@@ -1,14 +1,18 @@
 package it.unipv.ingsw.d20.vendingmachine.model.paymentsystem;
 
+import it.unipv.ingsw.d20.persistence.PersistenceFacade;
+import it.unipv.ingsw.d20.persistence.LocalIOHandler.VendingLocalIO;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.InsufficientCashForRestException;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.InvalidPaymentException;
 
 public class Test {
 
 	public static void main(String[] args) {
-		CashHandler cc = new CashHandler(10, 10, 10, 10, 10, 10);
-		
-		System.out.println(cc.refreshTotalAmount());
+		PersistenceFacade pf = PersistenceFacade.getInstance();
+		VendingLocalIO v = pf.getVendingLocalIO();
+		CashContainer cc = v.getCashContainerFromLocal();
+		System.out.println(cc.getTotalAmount());
+
 		
 		try {
 			cc.addCoin(0.50);
@@ -16,7 +20,7 @@ public class Test {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println(cc.refreshTotalAmount());
+
 		
 		try {
 			cc.dispenseRest(5);
@@ -26,14 +30,9 @@ public class Test {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		try {
-			cc.dispenseRest(50);
-		} catch (InsufficientCashForRestException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		
-		System.out.println(cc.refreshTotalAmount());
+		System.out.println(cc.getTotalAmount());	
+
 
 	}
 

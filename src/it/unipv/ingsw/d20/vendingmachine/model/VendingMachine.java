@@ -11,7 +11,7 @@ import it.unipv.ingsw.d20.vendingmachine.model.beverage.exceptions.DeliveryFaile
 import it.unipv.ingsw.d20.vendingmachine.model.exceptions.RefillMachineException;
 import it.unipv.ingsw.d20.vendingmachine.model.exceptions.TankAbsentException;
 import it.unipv.ingsw.d20.vendingmachine.model.exceptions.WithdrawAmountException;
-import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.CashHandler;
+import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.CashContainer;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.KeyHandler;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.Sale;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.InsufficientCashForRestException;
@@ -35,13 +35,11 @@ public class VendingMachine {
 
 	private String id;
 	private VendingMachineStatus status;
-	private double totalAmount;
 	private ArrayList<Sale> salesRegister;
 	private double credit;
 	private HashMap<Ingredients,Tank> tankList;
 	private BeverageCatalog bvCatalog;	//catalogo delle bevande
-	
-	private CashHandler cashHandler; //classi che gestiscono il pagamento
+	private CashContainer cashContainer;
 	private KeyHandler keyHandler;
 	
 
@@ -55,30 +53,27 @@ public class VendingMachine {
 	 * @param totalAmount Inizialmente totalAmount viene impostato dalla company per i resti. 
 	 * 
 	 */
-	public VendingMachine(String id, double totalAmount) {	
+	public VendingMachine(String id) {	
 		this.id = id;
-		this.setStatus(VendingMachineStatus.OFF);	//LASCIATO OFF PER POI RIEMPIRE SERBATOI LA PRIMA VOLTA
-		this.totalAmount = totalAmount;
+		this.setStatus(VendingMachineStatus.REFILL);	//LASCIATO REFILL PER POI RIEMPIRE SERBATOI LA PRIMA VOLTA
 		this.credit = 0.0;
 		
-		salesRegister = new ArrayList<Sale>();
-		tankList = new HashMap<>(); //INIT TANK
+		salesRegister = new ArrayList<Sale>(); //DA IMLEMENTARE COME BVCATALOG E TANKLIST
 		
-		cashHandler = new CashHandler(15, 15, 15, 15, 15, 15); //Gli argomenti sono il numero di monete per tipo con cui viene inizializzata 
-														   //la macchinetta -> da valutare se passargliele con un array di int o cambiare 
 		keyHandler = new KeyHandler();
-		makeCatalog();//la vending istanzia il catalogo delle bevande
-		createTanks();
-
+		
+		bvCatalog = getCatalogFromLocal();//la vending istanzia il catalogo delle bevande
+		tankList = getTanksFromLocal();
+		cashContainer = getCashContainerFromLocal(); 
 	}
-	
+
 	public void makeCatalog() { //la vending istanzia il catalogo delle bevande per ora vuoto, poi sarà da prelevare dal db
 		bvCatalog=new BeverageCatalog();
 	}
 	
 	public void insertCoin(double coinValue) { 
 		try {
-			cashHandler.addCoin(coinValue); //se la moneta è valida la aggiunge al CashHandler
+			cashContainer.addCoin(coinValue); //se la moneta è valida la aggiunge al CashHandler
 			credit += coinValue;			//e aggiorna il credito
 		} catch (InvalidPaymentException e) { //altrimenti viene raccolta la relativa eccezione
 			e.printStackTrace();
@@ -110,7 +105,7 @@ public class VendingMachine {
 		}
 		
 		try {
-			cashHandler.dispenseRest(credit);
+			cashContainer.dispenseRest(credit);
 		} catch (InsufficientCashForRestException e) {
 			e.printStackTrace();
 		}
@@ -160,7 +155,7 @@ public class VendingMachine {
 	public void setTankLevel(String id) throws RefillMachineException{
 		
 		//if(this.getStatus().equals(VendingMachineStatus.REFILL)) {
-			tankList.get(id).refil(); //modifica, vedi tank
+			tankList.get(id).refill(); //modifica, vedi tank
 		//}else {
 		//	throw new RefillMachineException("Stato della macchinetta non corretto");
 		//}
@@ -172,18 +167,8 @@ public class VendingMachine {
 	 * @throws RefillMachineException
 	 */
 
-	public void withdrawAmount() throws WithdrawAmountException, RefillMachineException{		//Vedere se refill o OFF
-		
-		if(this.getStatus() != VendingMachineStatus.REFILL) { // Controllare se lo stato della macchinetta � corretto
-			throw new RefillMachineException("Stato della macchinetta non corretto");
-		}
-		
-		if(this.getTotalAmount() < Constants.IMPORTOMIN) { // verificare che se per qualche motivo il credito attuale della macchinetta � minore dell'importo minimo.
-			throw new WithdrawAmountException("Importo minore di 10 �");
-		}
-		
-		// Se tutte le verifiche hanno riportato esito negativo, il totalAmount viene aggiornato correttamente.
-		this.totalAmount = Constants.IMPORTOMIN;
+	public void withdrawAmount() throws WithdrawAmountException, RefillMachineException{	//Vedere se refill o OFF
+		//da implementare secondo cashHandler
 	}
 	
 	/**
@@ -192,7 +177,7 @@ public class VendingMachine {
 	 */
 
 	public VendingMachineInfo sendInfo() {				
-		return new VendingMachineInfo(id, status, totalAmount, tankList);	
+		return new VendingMachineInfo(id, status, cashContainer.getTotalAmount(), tankList);	
 	}
 
 	public void setTankSettings(String id, Double temp) throws RefillMachineException, TankAbsentException{
@@ -216,10 +201,10 @@ public class VendingMachine {
 		//this.bvCatalog.setIngredient(code, name, quantity);
 	}
 	
-	public void getCatalogFromLocal() {
+	public BeverageCatalog getCatalogFromLocal() {
 		PersistenceFacade pf = PersistenceFacade.getInstance();
 		VendingLocalIO v = pf.getVendingLocalIO();
-		this.bvCatalog = v.getCatalogFromLocal();
+		return v.getCatalogFromLocal();
 	}
 
 	public void saveCatalogIntoLocal () {
@@ -228,16 +213,28 @@ public class VendingMachine {
 		v.saveCatalogIntoLocal(bvCatalog);
 	}
 	
-	public void getTanksFromLocal() {
+	public HashMap<Ingredients,Tank> getTanksFromLocal() {
 		PersistenceFacade pf = PersistenceFacade.getInstance();
 		VendingLocalIO v = pf.getVendingLocalIO();
-		this.tankList = v.getTanksFromLocal();
+		return v.getTanksFromLocal();
 	}
 	
 	public void saveTankIntoLocal() {
 		PersistenceFacade pf = PersistenceFacade.getInstance();
 		VendingLocalIO v = pf.getVendingLocalIO();
 		v.saveTankIntoLocal(tankList);
+	}
+	
+	private CashContainer getCashContainerFromLocal() {
+		PersistenceFacade pf = PersistenceFacade.getInstance();
+		VendingLocalIO v = pf.getVendingLocalIO();
+		return v.getCashContainerFromLocal();
+	}
+	
+	public void saveCashContainerIntoLocal() {
+		PersistenceFacade pf = PersistenceFacade.getInstance();
+		VendingLocalIO v = pf.getVendingLocalIO();
+		v.saveCashContainerIntoLocal(cashContainer);
 	}
 	
 	public void setStatus(VendingMachineStatus status) {
@@ -256,20 +253,14 @@ public class VendingMachine {
 		credit=amount;
 	}
 
-	public void setTotalAmount(double totalAmount) {
-		this.totalAmount = totalAmount;
-	}
-
-	public double getTotalAmount() {
-		return totalAmount;
-	}
-
 	public VendingMachineStatus getStatus() {
 		return status;
 	}
+	
 	public BeverageCatalog getCatalog() {
 		return bvCatalog;
 	}
+	
 	public int nTank() {
 		return 5;
 		//return tankList.size();

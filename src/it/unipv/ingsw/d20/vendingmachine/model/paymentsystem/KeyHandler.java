@@ -1,6 +1,7 @@
 package it.unipv.ingsw.d20.vendingmachine.model.paymentsystem;
 
-import it.unipv.ingsw.d20.vendingmachine.model.net.MySQLHandler;
+import it.unipv.ingsw.d20.persistence.PersistenceFacade;
+import it.unipv.ingsw.d20.persistence.key.IKeyDao;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.KeyNotInsertedException;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.UnrecognisedKeyException;
 
@@ -17,7 +18,9 @@ public class KeyHandler {
 	}
 
 	public void insertKey(String serialCode) throws UnrecognisedKeyException {
-		creditOnKey = MySQLHandler.getKeyCredit(serialCode); 
+		PersistenceFacade pf = PersistenceFacade.getInstance();
+		IKeyDao k = pf.getKeyDao();
+		creditOnKey = k.getCredit(serialCode); //recupera il credito disponibile sulla chiavetta
 		
 		if (creditOnKey < -1) { //se il metodo getKeyCredit restituisce -1 sgnifica che la chiavetta non è presente nel db
 			throw new UnrecognisedKeyException();
@@ -30,7 +33,9 @@ public class KeyHandler {
 
 	public void ejectKey(double credit) throws KeyNotInsertedException {
 		if(keyInserted) {
-			MySQLHandler.setKeyCredit(serialCode, credit); //aggiorna il credito disponibile sulla chiavetta
+			PersistenceFacade pf = PersistenceFacade.getInstance();
+			IKeyDao k = pf.getKeyDao();
+			creditOnKey = k.setCredit(serialCode, credit); //aggiorna il credito disponibile sulla chiavetta
 		
 			keyInserted = false; //reinizializza le variabili di classe
 			serialCode = "";

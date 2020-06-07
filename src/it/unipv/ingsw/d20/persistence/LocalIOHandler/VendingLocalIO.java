@@ -16,11 +16,11 @@ import it.unipv.ingsw.d20.vendingmachine.model.beverage.BeverageCatalog;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.BeverageDescription;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.Ingredients;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.Tank;
+import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.CashContainer;
 
 public class VendingLocalIO {
 
-	public VendingLocalIO() {
-	}
+	public VendingLocalIO() {}
 	
 	public BeverageCatalog getCatalogFromLocal() {
 		BeverageCatalog bvCatalog = new BeverageCatalog();
@@ -117,6 +117,94 @@ public class VendingLocalIO {
 			System.out.println("An error occurred.");
 			e.printStackTrace();
 		} 
+	}
+	
+	public String getVendingID() {
+		String fileName = Constants.FILEPATH + Constants.VENDINGPATH;
+		
+		String IDNumber = null;
+		
+		BufferedReader in;
+		try {
+			in = new BufferedReader(new FileReader(fileName));
+		
+			IDNumber = in.readLine();
+			
+			in.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}	
+		
+		if (IDNumber == null) {
+			IDNumber = "";
+		}
+		
+		return IDNumber;
+	}
+	
+	public void setVendingID(String IDNumber) {
+		String fileName = Constants.FILEPATH + Constants.VENDINGPATH;
+		
+		PrintWriter out;
+		try {
+			out = new PrintWriter(new FileWriter(fileName));
+			
+			out.println(IDNumber);
+			
+			out.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}	
+	}
+	
+	public String getVendingType() {
+		String fileName = Constants.FILEPATH + Constants.VENDINGTYPEPATH;
+		
+		String type = null;
+		
+		BufferedReader in;
+		try {
+			in = new BufferedReader(new FileReader(fileName));
+		
+			type = in.readLine();
+			
+			in.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}	
+		
+		return type;
+	}
+	
+	public CashContainer getCashContainerFromLocal() {
+		Integer[] cashQuantity = new Integer[6];
+		
+		String nomeFile = Constants.FILEPATH + Constants.CASHCONTAINERSTATUSPATH;
+		Scanner inputStream = null;
+		
+		try {
+			inputStream = new Scanner(new BufferedReader(new FileReader(nomeFile)));
+
+			for (int i = 0; i < 6; i++) {
+				cashQuantity[i] = inputStream.nextInt();
+			}
+
+		} catch(FileNotFoundException e) {
+			System.out.println(e);
+		} finally {
+			if (inputStream != null)
+				inputStream.close();
+		}
+		
+		return new CashContainer(cashQuantity);
+	}
+	
+	public void saveCashContainerIntoLocal(CashContainer cashHandler) {
+		
 	}
 	
 }

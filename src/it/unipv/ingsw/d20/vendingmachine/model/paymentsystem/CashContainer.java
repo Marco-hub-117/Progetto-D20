@@ -3,7 +3,7 @@ package it.unipv.ingsw.d20.vendingmachine.model.paymentsystem;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.InsufficientCashForRestException;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.InvalidPaymentException;
 
-public class CashHandler {
+public class CashContainer {
 	
 	private int CENTS_5;
 	private int CENTS_10;
@@ -14,15 +14,15 @@ public class CashHandler {
 	
 	private double totalAmount;
 	
-	public CashHandler(int cents5, int cents10, int cents20, int cents50, int euros1, int euros2) {
-		CENTS_5 = cents5;
-		CENTS_10 = cents10;
-		CENTS_20 = cents20;
-		CENTS_50 = cents50;
-		EUROS_1 = euros1;
-		EUROS_2 = euros2;
-		
-		totalAmount = 0;
+	public CashContainer(Integer[] cashQuantity) {
+		CENTS_5 = cashQuantity[0];
+		CENTS_10 = cashQuantity[1];
+		CENTS_20 = cashQuantity[2];
+		CENTS_50 = cashQuantity[3];
+		EUROS_1 = cashQuantity[4];
+		EUROS_2 = cashQuantity[5];
+
+		refreshTotalAmount();
 	}
 	
 	public void addCoin(double coin) throws InvalidPaymentException {

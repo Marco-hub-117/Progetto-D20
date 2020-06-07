@@ -4,6 +4,7 @@ import it.unipv.ingsw.d20.persistence.BeverageDescription.*;
 import it.unipv.ingsw.d20.persistence.BvCatalog.*;
 import it.unipv.ingsw.d20.persistence.LocalIOHandler.VendingLocalIO;
 import it.unipv.ingsw.d20.persistence.ingredientRecipe.*;
+import it.unipv.ingsw.d20.persistence.key.IKeyDao;
 import it.unipv.ingsw.d20.persistence.sale.*;
 import it.unipv.ingsw.d20.persistence.vending.*;
 
@@ -46,6 +47,11 @@ public class PersistenceFacade {
 	
 	public VendingLocalIO getVendingLocalIO() {
 		return new VendingLocalIO();
+	}
+
+	public IKeyDao getKeyDao() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 

@@ -10,10 +10,15 @@ public class Constants {
 	
 	public static final String FILEPATH = "res/";
 	
+	
 	public static final String BVCATPATH = "beverageCatalog";
 	
 	public static final String VENDINGPATH = "vendingID";
 	
 	public static final String TANKSPATH = "tanks";
+	
+	public static final String CASHCONTAINERSTATUSPATH = "cashContainerStatus";
+
+	public static final String VENDINGTYPEPATH = "vendingType";
 	
 }

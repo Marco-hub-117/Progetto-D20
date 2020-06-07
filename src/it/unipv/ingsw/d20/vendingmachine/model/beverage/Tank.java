@@ -32,8 +32,8 @@ public class Tank {
 		return temperature;
 	}
 	
-	public void refil() {
-		//il livello del serbatoio è in percentuale
+	public void refill() {
+		//il livello del serbatoio ï¿½ in percentuale
 		this.level = 100.0;
 	}
 	
