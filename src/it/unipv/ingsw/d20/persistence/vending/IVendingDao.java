@@ -2,6 +2,8 @@ package it.unipv.ingsw.d20.persistence.vending;
 
 import java.util.ArrayList;
 
+import it.unipv.ingsw.d20.vendingmachine.model.VendingMachineStatus;
+
 /**
  * Interfaccia per Accedere a un VendingDao. é possibile utilizzarla per ottenere le informazioni necessarie.
  *
@@ -18,7 +20,7 @@ public interface IVendingDao {
 	 * @param id della vending
 	 * @return indirizzo della vending con l'id passato come parametro.
 	 */
-	public String getAddressById(String id);
+	public VendingMachineStatus getVendingStatusById(String id);
 	
 	/**
 	 * Aggiunge una VendingMachine al database

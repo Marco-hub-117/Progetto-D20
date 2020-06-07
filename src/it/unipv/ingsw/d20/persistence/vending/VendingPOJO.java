@@ -1,16 +1,19 @@
 package it.unipv.ingsw.d20.persistence.vending;
 
+import it.unipv.ingsw.d20.vendingmachine.model.VendingMachineStatus;
+
 /**
  * Classe che serve come "contenitore" di informazioni di una table Vending del database.
  * 
  */
 public class VendingPOJO {
 	
-	private String idVending, address;
+	private String idVending;
+	private VendingMachineStatus status;
 	
-	public VendingPOJO(String idVending, String address) {
+	public VendingPOJO(String idVending, VendingMachineStatus status) {
 		this.idVending = idVending;
-		this.address = address;
+		this.status = status;
 	}
 
 	public String getIdVending() {
@@ -21,12 +24,16 @@ public class VendingPOJO {
 		this.idVending = idVending;
 	}
 
-	public String getAddress() {
-		return address;
+	public VendingMachineStatus getStatus() {
+		return status;
+	}
+	
+	public String getStringStatus() {
+		return status.toString();	
 	}
 
-	public void setAddress(String address) {
-		this.address = address;
+	public void setAddress(VendingMachineStatus status) {
+		this.status = status;
 	}
 	
 	

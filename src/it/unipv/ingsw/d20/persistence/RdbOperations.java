@@ -12,6 +12,7 @@ import it.unipv.ingsw.d20.persistence.BvCatalog.BvCatalogPOJO;
 import it.unipv.ingsw.d20.persistence.ingredientRecipe.IngredientRecipePOJO;
 import it.unipv.ingsw.d20.persistence.sale.SalePOJO;
 import it.unipv.ingsw.d20.persistence.vending.VendingPOJO;
+import it.unipv.ingsw.d20.vendingmachine.model.VendingMachineStatus;
 
 /**
  * Classe che implementa la connessione con il database. Implementa tutte le possibili operazioni con esso.
@@ -74,10 +75,10 @@ public class RdbOperations {
 	
 	// DI SEGUITO CI SARANNO LE QUERY RELATIVA ALLA TABLE VENDING
 	
-	public String getVendingAddressById(String Id) {
+	public VendingMachineStatus getVendingStatusById(String Id) {
 		
-		String result = null;
-		String query = "SELECT Address FROM Vending WHERE idVending = '" + Id + "'";
+		VendingMachineStatus result = null;
+		String query = QueryGenerator.getSelectFromQuery("Status", "Vending");
 		
 		con = this.startConnection(con);
 		Statement st;
@@ -87,7 +88,7 @@ public class RdbOperations {
 			st = con.createStatement();
 			rs = st.executeQuery(query);
 			while(rs.next()) {
-				result = rs.getString(1);
+				result = VendingMachineStatus.valueOf(rs.getString(1));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -108,7 +109,7 @@ public class RdbOperations {
 			st = con.createStatement();
 			rs = st.executeQuery(query);
 			while(rs.next()) {
-				VendingPOJO res = new VendingPOJO(rs.getString(1),rs.getString(2));
+				VendingPOJO res = new VendingPOJO(rs.getString(1),VendingMachineStatus.valueOf(rs.getString(1)));
 				result.add(res);
 			}
 		} catch (SQLException e) {
@@ -121,7 +122,7 @@ public class RdbOperations {
 	
 	public void addVending(VendingPOJO vending) {
 		
-		String query = "INSERT INTO Vending values ('" + vending.getIdVending() +"','"+ vending.getAddress() + "')";
+		String query = "INSERT INTO Vending values ('" + vending.getIdVending() +"','"+ vending.getStringStatus()+ "')";
 		
 		con = this.startConnection(con);
 		Statement st;	

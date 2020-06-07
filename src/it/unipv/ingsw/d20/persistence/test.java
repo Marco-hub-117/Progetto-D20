@@ -19,7 +19,7 @@ public class test {
 		PersistenceFacade pf = PersistenceFacade.getInstance();
 		
 		IVendingDao a = pf.getVendingDao();
-		System.out.println(a.getAddressById("id3"));
+		System.out.println(a.getVendingStatusById("id3"));
 		
 		ISaleDao b = pf.getSaleDao();
 		SalePOJO s = b.getSaleById("s1");
