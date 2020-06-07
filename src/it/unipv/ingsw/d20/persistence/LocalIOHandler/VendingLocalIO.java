@@ -18,33 +18,13 @@ import it.unipv.ingsw.d20.vendingmachine.model.beverage.Ingredients;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.Tank;
 
 public class VendingLocalIO {
-	
-	private String idVending;
-	
-	public VendingLocalIO(String idVending) {
-		this.idVending = idVending;
-		createFile(Constants.FILEPATH+Constants.BVCATPATH+"_"+idVending);
-		createFile(Constants.FILEPATH+Constants.TANKSPATH+"_"+idVending);
-		createFile(Constants.FILEPATH+Constants.VENDINGPATH+"_"+idVending);
-	}
-	
-	public void createFile(String name) {
-		try {
-		      File myObj = new File(name);
-		      if (myObj.createNewFile()) {
-		    	  System.out.println("File created: " + myObj.getName());
-		      } else {
-		    	  System.out.println("File already exists.");
-		      }
-		 } catch (IOException e) {
-		      System.out.println("An error occurred.");
-		      e.printStackTrace();
-		 }
+
+	public VendingLocalIO() {
 	}
 	
 	public BeverageCatalog getCatalogFromLocal() {
 		BeverageCatalog bvCatalog = new BeverageCatalog();
-		String nomeFile = Constants.FILEPATH + Constants.BVCATPATH+"_"+this.idVending;
+		String nomeFile = Constants.FILEPATH + Constants.BVCATPATH;
 		Scanner inputStream = null;
 		
 		try {
@@ -74,7 +54,7 @@ public class VendingLocalIO {
 	}
 
 	public void saveCatalogIntoLocal (BeverageCatalog bvCatalog) {
-		String nomeFile = Constants.FILEPATH + Constants.BVCATPATH+"_"+this.idVending;
+		String nomeFile = Constants.FILEPATH + Constants.BVCATPATH;
 		try {
 			FileWriter myWriter = new FileWriter(nomeFile);
 			PrintWriter myPrintWriter   = new PrintWriter(myWriter);
@@ -96,7 +76,7 @@ public class VendingLocalIO {
 
 	public HashMap<Ingredients,Tank> getTanksFromLocal() {
 		HashMap<Ingredients,Tank> tankList = new HashMap<>();
-		String nomeFile = Constants.FILEPATH + Constants.TANKSPATH+"_"+this.idVending;
+		String nomeFile = Constants.FILEPATH + Constants.TANKSPATH;
 		Scanner inputStream = null;
 		
 		try {
@@ -123,7 +103,7 @@ public class VendingLocalIO {
 	}
 	
 	public void saveTankIntoLocal(HashMap<Ingredients,Tank> tankList) {
-		String nomeFile = Constants.FILEPATH + Constants.TANKSPATH+"_"+this.idVending;
+		String nomeFile = Constants.FILEPATH + Constants.TANKSPATH;
 		try {
 			FileWriter myWriter = new FileWriter(nomeFile);
 			PrintWriter myPrintWriter   = new PrintWriter(myWriter);

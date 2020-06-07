@@ -54,11 +54,13 @@ public class CashHandler {
 		default:
 			throw new InvalidPaymentException();
 		}
+		
+		refreshTotalAmount();
 	}
 	
-	public double refreshTotalAmount() {
-		double amount = 0.05 * CENTS_5 + 0.1 * CENTS_10 + 0.2 * CENTS_20 + 0.5 * CENTS_50 + EUROS_1 + 2 * EUROS_2;
-		return amount;
+	public void refreshTotalAmount() {
+		//aggiornare file locale per persistenza
+		totalAmount = 0.05 * CENTS_5 + 0.1 * CENTS_10 + 0.2 * CENTS_20 + 0.5 * CENTS_50 + EUROS_1 + 2 * EUROS_2;
 	}
 	
 	public void dispenseRest(double credit) throws InsufficientCashForRestException {	
@@ -113,6 +115,12 @@ public class CashHandler {
 			CENTS_5--;
 			credit -= 0.05;
 		}
+		
+		if (credit != 0) {
+			throw new InsufficientCashForRestException();
+		}
+		
+		refreshTotalAmount();
 	}
 	
 	public double getTotalAmount() {

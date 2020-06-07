@@ -44,8 +44,8 @@ public class PersistenceFacade {
 		return new IngredientRecipeRdbDao();
 	}
 	
-	public VendingLocalIO getVendingLocalIO(String idVending) {
-		return new VendingLocalIO(idVending);
+	public VendingLocalIO getVendingLocalIO() {
+		return new VendingLocalIO();
 	}
 	
 

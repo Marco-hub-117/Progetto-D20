@@ -38,7 +38,6 @@ public class VendingMachine {
 	private double totalAmount;
 	private ArrayList<Sale> salesRegister;
 	private double credit;
-	private String currentCode;
 	private HashMap<Ingredients,Tank> tankList;
 	private BeverageCatalog bvCatalog;	//catalogo delle bevande
 	
@@ -219,25 +218,25 @@ public class VendingMachine {
 	
 	public void getCatalogFromLocal() {
 		PersistenceFacade pf = PersistenceFacade.getInstance();
-		VendingLocalIO v = pf.getVendingLocalIO(this.id);
+		VendingLocalIO v = pf.getVendingLocalIO();
 		this.bvCatalog = v.getCatalogFromLocal();
 	}
 
 	public void saveCatalogIntoLocal () {
 		PersistenceFacade pf = PersistenceFacade.getInstance();
-		VendingLocalIO v = pf.getVendingLocalIO(this.id);
+		VendingLocalIO v = pf.getVendingLocalIO();
 		v.saveCatalogIntoLocal(bvCatalog);
 	}
 	
 	public void getTanksFromLocal() {
 		PersistenceFacade pf = PersistenceFacade.getInstance();
-		VendingLocalIO v = pf.getVendingLocalIO(this.id);
+		VendingLocalIO v = pf.getVendingLocalIO();
 		this.tankList = v.getTanksFromLocal();
 	}
 	
 	public void saveTankIntoLocal() {
 		PersistenceFacade pf = PersistenceFacade.getInstance();
-		VendingLocalIO v = pf.getVendingLocalIO(this.id);
+		VendingLocalIO v = pf.getVendingLocalIO();
 		v.saveTankIntoLocal(tankList);
 	}
 	
