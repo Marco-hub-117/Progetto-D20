@@ -5,6 +5,12 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import it.unipv.ingsw.d20.persistence.PersistenceFacade;
+import it.unipv.ingsw.d20.persistence.vending.IVendingDao;
+import it.unipv.ingsw.d20.persistence.vending.VendingPOJO;
 
 public class ConnectedClient extends Thread {
 
@@ -29,8 +35,11 @@ public class ConnectedClient extends Thread {
 			 */
 			String vmRequest = in.readLine();
 			if (vmRequest.equals("")) {
-				String IDNumber = "ID_VENDING_001";
-				//registrare l'id della macchinetta nel database
+				String IDNumber = generateNewID();
+				
+				PersistenceFacade pf = PersistenceFacade.getInstance();
+				IVendingDao ivd = pf.getVendingDao();
+				ivd.addVending(new VendingPOJO(IDNumber, null));
 				out.println(IDNumber);
 			} else {
 				//notifica che la vending è accesa
@@ -40,6 +49,14 @@ public class ConnectedClient extends Thread {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	private String generateNewID() {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddhhmmss");
+		String vendingIDNumber = sdf.format(new Date());
+		
+		String fileName = "IDN" + vendingIDNumber;
+		return fileName; 
 	}
 
 }
