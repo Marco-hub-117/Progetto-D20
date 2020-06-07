@@ -13,7 +13,8 @@ import it.unipv.ingsw.d20.vendingmachine.model.beverage.Ingredients;
 public class TestGui {
 
 	public static void main(String[] args) {
-		VendingMachine m=new VendingMachine("macchinetta", 543.76);
+		VendingMachine m=new VendingMachine("macchinetta"); //se volete cambiare l'amount iniziale andate a modificare 
+															//i valori nel file cashContainerStatus
 		BeverageCatalog bvcat=m.getCatalog();
 		BeverageDescription b1=new BeverageDescription("A","caffè espresso", 0.5);
 		BeverageDescription b2=new BeverageDescription("B","caffè macchiato", 0.7);

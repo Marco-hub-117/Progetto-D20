@@ -55,7 +55,7 @@ public class Company {
 		if(vendingMachineList.containsKey(id)) {
 			throw new AddingMachineException("ID già presente");
 		}
-		vendingMachineList.put(id, new VendingMachine(id, totalAmount));
+		vendingMachineList.put(id, new VendingMachine(id));
 	}
 	
 	public void addOperator(String id) throws AddingOperatorException {

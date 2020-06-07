@@ -12,7 +12,7 @@ public class testCatalogo {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		VendingMachine v = new VendingMachine("id1",1000);
+		VendingMachine v = new VendingMachine("id1");
 		v.getCatalogFromLocal();
 		v.saveCatalogIntoLocal(); 
 		v.getTanksFromLocal();
