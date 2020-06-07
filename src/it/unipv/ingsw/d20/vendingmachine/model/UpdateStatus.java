@@ -4,10 +4,10 @@ import java.io.IOException;
 import java.util.TimerTask;
 
 import it.unipv.ingsw.d20.persistence.PersistenceFacade;
-import it.unipv.ingsw.d20.persistence.LocalIOHandler.VendingLocalIO;
+import it.unipv.ingsw.d20.persistence.local.VendingLocalIO;
 import it.unipv.ingsw.d20.vendingmachine.model.net.VendingMachineClient;
 
-public class NotifyCompanyTimerTask extends TimerTask {
+public class UpdateStatus extends TimerTask {
 
 	@Override
 	public void run() {

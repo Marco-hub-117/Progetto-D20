@@ -1,10 +1,10 @@
 package it.unipv.ingsw.d20.persistence;
 
-import it.unipv.ingsw.d20.persistence.BeverageDescription.*;
-import it.unipv.ingsw.d20.persistence.BvCatalog.*;
-import it.unipv.ingsw.d20.persistence.LocalIOHandler.VendingLocalIO;
-import it.unipv.ingsw.d20.persistence.ingredientRecipe.*;
+import it.unipv.ingsw.d20.persistence.beveragecatalog.*;
+import it.unipv.ingsw.d20.persistence.beveragedescription.*;
+import it.unipv.ingsw.d20.persistence.ingredientrecipe.*;
 import it.unipv.ingsw.d20.persistence.key.IKeyDao;
+import it.unipv.ingsw.d20.persistence.local.VendingLocalIO;
 import it.unipv.ingsw.d20.persistence.sale.*;
 import it.unipv.ingsw.d20.persistence.vending.*;
 

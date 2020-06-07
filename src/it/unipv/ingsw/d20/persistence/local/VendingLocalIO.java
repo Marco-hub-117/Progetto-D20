@@ -1,4 +1,4 @@
-package it.unipv.ingsw.d20.persistence.LocalIOHandler;
+package it.unipv.ingsw.d20.persistence.local;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;

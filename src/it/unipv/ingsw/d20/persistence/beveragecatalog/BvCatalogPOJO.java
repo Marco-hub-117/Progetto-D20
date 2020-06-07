@@ -1,4 +1,4 @@
-package it.unipv.ingsw.d20.persistence.BvCatalog;
+package it.unipv.ingsw.d20.persistence.beveragecatalog;
 
 public class BvCatalogPOJO {
 	

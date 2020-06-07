@@ -9,9 +9,9 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 
-import it.unipv.ingsw.d20.persistence.BeverageDescription.BeverageDescriptionPOJO;
-import it.unipv.ingsw.d20.persistence.BvCatalog.BvCatalogPOJO;
-import it.unipv.ingsw.d20.persistence.ingredientRecipe.IngredientRecipePOJO;
+import it.unipv.ingsw.d20.persistence.beveragecatalog.BvCatalogPOJO;
+import it.unipv.ingsw.d20.persistence.beveragedescription.BeverageDescriptionPOJO;
+import it.unipv.ingsw.d20.persistence.ingredientrecipe.IngredientRecipePOJO;
 import it.unipv.ingsw.d20.persistence.sale.SalePOJO;
 import it.unipv.ingsw.d20.persistence.vending.VendingPOJO;
 import it.unipv.ingsw.d20.vendingmachine.model.VendingMachineStatus;
@@ -36,10 +36,10 @@ public class RdbOperations {
 		String password = null;
 		
 		DbDriver = "com.mysql.cj.jdbc.Driver";
-		DbUrl = "jdbc:mysql://34.65.222.216:3306/prova"; // è possibile implementare una connessione a uno schema particolare, in questo caso usiamo di default lo schema "prova"
+		DbUrl = "jdbc:mysql://34.65.222.216:3306/prova"; // ï¿½ possibile implementare una connessione a uno schema particolare, in questo caso usiamo di default lo schema "prova"
 		username = "root";
 		password = "";
-		if (isOpen (conn)) // se la connessione al database è già aperta viene chiusa, per poi riaprirne una nuova
+		if (isOpen (conn)) // se la connessione al database ï¿½ giï¿½ aperta viene chiusa, per poi riaprirne una nuova
 			closeConnection(conn); // conn viene chiusa.
 		
 		try {
@@ -62,7 +62,7 @@ public class RdbOperations {
 	}
 	
 	public Connection closeConnection (Connection conn) {
-		if ( !isOpen(conn) ) // se la connessione è già chiusa.
+		if ( !isOpen(conn) ) // se la connessione ï¿½ giï¿½ chiusa.
 			return null;
 		try {
 			conn.close(); // se la chiusura della connessione va a buon fine,

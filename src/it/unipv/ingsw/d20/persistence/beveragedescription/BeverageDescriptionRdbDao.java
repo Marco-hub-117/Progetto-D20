@@ -1,9 +1,9 @@
-package it.unipv.ingsw.d20.persistence.BeverageDescription;
+package it.unipv.ingsw.d20.persistence.beveragedescription;
 
 import java.util.ArrayList;
 
 import it.unipv.ingsw.d20.persistence.RdbOperations;
-import it.unipv.ingsw.d20.persistence.ingredientRecipe.IngredientRecipePOJO;
+import it.unipv.ingsw.d20.persistence.ingredientrecipe.IngredientRecipePOJO;
 
 public class BeverageDescriptionRdbDao implements IBeverageDescriptionDao {
 	

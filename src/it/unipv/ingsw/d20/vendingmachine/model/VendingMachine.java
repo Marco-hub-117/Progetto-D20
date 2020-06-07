@@ -2,7 +2,7 @@ package it.unipv.ingsw.d20.vendingmachine.model;
 
 
 import it.unipv.ingsw.d20.persistence.PersistenceFacade;
-import it.unipv.ingsw.d20.persistence.LocalIOHandler.VendingLocalIO;
+import it.unipv.ingsw.d20.persistence.local.VendingLocalIO;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.BeverageCatalog;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.BeverageDescription;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.Ingredients;

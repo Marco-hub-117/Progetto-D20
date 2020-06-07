@@ -1,4 +1,4 @@
-package it.unipv.ingsw.d20.persistence.BeverageDescription;
+package it.unipv.ingsw.d20.persistence.beveragedescription;
 
 public class BeverageDescriptionPOJO {
 	

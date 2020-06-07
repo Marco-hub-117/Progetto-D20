@@ -4,12 +4,12 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 
-import it.unipv.ingsw.d20.persistence.BeverageDescription.BeverageDescriptionPOJO;
-import it.unipv.ingsw.d20.persistence.BeverageDescription.IBeverageDescriptionDao;
-import it.unipv.ingsw.d20.persistence.BvCatalog.BvCatalogPOJO;
-import it.unipv.ingsw.d20.persistence.BvCatalog.IBvCatalogDao;
-import it.unipv.ingsw.d20.persistence.ingredientRecipe.IingredientRecipeDao;
-import it.unipv.ingsw.d20.persistence.ingredientRecipe.IngredientRecipePOJO;
+import it.unipv.ingsw.d20.persistence.beveragecatalog.BvCatalogPOJO;
+import it.unipv.ingsw.d20.persistence.beveragecatalog.IBvCatalogDao;
+import it.unipv.ingsw.d20.persistence.beveragedescription.BeverageDescriptionPOJO;
+import it.unipv.ingsw.d20.persistence.beveragedescription.IBeverageDescriptionDao;
+import it.unipv.ingsw.d20.persistence.ingredientrecipe.IingredientRecipeDao;
+import it.unipv.ingsw.d20.persistence.ingredientrecipe.IngredientRecipePOJO;
 import it.unipv.ingsw.d20.persistence.sale.ISaleDao;
 import it.unipv.ingsw.d20.persistence.sale.SalePOJO;
 import it.unipv.ingsw.d20.persistence.vending.IVendingDao;
@@ -24,7 +24,7 @@ public class test {
 		System.out.println(a.getVendingStatusById("id3"));
 		
 		ISaleDao b = pf.getSaleDao();
-		SalePOJO prova = new SalePOJO("id3","Caffè","2020-06-07 18:47:00");
+		SalePOJO prova = new SalePOJO("id3","Caffï¿½","2020-06-07 18:47:00");
 		b.addSale(prova);
 		System.out.println(prova.toString());
 		SalePOJO s = b.getSaleByKey("id3", prova.getDate()); 

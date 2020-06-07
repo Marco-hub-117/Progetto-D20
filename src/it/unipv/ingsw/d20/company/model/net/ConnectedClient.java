@@ -8,6 +8,7 @@ import java.net.Socket;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import it.unipv.ingsw.d20.company.model.Company;
 import it.unipv.ingsw.d20.persistence.PersistenceFacade;
 import it.unipv.ingsw.d20.persistence.vending.IVendingDao;
 import it.unipv.ingsw.d20.persistence.vending.VendingPOJO;
@@ -33,30 +34,22 @@ public class ConnectedClient extends Thread {
 			 * Se la stringa ricevuta contiene l'ID della vending machine, verrà utilizzata
 			 * come notifica per settarne lo status sul database.
 			 */
-			String vmRequest = in.readLine();
-			if (vmRequest.equals("")) {
-				String IDNumber = generateNewID();
+			String vmMessage = in.readLine();
+			
+			if (vmMessage.equals("")) {
 				
-				/*PersistenceFacade pf = PersistenceFacade.getInstance();
-				IVendingDao ivd = pf.getVendingDao();
-				ivd.addVending(new VendingPOJO(IDNumber, null));*/
-				out.println(IDNumber);
+				out.println(Company.registerNewVendingMachine()); //registra la nuova vending e le restituisce il suo ID
+				
 			} else {
-				System.out.println(vmRequest);
+				
+				Company.vendingMachineStatusList.replace(vmMessage, new Date()); //aggiorna l'ora dell'ultimo update della vm che ha mandato il messaggio
+				
 			}
         
 			socket.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	}
-
-	private String generateNewID() {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddhhmmss");
-		String vendingIDNumber = sdf.format(new Date());
-		
-		String fileName = "IDN" + vendingIDNumber;
-		return fileName; 
 	}
 
 }

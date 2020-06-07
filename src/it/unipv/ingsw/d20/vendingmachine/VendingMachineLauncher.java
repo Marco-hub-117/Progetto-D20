@@ -6,8 +6,8 @@ import java.util.Timer;
 import java.util.concurrent.TimeUnit;
 
 import it.unipv.ingsw.d20.persistence.PersistenceFacade;
-import it.unipv.ingsw.d20.persistence.LocalIOHandler.VendingLocalIO;
-import it.unipv.ingsw.d20.vendingmachine.model.NotifyCompanyTimerTask;
+import it.unipv.ingsw.d20.persistence.local.VendingLocalIO;
+import it.unipv.ingsw.d20.vendingmachine.model.UpdateStatus;
 import it.unipv.ingsw.d20.vendingmachine.model.net.VendingMachineClient;
 
 public class VendingMachineLauncher {
@@ -35,9 +35,9 @@ public class VendingMachineLauncher {
 		}
 		
 		Timer timer = new Timer();
-		timer.schedule(new NotifyCompanyTimerTask(), new Date(), TimeUnit.MINUTES.toMillis(1)); //ogni 10 minuti viene notificata la company
+		timer.schedule(new UpdateStatus(), new Date(), TimeUnit.MINUTES.toMillis(10)); //ogni 10 minuti viene notificata la company
 		
-		//fare partire la vending machine new VendingMachine();
+		//fare partire la vending machine + gui -- new VendingMachine();
 
 	}
 
