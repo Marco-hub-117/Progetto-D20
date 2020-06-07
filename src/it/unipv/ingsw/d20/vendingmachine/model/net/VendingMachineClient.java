@@ -7,7 +7,7 @@ import java.io.PrintWriter;
 import java.net.Socket;
 
 public class VendingMachineClient {
-	
+
 	private Socket socket;
 	private BufferedReader in;
 	private PrintWriter out;
@@ -18,9 +18,8 @@ public class VendingMachineClient {
 		out = new PrintWriter(socket.getOutputStream(), true);
 	}
 	
-	public String connectToServer(String IDNumber) throws IOException {
+	public void connectToServer(String IDNumber) throws IOException {
 		out.println(IDNumber);
-		return in.readLine();
 	}
 
 	public String firstConnectionToServer() throws IOException {

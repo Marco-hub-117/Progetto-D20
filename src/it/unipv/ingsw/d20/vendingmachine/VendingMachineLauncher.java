@@ -1,12 +1,14 @@
 package it.unipv.ingsw.d20.vendingmachine;
 
 import java.io.IOException;
+import java.util.Date;
+import java.util.Timer;
+import java.util.concurrent.TimeUnit;
+
 import it.unipv.ingsw.d20.persistence.PersistenceFacade;
-import it.unipv.ingsw.d20.persistence.BvCatalog.IBvCatalogDao;
 import it.unipv.ingsw.d20.persistence.LocalIOHandler.VendingLocalIO;
-import it.unipv.ingsw.d20.vendingmachine.model.beverage.BeverageCatalog;
+import it.unipv.ingsw.d20.vendingmachine.model.NotifyCompanyTimerTask;
 import it.unipv.ingsw.d20.vendingmachine.model.net.VendingMachineClient;
-import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.CashContainer;
 
 public class VendingMachineLauncher {
 
@@ -25,14 +27,15 @@ public class VendingMachineLauncher {
 				System.out.println("IDNumber printed");
 				
 				//Inizializzazione dei file locali
-				IBvCatalogDao bv = pf.getBvCatalogDao(); //inizializza il catalogo recuperandolo dal DB
-				v.saveCatalogIntoLocal(bv.getBeverageCatalog());				
-			} else {
-				System.out.println(client.connectToServer(IDNumber));
-			}
+				//IBvCatalogDao bv = pf.getBvCatalogDao(); //inizializza il catalogo recuperandolo dal DB
+				//v.saveCatalogIntoLocal(bv.getBeverageCatalog());				
+			} 
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+		Timer timer = new Timer();
+		timer.schedule(new NotifyCompanyTimerTask(), new Date(), TimeUnit.MINUTES.toMillis(1)); //ogni 10 minuti viene notificata la company
 		
 		//fare partire la vending machine new VendingMachine();
 

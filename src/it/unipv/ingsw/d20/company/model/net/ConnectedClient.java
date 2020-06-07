@@ -37,12 +37,12 @@ public class ConnectedClient extends Thread {
 			if (vmRequest.equals("")) {
 				String IDNumber = generateNewID();
 				
-				PersistenceFacade pf = PersistenceFacade.getInstance();
+				/*PersistenceFacade pf = PersistenceFacade.getInstance();
 				IVendingDao ivd = pf.getVendingDao();
-				ivd.addVending(new VendingPOJO(IDNumber, null));
+				ivd.addVending(new VendingPOJO(IDNumber, null));*/
 				out.println(IDNumber);
 			} else {
-				//notifica che la vending è accesa
+				System.out.println(vmRequest);
 			}
         
 			socket.close();
