@@ -122,9 +122,11 @@ public class RdbOperations {
 		return result;
 	}
 	
-	public void addVending(VendingPOJO vending) {
-		
-		String query = "INSERT INTO Vending values ('" + vending.getIdVending() +"','"+ vending.getStringStatus()+ "')";
+	public void addVending(VendingPOJO vending) {	
+		ArrayList<String> values = new ArrayList<>();
+		values.add(vending.getIdVending());
+		values.add(vending.getStringStatus());
+		String query = QueryGenerator.getInsertIntoValuesQuery("Vending", values);
 		
 		con = this.startConnection(con);
 		Statement st;	
