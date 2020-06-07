@@ -23,16 +23,17 @@ public class ConnectedClient extends Thread {
 			/*
 			 * Se la stringa ricevuta dalla vending machine (client) è vuota, significa
 			 * che è la prima volta che si connette e bisogna aggiungerla al data base,
-			 * facendole poi sapere i dati necessari ad inizializzarla (ID, catalogo...).
-			 * Se la stringa ricevuta non è vuota, significa che la vending machine è già 
-			 * registrata e sta inviando il suo ID per conoscere i dati necessari ad accendersi
-			 * (tutti tranne l'ID).
+			 * facendole poi sapere i dati necessari ad inizializzarla (ID).
+			 * Se la stringa ricevuta contiene l'ID della vending machine, verrà utilizzata
+			 * come notifica per settarne lo status sul database.
 			 */
 			String vmRequest = in.readLine();
 			if (vmRequest.equals("")) {
-				out.println("Empty string case");
+				String IDNumber = "ID_VENDING_001";
+				//registrare l'id della macchinetta nel database
+				out.println(IDNumber);
 			} else {
-				out.println("Vending ID case");
+				//notifica che la vending è accesa
 			}
         
 			socket.close();
