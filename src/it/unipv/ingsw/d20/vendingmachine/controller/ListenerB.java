@@ -18,10 +18,15 @@ public class ListenerB implements ActionListener{
 	}
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		m.insertCoin(this.value);
+		if(value==-1) { //eroga il resto
+			m.dispenseCash();
+			//m.setCurrentAmount(0.0);
+		}else{
+			m.insertCoin(this.value);
+		}
+		//aggiorno grafica
 		Double p=m.getCurrentAmount();
-		String y;
-		y= String.format ("%.2f", p);
+		String y= String.format ("%.2f", p);
 		gui.setAmount(y);
 	}
 	

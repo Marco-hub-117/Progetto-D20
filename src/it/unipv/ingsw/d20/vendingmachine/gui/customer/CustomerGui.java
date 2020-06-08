@@ -1,7 +1,7 @@
 package it.unipv.ingsw.d20.vendingmachine.gui.customer;
 
 import java.awt.BorderLayout;
-
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.util.List;
 
@@ -17,6 +17,7 @@ public class CustomerGui extends JFrame{
 	public CustomerGui() {
 		setSize(750,500);
 		setTitle("Interfaccia cliente");
+		setLocationRelativeTo(null);
 		setLayout(new BorderLayout());
 		pa=new Panel_A();
 		pb=new Panel_B();

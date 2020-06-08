@@ -18,6 +18,7 @@ public class CoinPanel extends JPanel {
 		l.add(new Pulsante(0.2,4,"0.20E"));
 		l.add(new Pulsante(0.1,5,"0.10E"));
 		l.add(new Pulsante(0.05,6,"0.05E"));
+		l.add(new Pulsante (-1,7,"Resto"));
 		this.setLayout(new GridLayout(2,3,2,2));
 		ordinaPulsanti();
 		for(Pulsante p:l) {

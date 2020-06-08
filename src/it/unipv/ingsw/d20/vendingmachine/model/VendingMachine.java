@@ -290,7 +290,4 @@ public class VendingMachine {
 	public HashMap<Ingredients, Tank> getTankList() {
 		return tankHandler.getTankList();
 	}
-	
-	
-
 }
