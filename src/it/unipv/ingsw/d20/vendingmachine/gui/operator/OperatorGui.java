@@ -13,6 +13,7 @@ public class OperatorGui extends JFrame {
 		public OperatorGui(int numeroTank) {
 			setSize(600,400);
 			setTitle("Interfaccia operatore");
+			setLocationRelativeTo(null);
 			customer=new JButton("esci");
 			p=new Pannello(numeroTank);
 			setLayout(new BorderLayout());

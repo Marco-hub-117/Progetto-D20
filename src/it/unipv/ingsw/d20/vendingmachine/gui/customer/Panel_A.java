@@ -16,7 +16,8 @@ public class Panel_A extends JPanel{
 	private JLabel l2;
 	public Panel_A(){
 		l2=new JLabel("Inserisci il codice della bevanda");
-		display=new JTextField(10);
+		display=new JTextField("000");
+		display.setEditable(false);
 		text=new JTextArea("");
 		p=new NumberPanel();
 		this.setLayout(new BorderLayout());
@@ -24,6 +25,7 @@ public class Panel_A extends JPanel{
 		pan.setLayout(new GridLayout(2,2));
 		pan.add(l2);
 		pan.add(display);
+		text.setEditable(false);
 		add(pan, BorderLayout.NORTH);
 		add(text, BorderLayout.CENTER);
 		add(p, BorderLayout.SOUTH);

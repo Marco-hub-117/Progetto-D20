@@ -25,7 +25,8 @@ public class Panel_B extends JPanel{
 	
 	public Panel_B(){
 		JPanel x=new JPanel();
-		amount=new JTextField(10);
+		amount=new JTextField();
+		amount.setEditable(false);
 		BufferedImage myPicture;
 		in=new JButton("Inserisci chiavetta");
 		out=new JButton("Estrai chiavetta");

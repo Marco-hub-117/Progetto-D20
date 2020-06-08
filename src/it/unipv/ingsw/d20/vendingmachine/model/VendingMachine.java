@@ -170,11 +170,11 @@ public class VendingMachine {
 
 	public void setTankLevel(String id) throws RefillMachineException{
 		
-		//if(this.getStatus().equals(VendingMachineStatus.REFILL)) {
+		if(this.getStatus().equals(VendingMachineStatus.REFILL)) {
 			tankList.get(id).refill(); //modifica, vedi tank
-		//}else {
-		//	throw new RefillMachineException("Stato della macchinetta non corretto");
-		//}
+		}else {
+			throw new RefillMachineException("Stato della macchinetta non corretto");
+		}
 	}
 	
 	/**
@@ -279,13 +279,9 @@ public class VendingMachine {
 	
 	public int getTankNumber() {
 		return tankList.size();
-		//return tankList.size();
 	}
 
 	public HashMap<Ingredients, Tank> getTankList() {
 		return tankList;
 	}
-	
-	
-
 }
