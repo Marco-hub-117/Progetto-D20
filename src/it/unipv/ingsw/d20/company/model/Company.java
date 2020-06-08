@@ -104,7 +104,7 @@ public class Company {
 	}
 	
 	private static String generateNewID() {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddhhmmss");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
 		String vendingIDNumber = sdf.format(new Date());
 		
 		String fileName = "IDN" + vendingIDNumber;

@@ -48,7 +48,7 @@ public class Sale {
 	public String toString() { 
 		StringBuilder saleInfo = new StringBuilder();
 		
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		saleInfo.append("Date: " + sdf.format(date) + "\n");
 		
 		saleInfo.append("Product: " + beverageDescription.getCode() + "\n");
