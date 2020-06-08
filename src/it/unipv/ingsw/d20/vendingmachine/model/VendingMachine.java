@@ -132,6 +132,8 @@ public class VendingMachine {
 			for (Entry<Ingredients, Double> entry : bvDesc.getIngredients().entrySet()) {
 				tankList.get(entry.getKey()).lowerLevelBy(entry.getValue());
 			}
+			saveTankIntoLocal();
+			saveCashContainerIntoLocal();
 			new Beverage(bvDesc);
 			
 			System.out.println("Erogato " + bvDesc.getName() + " correttamente");
@@ -275,8 +277,8 @@ public class VendingMachine {
 		return bvCatalog;
 	}
 	
-	public int nTank() {
-		return 5;
+	public int getTankNumber() {
+		return tankList.size();
 		//return tankList.size();
 	}
 

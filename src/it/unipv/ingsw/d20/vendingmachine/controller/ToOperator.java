@@ -21,7 +21,7 @@ public class ToOperator implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		 gui.dispose(); //chiudo l'interfaccia del cliente
-		 OperatorGui gui= new OperatorGui(m.nTank()); //istanzio una nuova interfaccia dell'operatore
+		 OperatorGui gui= new OperatorGui(m.getTankNumber()); //istanzio una nuova interfaccia dell'operatore
 		 Controller c=new Controller(m, gui); //controller associato all'interfaccia dell'operatore
 		 gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		 gui.setVisible(true);

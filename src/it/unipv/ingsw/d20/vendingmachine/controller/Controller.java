@@ -67,9 +67,9 @@ public class Controller {
 		}
 	}
 	private void addListenerTank() { //aggiunge i listener ai pulsanti dell'interfaccia Operatore
-		Pulsante[] puls=new Pulsante[m.nTank()];
+		Pulsante[] puls=new Pulsante[m.getTankNumber()];
 		puls=opgui.getPulsanti();
-		for(int i=0; i<m.nTank(); i++) {
+		for(int i=0; i<m.getTankNumber(); i++) {
 			puls[i].addActionListener(new ListenerTank(puls[i].getPos(), m, opgui));
 		}
 	}
