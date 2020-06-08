@@ -20,7 +20,7 @@ public class Test {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		System.out.println(cc.getTotalAmount());
 		
 		try {
 			cc.dispenseRest(5);
@@ -32,7 +32,7 @@ public class Test {
 		}
 		
 		System.out.println(cc.getTotalAmount());	
-
+		v.saveCashContainerIntoLocal(cc);
 
 	}
 

@@ -39,7 +39,7 @@ public class VendingMachine {
 	private VendingMachineStatus status;
 	private ArrayList<Sale> salesRegister;
 	private double credit;
-	private HashMap<Ingredients,Tank> tankList;
+	private TankHandler tankHandler;
 	private BeverageCatalog bvCatalog;	//catalogo delle bevande
 	private CashContainer cashContainer;
 	private KeyHandler keyHandler;
@@ -65,7 +65,7 @@ public class VendingMachine {
 		keyHandler = new KeyHandler();
 		
 		bvCatalog = getCatalogFromLocal();//la vending istanzia il catalogo delle bevande prendedolo dal file locale
-		tankList = getTanksFromLocal();
+		tankHandler = new TankHandler(getTanksFromLocal());
 		cashContainer = getCashContainerFromLocal(); 
 	}
 
@@ -76,6 +76,8 @@ public class VendingMachine {
 	public void insertCoin(double coinValue) { 
 		try {
 			cashContainer.addCoin(coinValue); //se la moneta è valida la aggiunge al CashHandler
+			saveCashContainerIntoLocal();
+			
 			credit += coinValue;			//e aggiorna il credito
 		} catch (InvalidPaymentException e) { //altrimenti viene raccolta la relativa eccezione
 			e.printStackTrace();
@@ -108,6 +110,7 @@ public class VendingMachine {
 		
 		try {
 			cashContainer.dispenseRest(credit);
+			saveCashContainerIntoLocal();
 		} catch (InsufficientCashForRestException e) {
 			e.printStackTrace();
 		}
@@ -118,8 +121,11 @@ public class VendingMachine {
 		
 		if (bvDesc == null) {
 			//throw new NonExistentCodeException();
-		} else {
+		} else if (tankHandler.isAvailable(bvDesc)) {
 			startTransaction(bvDesc);
+		} else {
+			//throw new InsufficientIngredientsException();
+			System.out.println("niente ingredienti");
 		}
 	}
 	
@@ -129,9 +135,8 @@ public class VendingMachine {
 		try {
 			Sale s = new Sale(bvDesc, credit);
 			
-			for (Entry<Ingredients, Double> entry : bvDesc.getIngredients().entrySet()) {
-				tankList.get(entry.getKey()).lowerLevelBy(entry.getValue());
-			}
+			tankHandler.scaleTanksLevel(bvDesc);
+			
 			saveTankIntoLocal();
 			saveCashContainerIntoLocal();
 			new Beverage(bvDesc);
@@ -159,19 +164,19 @@ public class VendingMachine {
 	}
 	
 	public HashMap<Ingredients, Double> getTanksLevels() {
-		HashMap<Ingredients, Double> tanksLevel;
+		/*HashMap<Ingredients, Double> tanksLevel;
 		tanksLevel = new HashMap<>(); 
 		
 		for(Ingredients id : tankList.keySet()) {
 			tanksLevel.put(id, tankList.get(id).getLevel());
-		}
-		return tanksLevel;		//Warning: Eccezione da fare?
+		}*/
+		return tankHandler.getTanksLevel();		//Warning: Eccezione da fare?
 	}
 
 	public void setTankLevel(String id) throws RefillMachineException{
 		
 		//if(this.getStatus().equals(VendingMachineStatus.REFILL)) {
-			tankList.get(id).refill(); //modifica, vedi tank
+			tankHandler.refillTank(id); //modifica, vedi tank
 		//}else {
 		//	throw new RefillMachineException("Stato della macchinetta non corretto");
 		//}
@@ -193,12 +198,12 @@ public class VendingMachine {
 	 */
 
 	public VendingMachineInfo sendInfo() {				
-		return new VendingMachineInfo(id, status, cashContainer.getTotalAmount(), tankList);	
+		return new VendingMachineInfo(id, status, cashContainer.getTotalAmount(), tankHandler.getTankList());	
 	}
 
-	public void setTankSettings(String id, Double temp) throws RefillMachineException, TankAbsentException{
+	/*public void modifyTankSettings(String id, Double temp) throws RefillMachineException, TankAbsentException{
 		
-		if(this.getStatus().equals(VendingMachineStatus.REFILL)) {
+		if(status.equals(VendingMachineStatus.REFILL)) {
 			if(tankList.containsKey(id)) {
 				tankList.get(id).setTemperature(temp);
 			}else {
@@ -207,7 +212,7 @@ public class VendingMachine {
 		}else {
 			throw new RefillMachineException("Stato della macchinetta non corretto");
 		}
-	}
+	}*/
 
 	public void setIngredient(String code, String name, Double quantity) {		
 		/*
@@ -238,7 +243,7 @@ public class VendingMachine {
 	public void saveTankIntoLocal() {
 		PersistenceFacade pf = PersistenceFacade.getInstance();
 		VendingLocalIO v = pf.getVendingLocalIO();
-		v.saveTankIntoLocal(tankList);
+		v.saveTankIntoLocal(tankHandler.getTankList());
 	}
 	
 	private CashContainer getCashContainerFromLocal() {
@@ -278,12 +283,12 @@ public class VendingMachine {
 	}
 	
 	public int getTankNumber() {
-		return tankList.size();
+		return tankHandler.getTankNumber();
 		//return tankList.size();
 	}
 
 	public HashMap<Ingredients, Tank> getTankList() {
-		return tankList;
+		return tankHandler.getTankList();
 	}
 	
 	

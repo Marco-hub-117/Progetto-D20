@@ -15,12 +15,12 @@ public class CashContainer {
 	private double totalAmount;
 	
 	public CashContainer(Integer[] cashQuantity) {
-		CENTS_5 = cashQuantity[0];
-		CENTS_10 = cashQuantity[1];
-		CENTS_20 = cashQuantity[2];
-		CENTS_50 = cashQuantity[3];
-		EUROS_1 = cashQuantity[4];
-		EUROS_2 = cashQuantity[5];
+		CENTS_5 = cashQuantity[5];
+		CENTS_10 = cashQuantity[4];
+		CENTS_20 = cashQuantity[3];
+		CENTS_50 = cashQuantity[2];
+		EUROS_1 = cashQuantity[1];
+		EUROS_2 = cashQuantity[0];
 
 		refreshTotalAmount();
 	}
@@ -64,59 +64,61 @@ public class CashContainer {
 	}
 	
 	public void dispenseRest(double credit) throws InsufficientCashForRestException {	
-		if(credit > totalAmount) {
+		float fCredit = (float) credit;
+
+		if(fCredit > (float) totalAmount) {
 			throw new InsufficientCashForRestException();
 		}
 		
-		while (credit >= 2) {
+		while (fCredit >= 2) {
 			if (EUROS_2 == 0) {
 				break;
 			}
 			EUROS_2--;
-			credit -= 2;
+			fCredit -= 2;
 		}
 		
-		while (credit >= 1) {
+		while (fCredit >= 1) {
 			if (EUROS_1 == 0) {
 				break;
 			}
 			EUROS_1--;
-			credit -= 1;
+			fCredit -= 1;
 		}
 		
-		while (credit >= 0.5) {
+		while (fCredit >= (float) 0.5) {
 			if (CENTS_50 == 0) {
 				break;
 			}
 			CENTS_50--;
-			credit -= 0.5;
+			fCredit -= (float) 0.5;
 		}
 		
-		while (credit >= 0.2) {
+		while (fCredit >= (float) 0.2) {
 			if (CENTS_20 == 0) {
 				break;
 			}
 			CENTS_20--;
-			credit -= 0.2;
+			fCredit -= (float) 0.2;
 		}
 		
-		while (credit >= 0.1) {
+		while (fCredit >= (float) 0.1) {
 			if (CENTS_10 == 0) {
 				break;
 			}
 			CENTS_10--;
-			credit -= 0.1;
+			fCredit -= (float) 0.1;
 		}
 		
-		while (credit >= 0.05) {
+		while (fCredit >= (float) 0.05) {
 			if (CENTS_5 == 0) {
 				break;
 			}
 			CENTS_5--;
-			credit -= 0.05;
+			fCredit -= (float) 0.05;
 		}
-		
-		if (credit != 0) {
+
+		if (fCredit != 0) {
 			throw new InsufficientCashForRestException();
 		}
 		
