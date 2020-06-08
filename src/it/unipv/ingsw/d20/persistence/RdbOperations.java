@@ -147,7 +147,6 @@ public class RdbOperations {
 		String set = "Status = '"+newStatus+"'";
 		String whereStatement = "idVending = '"+idVending+"'";
 		String query = QueryGenerator.getUpdateSetQuery("Vending", set, whereStatement);
-		System.out.println(query);
 		con = this.startConnection(con);
 		Statement st;	
 		try {
@@ -313,7 +312,6 @@ public class RdbOperations {
 		BeverageDescriptionPOJO result = null;
 		String whereStatement = "BevName = '"+BevName+"'";
 		String query = QueryGenerator.getSelectFromWhereQuery("*", "BeverageDescriptions", whereStatement);
-		System.out.println(query);
 		con = this.startConnection(con);
 		Statement st;
 		ResultSet rs;

@@ -62,7 +62,7 @@ public class VendingMachine {
 		
 		keyHandler = new KeyHandler();
 		
-		bvCatalog = getCatalogFromLocal();//la vending istanzia il catalogo delle bevande
+		bvCatalog = getCatalogFromLocal();//la vending istanzia il catalogo delle bevande prendedolo dal file locale
 		tankList = getTanksFromLocal();
 		cashContainer = getCashContainerFromLocal(); 
 	}
@@ -265,5 +265,11 @@ public class VendingMachine {
 		return 5;
 		//return tankList.size();
 	}
+
+	public HashMap<Ingredients, Tank> getTankList() {
+		return tankList;
+	}
+	
+	
 
 }

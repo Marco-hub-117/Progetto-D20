@@ -10,6 +10,7 @@ import it.unipv.ingsw.d20.persistence.beveragedescription.BeverageDescriptionPOJ
 import it.unipv.ingsw.d20.persistence.beveragedescription.IBeverageDescriptionDao;
 import it.unipv.ingsw.d20.persistence.ingredientrecipe.IingredientRecipeDao;
 import it.unipv.ingsw.d20.persistence.ingredientrecipe.IngredientRecipePOJO;
+import it.unipv.ingsw.d20.persistence.local.VendingLocalIO;
 import it.unipv.ingsw.d20.persistence.sale.ISaleDao;
 import it.unipv.ingsw.d20.persistence.sale.SalePOJO;
 import it.unipv.ingsw.d20.persistence.vending.IVendingDao;
@@ -40,6 +41,13 @@ public class test {
 		IBvCatalogDao ibvcat = pf.getBvCatalogDao();
 		BeverageCatalog catalogo = ibvcat.getBeverageCatalog(2);
 		System.out.println(catalogo);
+		
+		VendingLocalIO local = pf.getVendingLocalIO();
+		//  local.saveCatalogIntoLocal(catalogo); // da fare solo quando necessario aggiornare catalogo locale.
+		
+		BeverageCatalog catalogo2 = local.getCatalogFromLocal();
+		System.out.println(catalogo2);
+		
 		
 		
 		
