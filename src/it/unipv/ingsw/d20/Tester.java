@@ -24,15 +24,11 @@ public class Tester {
 		
 		VendingMachine vm = new VendingMachine(IDNumber);
 		
-		/*CustomerGui gui= new CustomerGui();
+		CustomerGui gui= new CustomerGui();
 		Controller c=new Controller (vm,gui);
 
 		gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		gui.setVisible(true);*/
-		
-		vm.insertCoin(1.0);
-		vm.insertCode("3");
-		vm.dispenseCash();
+		gui.setVisible(true);
 
 	}
 }

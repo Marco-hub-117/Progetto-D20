@@ -121,7 +121,7 @@ public class CashContainer {
 		if (fCredit != 0) {
 			throw new InsufficientCashForRestException();
 		}
-		
+		System.out.println("Dispensed €" + (float) credit);
 		refreshTotalAmount();
 	}
 	

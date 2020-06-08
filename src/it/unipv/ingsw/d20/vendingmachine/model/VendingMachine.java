@@ -111,6 +111,8 @@ public class VendingMachine {
 		try {
 			cashContainer.dispenseRest(credit);
 			saveCashContainerIntoLocal();
+			
+			credit = 0;
 		} catch (InsufficientCashForRestException e) {
 			e.printStackTrace();
 		}
