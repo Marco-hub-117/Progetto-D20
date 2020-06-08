@@ -324,6 +324,25 @@ public class RdbOperations {
 		}
 	}
 	
-
+	public ArrayList<IngredientRecipePOJO> getAllIngredientRecipeByIdRecipe(String idRecipe) {
+		ArrayList<IngredientRecipePOJO> result = new ArrayList<>();
+		String whereStatement = "idRecipe = '"+idRecipe+"'";
+		String query = QueryGenerator.getSelectFromWhereQuery("*", "IngredientRecipe", whereStatement);
+		con = this.startConnection(con);
+		Statement st;
+		ResultSet rs;
+		
+		try {
+			st = con.createStatement();
+			rs = st.executeQuery(query);
+			while(rs.next()) {
+				result.add(new IngredientRecipePOJO(rs.getString(1),rs.getString(2),rs.getDouble(3)));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		this.closeConnection(con);
+		return result;
+	}
 	
 }

@@ -21,6 +21,12 @@ public class IngredientRecipeRdbDao implements IingredientRecipeDao{
 	public void addIngredientRecipe(IngredientRecipePOJO ingr) {
 		op.addIngredientRecipe(ingr);
 	}
+
+	@Override
+	public ArrayList<IngredientRecipePOJO> getAllIngredientRecipeByIdRecipe(String idRecipe) {
+		// TODO Auto-generated method stub
+		return op.getAllIngredientRecipeByIdRecipe(idRecipe);
+	}
 	
 	
 

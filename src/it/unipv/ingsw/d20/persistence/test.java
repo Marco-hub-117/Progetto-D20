@@ -23,8 +23,17 @@ public class test {
 		IVendingDao a = pf.getVendingDao();
 		System.out.println(a.getVendingStatusById("id3"));
 		
+		IingredientRecipeDao IrDao = pf.getIngredientRecipeDao();
+		ArrayList<IngredientRecipePOJO> result = new ArrayList<>();
+		result.addAll(IrDao.getAllIngredientRecipeByIdRecipe("idRecipe1"));
+		for (IngredientRecipePOJO irp : result) {
+			System.out.println(irp);
+		}
+		
+		
+		/*
 		ISaleDao b = pf.getSaleDao();
-		SalePOJO prova = new SalePOJO("id3","Caffï¿½","2020-06-07 18:47:00");
+		SalePOJO prova = new SalePOJO("id3","Caffè","2020-06-07 18:47:00");
 		b.addSale(prova);
 		System.out.println(prova.toString());
 		SalePOJO s = b.getSaleByKey("id3", prova.getDate()); 
@@ -34,7 +43,7 @@ public class test {
 		for(SalePOJO s2 : alsp) {
 			System.out.println("Al: "+s2.toString());
 		}
-
+		
 
 		//b.addSale(prova);
 		/*

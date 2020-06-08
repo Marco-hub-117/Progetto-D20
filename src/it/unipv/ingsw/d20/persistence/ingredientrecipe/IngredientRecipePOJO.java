@@ -43,4 +43,11 @@ public class IngredientRecipePOJO {
 		this.quantity = quantity;
 	}
 
+	@Override
+	public String toString() {
+		return "IngredientRecipePOJO [idRecipe=" + idRecipe + ", ingredientName=" + ingredientName + ", quantity="
+				+ quantity + "]";
+	}
+	
+	
 }
