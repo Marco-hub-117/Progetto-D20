@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
 
 import it.unipv.ingsw.d20.persistence.PersistenceFacade;
 import it.unipv.ingsw.d20.persistence.vending.IVendingDao;
+import it.unipv.ingsw.d20.vendingmachine.model.VendingMachineStatus;
 
 import java.util.TimerTask;
 
@@ -23,7 +24,7 @@ public class RefreshVendingListStatus extends TimerTask {
 			Date lastUpdate = entry.getValue();
 			
 			if ((now.getTime() - lastUpdate.getTime()) > TimeUnit.MINUTES.toMillis(11)) { //se sono passati più di 11 minuti dall'ultimo update
-				//mette a OFF la relativa vending machine nel DB
+				v.updateVendingStatus(entry.getKey(), VendingMachineStatus.OFF);
 			}
 		}
 

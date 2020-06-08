@@ -18,14 +18,14 @@ public class Sale {
 	private double price;
 	private double rest;
 	
-	public Sale(BeverageDescription beverageDescription, double credit) throws InsufficientCreditException, DeliveryFailedException {
+	public Sale(BeverageDescription beverageDescription, double credit) throws InsufficientCreditException {
 		this.beverageDescription = beverageDescription;
 		date = new Date();
 		price = beverageDescription.getPrice();
 		
 		rest = checkCredit(credit, price);
 			
-		try {
+		/*try {
 			Beverage beverage = new Beverage(beverageDescription);
 		} catch (DeliveryFailedException e) {
 			// TODO Auto-generated catch block
@@ -33,7 +33,7 @@ public class Sale {
 		} catch (InterruptedException e) { //eccezione per il l'interruzione dello sleep della classe Beverage
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} //checks whether the beverage was correctly delivered or not (InsufficientIngredientsException)	
+		} //checks whether the beverage was correctly delivered or not (InsufficientIngredientsException)	*/
 	}
 	
 	public double checkCredit(double credit, double price) throws InsufficientCreditException {

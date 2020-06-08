@@ -3,6 +3,7 @@ package it.unipv.ingsw.d20.vendingmachine.model;
 
 import it.unipv.ingsw.d20.persistence.PersistenceFacade;
 import it.unipv.ingsw.d20.persistence.local.VendingLocalIO;
+import it.unipv.ingsw.d20.vendingmachine.model.beverage.Beverage;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.BeverageCatalog;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.BeverageDescription;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.Ingredients;
@@ -29,6 +30,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Scanner;
 
 public class VendingMachine {
@@ -123,14 +125,26 @@ public class VendingMachine {
 	
 	public void startTransaction(BeverageDescription bvDesc) {
 		setStatus(VendingMachineStatus.DISPENSING);
+		
 		try {
 			Sale s = new Sale(bvDesc, credit);
+			
+			for (Entry<Ingredients, Double> entry : bvDesc.getIngredients().entrySet()) {
+				tankList.get(entry.getKey()).lowerLevelBy(entry.getValue());
+			}
+			new Beverage(bvDesc);
+			
+			System.out.println("Erogato " + bvDesc.getName() + " correttamente");
+			
 			credit = s.getRest();
 			salesRegister.add(s);
-		}catch(InvalidPaymentException e) {
+		} catch(InvalidPaymentException e) {
 			//IN ATTESA DI IMPLEMENTAZIONE DELLE ECCEZIONI
-		}catch(DeliveryFailedException e) {
+		} catch(DeliveryFailedException e) {
 			
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		} finally {
 			setStatus(VendingMachineStatus.READY);
 		}

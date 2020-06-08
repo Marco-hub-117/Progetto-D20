@@ -1,5 +1,7 @@
 package it.unipv.ingsw.d20.vendingmachine.model.beverage;
 
+import it.unipv.ingsw.d20.vendingmachine.model.beverage.exceptions.DeliveryFailedException;
+
 public class Tank {
 	
 	private Ingredients ingredient;
@@ -18,6 +20,14 @@ public class Tank {
 		this.ingredient = ingredient;
 		this.level = level;
 		this.temperature = temperature; 
+	}
+	
+	public void lowerLevelBy(double quantity) throws DeliveryFailedException {
+		if (quantity > level) {
+			throw new DeliveryFailedException();
+		}
+		
+		level -= quantity;
 	}
 	
 	public Ingredients getId() {

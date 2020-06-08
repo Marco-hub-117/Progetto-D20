@@ -26,8 +26,6 @@ public class Test {
 			System.out.println(sale.toString());
 		} catch (InvalidPaymentException e) {
 			e.printStackTrace();
-		} catch (DeliveryFailedException e) {
-			e.printStackTrace();
 		}
 
 		
