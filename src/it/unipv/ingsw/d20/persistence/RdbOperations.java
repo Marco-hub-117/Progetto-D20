@@ -142,6 +142,25 @@ public class RdbOperations {
 		
 	}
 
+	public void updateVendingStatus(String idVending,VendingMachineStatus newStatus) {
+		
+		String set = "Status = '"+newStatus+"'";
+		String whereStatement = "idVending = '"+idVending+"'";
+		String query = QueryGenerator.getUpdateSetQuery("Vending", set, whereStatement);
+		System.out.println(query);
+		con = this.startConnection(con);
+		Statement st;	
+		try {
+			st = con.createStatement();
+			st.executeUpdate(query); // usato per eseguire una query di inserimento.
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		this.closeConnection(con);
+	}
+	
 	// DI SEGUITO CI SARANNO LE QUERY RELATIVE ALLA SALE
 	
 	public void addSale(SalePOJO sale) {
@@ -288,6 +307,29 @@ public class RdbOperations {
 	public void addBeverageDescription(BeverageDescriptionPOJO bv,ArrayList<IngredientRecipePOJO> ingr) {
 		addIngredientRecipe(ingr);
 		addBeverageDescription(bv);
+	}
+	
+	public BeverageDescriptionPOJO getBeverageDescriptionByBevName(String BevName) {
+		BeverageDescriptionPOJO result = null;
+		String whereStatement = "BevName = '"+BevName+"'";
+		String query = QueryGenerator.getSelectFromWhereQuery("*", "BeverageDescriptions", whereStatement);
+		System.out.println(query);
+		con = this.startConnection(con);
+		Statement st;
+		ResultSet rs;
+		
+		try {
+			st = con.createStatement();
+			rs = st.executeQuery(query);
+			while(rs.next()) {
+				result = new BeverageDescriptionPOJO (rs.getString(1),rs.getDouble(2),rs.getString(3));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		this.closeConnection(con);
+		// Fare un controllo if result = null e lanciare una eccezione?
+		return result;
 	}
 	
 	// DI SEGUITO CI SRANNO LE QUERY RELATIVE ALLA TABLE IngredientRecipe

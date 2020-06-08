@@ -36,5 +36,10 @@ public class BeverageDescriptionPOJO {
 		this.idRecipe = idRecipe;
 	}
 
+	@Override
+	public String toString() {
+		return "BeverageDescriptionPOJO [bvName=" + bvName + ", price=" + price + ", idRecipe=" + idRecipe + "]";
+	}
+
 	
 }

@@ -70,4 +70,10 @@ public class QueryGenerator {
 		
 		return query.toString();
 	}
+
+	public static String getUpdateSetQuery(String tableName,String set,String whereStatement) {
+		String query = null;
+		query = "UPDATE "+tableName+" SET "+set+ " WHERE "+whereStatement;
+		return query;
+	}
 }

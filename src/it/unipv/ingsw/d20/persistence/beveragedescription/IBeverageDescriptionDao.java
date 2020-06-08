@@ -9,6 +9,9 @@ public interface IBeverageDescriptionDao {
 	public double getPriceByBevName(String bevName);
 	
 	public void addBeverageDescription(BeverageDescriptionPOJO bv);
+	
 	public void addBeverageDescription(BeverageDescriptionPOJO bv,ArrayList<IngredientRecipePOJO> ingr);
+	
+	public BeverageDescriptionPOJO getBeverageDescriptionByBevName(String BevName);
 
 }

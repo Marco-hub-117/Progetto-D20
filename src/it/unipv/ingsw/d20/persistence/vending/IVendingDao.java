@@ -31,5 +31,7 @@ public interface IVendingDao {
 	
 	public ArrayList<VendingPOJO> getAllVending();
 	
+	public void updateVendingStatus(String idVending,VendingMachineStatus newStatus);
+	
 
 }

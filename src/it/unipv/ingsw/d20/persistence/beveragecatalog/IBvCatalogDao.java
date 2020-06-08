@@ -8,6 +8,6 @@ public interface IBvCatalogDao {
 		
 	public ArrayList<BvCatalogPOJO> getBeverageCatalogByType(int type);
 	
-	public BeverageCatalog getBeverageCatalog();
+	public BeverageCatalog getBeverageCatalog(int type);
 	
 }
