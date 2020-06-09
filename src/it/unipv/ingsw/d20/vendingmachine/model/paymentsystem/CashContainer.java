@@ -26,10 +26,7 @@ public class CashContainer {
 	}
 	
 	public void addCoin(double coin) throws InvalidPaymentException {
-		if (Math.random() < 0.05) {
-			throw new InvalidPaymentException(); //5% chance that the coin is not valid
-		}
-		
+				
 		String coinString = String.valueOf(coin);
 		
 		switch (coinString) {

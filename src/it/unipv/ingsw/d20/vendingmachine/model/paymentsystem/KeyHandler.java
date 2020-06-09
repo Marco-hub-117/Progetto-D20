@@ -8,7 +8,7 @@ import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.Unrecogn
 public class KeyHandler {
 	
 	private boolean keyInserted;
-	private String serialCode;
+	private String serialCode; 
 	private double creditOnKey;
 	
 	public KeyHandler() {

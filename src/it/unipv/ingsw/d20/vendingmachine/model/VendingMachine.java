@@ -38,21 +38,15 @@ public class VendingMachine {
 	private String id;
 	private VendingMachineStatus status;
 	private ArrayList<Sale> salesRegister;
-	private double credit;
+	private double credit; //soldi attualemente inseriti
 	private TankHandler tankHandler;
 	private BeverageCatalog bvCatalog;	//catalogo delle bevande
 	private CashContainer cashContainer;
 	private KeyHandler keyHandler;
 	
-
-	public VendingMachine() {
-		//for testing
-	}
-	
 	/**
 	 * Costruttore della classe VendingMachine
 	 * @param id Stringa che rappresenta l'ID univoco della macchinetta
-	 * @param totalAmount Inizialmente totalAmount viene impostato dalla company per i resti. 
 	 * 
 	 */
 	public VendingMachine(String id) {	
@@ -68,23 +62,20 @@ public class VendingMachine {
 		tankHandler = new TankHandler(getTanksFromLocal());
 		cashContainer = getCashContainerFromLocal(); 
 	}
-
-	public void makeCatalog() { //la vending istanzia il catalogo delle bevande per ora vuoto, poi sarà da prelevare dal db
-		bvCatalog=new BeverageCatalog();
-	}
 	
-	public void insertCoin(double coinValue) { 
+	public void insertCoin(double coinValue) { //togliere eccezione invalidpayment che non serve
 		try {
 			cashContainer.addCoin(coinValue); //se la moneta è valida la aggiunge al CashHandler
 			saveCashContainerIntoLocal();
 			
 			credit += coinValue;			//e aggiorna il credito
 		} catch (InvalidPaymentException e) { //altrimenti viene raccolta la relativa eccezione
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 	}
 	
-	public void insertKey(String serialCode) {
+	public void insertKey(String serialCode) { 
+		//la chiavetta è generata casualmente, non vanno implementate nel DB
 		try {
 			keyHandler.insertKey(serialCode); //se la chiavetta è riconosciuta viene inserita
 			credit += keyHandler.getCreditOnKey(); //e si aggiorna il credito della macchinetta con quello
@@ -95,6 +86,7 @@ public class VendingMachine {
 	}
 	
 	public void ejectKey(double credit) {
+		//la chiavetta è generata casualmente, non vanno implementate nel DB
 		try {
 			keyHandler.ejectKey(credit); //se c'è una chiavetta inserita la si toglie (passandole il nuovo credito)
 			credit = 0;					 //e si azzera il credito corrente della macchinetta
@@ -103,35 +95,34 @@ public class VendingMachine {
 		}
 	}
 	
-	public void dispenseCash() {
+	public void dispenseCash() { //questo metodo restituisce il resto
 		if (keyHandler.keyIsInserted()) { //controlla che non ci sia una chiavetta inserita, si potrebbe usare un'eccezione
 			return;
 		}
-		
 		try {
 			cashContainer.dispenseRest(credit);
 			saveCashContainerIntoLocal();
-			
 			credit = 0;
 		} catch (InsufficientCashForRestException e) {
-			e.printStackTrace();
+			e.printStackTrace(); //gestirlo nel controller
 		}
 	}
 	
-	public void insertCode(String code) {
+	public void insertCode(String code) { //lanciare le eccezioni e gestirle nel controller
 		BeverageDescription bvDesc = bvCatalog.getBeverageDesc(code);
 		
 		if (bvDesc == null) {
-			//throw new NonExistentCodeException();
+			//throw new NonExistentCodeException("codice inesistente");
 		} else if (tankHandler.isAvailable(bvDesc)) {
 			startTransaction(bvDesc);
 		} else {
+			//eventualmente si potrebbe togliere la bevanda dal catalogo visualizzato
 			//throw new InsufficientIngredientsException();
-			System.out.println("niente ingredienti");
+			
 		}
 	}
 	
-	public void startTransaction(BeverageDescription bvDesc) {
+	public void startTransaction(BeverageDescription bvDesc) { //fa partire la sale
 		setStatus(VendingMachineStatus.DISPENSING);
 		
 		try {
@@ -141,15 +132,15 @@ public class VendingMachine {
 			
 			saveTankIntoLocal();
 			saveCashContainerIntoLocal();
-			new Beverage(bvDesc);
+			new Beverage(bvDesc); //non dovrebbe lanciarla la sale???
 			
 			System.out.println("Erogato " + bvDesc.getName() + " correttamente");
 			
 			credit = s.getRest();
 			salesRegister.add(s);
-		} catch(InvalidPaymentException e) {
+		} catch(InvalidPaymentException e) { //cosa serve?
 			//IN ATTESA DI IMPLEMENTAZIONE DELLE ECCEZIONI
-		} catch(DeliveryFailedException e) {
+		} catch(DeliveryFailedException e) { //questa eccezione cosa serve?
 			
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
@@ -159,26 +150,14 @@ public class VendingMachine {
 		}
 	}
 	
-	public void createTanks() {
-		//creare una serie di tank e aggiungerli alla variabile tankList
-		
-
-	}
-	
 	public HashMap<Ingredients, Double> getTanksLevels() {
-		/*HashMap<Ingredients, Double> tanksLevel;
-		tanksLevel = new HashMap<>(); 
-		
-		for(Ingredients id : tankList.keySet()) {
-			tanksLevel.put(id, tankList.get(id).getLevel());
-		}*/
-		return tankHandler.getTanksLevel();		//Warning: Eccezione da fare?
+		return tankHandler.getTanksLevel();
 	}
 
-	public void setTankLevel(String id) throws RefillMachineException{
+	public void setTankLevel(String id) throws RefillMachineException{ //questa eccezione non serve, impostare lo stato di refill quando premo il pulsante "operatore"
 		
 		if(this.getStatus().equals(VendingMachineStatus.REFILL)) {
-			tankHandler.refillTank(id); //modifica, vedi tank
+			tankHandler.refillTank(id); 
 		}else {
 			throw new RefillMachineException("Stato della macchinetta non corretto");
 		}
@@ -203,8 +182,8 @@ public class VendingMachine {
 		return new VendingMachineInfo(id, status, cashContainer.getTotalAmount(), tankHandler.getTankList());	
 	}
 
-	/*public void modifyTankSettings(String id, Double temp) throws RefillMachineException, TankAbsentException{
-		
+	public void modifyTankSettings(String id, Double temp) throws RefillMachineException, TankAbsentException{ //serve per modificare la temperatura del tank
+	/*	
 		if(status.equals(VendingMachineStatus.REFILL)) {
 			if(tankList.containsKey(id)) {
 				tankList.get(id).setTemperature(temp);
@@ -213,8 +192,8 @@ public class VendingMachine {
 			}
 		}else {
 			throw new RefillMachineException("Stato della macchinetta non corretto");
-		}
-	}*/
+		}*/
+	}
 
 	public void setIngredient(String code, String name, Double quantity) {		
 		/*
@@ -286,7 +265,6 @@ public class VendingMachine {
 	
 	public int getTankNumber() {
 		return tankHandler.getTankNumber();
-		//return tankList.size();
 	}
 
 	public HashMap<Ingredients, Tank> getTankList() {
