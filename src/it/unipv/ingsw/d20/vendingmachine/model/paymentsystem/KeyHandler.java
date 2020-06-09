@@ -1,49 +1,40 @@
 package it.unipv.ingsw.d20.vendingmachine.model.paymentsystem;
 
-import it.unipv.ingsw.d20.persistence.PersistenceFacade;
-import it.unipv.ingsw.d20.persistence.key.IKeyDao;
+import java.util.Random;
+
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.KeyNotInsertedException;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.UnrecognisedKeyException;
 
 public class KeyHandler {
 	
 	private boolean keyInserted;
-	private String serialCode; 
 	private double creditOnKey;
 	
 	public KeyHandler() {
 		keyInserted = false;
-		serialCode = "";
 		creditOnKey = 0;
 	}
 
-	public void insertKey(String serialCode) throws UnrecognisedKeyException {
-		PersistenceFacade pf = PersistenceFacade.getInstance();
-		IKeyDao k = pf.getKeyDao();
-		creditOnKey = k.getCredit(serialCode); //recupera il credito disponibile sulla chiavetta
-		
-		if (creditOnKey < -1) { //se il metodo getKeyCredit restituisce -1 sgnifica che la chiavetta non Ã¨ presente nel db
+	public void insertKey() throws UnrecognisedKeyException {
+		if (Math.random() < 0.20) { //la chiavetta non è valida nel 20% dei casi
 			throw new UnrecognisedKeyException();
 		} else {
-			this.serialCode = serialCode;
 			keyInserted = true;
+			
+			Random rand = new Random();
+			creditOnKey = rand.nextInt(10) * 1.0 + rand.nextInt(10) * 0.5 + rand.nextInt(10) * 0.2 + 
+					rand.nextInt(10) * 0.1 + rand.nextInt(10) * 0.05;			
 		}
 		
 	}
 
-	public void ejectKey(double credit) throws KeyNotInsertedException {
+	public void ejectKey() throws KeyNotInsertedException {
 		if(keyInserted) {
-			PersistenceFacade pf = PersistenceFacade.getInstance();
-			IKeyDao k = pf.getKeyDao();
-			creditOnKey = k.setCredit(serialCode, credit); //aggiorna il credito disponibile sulla chiavetta
-		
 			keyInserted = false; //reinizializza le variabili di classe
-			serialCode = "";
 			creditOnKey = 0; 
 		} else {
 			throw new KeyNotInsertedException();
-		}
-		
+		}		
 	}
 
 	public double getCreditOnKey() {

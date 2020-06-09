@@ -1,7 +1,6 @@
 package it.unipv.ingsw.d20.vendingmachine.model.paymentsystem;
 
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.InsufficientCashForRestException;
-import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.InvalidPaymentException;
 
 /**
  * Javadoc test for CashContainer class.
@@ -23,28 +22,12 @@ public class CashContainer {
 	}
 	
 	public void addCoin(double coin) {
-		//l'inserimento di una moneta nel nostro caso non può essere falso perché avviene tramite pulsanti
-				
-		String coinString = String.valueOf(coin);
-		/* ha poco senso perché a livello grafico viene uno schifo
-		if (Math.random() < 0.05) {
-			throw new InvalidPaymentException(); //5% chance that the coin is not valid
-		}
-		*/
 		int index;
-		//boolean allowedValue = false;
-
-		
 		for (index = 0; index < coinValue.length; index++) {
 			if (coinValue[index] == coin) {
-				//allowedValue = true;
 				break;
 			}
 		}
-		
-		//if (!allowedValue) {
-			//throw new InvalidPaymentException();
-		//}
 		
 		coinNumber[index]++;
 		
@@ -83,6 +66,21 @@ public class CashContainer {
 		System.out.println("Dispensed �" + credit);
 		
 		refreshTotalAmount();
+	}
+	
+	public double withdrawAmount() {
+		double total = 0;
+		
+		for (int i = 0; i < coinValue.length; i++) {
+			int difference = coinNumber[i] - 10;
+			if (difference > 0) {
+				total += difference * coinValue[i];
+			}
+		}
+		
+		refreshTotalAmount();
+		
+		return total;
 	}
 	
 	public double getTotalAmount() {
