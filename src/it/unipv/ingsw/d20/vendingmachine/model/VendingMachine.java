@@ -72,32 +72,17 @@ public class VendingMachine {
 	 * 
 	 */
 	public void insertCoin(double coinValue) {
-			cashContainer.addCoin(coinValue); //aggiunge la moneta al CashHandler
-			saveCashContainerIntoLocal();
-			credit += coinValue;			//e aggiorna il credito
+		cashContainer.addCoin(coinValue); //aggiunge la moneta al CashHandler
+		saveCashContainerIntoLocal();
+		credit += coinValue;			//e aggiorna il credito
 	}
 	
-	public void insertKey(String serialCode) { //da rivedere perché generata casualmente
-		
-		/*
-		 * try { keyHandler.insertKey(serialCode); //se la chiavetta è riconosciuta
-		 * viene inserita credit += keyHandler.getCreditOnKey(); //e si aggiorna il
-		 * credito della macchinetta con quello //disponibile sulla chiavetta } catch
-		 * (UnrecognisedKeyException e) { //altrimenti viene raccolta la relativa
-		 * eccezione
-		 * 
-		 * }
-		 */
+	public void insertKey() throws UnrecognisedKeyException { 
+		keyHandler.insertKey();
 	}
 	
-	public void ejectKey(double credit) { //da rivedere perché generata casualmente
-		/*
-		 * try {
-		 * keyHandler.ejectKey(credit); //se c'è una chiavetta inserita la si toglie
-		 * (passandole il nuovo credito) credit = 0; //e si azzera il credito corrente
-		 * della macchinetta } catch (KeyNotInsertedException e) { //altrimenti viene
-		 * raccolta la relativa eccezione e.printStackTrace(); }
-		 */
+	public void ejectKey() throws KeyNotInsertedException { //da rivedere perché generata casualmente
+		keyHandler.ejectKey();
 	}
 	/**
 	 * Questo metodo restituisce il resto al cliente
@@ -105,13 +90,12 @@ public class VendingMachine {
 	 * 
 	 */
 	public void dispenseCash() throws InsufficientCashForRestException { 
-		//gestire l'eccezione nel controller
-		if (keyHandler.keyIsInserted()) { //controlla che non ci sia una chiavetta inserita, si potrebbe usare un'eccezione
+		if (keyHandler.keyIsInserted()) { 
 			return;
 		}
-			cashContainer.dispenseRest(credit);
-			saveCashContainerIntoLocal();
-			credit = 0;
+		cashContainer.dispenseRest(credit);
+		saveCashContainerIntoLocal();
+		credit = 0;
 	}
 	/**
 	 * Questo metodo permette al cliente di inserire il codice della bevanda, inizializza la vendita dopo aver fatto i controlli
@@ -132,6 +116,7 @@ public class VendingMachine {
 			throw new InsufficientIngredientsException("Spiacente, bevanda terminata");
 		}
 	}
+	
 	/**
 	 * Questo metodo esegue la transazione e l'erogazione effettiva della bevanda
 	 * @throws InsufficientCreditException 
@@ -142,12 +127,15 @@ public class VendingMachine {
 		
 		try {
 			Sale s = new Sale(bvDesc, credit); //se il credito non è sufficiente per erogare la bevanda lancia eccezione
+			
 			tankHandler.scaleTanksLevel(bvDesc);
 			saveTankIntoLocal();
-			saveCashContainerIntoLocal();
+
 			TimeUnit.SECONDS.sleep(3); //attesa di 3 secondi per erogare la bevanda
 			System.out.println("Erogato " + bvDesc.getName() + " correttamente");
+			
 			credit = s.getRest();
+			
 			salesRegister.add(s);
 		} catch (InterruptedException e) {
 			System.out.println(e.getMessage()); 
@@ -170,8 +158,9 @@ public class VendingMachine {
 	 * @throws RefillMachineException
 	 */
 
-	public void withdrawAmount() throws WithdrawAmountException, RefillMachineException{	//Vedere se refill o OFF
-		//da implementare secondo cashHandler
+	public void withdrawAmount() throws WithdrawAmountException, RefillMachineException{//Vedere se refill o OFF
+		cashContainer.withdrawAmount();
+		//lanciare le eccezioni non so come, fate voi lol
 	}
 	
 	/**
