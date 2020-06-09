@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import it.unipv.ingsw.d20.vendingmachine.gui.customer.CustomerGui;
 import it.unipv.ingsw.d20.vendingmachine.gui.operator.OperatorGui;
 import it.unipv.ingsw.d20.vendingmachine.model.VendingMachine;
+import it.unipv.ingsw.d20.vendingmachine.model.VendingMachineStatus;
 
 public class ToOperator implements ActionListener{
 
@@ -24,6 +25,7 @@ public class ToOperator implements ActionListener{
 		 OperatorGui gui= new OperatorGui(m.getTankNumber()); //istanzio una nuova interfaccia dell'operatore
 		 Controller c=new Controller(m, gui); //controller associato all'interfaccia dell'operatore
 		 m.setCurrentAmount(0);
+		 m.setStatus(VendingMachineStatus.REFILL);
 		 gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		 gui.setVisible(true);
 	}

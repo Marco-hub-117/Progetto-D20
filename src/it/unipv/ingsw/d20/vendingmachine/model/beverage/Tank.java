@@ -20,10 +20,7 @@ public class Tank {
 		this.temperature = temperature; 
 	}
 	
-	public void lowerLevelBy(double quantity) throws DeliveryFailedException { //imposta il huovo livello del tank dopo l'erogazione di una bevanda
-		if (quantity > level) {
-			throw new DeliveryFailedException();
-		}
+	public void lowerLevelBy(double quantity) { //imposta il huovo livello del tank dopo l'erogazione di una bevanda
 		level -= quantity;
 	}
 	

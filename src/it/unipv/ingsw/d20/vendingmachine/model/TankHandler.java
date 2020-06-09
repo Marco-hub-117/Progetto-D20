@@ -30,7 +30,7 @@ public class TankHandler {
 		return true;
 	}
 	
-	public void scaleTanksLevel(BeverageDescription bvDesc) throws DeliveryFailedException { //a cosa serve questa eccezione?
+	public void scaleTanksLevel(BeverageDescription bvDesc) {
 		for (Entry<Ingredients, Double> entry : bvDesc.getIngredients().entrySet()) {
 			tankList.get(entry.getKey()).lowerLevelBy(entry.getValue());
 		}

@@ -22,29 +22,29 @@ public class CashContainer {
 		refreshTotalAmount();
 	}
 	
-	public void addCoin(double coin) throws InvalidPaymentException {
-
+	public void addCoin(double coin) {
+		//l'inserimento di una moneta nel nostro caso non può essere falso perché avviene tramite pulsanti
 				
 		String coinString = String.valueOf(coin);
-
+		/* ha poco senso perché a livello grafico viene uno schifo
 		if (Math.random() < 0.05) {
 			throw new InvalidPaymentException(); //5% chance that the coin is not valid
 		}
-		
+		*/
 		int index;
-		boolean allowedValue = false;
+		//boolean allowedValue = false;
 
 		
 		for (index = 0; index < coinValue.length; index++) {
 			if (coinValue[index] == coin) {
-				allowedValue = true;
+				//allowedValue = true;
 				break;
 			}
 		}
 		
-		if (!allowedValue) {
-			throw new InvalidPaymentException();
-		}
+		//if (!allowedValue) {
+			//throw new InvalidPaymentException();
+		//}
 		
 		coinNumber[index]++;
 		

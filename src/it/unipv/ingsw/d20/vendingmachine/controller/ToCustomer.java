@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import it.unipv.ingsw.d20.vendingmachine.gui.customer.CustomerGui;
 import it.unipv.ingsw.d20.vendingmachine.gui.operator.OperatorGui;
 import it.unipv.ingsw.d20.vendingmachine.model.VendingMachine;
+import it.unipv.ingsw.d20.vendingmachine.model.VendingMachineStatus;
 
 public class ToCustomer implements ActionListener{
 
@@ -23,6 +24,7 @@ public class ToCustomer implements ActionListener{
 		 gui.dispose(); //chiudo l'interfaccia dell'operatore
 		 CustomerGui gui= new CustomerGui(); //istanzio una nuova interfaccia del cliente
 		 Controller c=new Controller(m, gui); //controller associato all'interfaccia del cliente
+		 m.setStatus(VendingMachineStatus.READY);
 		 gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		 gui.setVisible(true);
 	}

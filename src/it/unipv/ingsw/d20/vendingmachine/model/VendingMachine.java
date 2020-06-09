@@ -9,6 +9,7 @@ import it.unipv.ingsw.d20.vendingmachine.model.beverage.BeverageDescription;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.Ingredients;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.Tank;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.exceptions.DeliveryFailedException;
+import it.unipv.ingsw.d20.vendingmachine.model.exceptions.NonExistentCodeException;
 import it.unipv.ingsw.d20.vendingmachine.model.exceptions.RefillMachineException;
 import it.unipv.ingsw.d20.vendingmachine.model.exceptions.TankAbsentException;
 import it.unipv.ingsw.d20.vendingmachine.model.exceptions.WithdrawAmountException;
@@ -16,6 +17,7 @@ import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.CashContainer;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.KeyHandler;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.Sale;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.InsufficientCashForRestException;
+import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.InsufficientCreditException;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.InvalidPaymentException;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.KeyNotInsertedException;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.UnrecognisedKeyException;
@@ -31,6 +33,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.concurrent.TimeUnit;
 import java.util.Scanner;
 
 public class VendingMachine {
@@ -62,89 +65,88 @@ public class VendingMachine {
 		tankHandler = new TankHandler(getTanksFromLocal());
 		cashContainer = getCashContainerFromLocal(); 
 	}
-	
-	public void insertCoin(double coinValue) { //togliere eccezione invalidpayment che non serve
-		try {
-			cashContainer.addCoin(coinValue); //se la moneta è valida la aggiunge al CashHandler
+	/**
+	 * Questo metodo gestisce l'inserimento di una moneta 
+	 * @param coinValue è il valore della moneta
+	 * 
+	 */
+	public void insertCoin(double coinValue) {
+			cashContainer.addCoin(coinValue); //aggiunge la moneta al CashHandler
 			saveCashContainerIntoLocal();
-			
 			credit += coinValue;			//e aggiorna il credito
-		} catch (InvalidPaymentException e) { //altrimenti viene raccolta la relativa eccezione
-			System.out.println(e.getMessage());
-		}
 	}
 	
-	public void insertKey(String serialCode) { 
-		//la chiavetta è generata casualmente, non vanno implementate nel DB
-		try {
-			keyHandler.insertKey(serialCode); //se la chiavetta è riconosciuta viene inserita
-			credit += keyHandler.getCreditOnKey(); //e si aggiorna il credito della macchinetta con quello
-												   //disponibile sulla chiavetta
-		} catch (UnrecognisedKeyException e) { //altrimenti viene raccolta la relativa eccezione
-			
-		}
+	public void insertKey(String serialCode) { //da rivedere perché generata casualmente
+		
+		/*
+		 * try { keyHandler.insertKey(serialCode); //se la chiavetta è riconosciuta
+		 * viene inserita credit += keyHandler.getCreditOnKey(); //e si aggiorna il
+		 * credito della macchinetta con quello //disponibile sulla chiavetta } catch
+		 * (UnrecognisedKeyException e) { //altrimenti viene raccolta la relativa
+		 * eccezione
+		 * 
+		 * }
+		 */
 	}
 	
-	public void ejectKey(double credit) {
-		//la chiavetta è generata casualmente, non vanno implementate nel DB
-		try {
-			keyHandler.ejectKey(credit); //se c'è una chiavetta inserita la si toglie (passandole il nuovo credito)
-			credit = 0;					 //e si azzera il credito corrente della macchinetta
-		} catch (KeyNotInsertedException e) { //altrimenti viene raccolta la relativa eccezione
-			e.printStackTrace();
-		}
+	public void ejectKey(double credit) { //da rivedere perché generata casualmente
+		/*
+		 * try {
+		 * keyHandler.ejectKey(credit); //se c'è una chiavetta inserita la si toglie
+		 * (passandole il nuovo credito) credit = 0; //e si azzera il credito corrente
+		 * della macchinetta } catch (KeyNotInsertedException e) { //altrimenti viene
+		 * raccolta la relativa eccezione e.printStackTrace(); }
+		 */
 	}
-	
-	public void dispenseCash() { //questo metodo restituisce il resto
+	/**
+	 * Questo metodo restituisce il resto al cliente
+	 * @throws InsufficientCashForRestException
+	 * 
+	 */
+	public void dispenseCash() throws InsufficientCashForRestException { //gestire l'eccezione nel controller
 		if (keyHandler.keyIsInserted()) { //controlla che non ci sia una chiavetta inserita, si potrebbe usare un'eccezione
 			return;
 		}
-		try {
 			cashContainer.dispenseRest(credit);
 			saveCashContainerIntoLocal();
 			credit = 0;
-		} catch (InsufficientCashForRestException e) {
-			e.printStackTrace(); //gestirlo nel controller
-		}
 	}
-	
-	public void insertCode(String code) { //lanciare le eccezioni e gestirle nel controller
+	/**
+	 * Questo metodo permette al cliente di inserire il codice della bevanda, inizializza la vendita dopo aver fatto i controlli
+	 * @throws InsufficientCreditException
+	 * @throws NonExistentCodeException
+	 * 
+	 */
+	public void insertCode(String code) throws InsufficientCreditException, NonExistentCodeException { //le eccezioni vanno gestite nel controller 
 		BeverageDescription bvDesc = bvCatalog.getBeverageDesc(code);
 		
 		if (bvDesc == null) {
-			//throw new NonExistentCodeException("codice inesistente");
+			throw new NonExistentCodeException("Codice non valido"); 
 		} else if (tankHandler.isAvailable(bvDesc)) {
 			startTransaction(bvDesc);
 		} else {
-			//eventualmente si potrebbe togliere la bevanda dal catalogo visualizzato
 			//throw new InsufficientIngredientsException();
-			
 		}
 	}
-	
-	public void startTransaction(BeverageDescription bvDesc) { //fa partire la sale
+	/**
+	 * Questo metodo esegue la transazione e l'erogazione effettiva della bevanda
+	 * @throws InsufficientCreditException viene lanciata se il credito inserito non è sufficiente per erogare la bevanda scelta
+	 * 
+	 */
+	public void startTransaction(BeverageDescription bvDesc) throws InsufficientCreditException { 
 		setStatus(VendingMachineStatus.DISPENSING);
 		
 		try {
-			Sale s = new Sale(bvDesc, credit);
-			
+			Sale s = new Sale(bvDesc, credit); //se il credito non è sufficiente per erogare la bevanda lancia eccezione
 			tankHandler.scaleTanksLevel(bvDesc);
-			
 			saveTankIntoLocal();
 			saveCashContainerIntoLocal();
-			new Beverage(bvDesc); //non dovrebbe lanciarla la sale???
-			
+			TimeUnit.SECONDS.sleep(3); //attesa di 3 secondi per erogare la bevanda
 			System.out.println("Erogato " + bvDesc.getName() + " correttamente");
-			
 			credit = s.getRest();
 			salesRegister.add(s);
-		} catch(InvalidPaymentException e) { //cosa serve?
-			//IN ATTESA DI IMPLEMENTAZIONE DELLE ECCEZIONI
-		} catch(DeliveryFailedException e) { //questa eccezione cosa serve?
-			
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(e.getMessage()); 
 		} finally {
 			setStatus(VendingMachineStatus.READY);
 		}
@@ -154,13 +156,8 @@ public class VendingMachine {
 		return tankHandler.getTanksLevel();
 	}
 
-	public void setTankLevel(String id) throws RefillMachineException{ //questa eccezione non serve, impostare lo stato di refill quando premo il pulsante "operatore"
-		
-		if(this.getStatus().equals(VendingMachineStatus.REFILL)) {
-			tankHandler.refillTank(id); 
-		}else {
-			throw new RefillMachineException("Stato della macchinetta non corretto");
-		}
+	public void setTankLevel(String id){
+		tankHandler.refillTank(id); 
 	}
 	
 	/**

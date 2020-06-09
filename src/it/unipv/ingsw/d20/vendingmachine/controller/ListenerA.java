@@ -7,7 +7,9 @@ import javax.swing.JOptionPane;
 
 import it.unipv.ingsw.d20.vendingmachine.gui.customer.CustomerGui;
 import it.unipv.ingsw.d20.vendingmachine.model.VendingMachine;
+import it.unipv.ingsw.d20.vendingmachine.model.exceptions.NonExistentCodeException;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.Sale;
+import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.InsufficientCreditException;
 
 public class ListenerA implements ActionListener{
 	private double value;	
@@ -31,7 +33,15 @@ public class ListenerA implements ActionListener{
 				if(gui.getDisplay().equals("000")) {
 					JOptionPane.showMessageDialog(null, "Devi selezionare una bevanda");
 				}else {
-					m.insertCode(gui.getDisplay());
+					try {
+						m.insertCode(gui.getDisplay());
+					} catch (InsufficientCreditException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (NonExistentCodeException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					gui.setDisplay("000");
 					Double p=m.getCurrentAmount();
 					String y;
