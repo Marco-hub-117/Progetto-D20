@@ -25,22 +25,19 @@ public class ListenerTank implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		Pulsante p=gui.getPulsanti()[pos];
-		System.out.println(p.getIdTank());
 		try {
-			m.setStatus(VendingMachineStatus.REFILL);
+			//m.setStatus(VendingMachineStatus.REFILL);
 			
 			m.setTankLevel(p.getIdTank()); 
-		} catch (RefillMachineException e) {
+		} catch (RefillMachineException e) { 
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		//aggiorno la grafica
 		HashMap<Ingredients,Double> tankLevels=new HashMap<Ingredients, Double>();
 		tankLevels=m.getTanksLevels();
-		System.out.println(tankLevels);
 		int k=0;
 		for(Map.Entry<Ingredients, Double> i : tankLevels.entrySet()) {
-			System.out.println("settt");
 			gui.setElements(String.valueOf(i.getKey()),i.getValue()+"",k);
 			k++;
 		}

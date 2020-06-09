@@ -11,7 +11,7 @@ public class BeverageCatalog {
 		catalog = new HashMap<String, BeverageDescription>();
 	}
 	
-	public BeverageDescription getBeverageDesc(String code) { //DATO LA STRINGA RESTITUISCE L'OGGETTO CORRISPONDENTE NELLA MAPPA
+	public BeverageDescription getBeverageDesc(String code) { //dato il codice della bevanda ne restiruisce la relativa BeverageDescription
 		if(catalog.containsKey(code)) {	
 			return catalog.get(code);
 		} else {
@@ -19,17 +19,17 @@ public class BeverageCatalog {
 		}
 	}
 	
-	public void setIngredient(String code, Ingredients i, Double q) {
+	public void setIngredient(String code, Ingredients i, Double q) { //dato il codice della bevanda ne imposta un ingrediente e la relativa quantità
 		if(catalog.containsKey(code)) {
 			catalog.get(code).changeQuantity(i, q);
 		}
 	}
 	
-	public void addBeverageDescription(BeverageDescription b) {//AGGIUNGE UNA NUOVA BEVERAGE DESCRIPTION NELLA MAPPA
+	public void addBeverageDescription(BeverageDescription b) {//aggiunge una nuova BeverageDescription
 		catalog.put(b.getCode(), b);
 	}
 	
-	public Map<String, BeverageDescription> getCatalog() { //METODO GET DI CATALOG
+	public Map<String, BeverageDescription> getCatalog() {
 		return catalog;
 	}
 

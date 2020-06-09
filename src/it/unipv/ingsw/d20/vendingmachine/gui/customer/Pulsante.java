@@ -7,8 +7,6 @@ public class Pulsante extends JButton {
 	private double value;
 	private String idTank;
 	
-
-
 	public Pulsante(double value, int pos, String string) {
 		super(string);
 		super.setSize(10, 60);
@@ -27,7 +25,6 @@ public class Pulsante extends JButton {
 		return value;
 	}
 
-	
 	public int getPos() {
 		return pos;
 	}
@@ -39,5 +36,4 @@ public class Pulsante extends JButton {
 		this.idTank = idTank;
 	}
 
-	
 }

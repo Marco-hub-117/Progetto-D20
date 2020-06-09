@@ -31,7 +31,7 @@ public class NumberPanel extends JPanel {
 		}
 	
 	}
-	private void ordinaPulsanti() { 
+	private void ordinaPulsanti() { //ordina i pulsanti secondo il comparator per visualizzarli nel giusto ordine
 		PulsanteComparator p=new PulsanteComparator();
 		l.sort(p);
 	}

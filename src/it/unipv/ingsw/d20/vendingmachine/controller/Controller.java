@@ -8,7 +8,7 @@ import it.unipv.ingsw.d20.vendingmachine.gui.customer.Pulsante;
 import it.unipv.ingsw.d20.vendingmachine.gui.operator.OperatorGui;
 import it.unipv.ingsw.d20.vendingmachine.model.VendingMachine;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.Ingredients;
-
+//controller per l'architettura MVC
 
 public class Controller {
 	private VendingMachine m;
@@ -33,7 +33,7 @@ public class Controller {
 		
 	}
 	
-	private void setText() { //setta la TextArea per visualizzare il catalogo della vending machine
+	private void setText() { //imposta la TextArea per visualizzare il catalogo della vending machine
 		gui.setText(m.getCatalog().toStringGui());
 	}
 	private void addListenerA() {
@@ -57,7 +57,7 @@ public class Controller {
 		opgui.getCustomer().addActionListener(new ToCustomer(m, opgui));
 	}
 	
-	private void setTankText() { //setta il nome dei tank e i livelli attuali
+	private void setTankText() { //imposta il nome dei tank e i livelli attuali
 		HashMap<Ingredients,Double> tankLevels=new HashMap<Ingredients, Double>();
 		tankLevels=m.getTanksLevels();
 		int k=0;

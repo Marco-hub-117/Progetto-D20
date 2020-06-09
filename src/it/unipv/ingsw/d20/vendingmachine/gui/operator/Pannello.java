@@ -11,10 +11,8 @@ public class Pannello extends JPanel {
 	private JLabel[] nome_serbatoio;
 	private JLabel[] livello_serbatoio;
 	private Pulsante[] riempimento_serbatoio;
-	private int n;
 	
 	public Pannello(int numeroTank) {
-		this.n=numeroTank;
 		nome_serbatoio=new JLabel [numeroTank];
 		livello_serbatoio=new JLabel [numeroTank];
 		riempimento_serbatoio=new Pulsante [numeroTank];

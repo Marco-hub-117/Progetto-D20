@@ -1,5 +1,5 @@
 package it.unipv.ingsw.d20.vendingmachine.model.beverage;
-//hhh
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,7 +17,7 @@ public class BeverageDescription {
 		this.ingredients = new HashMap<Ingredients, Double>();
 	}
 	
-	public void addIngredient(Ingredients i) {//aggiunge un ingrediente e setta la sua quantita a 0.0
+	public void addIngredient(Ingredients i) {//aggiunge un ingrediente e imposta la sua quantita a 0.0
 		ingredients.put(i, 0.0);
 	}
 	public void addIngredient(Ingredients i, double q) {//aggiunge un ingrediente specificando la quantita
@@ -33,7 +33,7 @@ public class BeverageDescription {
 		return code;
 	}
 
-	public Map<Ingredients, Double> getIngredients() { //resituisce la tutta la mappa degli ingredienti
+	public Map<Ingredients, Double> getIngredients() {
 		return ingredients;
 	}
 
