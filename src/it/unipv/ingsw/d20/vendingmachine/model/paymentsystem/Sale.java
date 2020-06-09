@@ -54,7 +54,7 @@ public class Sale {
 		saleInfo.append("Product: " + beverageDescription.getCode() + "\n");
 		
 		DecimalFormat df = new DecimalFormat("0.00");
-		saleInfo.append("Total: ï¿½" + df.format(price) + "\n");
+		saleInfo.append("Total: €" + df.format(price) + "\n");
 		
 		return saleInfo.toString();
 	}

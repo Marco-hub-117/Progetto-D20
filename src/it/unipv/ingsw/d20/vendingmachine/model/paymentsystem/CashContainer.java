@@ -3,6 +3,10 @@ package it.unipv.ingsw.d20.vendingmachine.model.paymentsystem;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.InsufficientCashForRestException;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.InvalidPaymentException;
 
+/**
+ * Javadoc test for CashContainer class.
+ *
+ */
 public class CashContainer {
 	
 	private int CENTS_5;
@@ -64,64 +68,66 @@ public class CashContainer {
 	}
 	
 	public void dispenseRest(double credit) throws InsufficientCashForRestException {	
-		float fCredit = (float) credit;
+		int creditX100 = (int) credit * 100; //opero sul credito moltiplicato per 100 a causa dell'approssimazione della virgola mobile
 
-		if(fCredit > (float) totalAmount) {
+		if(creditX100 > (int) (totalAmount * 100)) {
 			throw new InsufficientCashForRestException();
 		}
 		
-		while (fCredit >= 2) {
+		while (creditX100 >= 200) {
 			if (EUROS_2 == 0) {
 				break;
 			}
 			EUROS_2--;
-			fCredit -= 2;
+			creditX100 -= 200;
 		}
 		
-		while (fCredit >= 1) {
+		while (creditX100 >= 100) {
 			if (EUROS_1 == 0) {
 				break;
 			}
 			EUROS_1--;
-			fCredit -= 1;
+			creditX100 -= 100;
 		}
 		
-		while (fCredit >= (float) 0.5) {
+		while (creditX100 >= 50) {
 			if (CENTS_50 == 0) {
 				break;
 			}
 			CENTS_50--;
-			fCredit -= (float) 0.5;
+			creditX100 -= 50;
 		}
 		
-		while (fCredit >= (float) 0.2) {
+		while (creditX100 >= 20) {
 			if (CENTS_20 == 0) {
 				break;
 			}
 			CENTS_20--;
-			fCredit -= (float) 0.2;
+			creditX100 -= 20;
 		}
 		
-		while (fCredit >= (float) 0.1) {
+		while (creditX100 >= 10) {
 			if (CENTS_10 == 0) {
 				break;
 			}
 			CENTS_10--;
-			fCredit -= (float) 0.1;
+			creditX100 -= 10;
 		}
 		
-		while (fCredit >= (float) 0.05) {
+		while (creditX100 >= 5) {
 			if (CENTS_5 == 0) {
 				break;
 			}
 			CENTS_5--;
-			fCredit -= (float) 0.05;
+			creditX100 -= 5;
 		}
-
-		if (fCredit != 0) {
+		
+		if (creditX100 != 0) {
 			throw new InsufficientCashForRestException();
 		}
-		System.out.println("Dispensed â‚¬" + (float) credit);
+		
+		System.out.println("Dispensed €" + credit);
+		
 		refreshTotalAmount();
 	}
 	
