@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 
 import it.unipv.ingsw.d20.vendingmachine.gui.customer.CustomerGui;
 import it.unipv.ingsw.d20.vendingmachine.model.VendingMachine;
+import it.unipv.ingsw.d20.vendingmachine.model.exceptions.InsufficientIngredientsException;
 import it.unipv.ingsw.d20.vendingmachine.model.exceptions.NonExistentCodeException;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.Sale;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.InsufficientCreditException;
@@ -39,6 +40,9 @@ public class ListenerA implements ActionListener{
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					} catch (NonExistentCodeException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (InsufficientIngredientsException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}

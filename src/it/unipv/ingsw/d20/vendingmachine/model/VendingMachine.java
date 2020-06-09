@@ -9,6 +9,7 @@ import it.unipv.ingsw.d20.vendingmachine.model.beverage.BeverageDescription;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.Ingredients;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.Tank;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.exceptions.DeliveryFailedException;
+import it.unipv.ingsw.d20.vendingmachine.model.exceptions.InsufficientIngredientsException;
 import it.unipv.ingsw.d20.vendingmachine.model.exceptions.NonExistentCodeException;
 import it.unipv.ingsw.d20.vendingmachine.model.exceptions.RefillMachineException;
 import it.unipv.ingsw.d20.vendingmachine.model.exceptions.TankAbsentException;
@@ -115,9 +116,10 @@ public class VendingMachine {
 	 * Questo metodo permette al cliente di inserire il codice della bevanda, inizializza la vendita dopo aver fatto i controlli
 	 * @throws InsufficientCreditException
 	 * @throws NonExistentCodeException
+	 * @throws InsufficientIngredientsException 
 	 * 
 	 */
-	public void insertCode(String code) throws InsufficientCreditException, NonExistentCodeException { //le eccezioni vanno gestite nel controller 
+	public void insertCode(String code) throws InsufficientCreditException, NonExistentCodeException, InsufficientIngredientsException { //le eccezioni vanno gestite nel controller 
 		BeverageDescription bvDesc = bvCatalog.getBeverageDesc(code);
 		
 		if (bvDesc == null) {
@@ -125,7 +127,7 @@ public class VendingMachine {
 		} else if (tankHandler.isAvailable(bvDesc)) {
 			startTransaction(bvDesc);
 		} else {
-			//throw new InsufficientIngredientsException();
+			throw new InsufficientIngredientsException("Spiacente, bevanda terminata");
 		}
 	}
 	/**
