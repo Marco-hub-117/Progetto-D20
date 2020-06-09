@@ -9,22 +9,15 @@ import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.InvalidP
  */
 public class CashContainer {
 	
-	private int CENTS_5;
-	private int CENTS_10;
-	private int CENTS_20;
-	private int CENTS_50;
-	private int EUROS_1;
-	private int EUROS_2;
+	private final double[] coinValue = {0.05, 0.10, 0.20, 0.50, 1.0, 2.0};
+	private int[] coinNumber = new int[6];
 	
 	private double totalAmount;
 	
 	public CashContainer(Integer[] cashQuantity) {
-		CENTS_5 = cashQuantity[5];
-		CENTS_10 = cashQuantity[4];
-		CENTS_20 = cashQuantity[3];
-		CENTS_50 = cashQuantity[2];
-		EUROS_1 = cashQuantity[1];
-		EUROS_2 = cashQuantity[0];
+		for (int i = 0; i < coinNumber.length; i++) {
+			coinNumber[i] = cashQuantity[i];
+		}
 
 		refreshTotalAmount();
 	}
@@ -34,37 +27,31 @@ public class CashContainer {
 			throw new InvalidPaymentException(); //5% chance that the coin is not valid
 		}
 		
-		String coinString = String.valueOf(coin);
+		int index;
+		boolean allowedValue = false;
 		
-		switch (coinString) {
-		case "0.05":
-			CENTS_5++;
-			break;
-		case "0.1":
-			CENTS_10++;
-			break;
-		case "0.2":
-			CENTS_20++;
-			break;
-		case "0.5":
-			CENTS_50++;
-			break;
-		case "1.0":
-			EUROS_1++;
-			break;
-		case "2.0":
-			EUROS_2++;
-			break;
-		default:
+		for (index = 0; index < coinValue.length; index++) {
+			if (coinValue[index] == coin) {
+				allowedValue = true;
+				break;
+			}
+		}
+		
+		if (!allowedValue) {
 			throw new InvalidPaymentException();
 		}
+		
+		coinNumber[index]++;
 		
 		refreshTotalAmount();
 	}
 	
 	public void refreshTotalAmount() {
 		//aggiornare file locale per persistenza
-		totalAmount = 0.05 * CENTS_5 + 0.1 * CENTS_10 + 0.2 * CENTS_20 + 0.5 * CENTS_50 + EUROS_1 + 2 * EUROS_2;
+		totalAmount = 0;
+		for (int i = 0; i < coinValue.length; i++) {
+			totalAmount += coinValue[i] * coinNumber[i]; //moltiplica il valore della moneta per il numero di monete di quel tipo
+		}
 	}
 	
 	public void dispenseRest(double credit) throws InsufficientCashForRestException {	
@@ -74,52 +61,14 @@ public class CashContainer {
 			throw new InsufficientCashForRestException();
 		}
 		
-		while (creditX100 >= 200) {
-			if (EUROS_2 == 0) {
-				break;
+		for (int i = coinValue.length - 1; i >= 0; i--) {
+			while (creditX100 >= (int) coinValue[i] * 100) {
+				if (coinNumber[i] == 0) {
+					break;
+				}
+				coinNumber[i]--;
+				creditX100 -= (int) coinValue[i] * 100;
 			}
-			EUROS_2--;
-			creditX100 -= 200;
-		}
-		
-		while (creditX100 >= 100) {
-			if (EUROS_1 == 0) {
-				break;
-			}
-			EUROS_1--;
-			creditX100 -= 100;
-		}
-		
-		while (creditX100 >= 50) {
-			if (CENTS_50 == 0) {
-				break;
-			}
-			CENTS_50--;
-			creditX100 -= 50;
-		}
-		
-		while (creditX100 >= 20) {
-			if (CENTS_20 == 0) {
-				break;
-			}
-			CENTS_20--;
-			creditX100 -= 20;
-		}
-		
-		while (creditX100 >= 10) {
-			if (CENTS_10 == 0) {
-				break;
-			}
-			CENTS_10--;
-			creditX100 -= 10;
-		}
-		
-		while (creditX100 >= 5) {
-			if (CENTS_5 == 0) {
-				break;
-			}
-			CENTS_5--;
-			creditX100 -= 5;
 		}
 		
 		if (creditX100 != 0) {
