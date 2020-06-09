@@ -4,7 +4,7 @@ package it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions;
 public class UnrecognisedKeyException extends Exception {
 	
 	public UnrecognisedKeyException() {
-		super("Key not recognised");
+		super("Chiavetta non riconosciuta");
 	}
 
 }

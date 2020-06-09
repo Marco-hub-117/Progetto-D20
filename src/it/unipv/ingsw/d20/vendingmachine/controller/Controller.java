@@ -49,6 +49,7 @@ public class Controller {
 	private void addListenerKey() { //aggiunge i listener ai pulsanti per la chiavetta nell'interfaccia cliente
 		gui.getIn().addActionListener(new ListenerKey(true,m, gui));
 		gui.getOut().addActionListener(new ListenerKey(false,m, gui));
+		gui.getOut().setEnabled(false); //disabilito preventivamente il pulsante per estrarre una chiavetta
 	}
 	private void addListenerOp() { //aggiunge il listener al pulsante per entrare nella modalità operatore
 		gui.getOperator().addActionListener(new ToOperator(m, gui));
@@ -73,7 +74,7 @@ public class Controller {
 			puls[i].addActionListener(new ListenerTank(puls[i].getPos(), m, opgui));
 		}
 	}
-
+	
 }
 
 

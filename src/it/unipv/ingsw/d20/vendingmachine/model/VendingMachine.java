@@ -8,8 +8,8 @@ import it.unipv.ingsw.d20.vendingmachine.model.beverage.BeverageCatalog;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.BeverageDescription;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.Ingredients;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.Tank;
-import it.unipv.ingsw.d20.vendingmachine.model.beverage.exceptions.DeliveryFailedException;
 import it.unipv.ingsw.d20.vendingmachine.model.exceptions.InsufficientIngredientsException;
+import it.unipv.ingsw.d20.vendingmachine.model.exceptions.KeyRestException;
 import it.unipv.ingsw.d20.vendingmachine.model.exceptions.NonExistentCodeException;
 import it.unipv.ingsw.d20.vendingmachine.model.exceptions.RefillMachineException;
 import it.unipv.ingsw.d20.vendingmachine.model.exceptions.TankAbsentException;
@@ -19,23 +19,10 @@ import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.KeyHandler;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.Sale;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.InsufficientCashForRestException;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.InsufficientCreditException;
-import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.InvalidPaymentException;
-import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.KeyNotInsertedException;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.UnrecognisedKeyException;
-
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.concurrent.TimeUnit;
-import java.util.Scanner;
+
 
 public class VendingMachine {
 
@@ -78,25 +65,30 @@ public class VendingMachine {
 	}
 	
 	public void insertKey() throws UnrecognisedKeyException { 
-		keyHandler.insertKey();
+		keyHandler.insertKey(credit);
+		credit=keyHandler.getCreditOnKey();
 	}
 	
-	public void ejectKey() throws KeyNotInsertedException { //da rivedere perché generata casualmente
+	public void ejectKey() { 
 		keyHandler.ejectKey();
+		credit=0.0;
 	}
 	/**
 	 * Questo metodo restituisce il resto al cliente
 	 * @throws InsufficientCashForRestException
+	 * @throws KeyRestException 
 	 * 
 	 */
-	public void dispenseCash() throws InsufficientCashForRestException { 
+	public void dispenseCash() throws InsufficientCashForRestException, KeyRestException { 
 		if (keyHandler.keyIsInserted()) { 
-			return;
+			throw new KeyRestException("Impossibile erogare resto, togliere la chiavetta");
 		}
 		cashContainer.dispenseRest(credit);
 		saveCashContainerIntoLocal();
 		credit = 0;
 	}
+
+	
 	/**
 	 * Questo metodo permette al cliente di inserire il codice della bevanda, inizializza la vendita dopo aver fatto i controlli
 	 * @throws InsufficientCreditException
@@ -105,7 +97,7 @@ public class VendingMachine {
 	 * 
 	 */
 	public void insertCode(String code) throws InsufficientCreditException, NonExistentCodeException, InsufficientIngredientsException { 
-		//le eccezioni vanno gestite nel controller 
+		
 		BeverageDescription bvDesc = bvCatalog.getBeverageDesc(code);
 		
 		if (bvDesc == null) {
@@ -127,18 +119,14 @@ public class VendingMachine {
 		
 		try {
 			Sale s = new Sale(bvDesc, credit); //se il credito non è sufficiente per erogare la bevanda lancia eccezione
-			
 			tankHandler.scaleTanksLevel(bvDesc);
 			saveTankIntoLocal();
-
-			TimeUnit.SECONDS.sleep(3); //attesa di 3 secondi per erogare la bevanda
+			new Beverage();
 			System.out.println("Erogato " + bvDesc.getName() + " correttamente");
-			
 			credit = s.getRest();
-			
 			salesRegister.add(s);
 		} catch (InterruptedException e) {
-			System.out.println(e.getMessage()); 
+			System.out.println(e.getMessage()); //eccezione della beverage, forse si puo gestire diversamente?
 		} finally {
 			setStatus(VendingMachineStatus.READY);
 		}

@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 
 import it.unipv.ingsw.d20.vendingmachine.gui.customer.CustomerGui;
 import it.unipv.ingsw.d20.vendingmachine.model.VendingMachine;
+import it.unipv.ingsw.d20.vendingmachine.model.exceptions.KeyRestException;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.InsufficientCashForRestException;
 
 public class ListenerB implements ActionListener{
@@ -21,13 +22,15 @@ public class ListenerB implements ActionListener{
 	}
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		if(value==-1) { //eroga il resto
+		if(value==-1) { //se e' -1 si tratta del resto
 			try {
 				m.dispenseCash();
 			} catch (InsufficientCashForRestException e) {
 				JOptionPane.showMessageDialog(null, e.getMessage());
+			} catch (KeyRestException e) {
+				JOptionPane.showMessageDialog(null, e.getMessage());
 			}
-		}else{
+		}else{ //altrimenti di un inserimento di una moneta
 			m.insertCoin(this.value);
 		}
 		//aggiorno grafica
