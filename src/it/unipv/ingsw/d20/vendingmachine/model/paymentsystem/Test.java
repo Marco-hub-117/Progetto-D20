@@ -14,12 +14,12 @@ public class Test {
 		System.out.println(cc.getTotalAmount());
 
 		
-		try {
+		//try {
 			cc.addCoin(0.50);
-		} catch (InvalidPaymentException e) {
+		//} catch (InvalidPaymentException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+			//e.printStackTrace();
+		//}
 		System.out.println(cc.getTotalAmount());
 		
 		try {
