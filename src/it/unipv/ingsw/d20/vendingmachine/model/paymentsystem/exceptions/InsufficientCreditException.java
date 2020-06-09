@@ -13,8 +13,8 @@ package it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions;
 @SuppressWarnings("serial")
 public class InsufficientCreditException extends InvalidPaymentException {
 
-	public InsufficientCreditException() {
-		super();
+	public InsufficientCreditException(String message) {
+		super(message);
 	}
 	
 }

@@ -10,5 +10,8 @@ public class InvalidPaymentException extends Exception {
 	public InvalidPaymentException() {
 		super("Payment rejected");
 	}
+	public InvalidPaymentException(String message) {
+		super(message);
+	}
 
 }

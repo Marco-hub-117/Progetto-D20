@@ -104,7 +104,8 @@ public class VendingMachine {
 	 * @throws InsufficientCashForRestException
 	 * 
 	 */
-	public void dispenseCash() throws InsufficientCashForRestException { //gestire l'eccezione nel controller
+	public void dispenseCash() throws InsufficientCashForRestException { 
+		//gestire l'eccezione nel controller
 		if (keyHandler.keyIsInserted()) { //controlla che non ci sia una chiavetta inserita, si potrebbe usare un'eccezione
 			return;
 		}
@@ -119,11 +120,12 @@ public class VendingMachine {
 	 * @throws InsufficientIngredientsException 
 	 * 
 	 */
-	public void insertCode(String code) throws InsufficientCreditException, NonExistentCodeException, InsufficientIngredientsException { //le eccezioni vanno gestite nel controller 
+	public void insertCode(String code) throws InsufficientCreditException, NonExistentCodeException, InsufficientIngredientsException { 
+		//le eccezioni vanno gestite nel controller 
 		BeverageDescription bvDesc = bvCatalog.getBeverageDesc(code);
 		
 		if (bvDesc == null) {
-			throw new NonExistentCodeException("Codice non valido"); 
+			throw new NonExistentCodeException("Codice della bevanda inesistente"); 
 		} else if (tankHandler.isAvailable(bvDesc)) {
 			startTransaction(bvDesc);
 		} else {
@@ -132,7 +134,7 @@ public class VendingMachine {
 	}
 	/**
 	 * Questo metodo esegue la transazione e l'erogazione effettiva della bevanda
-	 * @throws InsufficientCreditException viene lanciata se il credito inserito non è sufficiente per erogare la bevanda scelta
+	 * @throws InsufficientCreditException 
 	 * 
 	 */
 	public void startTransaction(BeverageDescription bvDesc) throws InsufficientCreditException { 

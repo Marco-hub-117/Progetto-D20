@@ -3,6 +3,8 @@ package it.unipv.ingsw.d20.vendingmachine.controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JOptionPane;
+
 import it.unipv.ingsw.d20.vendingmachine.gui.customer.CustomerGui;
 import it.unipv.ingsw.d20.vendingmachine.model.VendingMachine;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.InsufficientCashForRestException;
@@ -23,10 +25,8 @@ public class ListenerB implements ActionListener{
 			try {
 				m.dispenseCash();
 			} catch (InsufficientCashForRestException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				JOptionPane.showMessageDialog(null, e.getMessage());
 			}
-			//m.setCurrentAmount(0.0);
 		}else{
 			m.insertCoin(this.value);
 		}

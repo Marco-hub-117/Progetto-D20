@@ -4,7 +4,7 @@ package it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions;
 public class InsufficientCashForRestException extends Exception {
 	
 	public InsufficientCashForRestException() {
-		super("There isn't enough cash to dispense rest");
+		super("Erogazione resto non possibile, ci dispiace");
 	}
 
 }

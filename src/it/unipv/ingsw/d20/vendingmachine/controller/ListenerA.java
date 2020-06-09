@@ -27,34 +27,21 @@ public class ListenerA implements ActionListener{
 		int x=(int)this.value;
 		switch(x) {
 		case(10): //okay
-		gui.setEnabled(false);
-			if(m.getCurrentAmount()==0) {
-				JOptionPane.showMessageDialog(null, "Credito insufficiente!");
-			}else{
-				if(gui.getDisplay().equals("000")) {
-					JOptionPane.showMessageDialog(null, "Devi selezionare una bevanda");
-				}else {
-					try {
-						m.insertCode(gui.getDisplay());
-					} catch (InsufficientCreditException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					} catch (NonExistentCodeException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					} catch (InsufficientIngredientsException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					gui.setDisplay("000");
-					Double p=m.getCurrentAmount();
-					String y;
-					y= String.format ("%.2f", p);
-					gui.setAmount(y);
-					
-				}
+			gui.setEnabled(false);
+			try {
+				m.insertCode(gui.getDisplay());
+				Double p=m.getCurrentAmount();
+				String y= String.format ("%.2f", p);
+				gui.setAmount(y);
+			} catch (InsufficientCreditException e) {
+				JOptionPane.showMessageDialog(null, e.getMessage());
+			} catch (NonExistentCodeException e) {
+				JOptionPane.showMessageDialog(null, e.getMessage());
+			} catch (InsufficientIngredientsException e) {
+				JOptionPane.showMessageDialog(null, e.getMessage());
 			}
-		gui.setEnabled(true);
+			gui.setDisplay("000"); 
+			gui.setEnabled(true);
 		break;
 		case(-1): //canc
 			gui.setDisplay("000");
