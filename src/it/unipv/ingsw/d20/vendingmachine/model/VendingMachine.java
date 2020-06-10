@@ -6,6 +6,7 @@ import it.unipv.ingsw.d20.persistence.local.VendingLocalIO;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.Beverage;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.BeverageCatalog;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.BeverageDescription;
+import it.unipv.ingsw.d20.vendingmachine.model.beverage.BeverageV2;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.Ingredients;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.Tank;
 import it.unipv.ingsw.d20.vendingmachine.model.exceptions.InsufficientIngredientsException;
@@ -117,19 +118,19 @@ public class VendingMachine {
 	public void startTransaction(BeverageDescription bvDesc) throws InsufficientCreditException { 
 		setStatus(VendingMachineStatus.DISPENSING);
 		
-		try {
+		//try {
 			Sale s = new Sale(bvDesc, credit); //se il credito non è sufficiente per erogare la bevanda lancia eccezione
 			tankHandler.scaleTanksLevel(bvDesc);
 			saveTankIntoLocal();
-			new Beverage();
+			BeverageV2 b = new BeverageV2(); b.start();
 			System.out.println("Erogato " + bvDesc.getName() + " correttamente");
 			credit = s.getRest();
 			salesRegister.add(s);
-		} catch (InterruptedException e) {
-			System.out.println(e.getMessage()); //eccezione della beverage, forse si puo gestire diversamente?
-		} finally {
-			setStatus(VendingMachineStatus.READY);
-		}
+		//} catch (InterruptedException e) {
+			//System.out.println(e.getMessage()); //eccezione della beverage, forse si puo gestire diversamente?
+		//} finally {
+			//setStatus(VendingMachineStatus.READY);
+		//}
 	}
 	
 	public HashMap<Ingredients, Double> getTanksLevels() {
