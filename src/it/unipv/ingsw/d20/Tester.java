@@ -1,6 +1,8 @@
 package it.unipv.ingsw.d20;
 
 import javax.swing.JFrame;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 import it.unipv.ingsw.d20.persistence.PersistenceFacade;
 import it.unipv.ingsw.d20.persistence.local.VendingLocalIO;
@@ -17,6 +19,13 @@ public class Tester {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		try {
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException
+				| UnsupportedLookAndFeelException e1) {
+			e1.printStackTrace();
+		}
+		
 		PersistenceFacade pf = PersistenceFacade.getInstance();
 		VendingLocalIO v = pf.getVendingLocalIO();
 		
