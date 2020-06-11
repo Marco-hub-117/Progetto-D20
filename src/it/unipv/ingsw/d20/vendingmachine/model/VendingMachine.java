@@ -3,7 +3,6 @@ package it.unipv.ingsw.d20.vendingmachine.model;
 
 import it.unipv.ingsw.d20.persistence.PersistenceFacade;
 import it.unipv.ingsw.d20.persistence.local.VendingLocalIO;
-import it.unipv.ingsw.d20.vendingmachine.model.beverage.Beverage;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.BeverageCatalog;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.BeverageDescription;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.BeverageV2;
@@ -21,16 +20,16 @@ import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.Sale;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.InsufficientCashForRestException;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.InsufficientCreditException;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.UnrecognisedKeyException;
+
 import java.util.ArrayList;
 import java.util.HashMap;
-
 
 public class VendingMachine {
 
 	private String id;
 	private VendingMachineStatus status;
 	private ArrayList<Sale> salesRegister;
-	private double credit; //soldi attualemente inseriti
+	private double credit; //soldi attualmente inseriti
 	private TankHandler tankHandler;
 	private BeverageCatalog bvCatalog;	//catalogo delle bevande
 	private CashContainer cashContainer;
@@ -43,7 +42,6 @@ public class VendingMachine {
 	 */
 	public VendingMachine(String id) {	
 		this.id = id;
-		this.setStatus(VendingMachineStatus.REFILL);	//LASCIATO REFILL PER POI RIEMPIRE SERBATOI LA PRIMA VOLTA
 		this.credit = 0.0;
 		
 		salesRegister = new ArrayList<Sale>(); //DA IMLEMENTARE COME BVCATALOG E TANKLIST
@@ -116,9 +114,6 @@ public class VendingMachine {
 	 * 
 	 */
 	public void startTransaction(BeverageDescription bvDesc) throws InsufficientCreditException { 
-		setStatus(VendingMachineStatus.DISPENSING);
-		
-		//try {
 			Sale s = new Sale(bvDesc, credit); //se il credito non è sufficiente per erogare la bevanda lancia eccezione
 			tankHandler.scaleTanksLevel(bvDesc);
 			saveTankIntoLocal();
@@ -126,11 +121,6 @@ public class VendingMachine {
 			System.out.println("Erogato " + bvDesc.getName() + " correttamente");
 			credit = s.getRest();
 			salesRegister.add(s);
-		//} catch (InterruptedException e) {
-			//System.out.println(e.getMessage()); //eccezione della beverage, forse si puo gestire diversamente?
-		//} finally {
-			//setStatus(VendingMachineStatus.READY);
-		//}
 	}
 	
 	public HashMap<Ingredients, Double> getTanksLevels() {

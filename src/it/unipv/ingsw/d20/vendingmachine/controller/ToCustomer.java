@@ -24,7 +24,7 @@ public class ToCustomer implements ActionListener{
 		 gui.dispose(); //chiudo l'interfaccia dell'operatore
 		 CustomerGui gui= new CustomerGui(); //istanzio una nuova interfaccia del cliente
 		 Controller c=new Controller(m, gui); //controller associato all'interfaccia del cliente
-		 m.setStatus(VendingMachineStatus.READY);
+		 m.setStatus(VendingMachineStatus.ONLINE);
 		 gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		 gui.setVisible(true);
 	}
