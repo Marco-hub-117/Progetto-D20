@@ -23,6 +23,7 @@ public class Panel_B extends JPanel{
 	private CoinPanel p;
 	private JButton in;  //inserimento chiavetta
 	private JButton out; //estrazione chiavetta
+	private BufferedImage myPicture;
 	
 	public Panel_B(){
 		JPanel x=new JPanel();
@@ -43,6 +44,14 @@ public class Panel_B extends JPanel{
 		
 		pan.add(l2);
 		pan.add(amount);
+		
+		try {
+			myPicture=ImageIO.read(new File("images/img_tazza.png"));
+			JLabel picLabel = new JLabel(new ImageIcon(myPicture));
+			add(picLabel,BorderLayout.CENTER);
+		} catch (IOException e) {
+
+		}
 	
 		x.setLayout(new GridLayout(2,1));
 		x.add(in);

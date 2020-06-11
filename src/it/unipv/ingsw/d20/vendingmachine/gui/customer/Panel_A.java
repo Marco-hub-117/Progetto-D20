@@ -24,8 +24,7 @@ public class Panel_A extends JPanel{
 		display.setFont(display.getFont().deriveFont(Font.PLAIN, 18));
 		display.setEditable(false);
 		
-		text=new CustomTextArea();
-		text.setBackground(new Color(1, 1, 1, (float) 0.01));
+		text=new JTextArea();
 		text.setFont(text.getFont().deriveFont(Font.PLAIN, 18));
 		text.setEditable(false);
 		

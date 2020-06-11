@@ -12,8 +12,8 @@ public class CustomTextArea extends JTextArea {
 	
 	private Image javaImg;
 	
-	public CustomTextArea(int x, int y) {
-		super(x, y);
+	public CustomTextArea() {
+		super(30, 35);
 		
 		try {
 			javaImg = ImageIO.read(new File("images/java.png"));

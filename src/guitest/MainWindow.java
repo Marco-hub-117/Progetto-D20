@@ -19,10 +19,16 @@ import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
+import it.unipv.ingsw.d20.persistence.PersistenceFacade;
+import it.unipv.ingsw.d20.persistence.local.VendingLocalIO;
+import it.unipv.ingsw.d20.vendingmachine.model.VendingMachine;
+
 @SuppressWarnings("serial")
 public class MainWindow extends JFrame {
 	
-	private static int WIDTH = 900, HEIGHT = 675;
+	private static int WIDTH = 1200, HEIGHT = 675;
+	
+	CustomTextArea catalog;
 	
 	public MainWindow() {
 		setSize(WIDTH, HEIGHT);
@@ -34,7 +40,7 @@ public class MainWindow extends JFrame {
 		mainPanel.setLayout(new GridLayout(1, 2));
 		
 		JPanel catalogPanel = new JPanel();
-		CustomTextArea catalog=new CustomTextArea(30, 30);
+		catalog = new CustomTextArea();
 		catalog.setBackground(new Color(1, 1, 1, (float) 0.01));
 		catalog.setFont(catalog.getFont().deriveFont(Font.BOLD, 18));
 		catalog.setEditable(false);
@@ -98,15 +104,15 @@ public class MainWindow extends JFrame {
 		JButton btnEject = new JButton("Espelli chiavetta"); btnEject.setFont(btnEject.getFont().deriveFont(Font.PLAIN, 25)); keyPanel.add(btnEject);
 		
 		JPanel coinPanel1 = new JPanel(); coinPanel1.setLayout(new GridLayout(1, 3));
-		JButton btn2euros = new JButton("â‚¬2,00"); btn2euros.setFont(btn2euros.getFont().deriveFont(Font.PLAIN, 22));
-		JButton btn1euro = new JButton("â‚¬1,00"); btn1euro.setFont(btn1euro.getFont().deriveFont(Font.PLAIN, 22));
-		JButton btn50cents = new JButton("â‚¬0,50"); btn50cents.setFont(btn50cents.getFont().deriveFont(Font.PLAIN, 22));
+		JButton btn2euros = new JButton("€2,00"); btn2euros.setFont(btn2euros.getFont().deriveFont(Font.PLAIN, 22));
+		JButton btn1euro = new JButton("€1,00"); btn1euro.setFont(btn1euro.getFont().deriveFont(Font.PLAIN, 22));
+		JButton btn50cents = new JButton("€0,50"); btn50cents.setFont(btn50cents.getFont().deriveFont(Font.PLAIN, 22));
 		coinPanel1.add(btn2euros); coinPanel1.add(btn1euro); coinPanel1.add(btn50cents);
 		
 		JPanel coinPanel2 = new JPanel(); coinPanel2.setLayout(new GridLayout(1, 3));
-		JButton btn20cents = new JButton("â‚¬0,20"); btn20cents.setFont(btn20cents.getFont().deriveFont(Font.PLAIN, 22));
-		JButton btn10cents = new JButton("â‚¬0,10"); btn10cents.setFont(btn10cents.getFont().deriveFont(Font.PLAIN, 22));
-		JButton btn5cents = new JButton("â‚¬0,05"); btn5cents.setFont(btn5cents.getFont().deriveFont(Font.PLAIN, 22));
+		JButton btn20cents = new JButton("€0,20"); btn20cents.setFont(btn20cents.getFont().deriveFont(Font.PLAIN, 22));
+		JButton btn10cents = new JButton("€0,10"); btn10cents.setFont(btn10cents.getFont().deriveFont(Font.PLAIN, 22));
+		JButton btn5cents = new JButton("€0,05"); btn5cents.setFont(btn5cents.getFont().deriveFont(Font.PLAIN, 22));
 		coinPanel2.add(btn20cents); coinPanel2.add(btn10cents); coinPanel2.add(btn5cents);
 		
 		lowerPanel.add(restPanel); lowerPanel.add(keyPanel); lowerPanel.add(coinPanel1); lowerPanel.add(coinPanel2);
@@ -121,14 +127,22 @@ public class MainWindow extends JFrame {
 	}
 
 	public static void main(String[] args) {
-		try {
+		/*try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException
 				| UnsupportedLookAndFeelException e1) {
 			e1.printStackTrace();
-		}
+		}*/
 		
-		new MainWindow();
+		PersistenceFacade pf = PersistenceFacade.getInstance();
+		VendingLocalIO v = pf.getVendingLocalIO();
+		
+		String IDNumber = v.getVendingID();
+		
+		VendingMachine vm = new VendingMachine(IDNumber);
+		
+		MainWindow w = new MainWindow();
+		w.catalog.setText(vm.getCatalog().toStringGui());
 	}
 	
 }

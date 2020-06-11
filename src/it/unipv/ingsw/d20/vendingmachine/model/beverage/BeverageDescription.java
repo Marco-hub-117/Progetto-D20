@@ -55,7 +55,7 @@ public class BeverageDescription {
 	}
 	
 	public String toStringGui() {
-		String description = "Codice " + code +": " + name +  " | Prezzo: â‚¬" + String.format("%.2f", price) + "\n\n";
+		String description = "Codice " + code +"		" + name +  "		€" + String.format("%.2f", price) + "\n\n";
 		return description;
 	}
 
