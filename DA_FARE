@@ -6,6 +6,7 @@
 -sistemare wiki git
 -file di istruzioni per avviare il tutto
 -login operatore e relativo interfacciamento DB
+- gestione delle sale, solo nel db o anche in locale? eventualmente aggiornare in db col timer ogni tot minuti
 
 -slide per presentazione
 -organizzare presentazione
