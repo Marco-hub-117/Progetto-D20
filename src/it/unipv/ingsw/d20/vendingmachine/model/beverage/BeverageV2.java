@@ -2,6 +2,8 @@ package it.unipv.ingsw.d20.vendingmachine.model.beverage;
 
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.Font;
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -10,7 +12,7 @@ import javax.swing.JProgressBar;
 public class BeverageV2 extends Thread {
 	
 	private static final int WINDOW_WIDTH = 500, WINDOW_HEIGHT = 175;
-	private static final int BAR_WIDTH = 500, BAR_HEIGHT = 175;
+	private static final int BAR_WIDTH = 400, BAR_HEIGHT = 80;
     
     JFrame window;
     
@@ -30,6 +32,7 @@ public class BeverageV2 extends Thread {
   
         progressBar.setValue(0);
         progressBar.setStringPainted(true);
+        progressBar.setFont(progressBar.getFont().deriveFont(Font.BOLD, 20));
         progressBar.setPreferredSize(new Dimension(BAR_WIDTH, BAR_HEIGHT));
         
         panel.add(new JLabel("                                                                                                                 "));
