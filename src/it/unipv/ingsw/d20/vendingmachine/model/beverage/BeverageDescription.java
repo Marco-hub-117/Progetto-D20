@@ -1,5 +1,6 @@
 package it.unipv.ingsw.d20.vendingmachine.model.beverage;
 
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -49,18 +50,12 @@ public class BeverageDescription {
 		   ingredientList = ingredientList + "Ingredient: " + entry.getKey() + " | Quantity: " + entry.getValue() + "\n";
 	    }
 		
-		/* FOR ALTERNATIVO
-		 * for (Ingredient i : ingredients.keySet()) {
-		 *     recipe = recipe + "Ingredient: " + i.getName() + "| Quantity: " + ingredients.get(i) + "\n";
-		 * }
-		 */
-		
 		description = "Code: " + code +" | Nome: " + name +  " | Price: " + price + " | Ingredients:\n" + ingredientList + "\n";
 		return description;
 	}
+	
 	public String toStringGui() {
-		String description = "";
-		description = "Codice bevanda: " + code +" | Nome: " + name+  " | Prezzo: " + price + "€"+"\n\n";
+		String description = "Codice " + code +": " + name +  " | Prezzo: €" + String.format("%.2f", price) + "\n\n";
 		return description;
 	}
 

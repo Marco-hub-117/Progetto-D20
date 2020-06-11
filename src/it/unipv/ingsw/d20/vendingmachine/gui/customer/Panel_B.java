@@ -1,6 +1,7 @@
 package it.unipv.ingsw.d20.vendingmachine.gui.customer;
 
 import java.awt.BorderLayout;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -25,7 +26,8 @@ public class Panel_B extends JPanel{
 	
 	public Panel_B(){
 		JPanel x=new JPanel();
-		amount=new JTextField();
+		amount=new JTextField("€0,00");
+		amount.setFont(amount.getFont().deriveFont(Font.PLAIN, 18));
 		amount.setEditable(false);
 		BufferedImage myPicture;
 		in=new JButton("Inserisci chiavetta");
@@ -59,7 +61,7 @@ public class Panel_B extends JPanel{
 		return p.getL();
 	}
 	public void setAmount(String text) {
-		amount.setText(text);
+		amount.setText("€" + text);
 	}
 	public String getAmount() {
 		return amount.getText();

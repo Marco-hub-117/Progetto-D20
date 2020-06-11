@@ -35,7 +35,7 @@ public class ListenerB implements ActionListener{
 		}
 		//aggiorno grafica
 		Double p=m.getCurrentAmount();
-		String y= String.format ("%.2f", p);
+		String y= String.format("%.2f", p);
 		gui.setAmount(y);
 	}
 	

@@ -53,8 +53,8 @@ public class BeverageCatalog {
 	}
 	public String toStringGui() {
 		String beverageList = "";		
-		for (Map.Entry<String, BeverageDescription> i : catalog.entrySet()) {
-			beverageList = beverageList  + i.getValue().toStringGui();	
+		for (BeverageDescription bvDesc : catalog.values()) {
+			beverageList = beverageList  + bvDesc.toStringGui();	
 		}
 		return beverageList;
 	}
