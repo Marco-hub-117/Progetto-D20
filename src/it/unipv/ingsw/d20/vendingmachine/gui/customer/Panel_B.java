@@ -29,7 +29,6 @@ public class Panel_B extends JPanel{
 		amount=new JTextField("€0,00");
 		amount.setFont(amount.getFont().deriveFont(Font.PLAIN, 18));
 		amount.setEditable(false);
-		BufferedImage myPicture;
 		in=new JButton("Inserisci chiavetta");
 		out=new JButton("Estrai chiavetta");
 		p=new CoinPanel();
@@ -45,13 +44,6 @@ public class Panel_B extends JPanel{
 		pan.add(l2);
 		pan.add(amount);
 	
-		try {
-			myPicture=ImageIO.read(new File("images/img_tazza.png"));
-			JLabel picLabel = new JLabel(new ImageIcon(myPicture));
-			add(picLabel,BorderLayout.CENTER);
-		} catch (IOException e) {
-			
-		}
 		x.setLayout(new GridLayout(2,1));
 		x.add(in);
 		x.add(out);

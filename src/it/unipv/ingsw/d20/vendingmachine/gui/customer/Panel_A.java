@@ -1,6 +1,7 @@
 package it.unipv.ingsw.d20.vendingmachine.gui.customer;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.util.List;
@@ -9,26 +10,34 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-
 public class Panel_A extends JPanel{
+	
 	private NumberPanel p;
 	private JTextField display;
 	private JTextArea text;
 	private JLabel l2;
+	
 	public Panel_A(){
 		l2=new JLabel("Inserisci il codice della bevanda");
+		
 		display=new JTextField("000");
 		display.setFont(display.getFont().deriveFont(Font.PLAIN, 18));
 		display.setEditable(false);
-		text=new JTextArea("");
+		
+		text=new CustomTextArea();
+		text.setBackground(new Color(1, 1, 1, (float) 0.01));
 		text.setFont(text.getFont().deriveFont(Font.PLAIN, 18));
+		text.setEditable(false);
+		
 		p=new NumberPanel();
+		
 		this.setLayout(new BorderLayout());
+		
 		JPanel pan=new JPanel();
 		pan.setLayout(new GridLayout(2,2));
 		pan.add(l2);
 		pan.add(display);
-		text.setEditable(false);
+		
 		add(pan, BorderLayout.NORTH);
 		add(text, BorderLayout.CENTER);
 		add(p, BorderLayout.SOUTH);
