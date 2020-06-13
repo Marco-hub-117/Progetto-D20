@@ -115,6 +115,7 @@ public class VendingMachine {
 	 */
 	public void startTransaction(BeverageDescription bvDesc) throws InsufficientCreditException { 
 			Sale s = new Sale(bvDesc, credit); //se il credito non è sufficiente per erogare la bevanda lancia eccezione
+			saveSaleIntoLocal();
 			saveCashContainerIntoLocal();
 			
 			tankHandler.scaleTanksLevel(bvDesc);

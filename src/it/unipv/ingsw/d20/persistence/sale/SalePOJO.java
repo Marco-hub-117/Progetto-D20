@@ -13,7 +13,6 @@ import java.util.Date;
 
 public class SalePOJO {
 	
-
 	private String idVending;
 	private String idBeverage;
 	private String date; // Data nel formato yyyy/MM/dd hh:mm:ss
@@ -39,7 +38,7 @@ public class SalePOJO {
 	public SalePOJO(String idVending, String idBeverage, Date date) {
 		this.idVending = idVending;
 		this.idBeverage = idBeverage;
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		this.date = sdf.format(date);	
 	}
 	

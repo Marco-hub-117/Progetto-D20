@@ -1,6 +1,5 @@
 package it.unipv.ingsw.d20.persistence.sale;
 
-
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
