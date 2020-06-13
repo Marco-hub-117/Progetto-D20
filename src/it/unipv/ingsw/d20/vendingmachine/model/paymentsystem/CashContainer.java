@@ -13,7 +13,7 @@ public class CashContainer {
 	
 	private double totalAmount;
 	
-	public CashContainer(Integer[] cashQuantity) {
+	public CashContainer(int[] cashQuantity) {
 		for (int i = 0; i < coinNumber.length; i++) {
 			coinNumber[i] = cashQuantity[i];
 		}
@@ -35,7 +35,6 @@ public class CashContainer {
 	}
 	
 	public void refreshTotalAmount() {
-		//aggiornare file locale per persistenza
 		totalAmount = 0;
 		for (int i = 0; i < coinValue.length; i++) {
 			totalAmount += coinValue[i] * coinNumber[i]; //moltiplica il valore della moneta per il numero di monete di quel tipo
@@ -50,12 +49,12 @@ public class CashContainer {
 		}
 		
 		for (int i = coinValue.length - 1; i >= 0; i--) {
-			while (creditX100 >= (int) coinValue[i] * 100) {
+			while (creditX100 >= (int) (coinValue[i] * 100)) {
 				if (coinNumber[i] == 0) {
 					break;
 				}
 				coinNumber[i]--;
-				creditX100 -= (int) coinValue[i] * 100;
+				creditX100 -= (int) (coinValue[i] * 100);
 			}
 		}
 		
@@ -85,6 +84,10 @@ public class CashContainer {
 	
 	public double getTotalAmount() {
 		return totalAmount;
+	}
+	
+	public int[] getCoinNumber() {
+		return coinNumber;
 	}
 
 }
