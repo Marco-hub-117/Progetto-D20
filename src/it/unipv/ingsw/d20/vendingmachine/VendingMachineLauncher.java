@@ -17,19 +17,19 @@ public class VendingMachineLauncher {
 		PersistenceFacade pf = PersistenceFacade.getInstance();
 		VendingLocalIO v = pf.getVendingLocalIO();
 		
-		String IDNumber = v.getVendingID();
+		String IDNumber = v.getVendingIDFromLocal();
 		
 		try {
 			VendingMachineClient client = new VendingMachineClient();
 		
 			if (IDNumber.equals("")) {
 				IDNumber = client.firstConnectionToServer();
-				v.setVendingID(IDNumber);
+				v.saveVendingIDIntoLocal(IDNumber);
 				System.out.println("IDNumber printed");
 				
 				//Inizializzazione dei file locali (catalogo preso dal db)
 				IBvCatalogDao bv = pf.getBvCatalogDao(); 
-				v.saveCatalogIntoLocal(bv.getBeverageCatalog(Integer.parseInt(v.getVendingType())));				
+				v.saveCatalogIntoLocal(bv.getBeverageCatalog(Integer.parseInt(v.getVendingTypeFromLocal())));				
 			} 
 		} catch (IOException e) {
 			e.printStackTrace();

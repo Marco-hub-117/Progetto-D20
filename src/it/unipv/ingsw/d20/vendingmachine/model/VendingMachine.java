@@ -115,9 +115,12 @@ public class VendingMachine {
 	 */
 	public void startTransaction(BeverageDescription bvDesc) throws InsufficientCreditException { 
 			Sale s = new Sale(bvDesc, credit); //se il credito non è sufficiente per erogare la bevanda lancia eccezione
+			saveCashContainerIntoLocal();
+			
 			tankHandler.scaleTanksLevel(bvDesc);
 			saveTankIntoLocal();
-			BeverageV2 b = new BeverageV2(); b.start();
+			
+			BeverageV2 bev = new BeverageV2(); bev.start();
 			System.out.println("Erogato " + bvDesc.getName() + " correttamente");
 			credit = s.getRest();
 			salesRegister.add(s);
@@ -139,6 +142,7 @@ public class VendingMachine {
 
 	public void withdrawAmount() throws WithdrawAmountException, RefillMachineException{//Vedere se refill o OFF
 		cashContainer.withdrawAmount();
+		saveCashContainerIntoLocal();
 		//lanciare le eccezioni non so come, fate voi lol
 	}
 	

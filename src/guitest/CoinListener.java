@@ -25,7 +25,9 @@ public class CoinListener implements ActionListener{
 	public void actionPerformed(ActionEvent arg0) {
 		if (value == -1) { //se e' -1 restituisce il resto
 			try {
+				double buffCredit = vm.getCurrentAmount();
 				vm.dispenseCash();
+				JOptionPane.showMessageDialog(null, "Dispensed €" + String.format("%.2f", buffCredit));
 			} catch (InsufficientCashForRestException e) {
 				JOptionPane.showMessageDialog(null, e.getMessage());
 			} catch (KeyRestException e) {

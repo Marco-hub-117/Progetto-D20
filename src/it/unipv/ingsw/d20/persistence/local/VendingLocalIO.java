@@ -119,7 +119,7 @@ public class VendingLocalIO {
 		} 
 	}
 	
-	public String getVendingID() {
+	public String getVendingIDFromLocal() {
 		String fileName = Constants.FILEPATH + Constants.VENDINGPATH;
 		
 		String IDNumber = null;
@@ -144,7 +144,7 @@ public class VendingLocalIO {
 		return IDNumber;
 	}
 	
-	public void setVendingID(String IDNumber) {
+	public void saveVendingIDIntoLocal(String IDNumber) {
 		String fileName = Constants.FILEPATH + Constants.VENDINGPATH;
 		
 		PrintWriter out;
@@ -159,7 +159,7 @@ public class VendingLocalIO {
 		}	
 	}
 	
-	public String getVendingType() {
+	public String getVendingTypeFromLocal() {
 		String fileName = Constants.FILEPATH + Constants.VENDINGTYPEPATH;
 		
 		String type = null;
@@ -181,7 +181,7 @@ public class VendingLocalIO {
 	}
 	
 	public CashContainer getCashContainerFromLocal() {
-		Integer[] cashQuantity = new Integer[6];
+		int[] cashQuantity = new int[6];
 		
 		String nomeFile = Constants.FILEPATH + Constants.CASHCONTAINERSTATUSPATH;
 		Scanner inputStream = null;
@@ -203,8 +203,22 @@ public class VendingLocalIO {
 		return new CashContainer(cashQuantity);
 	}
 	
-	public void saveCashContainerIntoLocal(CashContainer cashHandler) {
+	public void saveCashContainerIntoLocal(CashContainer cashContainer) {
+		String nomeFile = Constants.FILEPATH + Constants.CASHCONTAINERSTATUSPATH;
 		
+		try {
+			FileWriter myWriter = new FileWriter(nomeFile);
+			PrintWriter myPrintWriter   = new PrintWriter(myWriter);
+			
+			for (int i : cashContainer.getCoinNumber()) {
+				myPrintWriter.println(i);
+			}
+			
+			myWriter.close();
+		} catch (IOException e) {
+			System.out.println("An error occurred.");
+			e.printStackTrace();
+		} 
 	}
 	
 }

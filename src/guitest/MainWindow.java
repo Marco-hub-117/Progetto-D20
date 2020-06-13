@@ -51,7 +51,7 @@ public class MainWindow extends JFrame {
 		PersistenceFacade pf = PersistenceFacade.getInstance();
 		VendingLocalIO v = pf.getVendingLocalIO();
 		
-		String IDNumber = v.getVendingID();
+		String IDNumber = v.getVendingIDFromLocal();
 		
 		VendingMachine vm = new VendingMachine(IDNumber);
 		

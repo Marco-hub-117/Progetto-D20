@@ -14,7 +14,7 @@ public class UpdateStatus extends TimerTask {
 		PersistenceFacade pf = PersistenceFacade.getInstance();
 		VendingLocalIO v = pf.getVendingLocalIO();
 		
-		String IDNumber = v.getVendingID();
+		String IDNumber = v.getVendingIDFromLocal();
 		
 		try {
 			VendingMachineClient vmc = new VendingMachineClient();
