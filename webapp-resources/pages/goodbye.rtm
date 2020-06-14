@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+	    <title>Project D20 - Logged Out</title>
+	    <meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	     
+	    <link rel="stylesheet" type="text/css" href="statics/forms/css/main.css"> 
+	    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i">
+	</head>
+
+	<body>
+	    <div class="page-wrapper bg-gra-03 p-t-45 p-b-50">
+	        <div class="wrapper wrapper--w790">
+	            <div class="card card-5">
+	         
+	                <div class="card-heading">
+	                    <h2 class="title">Logged Out</h2>
+	                </div>
+	                
+	                <div class="card-body">
+			        	<form method="POST" action="/">
+	                    	<div class="text-center">
+	                        	<h2 class="goodbye">Get Back To Work!</h2>
+	                        	<br></br>
+								<button class="btn btn--blue btn--radius" type="submit">Go To Login</button>
+	                        </div>    
+						</form> 
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	</body>
+
+</html>
