@@ -10,8 +10,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		
 		<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" >
-		<link rel="stylesheet" type="text/css" href="statics/selection.css">		   
-		<link rel="stylesheet" type="text/css" href="statics/tables/css/main.css">
+		<link rel="stylesheet" type="text/css" href="style/selection.css">		   
+		<link rel="stylesheet" type="text/css" href="style/tables/css/main.css">
 	</head>
   
     <body>

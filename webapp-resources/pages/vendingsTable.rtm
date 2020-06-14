@@ -10,13 +10,13 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
 		<link rel="stylesheet" "type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-		<link rel="stylesheet" "type="text/css" href="statics/tables/vendor/bootstrap/css/bootstrap.min.css">
-		<link rel="stylesheet" "type="text/css" href="statics/tables/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-		<link rel="stylesheet" "type="text/css" href="statics/tables/vendor/animate/animate.css">
-		<link rel="stylesheet" "type="text/css" href="statics/tables/vendor/select2/select2.min.css">
-		<link rel="stylesheet" "type="text/css" href="statics/tables/vendor/perfect-scrollbar/perfect-scrollbar.css">
-		<link rel="stylesheet" "type="text/css" href="statics/tables/css/util.css">
-		<link rel="stylesheet" "type="text/css" href="statics/tables/css/main.css">
+		<link rel="stylesheet" "type="text/css" href="style/tables/vendor/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" "type="text/css" href="style/tables/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" "type="text/css" href="style/tables/vendor/animate/animate.css">
+		<link rel="stylesheet" "type="text/css" href="style/tables/vendor/select2/select2.min.css">
+		<link rel="stylesheet" "type="text/css" href="style/tables/vendor/perfect-scrollbar/perfect-scrollbar.css">
+		<link rel="stylesheet" "type="text/css" href="style/tables/css/util.css">
+		<link rel="stylesheet" "type="text/css" href="style/tables/css/main.css">
 	</head>
 	
 	<body>	 

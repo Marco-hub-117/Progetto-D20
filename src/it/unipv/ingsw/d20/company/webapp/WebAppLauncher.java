@@ -1,6 +1,6 @@
 package it.unipv.ingsw.d20.company.webapp;
 
-public class MainSnello {
+public class WebAppLauncher {
     public static void main(String[] argv) throws Exception {
        Operators.add("Admin", "admin", "admin", "Remote Operator");
        System.out.println(Operators.get("admin").getUsername());

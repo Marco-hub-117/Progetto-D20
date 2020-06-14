@@ -38,16 +38,16 @@ public class ApplicationServer {
     
     private void addStaticFileServing(ServletContextHandler handler) {
         ServletHolder holderPwd = new ServletHolder("default", new DefaultServlet());
-        holderPwd.setInitParameter("resourceBase", "./resources/statics");
+        holderPwd.setInitParameter("resourceBase", "./webapp-resources/style");
         holderPwd.setInitParameter("dirAllowed","false");
         holderPwd.setInitParameter("pathInfoOnly","true");
-        handler.addServlet(holderPwd, "/statics/*");
+        handler.addServlet(holderPwd, "/style/*");
     }
     
     private void initTemplateEngine() {
         Map<String, Object> conf = new HashMap<>();
         //conf.put("home.template", "templates");
-        conf.put("home.template", "/templates");
+        conf.put("home.template", "/Users/luigidelpio/Desktop/ingegneria_del_software/esercitazioni/progetto/Progetto-D20/webapp-resources/pages");
         Rythm.init(conf);
     }
 }
