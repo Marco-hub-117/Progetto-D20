@@ -57,7 +57,7 @@
 							</thead>
 							
 							<tbody>
-								@for (it.unipv.ingsw.d20.webapp.Vending it: vending) {
+								@for (it.unipv.ingsw.d20.company.webapp.Vending it: vending) {
 									<tr> 
 										<td>@(it.getId())</td> 
 										<td>@(it.getLocation())</td> 
@@ -84,11 +84,11 @@
 			</div>
 		</div>
 
-		<script src="statics/tables/vendor/jquery/jquery-3.2.1.min.js"></script>
-		<script src="statics/tables/vendor/bootstrap/js/popper.js"></script>
-		<script src="statics/tables/vendor/bootstrap/js/bootstrap.min.js"></script>
-		<script src="statics/tables/vendor/select2/select2.min.js"></script>
-		<script src="statics/tables/js/main.js"></script>
+		<script src="style/tables/vendor/jquery/jquery-3.2.1.min.js"></script>
+		<script src="style/tables/vendor/bootstrap/js/popper.js"></script>
+		<script src="style/tables/vendor/bootstrap/js/bootstrap.min.js"></script>
+		<script src="style/tables/vendor/select2/select2.min.js"></script>
+		<script src="style/tables/js/main.js"></script>
 	</body>
 	
 </html>

@@ -90,9 +90,9 @@
         	</div>
     	</div>
 
-    	<script src="statics/forms/vendor/jquery/jquery.min.js"></script>
-    	<script src="statics/forms/vendor/select2/select2.min.js"></script>
-    	<script src="statics/forms/js/global.js"></script>
+    	<script src="style/forms/vendor/jquery/jquery.min.js"></script>
+    	<script src="style/forms/vendor/select2/select2.min.js"></script>
+    	<script src="style/forms/js/global.js"></script>
 	</body>
 
 </html>
