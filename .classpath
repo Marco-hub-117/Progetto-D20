@@ -74,6 +74,12 @@
 	<classpathentry kind="lib" path="lib-jetty/jetty-webapp-9.4.29.v20200521.jar"/>
 	<classpathentry kind="lib" path="lib-jetty/jetty-xml-9.4.29.v20200521.jar"/>
 	<classpathentry kind="lib" path="lib-jetty/servlet-api-3.1.jar"/>
+	<classpathentry kind="lib" path="lib-rythm/commons-lang3-3.3.2.jar"/>
+	<classpathentry kind="lib" path="lib-rythm/ecj-4.4.jar"/>
+	<classpathentry kind="lib" path="lib-rythm/fastjson-1.1.39.jar"/>
+	<classpathentry kind="lib" path="lib-rythm/mvel2-2.1.5.Final.jar"/>
+	<classpathentry kind="lib" path="lib-rythm/pat-1.5.3.jar"/>
+	<classpathentry kind="lib" path="lib-rythm/rythm-engine-1.1.1-SNAPSHOT.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
