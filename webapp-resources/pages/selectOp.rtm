@@ -1,5 +1,5 @@
 @args() {
-    it.unipv.ingsw.d20.webapp.Operator operator
+    it.unipv.ingsw.d20.company.webapp.Operator operator
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -35,7 +35,7 @@
   			</div>
   			
   			<div class="image text-center">
-				<img class="mb-4 rounded" src="/statics/foto.jpg" alt="" width="792" height="414">
+				<img class="mb-4 rounded" src="/style/foto.jpg" alt="" width="792" height="414">
   			</div>
  
   			<div class="options">

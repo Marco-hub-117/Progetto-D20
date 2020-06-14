@@ -1,5 +1,5 @@
 @args() {
-	it.unipv.ingsw.d20.webapp.Vending vending,
+	it.unipv.ingsw.d20.company.webapp.Vending vending,
 	List<it.unipv.ingsw.d20.webapp.Vending> vendings
 }
 <!DOCTYPE html>

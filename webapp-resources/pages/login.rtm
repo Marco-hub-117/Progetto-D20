@@ -13,7 +13,7 @@
  
 	<body class="text-center">
    	 	<form method="post" action="/try_login" class="form-signin"> 
-   	 		<img class="mb-4" src="/statics/bicch2.png" alt="" width="100" height="74">
+   	 		<img class="mb-4" src="/style/bicch2.png" alt="" width="100" height="74">
   			<h1 class="h3 mb-3 font-weight-normal text-white">Please log in</h1>
   			
   			<label for="username" class="sr-only">Username</label>
