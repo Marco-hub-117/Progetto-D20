@@ -1,0 +1,94 @@
+@args() {
+	List<it.unipv.ingsw.d20.company.webapp.Vending> vending
+}
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<title>Project D20 - Beverages</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<link rel="stylesheet" "type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+		<link rel="stylesheet" "type="text/css" href="style/tables/vendor/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" "type="text/css" href="style/tables/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" "type="text/css" href="style/tables/vendor/animate/animate.css">
+		<link rel="stylesheet" "type="text/css" href="style/tables/vendor/select2/select2.min.css">
+		<link rel="stylesheet" "type="text/css" href="style/tables/vendor/perfect-scrollbar/perfect-scrollbar.css">
+		<link rel="stylesheet" "type="text/css" href="style/tables/css/util.css">
+		<link rel="stylesheet" "type="text/css" href="style/tables/css/main.css">
+	</head>
+	
+	<body>	 
+		<div class="limiter">
+			<div class="container-bar">
+				<div class="d-flex justify-content-between">
+					<div class="text-center">
+						<div class="text">
+							<h3>Beverages</h3>
+						</div>
+  					</div>	
+	
+					<div class="text-right">
+						<div class="btn">
+							<a href="/goodbye" class="btn btn-danger">Log Out</a>
+						</div>
+  					</div>			
+  				</div>					
+  			</div>
+	
+			<div class="container-table100">			
+				<div class="wrap-table100"> 
+					<div class="text-right">
+						<div class="btn">
+							<a href="/add_vending" class="btn btn-lg btn-primary btn-block">Add</a>
+						</div>
+  					</div>		
+  					
+					<div class="table100">
+						<table>
+							<thead>
+								<tr class="table100-head">
+									<th class="column1">ID</th>
+									<th class="column2">Credit</th>
+									<th class="column3">Status</th>
+									<th class="column4">Manage</th>
+								</tr>
+							</thead>
+							
+							<tbody>
+								@for (it.unipv.ingsw.d20.company.webapp.Vending it: vending) {
+									<tr> 
+										<td>@(it.getId())</td> 
+										<td>@(it.getLocation())</td> 
+										<td>@(it.getStatus())</td>
+										<td>										
+										<a href="/settings?id=@(it.getId())" class="btn btn-secondary">Settings</a>									
+										</td> 
+									</tr>
+								}		
+							</tbody>
+							
+						</table>
+						
+						<div class="container">
+							<div class="text-center"> 
+								<div class="btn">
+									<a href="/select" class="btn btn-lg btn-secondary">Done</a>
+								</div>
+							</div>
+						 </div>
+	
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script src="style/tables/vendor/jquery/jquery-3.2.1.min.js"></script>
+		<script src="style/tables/vendor/bootstrap/js/popper.js"></script>
+		<script src="style/tables/vendor/bootstrap/js/bootstrap.min.js"></script>
+		<script src="style/tables/vendor/select2/select2.min.js"></script>
+		<script src="style/tables/js/main.js"></script>
+	</body>
+	
+</html>

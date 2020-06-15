@@ -18,41 +18,61 @@ public class WelcomeServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		if (req.getPathInfo().equals("/add_operator")) {
-			resp.getWriter().write(Rythm.render(folder + "operatorForm.rtm"));
+		if (loggedOperator!=null) {
+			if (req.getPathInfo().equals("/select")) {
+				resp.getWriter().write(Rythm.render(folder + "selectOp.rtm", loggedOperator));
+			}
+			else if (req.getPathInfo().equals("/vendings")) {
+				resp.getWriter().write(Rythm.render(folder + "vendingsTable.rtm", Vendings.all()));
+			}
+			else if (req.getPathInfo().equals("/add_vending")) {
+				resp.getWriter().write(Rythm.render(folder + "vendingForm.rtm"));
+			}
+			else if (req.getPathInfo().equals("/settings")) {
+				Vending vending = Vendings.get(Integer.parseInt((req.getParameter("id"))));
+				resp.getWriter().write(Rythm.render(folder + "vendingSettings.rtm", vending, Vendings.all()));
+			}
+			else if (req.getPathInfo().equals("/report")) {
+				resp.getWriter().write(Rythm.render(folder + "vendingReport.rtm", Operators.all()));
+			}
+			else if (req.getPathInfo().equals("/report_confirmed")) {
+				resp.getWriter().write(Rythm.render(folder + "reportConfirmed.rtm"));
+			}
+			if (req.getPathInfo().equals("/add_operator")) {
+				resp.getWriter().write(Rythm.render(folder + "operatorForm.rtm"));
+			}
+			else if (req.getPathInfo().equals("/operators")) {
+				resp.getWriter().write(Rythm.render(folder + "operatorsTable.rtm", Operators.all()));
+			}
+			else if (req.getPathInfo().equals("/keys")) {
+				//resp.getWriter().write(Rythm.render(folder + "keysTable.rtm", Vendings.all()));
+			}
+			else if (req.getPathInfo().equals("/beverages")) {
+				//resp.getWriter().write(Rythm.render(folder + "beveragesTable.rtm", Vendings.all()));
+			}
+			else if (req.getPathInfo().equals("/goodbye")) {
+				resp.getWriter().write(Rythm.render(folder + "goodbye.rtm"));
+			}
 		}
-		else if (req.getPathInfo().equals("/operators")) {
-			resp.getWriter().write(Rythm.render(folder + "operatorsTable.rtm", Operators.all()));
+		else {	
+			if  (req.getPathInfo().equals("/login")) {
+				resp.getWriter().write(Rythm.render(folder + "login.rtm"));
+			}			
+			else if (req.getPathInfo().equals("/wrong_user")) {
+				resp.getWriter().write(Rythm.render(folder + "loginWrongUser.rtm"));
+			}
+			else if (req.getPathInfo().equals("/wrong_password")) {
+				resp.getWriter().write(Rythm.render(folder + "loginWrongPassword.rtm"));
+			}else {
+				resp.getWriter().write(Rythm.render(folder + "login.rtm"));
+			}
 		}
-		else if (req.getPathInfo().equals("/report_confirmed")) {
-			resp.getWriter().write(Rythm.render(folder + "reportConfirmed.rtm"));
-		}
-		else if (req.getPathInfo().equals("/report")) {
-			resp.getWriter().write(Rythm.render(folder + "vendingReport.rtm", Operators.all()));
-		}
-		else if (req.getPathInfo().equals("/settings")) {
-			Vending vending = Vendings.get(Integer.parseInt((req.getParameter("id"))));
-			resp.getWriter().write(Rythm.render(folder + "vendingSettings.rtm", vending, Vendings.all()));
-		}
-		else if (req.getPathInfo().equals("/add_vending")) {
-			resp.getWriter().write(Rythm.render(folder + "vendingForm.rtm"));
-		}
-		else if (req.getPathInfo().equals("/vendings")) {
-			resp.getWriter().write(Rythm.render(folder + "vendingsTable.rtm", Vendings.all()));
-		}
-		else if (req.getPathInfo().equals("/select")) {
-			resp.getWriter().write(Rythm.render(folder + "selectOp.rtm", loggedOperator));
-		}
-		else if (req.getPathInfo().equals("/goodbye")) {
-			resp.getWriter().write(Rythm.render(folder + "goodbye.rtm"));
-		}
-		else {
-			resp.getWriter().write(Rythm.render(folder + "login.rtm"));
-		}
+		
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
 		if (req.getPathInfo().equals("/save_vending")) {
 			Vendings.add(Integer.parseInt(req.getParameter("id")), req.getParameter("location"), req.getParameter("status"), req.getParameter("type"));
 			resp.sendRedirect("/vendings");
@@ -68,14 +88,15 @@ public class WelcomeServlet extends HttpServlet {
 		else if (req.getPathInfo().equals("/try_login")) {
 		    try {   	
 			Operator operator=Operators.getMy(req.getParameter("username"));
-			loggedOperator=operator.checkLogIn(req.getParameter("username"), req.getParameter("inputPassword"));
-			
+			loggedOperator=operator.checkLogIn(req.getParameter("username"), req.getParameter("inputPassword"));	
 		    }
 		    catch (NullPointerException e) {
 		    	System.out.println("Invalid Operator Username");
+		    	resp.sendRedirect("/wrong_user");
 		    }
 		    catch (InvalidPasswordException ep) {
 		    	System.out.println("Invalid Password");
+		    	resp.sendRedirect("/wrong_password");
 		    }
 		    resp.sendRedirect("/select");
 		}
@@ -83,6 +104,6 @@ public class WelcomeServlet extends HttpServlet {
 			loggedOperator=null;
 			resp.sendRedirect("/goodbye");
 		} 
-		resp.sendRedirect("/");
+		
 	}
 }

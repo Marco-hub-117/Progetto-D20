@@ -56,6 +56,13 @@
                             	<div class="nameBig">@(vending.getStatus())</div> 
                         	</div>
                			</div>
+               			
+               			<div class="form-row">
+                        	<div class="name">Current Amount: </div>
+                        	<div class="value">
+                            	<div class="nameBig">0.0</div> 
+                        	</div>
+               			</div>
            
               			<div class="form-row">                            						 		
 							<div class="table100">
