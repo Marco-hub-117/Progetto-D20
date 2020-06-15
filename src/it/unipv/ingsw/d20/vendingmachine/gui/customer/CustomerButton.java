@@ -1,15 +1,15 @@
-package guitest;
+package it.unipv.ingsw.d20.vendingmachine.gui.customer;
 
 import java.awt.Font;
 
 import javax.swing.JButton;
 
 @SuppressWarnings("serial")
-public class UserButton extends JButton {
+public class CustomerButton extends JButton {
 	
 	private double coinValue;
 	
-	public UserButton(String text, double value) {
+	public CustomerButton(String text, double value) {
 		super(text);
 		coinValue = value;
 		

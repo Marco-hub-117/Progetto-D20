@@ -1,4 +1,4 @@
-package guitest;
+package it.unipv.ingsw.d20.vendingmachine.gui.customer;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -17,7 +17,7 @@ import javax.swing.SwingConstants;
 public class CodePanel extends JPanel {
 	
 	private JLabel display;
-	private UserButton[] codeButtons = new UserButton[12];
+	private CustomerButton[] codeButtons = new CustomerButton[12];
 	
 	public CodePanel() {
 		setLayout(new BorderLayout());	
@@ -56,21 +56,21 @@ public class CodePanel extends JPanel {
 	}
 	
 	private void initializeButtons() {
-		codeButtons[0] = new UserButton("1", 1);
-		codeButtons[1] = new UserButton("2", 2);
-		codeButtons[2] = new UserButton("3", 3);
-		codeButtons[3] = new UserButton("4", 4);
-		codeButtons[4] = new UserButton("5", 5);
-		codeButtons[5] = new UserButton("6", 5);		
-		codeButtons[6] = new UserButton("7", 7);
-		codeButtons[7] = new UserButton("8", 8);
-		codeButtons[8] = new UserButton("9", 9);
-		codeButtons[9] = new UserButton("Canc", -1);
-		codeButtons[10] = new UserButton("0", 0);
-		codeButtons[11] = new UserButton("Ok", 10);		
+		codeButtons[0] = new CustomerButton("1", 1);
+		codeButtons[1] = new CustomerButton("2", 2);
+		codeButtons[2] = new CustomerButton("3", 3);
+		codeButtons[3] = new CustomerButton("4", 4);
+		codeButtons[4] = new CustomerButton("5", 5);
+		codeButtons[5] = new CustomerButton("6", 5);		
+		codeButtons[6] = new CustomerButton("7", 7);
+		codeButtons[7] = new CustomerButton("8", 8);
+		codeButtons[8] = new CustomerButton("9", 9);
+		codeButtons[9] = new CustomerButton("Canc", -1);
+		codeButtons[10] = new CustomerButton("0", 0);
+		codeButtons[11] = new CustomerButton("Ok", 10);		
 	}
 	
-	public UserButton[] getCodeButtons() {
+	public CustomerButton[] getCodeButtons() {
 		return codeButtons;
 	}
 

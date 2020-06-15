@@ -1,4 +1,4 @@
-package guitest;
+package it.unipv.ingsw.d20.vendingmachine.gui.customer;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -37,11 +37,11 @@ public class KeyboardPanel extends JPanel {
 		codePanel.setDisplay(creditToString);
 	}
 	
-	public UserButton[] getCodeButtons() {
+	public CustomerButton[] getCodeButtons() {
 		return codePanel.getCodeButtons();
 	}
 
-	public UserButton[] getCashButtons() {
+	public CustomerButton[] getCashButtons() {
 		return creditPanel.getCashButtons();
 	}
 

@@ -1,20 +1,15 @@
-package it.unipv.ingsw.d20.vendingmachine.gui.customer;
+package it.unipv.ingsw.d20.vendingmachine.gui.operator;
 
 import javax.swing.JButton;
 
-public class Pulsante extends JButton {
+@SuppressWarnings("serial")
+public class OperatorButton extends JButton {
+
 	private int pos;
 	private double value;
 	private String idTank;
 	
-	public Pulsante(double value, int pos, String string) {
-		super(string);
-		super.setSize(10, 60);
-		this.value=value;
-		this.pos=pos; 
-	}
-	
-	public Pulsante(int pos, String string, String idTank) {
+	public OperatorButton(int pos, String string, String idTank) {
 		super(string);
 		super.setSize(10, 60);
 		this.pos=pos; 
@@ -32,8 +27,9 @@ public class Pulsante extends JButton {
 	public String getIdTank() {
 		return idTank;
 	}
+	
 	public void setIdTank(String idTank) {
 		this.idTank = idTank;
 	}
-
+	
 }

@@ -5,10 +5,9 @@ import java.awt.BorderLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
-import it.unipv.ingsw.d20.vendingmachine.gui.customer.Pulsante;
-
+@SuppressWarnings("serial")
 public class OperatorGui extends JFrame {
-		private Pannello p;
+		private OperatorPanel p;
 		private JButton customer;
 		
 		public OperatorGui(int numeroTank) {
@@ -16,18 +15,21 @@ public class OperatorGui extends JFrame {
 			setTitle("Interfaccia operatore");
 			setLocationRelativeTo(null);
 			customer=new JButton("esci");
-			p=new Pannello(numeroTank);
+			p=new OperatorPanel(numeroTank);
 			setLayout(new BorderLayout());
 			add(p, BorderLayout.CENTER);
 			
 			add(customer, BorderLayout.SOUTH);
 		}
-		public Pulsante[] getPulsanti() {
+		
+		public OperatorButton[] getPulsanti() {
 			return p.getPulsanti();
 		}
+		
 		public void setElements(String nome,String livello, int pos) {
 			p.setElements(nome, livello, pos);
 		}
+		
 		public JButton getCustomer() {
 			return customer;
 		}

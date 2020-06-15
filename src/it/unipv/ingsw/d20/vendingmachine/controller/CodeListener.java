@@ -1,10 +1,11 @@
-package guitest;
+package it.unipv.ingsw.d20.vendingmachine.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
+import it.unipv.ingsw.d20.vendingmachine.gui.customer.CustomerGui;
 import it.unipv.ingsw.d20.vendingmachine.model.VendingMachine;
 import it.unipv.ingsw.d20.vendingmachine.model.exceptions.InsufficientIngredientsException;
 import it.unipv.ingsw.d20.vendingmachine.model.exceptions.NonExistentCodeException;
@@ -14,9 +15,9 @@ public class CodeListener implements ActionListener{
 	
 	private double value;	
 	private VendingMachine vm;
-	private MainWindow gui;
+	private CustomerGui gui;
 	
-	public CodeListener(double value, VendingMachine vm, MainWindow userGui) {
+	public CodeListener(double value, VendingMachine vm, CustomerGui userGui) {
 		this.value = value;
 		this.vm = vm;
 		this.gui = userGui;

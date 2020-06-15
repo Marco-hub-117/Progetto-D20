@@ -1,65 +1,95 @@
 package it.unipv.ingsw.d20.vendingmachine.gui.customer;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
+import java.awt.Container;
 import java.awt.GridLayout;
-import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
-public class CustomerGui extends JFrame{
-	private Panel_A pa;
-	private Panel_B pb;
-	private JButton operator;
+import it.unipv.ingsw.d20.util.persistence.PersistenceFacade;
+import it.unipv.ingsw.d20.util.persistence.local.VendingLocalIO;
+import it.unipv.ingsw.d20.vendingmachine.controller.Controller;
+import it.unipv.ingsw.d20.vendingmachine.model.VendingMachine;
+
+@SuppressWarnings("serial")
+public class CustomerGui extends JFrame {
+	
+	private static int WIDTH = 1100, HEIGHT = 675;
+	
+	private CatalogPanel catalogPanel;
+	private KeyboardPanel keyboardPanel;
 	
 	public CustomerGui() {
-		setSize(750,500);
-		setTitle("Interfaccia cliente");
+		setSize(WIDTH, HEIGHT);
+		setResizable(false);
+		
+		Container container = getContentPane();
+		JPanel mainPanel = new JPanel();
+		container.add(mainPanel);
+		mainPanel.setLayout(new GridLayout(1, 2));
+		
+		catalogPanel = new CatalogPanel();
+		keyboardPanel = new KeyboardPanel();
+		
+		mainPanel.add(catalogPanel); mainPanel.add(keyboardPanel);
+		
 		setLocationRelativeTo(null);
-		setLayout(new BorderLayout());
-		pa=new Panel_A();
-		pb=new Panel_B();
-		operator=new JButton("operator");
-		JPanel pan=new JPanel();
-		pan.setLayout(new GridLayout(1,2));
-		pan.add(pa);
-		pan.add(pb);
-		add(pan, BorderLayout.CENTER);
-		add(operator, BorderLayout.SOUTH);
+		setVisible(true);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
-	public List<Pulsante> getLA() {
-		return pa.getL();
+
+	public static void main(String[] args) {
+		try {
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException
+				| UnsupportedLookAndFeelException e1) {
+			e1.printStackTrace();
+		}
+		
+		PersistenceFacade pf = PersistenceFacade.getInstance();
+		VendingLocalIO v = pf.getVendingLocalIO();
+		
+		String IDNumber = v.getVendingIDFromLocal();
+		
+		VendingMachine vm = new VendingMachine(IDNumber);
+		CustomerGui gui= new CustomerGui();
+		
+		new Controller(vm,gui);
 	}
-	public List<Pulsante> getLB() {
-		return pb.getL();
+	
+	public void setCatalog(String catalog) {
+		catalogPanel.setCatalog(catalog);
 	}
-	public void setDisplay(String text) {
-		pa.setDisplay(text);
-	}
-	public void setAmount(String text) {
-		pb.setAmount(text);
-	}
+	
 	public String getDisplay() {
-		return pa.getDisplay();
+		return keyboardPanel.getDisplay();
 	}
-	public String getAmount() {
-		return pb.getAmount();
+	
+	public void setDisplay(String creditToString) {
+		keyboardPanel.setDisplay(creditToString);
 	}
-	public JButton getOperator() {
-		return operator;
+	
+	public CustomerButton[] getCodeButtons() {
+		return keyboardPanel.getCodeButtons();
 	}
-	public String getText() {
-		return pa.getText();
+
+	public CustomerButton[] getCashButtons() {
+		return keyboardPanel.getCashButtons();
 	}
-	public void setText(String s) {
-		pa.setText(s);
+
+	public JButton getInsertKeyButton() {
+		return keyboardPanel.getInsertKeyButton();
 	}
-	public JButton getIn() {
-		return pb.getIn();
+
+	public JButton getEjectKeyButton() {
+		return keyboardPanel.getEjectKeyButton();
 	}
-	public JButton getOut() {
-		return pb.getOut();
-	}	
+
+	public JButton getOperatorButton() {
+		return catalogPanel.getOperatorButton();
+	}
+	
 }

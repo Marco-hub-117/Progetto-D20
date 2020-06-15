@@ -1,15 +1,9 @@
 package it.unipv.ingsw.d20.util.persistence.beveragecatalog;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.util.ArrayList;
-import java.util.Scanner;
-
 import it.unipv.ingsw.d20.util.persistence.RdbOperations;
 import it.unipv.ingsw.d20.util.persistence.beveragedescription.BeverageDescriptionPOJO;
 import it.unipv.ingsw.d20.util.persistence.ingredientrecipe.IngredientRecipePOJO;
-import it.unipv.ingsw.d20.vendingmachine.model.Constants;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.BeverageCatalog;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.BeverageDescription;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.Ingredients;

@@ -5,26 +5,24 @@ import java.awt.event.ActionListener;
 import java.util.HashMap;
 import java.util.Map;
 
-import it.unipv.ingsw.d20.vendingmachine.gui.customer.Pulsante;
+import it.unipv.ingsw.d20.vendingmachine.gui.operator.OperatorButton;
 import it.unipv.ingsw.d20.vendingmachine.gui.operator.OperatorGui;
 import it.unipv.ingsw.d20.vendingmachine.model.VendingMachine;
-import it.unipv.ingsw.d20.vendingmachine.model.VendingMachineStatus;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.Ingredients;
-import it.unipv.ingsw.d20.vendingmachine.model.exceptions.RefillMachineException;
 
-public class ListenerTank implements ActionListener{
+public class TankListener implements ActionListener {
 	private VendingMachine m;
 	private OperatorGui gui;
 	private int pos;
 	
-	public ListenerTank(int pos, VendingMachine m, OperatorGui gui) {
+	public TankListener(int pos, VendingMachine m, OperatorGui gui) {
 		this.pos=pos;
 		this.m=m;
 		this.gui=gui;
 	}
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		Pulsante p=gui.getPulsanti()[pos];
+		OperatorButton p = gui.getPulsanti()[pos];
 		m.setTankLevel(p.getIdTank()); 
 		
 		//aggiorno la grafica

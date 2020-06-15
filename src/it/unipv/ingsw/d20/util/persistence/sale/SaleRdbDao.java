@@ -1,9 +1,6 @@
 package it.unipv.ingsw.d20.util.persistence.sale;
 
-import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Date;
-
 import it.unipv.ingsw.d20.util.persistence.RdbOperations;
 
 public class SaleRdbDao implements ISaleDao{

@@ -13,7 +13,7 @@ public class CustomTextArea extends JTextArea {
 	private Image javaImg;
 	
 	public CustomTextArea() {
-		super("");
+		super(30, 35);
 		
 		try {
 			javaImg = ImageIO.read(new File("images/java.png"));

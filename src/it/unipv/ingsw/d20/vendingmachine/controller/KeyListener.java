@@ -3,39 +3,43 @@ package it.unipv.ingsw.d20.vendingmachine.controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
+
 import it.unipv.ingsw.d20.vendingmachine.gui.customer.CustomerGui;
 import it.unipv.ingsw.d20.vendingmachine.model.VendingMachine;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.UnrecognisedKeyException;
 
-public class ListenerKey implements ActionListener {
-	private VendingMachine m;
+public class KeyListener implements ActionListener {
+	
+	private VendingMachine vm;
 	private CustomerGui gui;
 	private boolean value;
-	public ListenerKey (boolean value, VendingMachine m, CustomerGui gui) {
-		this.m=m;
-		this.gui=gui;
-		this.value=value;
+	
+	public KeyListener(boolean value, VendingMachine vm, CustomerGui gui) {
+		this.vm = vm;
+		this.gui = gui;
+		this.value = value;
 	}
+	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		if (value) {
 			try {
-				m.insertKey();
-				gui.getIn().setEnabled(false);
-				gui.getOut().setEnabled(true);
-				
+				vm.insertKey();
+				gui.getInsertKeyButton().setEnabled(false);
+				gui.getEjectKeyButton().setEnabled(true);
+				gui.setDisplay("PAXXO");
 			} catch (UnrecognisedKeyException e) {
 				JOptionPane.showMessageDialog(null, e.getMessage());
 			}
+		} else {
+			vm.ejectKey();
+			gui.getInsertKeyButton().setEnabled(true);
+			gui.getEjectKeyButton().setEnabled(false);
 		}
-		if (!value) {
-			m.ejectKey();
-			gui.getIn().setEnabled(true);
-			gui.getOut().setEnabled(false);
-		}
-		Double p=m.getCurrentAmount();
-		String y= String.format ("%.2f", p);
-		gui.setAmount(y);
+		
+		Double credit = vm.getCurrentAmount();
+		String creditToString = String.format("%.2f", credit);
+		gui.setDisplay("E" + creditToString);
 	}
 
 }

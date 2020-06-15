@@ -5,22 +5,21 @@ import java.awt.GridLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import it.unipv.ingsw.d20.vendingmachine.gui.customer.Pulsante;
-
-public class Pannello extends JPanel {
+@SuppressWarnings("serial")
+public class OperatorPanel extends JPanel {
 	private JLabel[] nome_serbatoio;
 	private JLabel[] livello_serbatoio;
-	private Pulsante[] riempimento_serbatoio;
+	private OperatorButton[] riempimento_serbatoio;
 	
-	public Pannello(int numeroTank) {
+	public OperatorPanel(int numeroTank) {
 		nome_serbatoio=new JLabel [numeroTank];
 		livello_serbatoio=new JLabel [numeroTank];
-		riempimento_serbatoio=new Pulsante [numeroTank];
+		riempimento_serbatoio=new OperatorButton[numeroTank];
 		this.setLayout(new GridLayout(numeroTank,3));
 		for(int i=0; i<numeroTank;i++) {
 			nome_serbatoio[i]=new JLabel(""+i);
 			livello_serbatoio[i]=new JLabel(""+i);
-			riempimento_serbatoio[i]=new Pulsante(i,"Riempi", "");
+			riempimento_serbatoio[i]=new OperatorButton(i,"Riempi", "");
 			this.add(nome_serbatoio[i]);
 			this.add(livello_serbatoio[i]);
 			this.add(riempimento_serbatoio[i]);
@@ -32,7 +31,7 @@ public class Pannello extends JPanel {
 		riempimento_serbatoio[pos].setIdTank(nome);
 	}
 	
-	public Pulsante[] getPulsanti() {
+	public OperatorButton[] getPulsanti() {
 		return riempimento_serbatoio;
 	}
 }

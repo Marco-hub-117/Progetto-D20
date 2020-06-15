@@ -8,11 +8,11 @@ import it.unipv.ingsw.d20.util.persistence.vending.IVendingDao;
 import it.unipv.ingsw.d20.vendingmachine.model.VendingMachine;
 import it.unipv.ingsw.d20.vendingmachine.model.VendingMachineStatus;
 
-public class WindowClosingOperations extends WindowAdapter {
+public class WindowClosingListener extends WindowAdapter {
 	
 	private VendingMachine m;
 	
-	public WindowClosingOperations(VendingMachine m) {
+	public WindowClosingListener(VendingMachine m) {
 		this.m = m;
 	}
 	

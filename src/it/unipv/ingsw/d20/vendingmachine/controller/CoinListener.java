@@ -1,10 +1,11 @@
-package guitest;
+package it.unipv.ingsw.d20.vendingmachine.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
+import it.unipv.ingsw.d20.vendingmachine.gui.customer.CustomerGui;
 import it.unipv.ingsw.d20.vendingmachine.model.VendingMachine;
 import it.unipv.ingsw.d20.vendingmachine.model.exceptions.KeyRestException;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.InsufficientCashForRestException;
@@ -13,9 +14,9 @@ public class CoinListener implements ActionListener{
 	
 	private double value;	
 	private VendingMachine vm;
-	private MainWindow gui;
+	private CustomerGui gui;
 	
-	public CoinListener(double value, VendingMachine vm, MainWindow userGui) {
+	public CoinListener(double value, VendingMachine vm, CustomerGui userGui) {
 		this.value = value;
 		this.vm = vm;
 		this.gui = userGui;
@@ -27,7 +28,7 @@ public class CoinListener implements ActionListener{
 			try {
 				double buffCredit = vm.getCurrentAmount();
 				vm.dispenseCash();
-				JOptionPane.showMessageDialog(null, "Dispensed €" + String.format("%.2f", buffCredit));
+				JOptionPane.showMessageDialog(null, "Dispensed ï¿½" + String.format("%.2f", buffCredit));
 			} catch (InsufficientCashForRestException e) {
 				JOptionPane.showMessageDialog(null, e.getMessage());
 			} catch (KeyRestException e) {
