@@ -3,8 +3,8 @@ package it.unipv.ingsw.d20.vendingmachine.controller;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-import it.unipv.ingsw.d20.persistence.PersistenceFacade;
-import it.unipv.ingsw.d20.persistence.vending.IVendingDao;
+import it.unipv.ingsw.d20.util.persistence.PersistenceFacade;
+import it.unipv.ingsw.d20.util.persistence.vending.IVendingDao;
 import it.unipv.ingsw.d20.vendingmachine.model.VendingMachine;
 import it.unipv.ingsw.d20.vendingmachine.model.VendingMachineStatus;
 

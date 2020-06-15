@@ -1,0 +1,13 @@
+package it.unipv.ingsw.d20.util.persistence.ingredientrecipe;
+
+import java.util.ArrayList;
+
+public interface IingredientRecipeDao {
+	
+	public void addIngredientRecipe(ArrayList<IngredientRecipePOJO> ingr);
+	
+	public void addIngredientRecipe(IngredientRecipePOJO ingr);
+	
+	public ArrayList<IngredientRecipePOJO> getAllIngredientRecipeByIdRecipe(String idRecipe);
+
+}

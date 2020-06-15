@@ -10,9 +10,9 @@ import java.util.Timer;
 import java.util.concurrent.TimeUnit;
 
 import it.unipv.ingsw.d20.company.net.CompanyServer;
-import it.unipv.ingsw.d20.persistence.PersistenceFacade;
-import it.unipv.ingsw.d20.persistence.vending.IVendingDao;
-import it.unipv.ingsw.d20.persistence.vending.VendingPOJO;
+import it.unipv.ingsw.d20.util.persistence.PersistenceFacade;
+import it.unipv.ingsw.d20.util.persistence.vending.IVendingDao;
+import it.unipv.ingsw.d20.util.persistence.vending.VendingPOJO;
 import it.unipv.ingsw.d20.vendingmachine.model.VendingMachine;
 import it.unipv.ingsw.d20.vendingmachine.model.exceptions.AddingMachineException;
 import it.unipv.ingsw.d20.vendingmachine.model.exceptions.AddingOperatorException;

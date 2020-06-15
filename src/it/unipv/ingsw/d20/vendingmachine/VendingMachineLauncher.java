@@ -5,9 +5,9 @@ import java.util.Date;
 import java.util.Timer;
 import java.util.concurrent.TimeUnit;
 
-import it.unipv.ingsw.d20.persistence.PersistenceFacade;
-import it.unipv.ingsw.d20.persistence.beveragecatalog.IBvCatalogDao;
-import it.unipv.ingsw.d20.persistence.local.VendingLocalIO;
+import it.unipv.ingsw.d20.util.persistence.PersistenceFacade;
+import it.unipv.ingsw.d20.util.persistence.beveragecatalog.IBvCatalogDao;
+import it.unipv.ingsw.d20.util.persistence.local.VendingLocalIO;
 import it.unipv.ingsw.d20.vendingmachine.model.UpdateStatus;
 import it.unipv.ingsw.d20.vendingmachine.model.net.VendingMachineClient;
 

@@ -4,8 +4,8 @@ import java.util.Date;
 import java.util.Map.Entry;
 import java.util.concurrent.TimeUnit;
 
-import it.unipv.ingsw.d20.persistence.PersistenceFacade;
-import it.unipv.ingsw.d20.persistence.vending.IVendingDao;
+import it.unipv.ingsw.d20.util.persistence.PersistenceFacade;
+import it.unipv.ingsw.d20.util.persistence.vending.IVendingDao;
 import it.unipv.ingsw.d20.vendingmachine.model.VendingMachineStatus;
 
 import java.util.TimerTask;
