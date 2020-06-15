@@ -14,9 +14,7 @@ import it.unipv.ingsw.d20.util.persistence.PersistenceFacade;
 import it.unipv.ingsw.d20.util.persistence.vending.IVendingDao;
 import it.unipv.ingsw.d20.util.persistence.vending.VendingPOJO;
 import it.unipv.ingsw.d20.vendingmachine.model.VendingMachine;
-import it.unipv.ingsw.d20.vendingmachine.model.exceptions.AddingMachineException;
 import it.unipv.ingsw.d20.vendingmachine.model.exceptions.AddingOperatorException;
-import it.unipv.ingsw.d20.vendingmachine.model.exceptions.VendingMachineAbsentException;
 
 public class Company {
 	

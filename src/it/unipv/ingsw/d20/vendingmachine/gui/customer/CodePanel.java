@@ -27,12 +27,11 @@ public class CodePanel extends JPanel {
 		display.setBackground(Color.BLACK); display.setForeground(Color.WHITE); display.setHorizontalAlignment(SwingConstants.RIGHT);
 		displayPanel.add(display, BorderLayout.CENTER);
 		
-		String filename = "images/DS-DIGIB.TTF";
+		String filename = "res/font/DS-DIGIB.TTF";
 		Font font = null;
 		try {
 			font = Font.createFont(Font.TRUETYPE_FONT, new File(filename));
 		} catch (FontFormatException | IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

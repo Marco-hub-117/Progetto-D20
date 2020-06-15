@@ -1,6 +1,5 @@
 package it.unipv.ingsw.d20.vendingmachine.model.beverage;
 
-import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,15 +20,19 @@ public class BeverageDescription {
 	public void addIngredient(Ingredients i) {//aggiunge un ingrediente e imposta la sua quantita a 0.0
 		ingredients.put(i, 0.0);
 	}
+	
 	public void addIngredient(Ingredients i, double q) {//aggiunge un ingrediente specificando la quantita
 		ingredients.put(i, q);
 	}
+	
 	public void changeQuantity(Ingredients i, double q){ //cambia la quantità di un ingrediente già presente
 		ingredients.replace(i, q); //cambia la quantità solo se la chiave esiste
 	}
+	
 	public String getName() {
 		return name;
 	}
+	
 	public String getCode() {
 		return code;
 	}
@@ -55,7 +58,7 @@ public class BeverageDescription {
 	}
 	
 	public String toStringGui() {
-		String description = "Codice " + code +"		" + name +  "		�" + String.format("%.2f", price) + "\n\n";
+		String description = "Codice " + code +"		" + name +  "		�" + String.format("%.2f", price) + "\n\n";
 		return description;
 	}
 

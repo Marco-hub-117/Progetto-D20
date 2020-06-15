@@ -5,9 +5,8 @@ import it.unipv.ingsw.d20.util.persistence.PersistenceFacade;
 import it.unipv.ingsw.d20.util.persistence.local.VendingLocalIO;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.BeverageCatalog;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.BeverageDescription;
-import it.unipv.ingsw.d20.vendingmachine.model.beverage.BeverageV2;
+import it.unipv.ingsw.d20.vendingmachine.model.beverage.Beverage;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.Ingredients;
-import it.unipv.ingsw.d20.vendingmachine.model.beverage.Tank;
 import it.unipv.ingsw.d20.vendingmachine.model.exceptions.InsufficientIngredientsException;
 import it.unipv.ingsw.d20.vendingmachine.model.exceptions.KeyRestException;
 import it.unipv.ingsw.d20.vendingmachine.model.exceptions.NonExistentCodeException;
@@ -20,6 +19,8 @@ import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.Sale;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.InsufficientCashForRestException;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.InsufficientCreditException;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.UnrecognisedKeyException;
+import it.unipv.ingsw.d20.vendingmachine.model.tanks.Tank;
+import it.unipv.ingsw.d20.vendingmachine.model.tanks.TankHandler;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -121,7 +122,7 @@ public class VendingMachine {
 			tankHandler.scaleTanksLevel(bvDesc);
 			saveTankIntoLocal();
 			
-			BeverageV2 bev = new BeverageV2(); bev.start();
+			Beverage bev = new Beverage(); bev.start();
 			System.out.println("Erogato " + bvDesc.getName() + " correttamente");
 			credit = s.getRest();
 			salesRegister.add(s);
@@ -145,15 +146,6 @@ public class VendingMachine {
 		cashContainer.withdrawAmount();
 		saveCashContainerIntoLocal();
 		//lanciare le eccezioni non so come, fate voi lol
-	}
-	
-	/**
-	 * Questo metodo crea una nuova istanza della classe VendingMachineInfo e la restituisce.
-	 * @return VendingMachineInfo contiene al suo interno le informazioni di questa VendingMachine.
-	 */
-
-	public VendingMachineInfo sendInfo() {				
-		return new VendingMachineInfo(id, status, cashContainer.getTotalAmount(), tankHandler.getTankList());	
 	}
 
 	public void modifyTankSettings(String id, Double temp) throws RefillMachineException, TankAbsentException{ //serve per modificare la temperatura del tank

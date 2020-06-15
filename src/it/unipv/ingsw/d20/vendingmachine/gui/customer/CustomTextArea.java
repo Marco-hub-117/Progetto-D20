@@ -8,6 +8,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JTextArea;
 
+@SuppressWarnings("serial")
 public class CustomTextArea extends JTextArea {
 	
 	private Image javaImg;
@@ -16,7 +17,7 @@ public class CustomTextArea extends JTextArea {
 		super(30, 35);
 		
 		try {
-			javaImg = ImageIO.read(new File("images/java.png"));
+			javaImg = ImageIO.read(new File("res/img/java.png"));
 		} catch(IOException e) {
 			e.printStackTrace();
 		}

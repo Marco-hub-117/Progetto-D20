@@ -3,6 +3,13 @@ package it.unipv.ingsw.d20.vendingmachine.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import it.unipv.ingsw.d20.vendingmachine.controller.listeners.CodeListener;
+import it.unipv.ingsw.d20.vendingmachine.controller.listeners.CoinListener;
+import it.unipv.ingsw.d20.vendingmachine.controller.listeners.KeyListener;
+import it.unipv.ingsw.d20.vendingmachine.controller.listeners.TankListener;
+import it.unipv.ingsw.d20.vendingmachine.controller.listeners.ToCustomerListener;
+import it.unipv.ingsw.d20.vendingmachine.controller.listeners.ToOperatorListener;
+import it.unipv.ingsw.d20.vendingmachine.controller.listeners.WindowClosingListener;
 import it.unipv.ingsw.d20.vendingmachine.gui.customer.CustomerButton;
 import it.unipv.ingsw.d20.vendingmachine.gui.customer.CustomerGui;
 import it.unipv.ingsw.d20.vendingmachine.gui.operator.OperatorButton;

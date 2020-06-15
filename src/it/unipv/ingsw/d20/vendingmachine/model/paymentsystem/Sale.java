@@ -4,13 +4,9 @@ import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import it.unipv.ingsw.d20.vendingmachine.model.beverage.Beverage;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.BeverageDescription;
-import it.unipv.ingsw.d20.vendingmachine.model.beverage.exceptions.DeliveryFailedException;
-import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.InsufficientCreditException;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.*;
 
-@SuppressWarnings("unused")
 public class Sale {
 	
 	private Date date;
@@ -24,16 +20,6 @@ public class Sale {
 		price = beverageDescription.getPrice();
 		
 		rest = checkCredit(credit, price);
-			
-		/*try {
-			Beverage beverage = new Beverage(beverageDescription);
-		} catch (DeliveryFailedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InterruptedException e) { //eccezione per il l'interruzione dello sleep della classe Beverage
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} //checks whether the beverage was correctly delivered or not (InsufficientIngredientsException)	*/
 	}
 	
 	public double checkCredit(double credit, double price) throws InsufficientCreditException {
