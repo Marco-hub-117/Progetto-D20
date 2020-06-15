@@ -49,7 +49,7 @@ public class CodeListener implements ActionListener{
 			StringBuilder sbDisp = new StringBuilder(gui.getDisplay());
 			sbDisp.deleteCharAt(sbDisp.length() - 1);
 			
-			if (sbDisp.toString().isBlank()) {
+			if (sbDisp.toString().isEmpty()) {
 				Double credit = vm.getCurrentAmount();
 				String creditToString = String.format("%.2f", credit);
 				gui.setDisplay("E" + creditToString);
