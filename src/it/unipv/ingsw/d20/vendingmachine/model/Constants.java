@@ -8,7 +8,7 @@ public class Constants {
 
 	public static final double IMPORTOMIN = 10;
 	
-	public static final String FILEPATH = "res/";
+	public static final String FILEPATH = "res/local/";
 	
 	
 	public static final String BVCATPATH = "beverageCatalog";

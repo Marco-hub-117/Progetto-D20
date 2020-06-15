@@ -9,42 +9,45 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.rythmengine.Rythm;
 
+@SuppressWarnings("serial")
 public class WelcomeServlet extends HttpServlet {
+	
+	private static String folder = "res/webapp/pages/";
 	
 	private Operator loggedOperator;
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		if (req.getPathInfo().equals("/add_operator")) {
-			resp.getWriter().write(Rythm.render("operatorForm.rtm"));
+			resp.getWriter().write(Rythm.render(folder + "operatorForm.rtm"));
 		}
 		else if (req.getPathInfo().equals("/operators")) {
-			resp.getWriter().write(Rythm.render("operatorsTable.rtm", Operators.all()));
+			resp.getWriter().write(Rythm.render(folder + "operatorsTable.rtm", Operators.all()));
 		}
 		else if (req.getPathInfo().equals("/report_confirmed")) {
-			resp.getWriter().write(Rythm.render("reportConfirmed.rtm"));
+			resp.getWriter().write(Rythm.render(folder + "reportConfirmed.rtm"));
 		}
 		else if (req.getPathInfo().equals("/report")) {
-			resp.getWriter().write(Rythm.render("vendingReport.rtm", Operators.all()));
+			resp.getWriter().write(Rythm.render(folder + "vendingReport.rtm", Operators.all()));
 		}
 		else if (req.getPathInfo().equals("/settings")) {
 			Vending vending = Vendings.get(Integer.parseInt((req.getParameter("id"))));
-			resp.getWriter().write(Rythm.render("vendingSettings.rtm", vending, Vendings.all()));
+			resp.getWriter().write(Rythm.render(folder + "vendingSettings.rtm", vending, Vendings.all()));
 		}
 		else if (req.getPathInfo().equals("/add_vending")) {
-			resp.getWriter().write(Rythm.render("vendingForm.rtm"));
+			resp.getWriter().write(Rythm.render(folder + "vendingForm.rtm"));
 		}
 		else if (req.getPathInfo().equals("/vendings")) {
-			resp.getWriter().write(Rythm.render("vendingsTable.rtm", Vendings.all()));
+			resp.getWriter().write(Rythm.render(folder + "vendingsTable.rtm", Vendings.all()));
 		}
 		else if (req.getPathInfo().equals("/select")) {
-			resp.getWriter().write(Rythm.render("selectOp.rtm", loggedOperator));
+			resp.getWriter().write(Rythm.render(folder + "selectOp.rtm", loggedOperator));
 		}
 		else if (req.getPathInfo().equals("/goodbye")) {
-			resp.getWriter().write(Rythm.render("goodbye.rtm"));
+			resp.getWriter().write(Rythm.render(folder + "goodbye.rtm"));
 		}
 		else {
-			resp.getWriter().write(Rythm.render("login.rtm"));
+			resp.getWriter().write(Rythm.render(folder + "login.rtm"));
 		}
 	}
 
