@@ -7,6 +7,8 @@
 -file di istruzioni per avviare il tutto
 -login operatore e relativo interfacciamento DB
 - gestione delle sale, solo nel db o anche in locale? eventualmente aggiornare in db col timer ogni tot minuti
+-controllare qualità del codice (struttura classi/metodi, nomi, pattern)
+-animazione grafica o tentativo app android
 
 -slide per presentazione
 -organizzare presentazione
