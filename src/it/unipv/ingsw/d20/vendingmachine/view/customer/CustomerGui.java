@@ -1,4 +1,4 @@
-package it.unipv.ingsw.d20.vendingmachine.gui.customer;
+package it.unipv.ingsw.d20.vendingmachine.view.customer;
 
 import java.awt.Container;
 import java.awt.GridLayout;
@@ -39,25 +39,6 @@ public class CustomerGui extends JFrame {
 		setLocationRelativeTo(null);
 		setVisible(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-	}
-
-	public static void main(String[] args) {
-		try {
-			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException
-				| UnsupportedLookAndFeelException e1) {
-			e1.printStackTrace();
-		}
-		
-		PersistenceFacade pf = PersistenceFacade.getInstance();
-		VendingLocalIO v = pf.getVendingLocalIO();
-		
-		String IDNumber = v.getVendingIDFromLocal();
-		
-		VendingMachine vm = new VendingMachine(IDNumber);
-		CustomerGui gui= new CustomerGui();
-		
-		new Controller(vm,gui);
 	}
 	
 	public void setCatalog(String catalog) {

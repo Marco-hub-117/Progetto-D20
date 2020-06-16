@@ -5,11 +5,11 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
-import it.unipv.ingsw.d20.vendingmachine.gui.customer.CustomerGui;
 import it.unipv.ingsw.d20.vendingmachine.model.VendingMachine;
 import it.unipv.ingsw.d20.vendingmachine.model.exceptions.InsufficientIngredientsException;
 import it.unipv.ingsw.d20.vendingmachine.model.exceptions.NonExistentCodeException;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.InsufficientCreditException;
+import it.unipv.ingsw.d20.vendingmachine.view.customer.CustomerGui;
 
 public class CodeListener implements ActionListener{
 	
@@ -50,9 +50,10 @@ public class CodeListener implements ActionListener{
 			StringBuilder sbDisp = new StringBuilder(gui.getDisplay());
 			sbDisp.deleteCharAt(sbDisp.length() - 1);
 			
-			if (sbDisp.toString().isEmpty()) {
+			if (sbDisp.toString().isEmpty() || sbDisp.toString().startsWith("E")) {
 				Double credit = vm.getCurrentAmount();
 				String creditToString = String.format("%.2f", credit);
+				
 				gui.setDisplay("E" + creditToString);
 			} else {
 				gui.setDisplay(sbDisp.toString());

@@ -1,4 +1,4 @@
-package it.unipv.ingsw.d20.vendingmachine.gui.operator;
+package it.unipv.ingsw.d20.vendingmachine.view.operator;
 
 import javax.swing.JButton;
 

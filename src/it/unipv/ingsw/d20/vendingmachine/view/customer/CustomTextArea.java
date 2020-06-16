@@ -1,4 +1,4 @@
-package it.unipv.ingsw.d20.vendingmachine.gui.customer;
+package it.unipv.ingsw.d20.vendingmachine.view.customer;
 
 import java.awt.Graphics;
 import java.awt.Image;

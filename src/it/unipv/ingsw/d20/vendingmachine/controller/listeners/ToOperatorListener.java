@@ -6,10 +6,10 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 
 import it.unipv.ingsw.d20.vendingmachine.controller.Controller;
-import it.unipv.ingsw.d20.vendingmachine.gui.customer.CustomerGui;
-import it.unipv.ingsw.d20.vendingmachine.gui.operator.OperatorGui;
 import it.unipv.ingsw.d20.vendingmachine.model.VendingMachine;
 import it.unipv.ingsw.d20.vendingmachine.model.VendingMachineStatus;
+import it.unipv.ingsw.d20.vendingmachine.view.customer.CustomerGui;
+import it.unipv.ingsw.d20.vendingmachine.view.operator.OperatorGui;
 
 public class ToOperatorListener implements ActionListener {
 

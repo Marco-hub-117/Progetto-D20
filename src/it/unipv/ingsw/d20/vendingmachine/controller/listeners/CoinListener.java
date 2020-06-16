@@ -5,10 +5,10 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
-import it.unipv.ingsw.d20.vendingmachine.gui.customer.CustomerGui;
 import it.unipv.ingsw.d20.vendingmachine.model.VendingMachine;
 import it.unipv.ingsw.d20.vendingmachine.model.exceptions.KeyRestException;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.InsufficientCashForRestException;
+import it.unipv.ingsw.d20.vendingmachine.view.customer.CustomerGui;
 
 public class CoinListener implements ActionListener{
 	

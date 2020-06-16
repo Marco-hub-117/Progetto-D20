@@ -10,12 +10,12 @@ import it.unipv.ingsw.d20.vendingmachine.controller.listeners.TankListener;
 import it.unipv.ingsw.d20.vendingmachine.controller.listeners.ToCustomerListener;
 import it.unipv.ingsw.d20.vendingmachine.controller.listeners.ToOperatorListener;
 import it.unipv.ingsw.d20.vendingmachine.controller.listeners.WindowClosingListener;
-import it.unipv.ingsw.d20.vendingmachine.gui.customer.CustomerButton;
-import it.unipv.ingsw.d20.vendingmachine.gui.customer.CustomerGui;
-import it.unipv.ingsw.d20.vendingmachine.gui.operator.OperatorButton;
-import it.unipv.ingsw.d20.vendingmachine.gui.operator.OperatorGui;
 import it.unipv.ingsw.d20.vendingmachine.model.VendingMachine;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.Ingredients;
+import it.unipv.ingsw.d20.vendingmachine.view.customer.CustomerButton;
+import it.unipv.ingsw.d20.vendingmachine.view.customer.CustomerGui;
+import it.unipv.ingsw.d20.vendingmachine.view.operator.OperatorButton;
+import it.unipv.ingsw.d20.vendingmachine.view.operator.OperatorGui;
 
 public class Controller {
 	private VendingMachine vm;

@@ -12,10 +12,10 @@ import it.unipv.ingsw.d20.util.persistence.PersistenceFacade;
 import it.unipv.ingsw.d20.util.persistence.beveragecatalog.IBvCatalogDao;
 import it.unipv.ingsw.d20.util.persistence.local.VendingLocalIO;
 import it.unipv.ingsw.d20.vendingmachine.controller.Controller;
-import it.unipv.ingsw.d20.vendingmachine.gui.customer.CustomerGui;
 import it.unipv.ingsw.d20.vendingmachine.model.UpdateStatus;
 import it.unipv.ingsw.d20.vendingmachine.model.VendingMachine;
 import it.unipv.ingsw.d20.vendingmachine.model.net.VendingMachineClient;
+import it.unipv.ingsw.d20.vendingmachine.view.customer.CustomerGui;
 
 public class VendingMachineLauncher {
 

@@ -5,10 +5,10 @@ import java.awt.event.ActionListener;
 import java.util.HashMap;
 import java.util.Map;
 
-import it.unipv.ingsw.d20.vendingmachine.gui.operator.OperatorButton;
-import it.unipv.ingsw.d20.vendingmachine.gui.operator.OperatorGui;
 import it.unipv.ingsw.d20.vendingmachine.model.VendingMachine;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.Ingredients;
+import it.unipv.ingsw.d20.vendingmachine.view.operator.OperatorButton;
+import it.unipv.ingsw.d20.vendingmachine.view.operator.OperatorGui;
 
 public class TankListener implements ActionListener {
 	private VendingMachine m;
