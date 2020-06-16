@@ -13,8 +13,12 @@ import org.rythmengine.Rythm;
 public class WelcomeServlet extends HttpServlet {
 	
 	private static String folder = "res/webapp/pages/";
-	
 	private Operator loggedOperator;
+	WebAppController controller;
+	
+	public WelcomeServlet(){
+		controller=new WebAppController();
+	}
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -38,7 +42,7 @@ public class WelcomeServlet extends HttpServlet {
 			else if (req.getPathInfo().equals("/report_confirmed")) {
 				resp.getWriter().write(Rythm.render(folder + "reportConfirmed.html"));
 			}
-			if (req.getPathInfo().equals("/add_operator")) {
+			else if (req.getPathInfo().equals("/add_operator")) {
 				resp.getWriter().write(Rythm.render(folder + "operatorForm.html"));
 			}
 			else if (req.getPathInfo().equals("/operators")) {
@@ -52,6 +56,9 @@ public class WelcomeServlet extends HttpServlet {
 			}
 			else if (req.getPathInfo().equals("/goodbye")) {
 				resp.getWriter().write(Rythm.render(folder + "goodbye.html"));
+			}
+			else {
+				resp.getWriter().write(Rythm.render(folder + "selectOp.html", loggedOperator));
 			}
 		}
 		else {	
