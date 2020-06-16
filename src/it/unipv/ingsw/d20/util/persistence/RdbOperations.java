@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import it.unipv.ingsw.d20.util.persistence.beveragecatalog.BvCatalogPOJO;
 import it.unipv.ingsw.d20.util.persistence.beveragedescription.BeverageDescriptionPOJO;
 import it.unipv.ingsw.d20.util.persistence.ingredientrecipe.IngredientRecipePOJO;
+import it.unipv.ingsw.d20.util.persistence.key.KeyPOJO;
+import it.unipv.ingsw.d20.util.persistence.operator.OperatorPOJO;
 import it.unipv.ingsw.d20.util.persistence.sale.SalePOJO;
 import it.unipv.ingsw.d20.util.persistence.vending.VendingPOJO;
 import it.unipv.ingsw.d20.vendingmachine.model.VendingMachineStatus;
@@ -112,6 +114,26 @@ public class RdbOperations {
 				VendingPOJO res = new VendingPOJO(rs.getString(1),VendingMachineStatus.valueOf(rs.getString(1)));
 				result.add(res);
 			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		this.closeConnection(con);
+		return result;
+	}
+	
+	public VendingPOJO getVending (String idVending) {
+		VendingPOJO result=null;
+		String query = QueryGenerator.getSelectFromWhereQuery("*","Vending","idVending="+idVending);
+		
+		con = this.startConnection(con);
+		Statement st;
+		ResultSet rs;
+		try {
+			st = con.createStatement();
+			rs = st.executeQuery(query);
+			
+			result = new VendingPOJO(rs.getString(1),VendingMachineStatus.valueOf(rs.getString(1)));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -376,6 +398,173 @@ public class RdbOperations {
 			while(rs.next()) {
 				result.add(new IngredientRecipePOJO(rs.getString(1),rs.getString(2),rs.getDouble(3)));
 			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		this.closeConnection(con);
+		return result;
+	}
+	
+	
+	
+	// DI SEGUITO LE QUERY RELATIVE ALLA TABLE Operator
+	
+	public ArrayList<OperatorPOJO> getAllOperators () {
+		ArrayList<OperatorPOJO> result = new ArrayList<>();
+		String query = "SELECT * FROM Operator";
+		
+		con = this.startConnection(con);
+		Statement st;
+		ResultSet rs;
+		try {
+			st = con.createStatement();
+			rs = st.executeQuery(query);
+			while(rs.next()) {
+				OperatorPOJO res = new OperatorPOJO(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5));
+				result.add(res);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		this.closeConnection(con);
+		return result;
+	}
+	
+	public OperatorPOJO getOperator (String code) {
+		OperatorPOJO result=null;
+		String query = QueryGenerator.getSelectFromWhereQuery("*","Operator","code= '"+code+"'");
+		
+		con = this.startConnection(con);
+		Statement st;
+		ResultSet rs;
+		try {
+			st = con.createStatement();
+			rs = st.executeQuery(query);
+			
+			result = new OperatorPOJO(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		this.closeConnection(con);
+		return result;
+	}
+	
+	public void addOperator(OperatorPOJO operator) {
+		
+		ArrayList<String> values = new ArrayList<>();
+		values.add(operator.getCode()); 
+		values.add(operator.getName()); 
+		values.add(operator.getUsername()); 
+		values.add(operator.getPassword());
+		values.add(operator.getType());
+		String query = QueryGenerator.getInsertIntoValuesQuery("Operator", values);	
+		
+		con = this.startConnection(con);
+		Statement st;	
+		try {
+			st = con.createStatement();
+			st.executeUpdate(query); 
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		this.closeConnection(con);
+	}
+	
+	// DI SEGUITO LE QUERY RELATIVE ALLA TABLE Key
+	
+	public ArrayList<KeyPOJO> getAllKeys() {
+		
+		ArrayList<KeyPOJO> result = new ArrayList<>();
+		String query = "SELECT * FROM Key";
+		
+		con = this.startConnection(con);
+		Statement st;
+		ResultSet rs;
+		try {
+			st = con.createStatement();
+			rs = st.executeQuery(query);
+			while(rs.next()) {
+				KeyPOJO res = new KeyPOJO(rs.getString(1), rs.getDouble(2));
+				result.add(res);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		this.closeConnection(con);
+		return result;
+	}
+	
+	public KeyPOJO getKey (String serialCode) {
+		KeyPOJO result=null;
+		String query = QueryGenerator.getSelectFromWhereQuery("*","Key","serialCode="+serialCode);
+		
+		con = this.startConnection(con);
+		Statement st;
+		ResultSet rs;
+		try {
+			st = con.createStatement();
+			rs = st.executeQuery(query);
+			
+			result = new KeyPOJO(rs.getString(1), rs.getDouble(2));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		this.closeConnection(con);
+		return result;
+	}
+	
+	public void addKey(KeyPOJO key) {
+		
+		ArrayList<String> values = new ArrayList<>();
+		values.add(key.getSerialCode()); 
+		values.add((String.valueOf(key.getCredit()))); 
+		String query = QueryGenerator.getInsertIntoValuesQuery("Key", values);	
+		
+		con = this.startConnection(con);
+		Statement st;	
+		try {
+			st = con.createStatement();
+			st.executeUpdate(query); 
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		this.closeConnection(con);
+	}
+	
+	public void updateKeyCredit(String serialCode, double newCredit) {
+		String query = QueryGenerator.getUpdateSetQuery("Key", "credit = '"+newCredit+"'", "serialCode = '"+serialCode+"'");
+		con = this.startConnection(con);
+		Statement st;	
+		try {
+			st = con.createStatement();
+			st.executeUpdate(query);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		this.closeConnection(con);
+	}
+	
+	public double getKeyCredit(String serialCode) {
+		double result = 0; 
+		String query = QueryGenerator.getSelectFromWhereQuery("credit", "Key", "serialCode = '"+serialCode+"'");
+		
+		con = this.startConnection(con);
+		Statement st;
+		ResultSet rs;
+		try {
+			st = con.createStatement();
+			rs = st.executeQuery(query);
+			
+			result = rs.getDouble(1);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
