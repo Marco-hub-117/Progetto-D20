@@ -27,7 +27,7 @@ public class CatalogPanel extends JPanel {
 		JPanel operatorPanel = new JPanel();
 		operatorPanel.setLayout(new GridLayout(1, 9)); //i pannelli vuoti sono utili solo alla grafica
 		
-		operatorButton = new JButton(new ImageIcon("images/gearicon.png"));
+		operatorButton = new JButton(new ImageIcon("res/img/gearicon.png"));
 		operatorButton.setOpaque(false); operatorButton.setContentAreaFilled(false); operatorButton.setBorderPainted(false); operatorButton.setFocusPainted(false);
 		
 		operatorPanel.add(operatorButton); 

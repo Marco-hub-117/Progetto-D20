@@ -66,7 +66,7 @@ public class Beverage extends Thread {
             		window.setTitle("Erogazione completata!");
             		
             		pickUpBeverageButton.setEnabled(true);
-            		pickUpBeverageButton.addActionListener(e -> window.dispose());
+            		pickUpBeverageButton.addActionListener(al -> window.dispose());
             		window.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             		
             		break;

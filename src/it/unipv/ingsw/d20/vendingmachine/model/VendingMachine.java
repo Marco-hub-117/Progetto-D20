@@ -71,7 +71,7 @@ public class VendingMachine {
 	
 	public void ejectKey() { 
 		keyHandler.ejectKey();
-		credit=0.0;
+		credit = 0.0;
 	}
 	/**
 	 * Questo metodo restituisce il resto al cliente
@@ -85,7 +85,7 @@ public class VendingMachine {
 		}
 		cashContainer.dispenseRest(credit);
 		saveCashContainerIntoLocal();
-		credit = 0;
+		credit = 0.0;
 	}
 
 	
@@ -115,17 +115,17 @@ public class VendingMachine {
 	 * 
 	 */
 	public void startTransaction(BeverageDescription bvDesc) throws InsufficientCreditException { 
-			Sale s = new Sale(bvDesc, credit); //se il credito non è sufficiente per erogare la bevanda lancia eccezione
-			//TODO saveSaleIntoLocal();
-			saveCashContainerIntoLocal();
-			
-			tankHandler.scaleTanksLevel(bvDesc);
-			saveTankIntoLocal();
-			
-			Beverage bev = new Beverage(); bev.start();
-			System.out.println("Erogato " + bvDesc.getName() + " correttamente");
-			credit = s.getRest();
-			salesRegister.add(s);
+		Sale s = new Sale(bvDesc, credit); //se il credito non è sufficiente per erogare la bevanda lancia eccezione
+		//TODO saveSaleIntoLocal();
+		saveCashContainerIntoLocal();
+		
+		tankHandler.scaleTanksLevel(bvDesc);
+		saveTankIntoLocal();
+		
+		Beverage bev = new Beverage(); bev.start();
+		System.out.println("Erogato " + bvDesc.getName() + " correttamente");
+		credit = s.getRest();
+		salesRegister.add(s);
 	}
 	
 	public HashMap<Ingredients, Double> getTanksLevels() {
@@ -207,6 +207,13 @@ public class VendingMachine {
 	
 	public void setStatus(VendingMachineStatus status) {
 		this.status = status;
+	}
+	
+	public boolean isCorrectId(String insertedId) {
+		if (id.equals(insertedId)) 
+			return true;
+		else
+			return false;
 	}
 
 	public String getId() {

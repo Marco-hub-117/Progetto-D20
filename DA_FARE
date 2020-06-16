@@ -9,6 +9,7 @@
 - gestione delle sale, solo nel db o anche in locale? eventualmente aggiornare in db col timer ogni tot minuti
 -controllare qualità del codice (struttura classi/metodi, nomi, pattern)
 -animazione grafica o tentativo app android
+- migliorare gui operatore e aggiungere tasto per ritirare i soldi
 
 -slide per presentazione
 -organizzare presentazione

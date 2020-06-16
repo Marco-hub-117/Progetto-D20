@@ -16,6 +16,7 @@ import it.unipv.ingsw.d20.vendingmachine.view.customer.CustomerButton;
 import it.unipv.ingsw.d20.vendingmachine.view.customer.CustomerGui;
 import it.unipv.ingsw.d20.vendingmachine.view.operator.OperatorButton;
 import it.unipv.ingsw.d20.vendingmachine.view.operator.OperatorGui;
+import it.unipv.ingsw.d20.vendingmachine.view.operator.OperatorLoginFrame;
 
 public class Controller {
 	private VendingMachine vm;
@@ -29,9 +30,9 @@ public class Controller {
 		setCatalog();
 		
 		addCodeListener();
-		addListenerB();
+		addCashListener();
 		addKeyListener();
-		addListenerOp();
+		addToOperatorListener();
 		
 		userGui.addWindowListener(new WindowClosingListener(vm));
 	}
@@ -43,7 +44,7 @@ public class Controller {
 		setTankText();
 		
 		addListenerTank();
-		addListenerCust();
+		addToCustomerListener();
 		
 		opGui.addWindowListener(new WindowClosingListener(vm));
 	}
@@ -58,7 +59,7 @@ public class Controller {
 		}
 	}
 	
-	private void addListenerB() {
+	private void addCashListener() {
 		for (CustomerButton button : userGui.getCashButtons()) { //aggiunge i listener ai pulsanti dei soldi nell'interfaccia cliente
 			button.addActionListener(new CoinListener(button.getValue(), vm, userGui));
 		}
@@ -70,11 +71,11 @@ public class Controller {
 		userGui.getEjectKeyButton().setEnabled(false); //disabilito preventivamente il pulsante per estrarre una chiavetta
 	}
 	
-	private void addListenerOp() { //aggiunge il listener al pulsante per entrare nella modalità operatore
+	private void addToOperatorListener() { //aggiunge il listener al pulsante per entrare nella modalità operatore
 		userGui.getOperatorButton().addActionListener(new ToOperatorListener(vm, userGui));
 	}
 	
-	private void addListenerCust() { //aggiunge il listener al pulsante per entrare nella modalità cliente
+	private void addToCustomerListener() { //aggiunge il listener al pulsante per entrare nella modalità cliente
 		opGui.getCustomer().addActionListener(new ToCustomerListener(vm, opGui));
 	}
 	
