@@ -36,4 +36,9 @@ public class VendingRdbDao implements IVendingDao{
 		op.updateVendingStatus(idVending, newStatus);
 	}
 
+	@Override
+	public VendingPOJO getVending(String idVending) {
+		return op.getVending(idVending);
+	}
+
 }
