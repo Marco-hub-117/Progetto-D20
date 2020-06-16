@@ -4,7 +4,10 @@ import it.unipv.ingsw.d20.util.persistence.beveragecatalog.*;
 import it.unipv.ingsw.d20.util.persistence.beveragedescription.*;
 import it.unipv.ingsw.d20.util.persistence.ingredientrecipe.*;
 import it.unipv.ingsw.d20.util.persistence.key.IKeyDao;
+import it.unipv.ingsw.d20.util.persistence.key.KeyRdbDao;
 import it.unipv.ingsw.d20.util.persistence.local.VendingLocalIO;
+import it.unipv.ingsw.d20.util.persistence.operator.IOperatorDao;
+import it.unipv.ingsw.d20.util.persistence.operator.OperatorRdbDao;
 import it.unipv.ingsw.d20.util.persistence.sale.*;
 import it.unipv.ingsw.d20.util.persistence.vending.*;
 
@@ -50,8 +53,11 @@ public class PersistenceFacade {
 	}
 
 	public IKeyDao getKeyDao() {
-		// TODO Auto-generated method stub
-		return null;
+		return new KeyRdbDao();
+	}
+	
+	public IOperatorDao getOperatorDao() {
+		return new OperatorRdbDao();
 	}
 	
 
