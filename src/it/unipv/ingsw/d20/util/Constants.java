@@ -1,4 +1,4 @@
-package it.unipv.ingsw.d20.vendingmachine.model;
+package it.unipv.ingsw.d20.util;
 
 public class Constants {
 	
@@ -8,7 +8,7 @@ public class Constants {
 
 	public static final double IMPORTOMIN = 10;
 	
-	public static final String FILEPATH = "res/local/";
+	public static final String FILEPATH = "assets/";
 	
 	
 	public static final String BVCATPATH = "beverageCatalog";
