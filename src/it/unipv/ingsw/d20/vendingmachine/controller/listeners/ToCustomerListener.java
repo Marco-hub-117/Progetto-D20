@@ -11,19 +11,22 @@ import it.unipv.ingsw.d20.vendingmachine.view.operator.OperatorGui;
 
 public class ToCustomerListener implements ActionListener{
 
-	private VendingMachine m;
+	private VendingMachine vm;
 	private OperatorGui gui;
 	
-	public ToCustomerListener(VendingMachine m, OperatorGui gui) {
-		this.m = m;
+	public ToCustomerListener(VendingMachine vm, OperatorGui gui) {
+		this.vm = vm;
 		this.gui = gui;
 	}
+	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		 gui.dispose(); //chiudo l'interfaccia dell'operatore
-		 CustomerGui gui= new CustomerGui(); //istanzio una nuova interfaccia del cliente
-		 new Controller(m, gui); //controller associato all'interfaccia del cliente
-		 m.setStatus(VendingMachineStatus.ONLINE);
+		 
+		 CustomerGui gui = new CustomerGui(); //istanzio una nuova interfaccia del cliente
+		 new Controller(vm, gui); //controller associato all'interfaccia del cliente
+		 
+		 vm.setStatus(VendingMachineStatus.ONLINE);
 	}
 
 }

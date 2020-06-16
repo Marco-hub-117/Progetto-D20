@@ -71,8 +71,8 @@ public class CashContainer {
 		double total = 0;
 		
 		for (int i = 0; i < coinValue.length; i++) {
-			int difference = coinNumber[i] - 10;
-			if (difference > 0) {
+			int difference = coinNumber[i] - 10; 
+			if (difference > 0) { //fa in modo di lasciare sempre almeno 10 monete di ogni tipo
 				total += difference * coinValue[i];
 			}
 		}

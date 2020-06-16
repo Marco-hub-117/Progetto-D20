@@ -7,13 +7,13 @@ public class OperatorButton extends JButton {
 
 	private int pos;
 	private double value;
-	private String idTank;
+	private String tankId;
 	
-	public OperatorButton(int pos, String string, String idTank) {
-		super(string);
-		super.setSize(10, 60);
-		this.pos=pos; 
-		this.idTank=idTank;
+	public OperatorButton(int pos, String text, String tankId) {
+		super(text);
+
+		this.pos = pos; 
+		this.tankId = tankId;
 	}
 
 	public double getValue() {
@@ -24,12 +24,12 @@ public class OperatorButton extends JButton {
 		return pos;
 	}
 
-	public String getIdTank() {
-		return idTank;
+	public String getTankId() {
+		return tankId;
 	}
 	
 	public void setIdTank(String idTank) {
-		this.idTank = idTank;
+		this.tankId = idTank;
 	}
 	
 }

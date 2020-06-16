@@ -37,7 +37,7 @@ public class KeyListener implements ActionListener {
 			gui.getEjectKeyButton().setEnabled(false);
 		}
 		
-		Double credit = vm.getCurrentAmount();
+		Double credit = vm.getCredit();
 		String creditToString = String.format("%.2f", credit);
 		gui.setDisplay("E" + creditToString);
 	}

@@ -33,7 +33,7 @@ public class CodeListener implements ActionListener{
 		
 			try {
 				vm.insertCode(gui.getDisplay());
-				Double credit = vm.getCurrentAmount();
+				Double credit = vm.getCredit();
 				String creditToString = String.format("%.2f", credit);
 				gui.setDisplay("E" + creditToString);
 			} catch (InsufficientCreditException e) {
@@ -51,7 +51,7 @@ public class CodeListener implements ActionListener{
 			sbDisp.deleteCharAt(sbDisp.length() - 1);
 			
 			if (sbDisp.toString().isEmpty() || sbDisp.toString().startsWith("E")) {
-				Double credit = vm.getCurrentAmount();
+				Double credit = vm.getCredit();
 				String creditToString = String.format("%.2f", credit);
 				
 				gui.setDisplay("E" + creditToString);

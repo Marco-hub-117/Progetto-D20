@@ -1,37 +1,60 @@
 package it.unipv.ingsw.d20.vendingmachine.view.operator;
 
 import java.awt.BorderLayout;
+import java.awt.Font;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
 public class OperatorGui extends JFrame {
-		private OperatorPanel p;
-		private JButton customer;
+	
+	private static final int WIDTH = 600, HEIGHT = 400;
+	
+	private OperatorPanel operatorPanel;
+	private JButton withdrawCashButton;
+	private JButton exitButton;
 		
-		public OperatorGui(int numeroTank) {
-			setSize(600,400);
-			setTitle("Interfaccia operatore");
-			setLocationRelativeTo(null);
-			customer=new JButton("esci");
-			p=new OperatorPanel(numeroTank);
-			setLayout(new BorderLayout());
-			add(p, BorderLayout.CENTER);
-			
-			add(customer, BorderLayout.SOUTH);
-		}
+	public OperatorGui(int tankNumber) {
+		setTitle("Modalità operatore");
+		setSize(WIDTH, HEIGHT);
 		
-		public OperatorButton[] getPulsanti() {
-			return p.getPulsanti();
-		}
+		setLayout(new BorderLayout());
 		
-		public void setElements(String nome,String livello, int pos) {
-			p.setElements(nome, livello, pos);
-		}
+		operatorPanel = new OperatorPanel(tankNumber);
 		
-		public JButton getCustomer() {
-			return customer;
-		}
+		exitButton = new JButton("Esci");
+		exitButton.setFont(exitButton.getFont().deriveFont(Font.PLAIN, 20));
+		withdrawCashButton = new JButton("Ritira contanti");
+		withdrawCashButton.setFont(withdrawCashButton.getFont().deriveFont(Font.PLAIN, 20));
+		
+		JPanel southPanel = new JPanel(); southPanel.setLayout(new BorderLayout());
+		southPanel.add(withdrawCashButton, BorderLayout.WEST);
+		southPanel.add(exitButton, BorderLayout.EAST);
+		
+		add(operatorPanel, BorderLayout.CENTER);
+		add(southPanel, BorderLayout.SOUTH);
+		
+		setLocationRelativeTo(null);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setVisible(true);
+	}
+		
+	public OperatorButton[] getButtons() {
+		return operatorPanel.getRefillTankButtons();
+	}
+	
+	public void setElements(String name,String level, int pos) {
+		operatorPanel.setElements(name, level, pos);
+	}
+	
+	public JButton getWithdrawCashButton() {
+		return withdrawCashButton;
+	}
+	
+	public JButton getExitButton() {
+		return exitButton;
+	}
 		
 }

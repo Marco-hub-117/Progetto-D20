@@ -2,10 +2,6 @@ package it.unipv.ingsw.d20.vendingmachine.controller.listeners;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-
-import javax.swing.JFrame;
 
 import it.unipv.ingsw.d20.vendingmachine.controller.Controller;
 import it.unipv.ingsw.d20.vendingmachine.model.VendingMachine;
@@ -42,12 +38,12 @@ public class ToOperatorListener implements ActionListener {
 	
 	public void openOperatorGui() {
 		gui.dispose(); //chiudo l'interfaccia del cliente
-		OperatorGui gui= new OperatorGui(vm.getTankNumber()); //istanzio una nuova interfaccia dell'operatore
+		
+		OperatorGui gui = new OperatorGui(vm.getTankNumber()); //istanzio una nuova interfaccia dell'operatore
 		new Controller(vm, gui); //controller associato all'interfaccia dell'operatore
+		
 		vm.setCurrentAmount(0);
 		vm.setStatus(VendingMachineStatus.REFILL);
-		gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		gui.setVisible(true);
 	}
 
 }

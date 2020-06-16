@@ -87,7 +87,6 @@ public class VendingMachine {
 		saveCashContainerIntoLocal();
 		credit = 0.0;
 	}
-
 	
 	/**
 	 * Questo metodo permette al cliente di inserire il codice della bevanda, inizializza la vendita dopo aver fatto i controlli
@@ -97,7 +96,6 @@ public class VendingMachine {
 	 * 
 	 */
 	public void insertCode(String code) throws InsufficientCreditException, NonExistentCodeException, InsufficientIngredientsException { 
-		
 		BeverageDescription bvDesc = bvCatalog.getBeverageDesc(code);
 		
 		if (bvDesc == null) {
@@ -132,8 +130,9 @@ public class VendingMachine {
 		return tankHandler.getTanksLevel();
 	}
 
-	public void setTankLevel(String id){
+	public void refillTanks(String id){
 		tankHandler.refillTank(id); 
+		saveTankIntoLocal();
 	}
 	
 	/**
@@ -141,11 +140,11 @@ public class VendingMachine {
 	 * @throws WithdrawAmountException
 	 * @throws RefillMachineException
 	 */
-
-	public void withdrawAmount() throws WithdrawAmountException, RefillMachineException{//Vedere se refill o OFF
-		cashContainer.withdrawAmount();
+	public double withdrawAmount() throws WithdrawAmountException, RefillMachineException { //Vedere se refill o OFF
+		double withdrawnAmount = cashContainer.withdrawAmount();
 		saveCashContainerIntoLocal();
 		//lanciare le eccezioni non so come, fate voi lol
+		return withdrawnAmount;
 	}
 
 	public void modifyTankSettings(String id, Double temp) throws RefillMachineException, TankAbsentException{ //serve per modificare la temperatura del tank
@@ -220,7 +219,7 @@ public class VendingMachine {
 		return id;
 	}
 	
-	public Double getCurrentAmount() {
+	public Double getCredit() {
 		return credit;
 	}
 	

@@ -3,6 +3,8 @@ package it.unipv.ingsw.d20.vendingmachine.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.swing.JOptionPane;
+
 import it.unipv.ingsw.d20.vendingmachine.controller.listeners.CodeListener;
 import it.unipv.ingsw.d20.vendingmachine.controller.listeners.CoinListener;
 import it.unipv.ingsw.d20.vendingmachine.controller.listeners.KeyListener;
@@ -10,13 +12,15 @@ import it.unipv.ingsw.d20.vendingmachine.controller.listeners.TankListener;
 import it.unipv.ingsw.d20.vendingmachine.controller.listeners.ToCustomerListener;
 import it.unipv.ingsw.d20.vendingmachine.controller.listeners.ToOperatorListener;
 import it.unipv.ingsw.d20.vendingmachine.controller.listeners.WindowClosingListener;
+import it.unipv.ingsw.d20.vendingmachine.controller.listeners.WithdrawCashListener;
 import it.unipv.ingsw.d20.vendingmachine.model.VendingMachine;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.Ingredients;
+import it.unipv.ingsw.d20.vendingmachine.model.exceptions.RefillMachineException;
+import it.unipv.ingsw.d20.vendingmachine.model.exceptions.WithdrawAmountException;
 import it.unipv.ingsw.d20.vendingmachine.view.customer.CustomerButton;
 import it.unipv.ingsw.d20.vendingmachine.view.customer.CustomerGui;
 import it.unipv.ingsw.d20.vendingmachine.view.operator.OperatorButton;
 import it.unipv.ingsw.d20.vendingmachine.view.operator.OperatorGui;
-import it.unipv.ingsw.d20.vendingmachine.view.operator.OperatorLoginFrame;
 
 public class Controller {
 	private VendingMachine vm;
@@ -41,9 +45,10 @@ public class Controller {
 		this.vm = m;
 		this.opGui = gui;
 		
-		setTankText();
+		setTankInfo();
 		
-		addListenerTank();
+		addTankListener();
+		addWithdrawCashListener();
 		addToCustomerListener();
 		
 		opGui.addWindowListener(new WindowClosingListener(vm));
@@ -76,10 +81,10 @@ public class Controller {
 	}
 	
 	private void addToCustomerListener() { //aggiunge il listener al pulsante per entrare nella modalità cliente
-		opGui.getCustomer().addActionListener(new ToCustomerListener(vm, opGui));
+		opGui.getExitButton().addActionListener(new ToCustomerListener(vm, opGui));
 	}
 	
-	private void setTankText() { //imposta il nome dei tank e i livelli attuali
+	private void setTankInfo() { //imposta il nome dei tank e i livelli attuali
 		HashMap<Ingredients,Double> tankLevels=new HashMap<Ingredients, Double>();
 		tankLevels=vm.getTanksLevels();
 		int k=0;
@@ -89,12 +94,28 @@ public class Controller {
 		}
 	}
 	
-	private void addListenerTank() { //aggiunge i listener ai pulsanti dell'interfaccia Operatore
-		OperatorButton[] puls=new OperatorButton[vm.getTankNumber()];
-		puls=opGui.getPulsanti();
-		for(int i=0; i<vm.getTankNumber(); i++) {
-			puls[i].addActionListener(new TankListener(puls[i].getPos(), vm, opGui));
+	private void addTankListener() { //aggiunge i listener ai pulsanti dell'interfaccia Operatore
+		OperatorButton[] tankButton = new OperatorButton[vm.getTankNumber()];
+		tankButton = opGui.getButtons();
+		
+		for(int i = 0; i < vm.getTankNumber(); i++) {
+			tankButton[i].addActionListener(new TankListener(tankButton[i].getPos(), vm, opGui));
 		}
+	}
+	
+	private void addWithdrawCashListener() { //c'è un bug, i soldi non vengono effettivamente prelevati
+		opGui.getWithdrawCashButton().addActionListener(al -> {
+			try {
+				double buffAmount = vm.withdrawAmount();
+				if (buffAmount > 0) 
+					JOptionPane.showMessageDialog(null, "Sono stati ritirati €" + String.format("%.2f", buffAmount));
+				else 
+					JOptionPane.showMessageDialog(null, "Non si possono ritirare ulteriori monete.");
+			} catch (WithdrawAmountException | RefillMachineException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		});
 	}
 
 }
