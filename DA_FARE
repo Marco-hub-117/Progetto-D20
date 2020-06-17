@@ -4,7 +4,7 @@ questa settimana:
 -commenti (decidiamo uno standard es. italiano e prima di ogni metodo non getter/setter)
 -login operatore e relativo interfacciamento DB
 - gestione delle sale, solo nel db o anche in locale? eventualmente aggiornare in db col timer ogni tot minuti
-- migliorare gui operatore e aggiungere tasto per ritirare i soldi
+//migliorare gui operatore e aggiungere tasto per ritirare i soldi
 
 prossima settimana:
 -sistemare wiki git
