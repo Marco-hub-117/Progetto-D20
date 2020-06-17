@@ -30,8 +30,12 @@ public class BeverageDescriptionRdbDao implements IBeverageDescriptionDao {
 
 	@Override
 	public BeverageDescriptionPOJO getBeverageDescriptionByBevName(String BevName) {
-		// TODO Auto-generated method stub
 		return op.getBeverageDescriptionByBevName(BevName);
+	}
+
+	@Override
+	public ArrayList<BeverageDescriptionPOJO> getAllBeverageDescriptions() {
+		return op.getAllBeverageDescriptions();
 	}
 	
 	

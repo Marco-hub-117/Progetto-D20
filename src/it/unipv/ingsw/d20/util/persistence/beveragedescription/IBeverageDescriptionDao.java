@@ -13,5 +13,7 @@ public interface IBeverageDescriptionDao {
 	public void addBeverageDescription(BeverageDescriptionPOJO bv,ArrayList<IngredientRecipePOJO> ingr);
 	
 	public BeverageDescriptionPOJO getBeverageDescriptionByBevName(String BevName);
+	
+	public ArrayList<BeverageDescriptionPOJO> getAllBeverageDescriptions ();
 
 }

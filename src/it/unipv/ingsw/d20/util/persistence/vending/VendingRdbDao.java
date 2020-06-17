@@ -27,8 +27,8 @@ public class VendingRdbDao implements IVendingDao{
 	}
 
 	@Override
-	public ArrayList<VendingPOJO> getAllVending() {
-		return op.getAllVending();
+	public ArrayList<VendingPOJO> getAllVendings() {
+		return op.getAllVendings();
 	}
 
 	@Override

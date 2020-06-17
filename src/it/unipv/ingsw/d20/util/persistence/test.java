@@ -8,7 +8,7 @@ import it.unipv.ingsw.d20.util.persistence.beveragecatalog.BvCatalogPOJO;
 import it.unipv.ingsw.d20.util.persistence.beveragecatalog.IBvCatalogDao;
 import it.unipv.ingsw.d20.util.persistence.beveragedescription.BeverageDescriptionPOJO;
 import it.unipv.ingsw.d20.util.persistence.beveragedescription.IBeverageDescriptionDao;
-import it.unipv.ingsw.d20.util.persistence.ingredientrecipe.IingredientRecipeDao;
+import it.unipv.ingsw.d20.util.persistence.ingredientrecipe.IIngredientRecipeDao;
 import it.unipv.ingsw.d20.util.persistence.ingredientrecipe.IngredientRecipePOJO;
 import it.unipv.ingsw.d20.util.persistence.local.VendingLocalIO;
 import it.unipv.ingsw.d20.util.persistence.sale.ISaleDao;
@@ -27,7 +27,7 @@ public class test {
 		System.out.println(a.getVendingStatusById("id3"));
 		a.updateVendingStatus("id1", VendingMachineStatus.OFF);
 		
-		IingredientRecipeDao IrDao = pf.getIngredientRecipeDao();
+		IIngredientRecipeDao IrDao = pf.getIngredientRecipeDao();
 		ArrayList<IngredientRecipePOJO> result = new ArrayList<>();
 		result.addAll(IrDao.getAllIngredientRecipeByIdRecipe("idRecipe1"));
 		for (IngredientRecipePOJO irp : result) {

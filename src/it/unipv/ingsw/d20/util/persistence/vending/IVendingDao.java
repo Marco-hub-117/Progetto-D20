@@ -29,7 +29,7 @@ public interface IVendingDao {
 	 */
 	public void addVending(VendingPOJO vending);
 	
-	public ArrayList<VendingPOJO> getAllVending();
+	public ArrayList<VendingPOJO> getAllVendings();
 	
 	public VendingPOJO getVending(String idVending);
 	

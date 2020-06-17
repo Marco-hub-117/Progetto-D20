@@ -35,4 +35,9 @@ public class KeyRdbDao implements IKeyDao{
 		return op.getKeyCredit(serialCode);
 	}
 
+	@Override
+	public void deactivateKey(String serialCode) {
+		op.deactivateKey(serialCode);
+	}
+
 }

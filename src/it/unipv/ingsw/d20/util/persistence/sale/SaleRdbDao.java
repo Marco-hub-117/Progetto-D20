@@ -22,8 +22,8 @@ public class SaleRdbDao implements ISaleDao{
 	}
 
 	@Override
-	public ArrayList<SalePOJO> getAllSaleByIdVending(String idVending) {
-		return op.getAllSaleByIdVending(idVending);
+	public ArrayList<SalePOJO> getAllSalesByIdVending(String idVending) {
+		return op.getAllSalesByIdVending(idVending);
 	}
 
 }

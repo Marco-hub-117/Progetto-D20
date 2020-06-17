@@ -22,7 +22,7 @@ public interface ISaleDao {
 	 * @param idVending
 	 * @return ritorna un arrayList di SalePOJO.
 	 */
-	public ArrayList<SalePOJO> getAllSaleByIdVending (String idVending);
+	public ArrayList<SalePOJO> getAllSalesByIdVending (String idVending);
 	
 
 	

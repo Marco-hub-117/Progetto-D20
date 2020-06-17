@@ -14,5 +14,7 @@ public interface IKeyDao {
 	public boolean updateCredit(String serialCode, double credit);
 
 	public double getCredit(String serialCode);
+	
+	public void deactivateKey(String serialCode);
 
 }
