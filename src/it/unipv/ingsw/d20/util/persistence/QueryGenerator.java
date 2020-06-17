@@ -76,4 +76,8 @@ public class QueryGenerator {
 		query = "UPDATE "+tableName+" SET "+set+ " WHERE "+whereStatement;
 		return query;
 	}
+	
+	public static String getDeleteWhereQuery(String tableName, String whereStatement) {
+		return "DELETE FROM "+tableName+" WHERE "+whereStatement;
+	}
 }

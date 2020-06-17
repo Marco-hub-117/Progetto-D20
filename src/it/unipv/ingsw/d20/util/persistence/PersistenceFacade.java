@@ -44,7 +44,7 @@ public class PersistenceFacade {
 		return new BeverageDescriptionRdbDao();
 	}
 	
-	public IingredientRecipeDao getIngredientRecipeDao() {
+	public IIngredientRecipeDao getIngredientRecipeDao() {
 		return new IngredientRecipeRdbDao();
 	}
 	

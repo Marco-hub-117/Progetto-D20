@@ -100,7 +100,7 @@ public class RdbOperations {
 
 	}
 	
-	public ArrayList<VendingPOJO> getAllVending () {
+	public ArrayList<VendingPOJO> getAllVendings () {
 		ArrayList<VendingPOJO> result = new ArrayList<>();
 		String query = "SELECT * FROM Vending";
 		
@@ -111,7 +111,7 @@ public class RdbOperations {
 			st = con.createStatement();
 			rs = st.executeQuery(query);
 			while(rs.next()) {
-				VendingPOJO res = new VendingPOJO(rs.getString(1),VendingMachineStatus.valueOf(rs.getString(1)));
+				VendingPOJO res = new VendingPOJO(rs.getString("idVending"),VendingMachineStatus.valueOf(rs.getString("Status")));
 				result.add(res);
 			}
 		} catch (SQLException e) {
@@ -133,7 +133,7 @@ public class RdbOperations {
 			st = con.createStatement();
 			rs = st.executeQuery(query);
 			
-			result = new VendingPOJO(rs.getString(1),VendingMachineStatus.valueOf(rs.getString(1)));
+			result = new VendingPOJO(rs.getString("idVending"),VendingMachineStatus.valueOf(rs.getString("Status")));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -215,7 +215,7 @@ public class RdbOperations {
 			st = con.createStatement();
 			rs = st.executeQuery(query);
 			while(rs.next()) {
-				result = new SalePOJO (rs.getString(1),rs.getString(2),rs.getString(3));
+				result = new SalePOJO (rs.getString("idVending"),rs.getString("idBeverage"),rs.getString("date"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -226,7 +226,7 @@ public class RdbOperations {
 		
 	}
 
-	public ArrayList<SalePOJO> getAllSaleByIdVending (String idVending) {
+	public ArrayList<SalePOJO> getAllSalesByIdVending (String idVending) {
 		ArrayList<SalePOJO> result = new ArrayList<>();
 		String whereStatement = "idVending = '" +idVending+"'";
 		String query = QueryGenerator.getSelectFromWhereQuery("*", "Sale", whereStatement);
@@ -238,7 +238,7 @@ public class RdbOperations {
 			st = con.createStatement();
 			rs = st.executeQuery(query);
 			while(rs.next()) {
-				SalePOJO res =  new SalePOJO (rs.getString(1),rs.getString(2),rs.getString(3));
+				SalePOJO res =  new SalePOJO (rs.getString("idVending"),rs.getString("idBeverage"),rs.getString("date"));
 				result.add(res);
 			}
 		} catch (SQLException e) {
@@ -264,7 +264,7 @@ public class RdbOperations {
 			st = con.createStatement();
 			rs = st.executeQuery(query);
 			while(rs.next()) {
-				BvCatalogPOJO res = new BvCatalogPOJO (rs.getString(1),rs.getInt(2));
+				BvCatalogPOJO res = new BvCatalogPOJO (rs.getString("idBevDesc"),rs.getInt("type"));
 				result.add(res);
 			}
 		} catch (SQLException e) {
@@ -288,7 +288,7 @@ public class RdbOperations {
 			st = con.createStatement();
 			rs = st.executeQuery(query);
 			while(rs.next()) {
-				result = rs.getDouble(1);
+				result = rs.getDouble("price");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -328,9 +328,31 @@ public class RdbOperations {
 		addBeverageDescription(bv);
 	}
 	
-	public BeverageDescriptionPOJO getBeverageDescriptionByBevName(String BevName) {
+	public ArrayList<BeverageDescriptionPOJO> getAllBeverageDescriptions () {
+		ArrayList<BeverageDescriptionPOJO> result = new ArrayList<>();
+		String query = "SELECT * FROM BeverageDescription";
+		
+		con = this.startConnection(con);
+		Statement st;
+		ResultSet rs;
+		try {
+			st = con.createStatement();
+			rs = st.executeQuery(query);
+			while(rs.next()) {
+				BeverageDescriptionPOJO res = new BeverageDescriptionPOJO(rs.getString("BevName"),rs.getDouble("price"), rs.getString("idRecipe"));
+				result.add(res);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		this.closeConnection(con);
+		return result;
+	}
+	
+	public BeverageDescriptionPOJO getBeverageDescriptionByBevName(String bevName) {
 		BeverageDescriptionPOJO result = null;
-		String whereStatement = "BevName = '"+BevName+"'";
+		String whereStatement = "BevName = '"+bevName+"'";
 		String query = QueryGenerator.getSelectFromWhereQuery("*", "BeverageDescriptions", whereStatement);
 		con = this.startConnection(con);
 		Statement st;
@@ -340,7 +362,7 @@ public class RdbOperations {
 			st = con.createStatement();
 			rs = st.executeQuery(query);
 			while(rs.next()) {
-				result = new BeverageDescriptionPOJO (rs.getString(1),rs.getDouble(2),rs.getString(3));
+				result = new BeverageDescriptionPOJO (rs.getString("BevName"),rs.getDouble("price"), rs.getString("idRecipe"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -396,13 +418,27 @@ public class RdbOperations {
 			st = con.createStatement();
 			rs = st.executeQuery(query);
 			while(rs.next()) {
-				result.add(new IngredientRecipePOJO(rs.getString(1),rs.getString(2),rs.getDouble(3)));
+				result.add(new IngredientRecipePOJO(rs.getString("idRecipe"),rs.getString("IngredientName"),rs.getDouble("Quantity")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		this.closeConnection(con);
 		return result;
+	}
+	
+	public void updateIngredientRecipe(String idRecipe, String ingredientName, double newQuantity) {
+		String query = QueryGenerator.getUpdateSetQuery("IngredientRecipe", "Quantity = '"+newQuantity+"'", "idRecipe = '"+idRecipe+"'"+ "and "+ "IngredientName = '"+ingredientName+"'");
+		con = this.startConnection(con);
+		Statement st;	
+		try {
+			st = con.createStatement();
+			st.executeUpdate(query);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		this.closeConnection(con);
 	}
 	
 	
@@ -420,7 +456,7 @@ public class RdbOperations {
 			st = con.createStatement();
 			rs = st.executeQuery(query);
 			while(rs.next()) {
-				OperatorPOJO res = new OperatorPOJO(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5));
+				OperatorPOJO res = new OperatorPOJO(rs.getString("code"), rs.getString("name"), rs.getString("username"), rs.getString("password"), rs.getString("type"));
 				result.add(res);
 			}
 		} catch (SQLException e) {
@@ -442,7 +478,7 @@ public class RdbOperations {
 			st = con.createStatement();
 			rs = st.executeQuery(query);
 			
-			result = new OperatorPOJO(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5));
+			result = new OperatorPOJO(rs.getString("code"), rs.getString("name"), rs.getString("username"), rs.getString("password"), rs.getString("type"));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -488,7 +524,7 @@ public class RdbOperations {
 			st = con.createStatement();
 			rs = st.executeQuery(query);
 			while(rs.next()) {
-				KeyPOJO res = new KeyPOJO(rs.getString(1), rs.getDouble(2));
+				KeyPOJO res = new KeyPOJO(rs.getString("idKey"), rs.getDouble("credit"));
 				result.add(res);
 			}
 		} catch (SQLException e) {
@@ -510,7 +546,7 @@ public class RdbOperations {
 			st = con.createStatement();
 			rs = st.executeQuery(query);
 			
-			result = new KeyPOJO(rs.getString(1), rs.getDouble(2));
+			result = new KeyPOJO(rs.getString("idKey"), rs.getDouble("credit"));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -520,7 +556,6 @@ public class RdbOperations {
 	}
 	
 	public void addKey(KeyPOJO key) {
-		
 		ArrayList<String> values = new ArrayList<>();
 		values.add(key.getSerialCode()); 
 		values.add((String.valueOf(key.getCredit()))); 
@@ -564,12 +599,28 @@ public class RdbOperations {
 			st = con.createStatement();
 			rs = st.executeQuery(query);
 			
-			result = rs.getDouble(1);
+			result = rs.getDouble("credit");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		this.closeConnection(con);
 		return result;
+	}
+	
+	public void deactivateKey(String serialCode) {
+		String query = QueryGenerator.getDeleteWhereQuery("Key", "serialCode = '"+serialCode+"'");
+		
+		con = this.startConnection(con);
+		Statement st;	
+		try {
+			st = con.createStatement();
+			st.executeUpdate(query); 
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		this.closeConnection(con);
 	}
 	
 }
