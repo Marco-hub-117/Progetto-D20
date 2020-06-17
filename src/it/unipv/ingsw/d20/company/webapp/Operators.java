@@ -1,8 +1,12 @@
 package it.unipv.ingsw.d20.company.webapp;
 
 import java.util.ArrayList;
+
 import java.util.List;
 import java.util.stream.Collectors;
+
+//DA ELIMINARE UNA VOLTA COLLEGATO CON DB
+
 
 public class Operators {
 

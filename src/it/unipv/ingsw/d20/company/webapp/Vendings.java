@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+//DA ELIMINARE UNA VOLTA COLLEGATO CON DB
+
 public class Vendings {
 	
 	private static List<Vending> vendings = new ArrayList<>();

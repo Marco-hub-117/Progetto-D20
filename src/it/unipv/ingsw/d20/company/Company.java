@@ -39,7 +39,7 @@ public class Company {
         
         PersistenceFacade pf = PersistenceFacade.getInstance();
         IVendingDao v = pf.getVendingDao();
-        ArrayList<VendingPOJO> vendingList = v.getAllVending();
+        ArrayList<VendingPOJO> vendingList = v.getAllVendings();
         
         for (VendingPOJO vp : vendingList) { //riempie la mappa con tutte le vending machine già registrate nel database
         	vendingMachineStatusList.put(vp.getIdVending(), new Date());

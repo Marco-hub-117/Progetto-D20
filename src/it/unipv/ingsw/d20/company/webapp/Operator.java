@@ -1,5 +1,7 @@
 package it.unipv.ingsw.d20.company.webapp;
 
+//DA ELIMINARE UNA VOLTA COLLEGATO CON DB
+
 public class Operator {
 	private String name;
 	private String username;

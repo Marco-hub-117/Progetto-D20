@@ -1,5 +1,8 @@
 package it.unipv.ingsw.d20.company.webapp;
 
+//DA ELIMINARE UNA VOLTA COLLEGATO CON DB
+
+
 public class Vending {
 	private int id;
 	private String location;
