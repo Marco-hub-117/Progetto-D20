@@ -32,6 +32,16 @@ public class WebAppController {
 		
 	//IN FASE DI ELABORAZIONE
 	
+	public OperatorPOJO getLoggedOperator() {
+		/*Operator operator=Operators.getMy(req.getParameter("username"));
+		loggedOperator=operator.checkLogIn(req.getParameter("username"), req.getParameter("inputPassword"));
+		return loggedOperator;*/
+		return null;
+	}
+	
+	public Object doNothing() {
+		return null;
+	}
 
 	public List<VendingPOJO> getAllVendingMachines() {
 		return vendingsManager.getAllVendings();

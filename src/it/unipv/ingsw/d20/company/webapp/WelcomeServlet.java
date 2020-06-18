@@ -49,10 +49,13 @@ public class WelcomeServlet extends HttpServlet {
 				resp.getWriter().write(Rythm.render(folder + "operatorsTable.html", Operators.all()));
 			}
 			else if (req.getPathInfo().equals("/keys")) {
-				//resp.getWriter().write(Rythm.render(folder + "keysTable.rtm", Vendings.all()));
+				resp.getWriter().write(Rythm.render(folder + "keysTable.html", Vendings.all()));
+			}
+			else if (req.getPathInfo().equals("/add_key")) {
+				resp.getWriter().write(Rythm.render(folder + "keyForm.html"));
 			}
 			else if (req.getPathInfo().equals("/beverages")) {
-				//resp.getWriter().write(Rythm.render(folder + "beveragesTable.rtm", Vendings.all()));
+				resp.getWriter().write(Rythm.render(folder + "beveragesTable.html", Vendings.all()));
 			}
 			else if (req.getPathInfo().equals("/goodbye")) {
 				resp.getWriter().write(Rythm.render(folder + "goodbye.html"));
