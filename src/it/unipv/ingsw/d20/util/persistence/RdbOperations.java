@@ -15,6 +15,7 @@ import it.unipv.ingsw.d20.util.persistence.operator.OperatorPOJO;
 import it.unipv.ingsw.d20.util.persistence.sale.SalePOJO;
 import it.unipv.ingsw.d20.util.persistence.vending.VendingPOJO;
 import it.unipv.ingsw.d20.vendingmachine.model.VendingMachineStatus;
+import it.unipv.ingsw.d20.vendingmachine.model.beverage.Ingredients;
 
 /**
  * Classe che implementa la connessione con il database. Implementa tutte le possibili operazioni con esso.
@@ -111,7 +112,7 @@ public class RdbOperations {
 			st = con.createStatement();
 			rs = st.executeQuery(query);
 			while(rs.next()) {
-				VendingPOJO res = new VendingPOJO(rs.getString("idVending"),VendingMachineStatus.valueOf(rs.getString("Status")));
+				VendingPOJO res = new VendingPOJO(rs.getString("idVending"),VendingMachineStatus.valueOf(rs.getString("Status")),rs.getString("Location"),rs.getString("Type"),rs.getDouble("Amount"),rs.getString("TankLevel"),rs.getString("TankTemp"));
 				result.add(res);
 			}
 		} catch (SQLException e) {
@@ -124,16 +125,16 @@ public class RdbOperations {
 	
 	public VendingPOJO getVending (String idVending) {
 		VendingPOJO result=null;
-		String query = QueryGenerator.getSelectFromWhereQuery("*","Vending","idVending="+idVending);
-		
+		String query = QueryGenerator.getSelectFromWhereQuery("*","Vending","idVending = '"+idVending+"'");
 		con = this.startConnection(con);
 		Statement st;
 		ResultSet rs;
 		try {
 			st = con.createStatement();
 			rs = st.executeQuery(query);
-			
-			result = new VendingPOJO(rs.getString("idVending"),VendingMachineStatus.valueOf(rs.getString("Status")));
+			while(rs.next()) {
+				result = new VendingPOJO(rs.getString("idVending"),VendingMachineStatus.valueOf(rs.getString("Status")),rs.getString("Location"),rs.getString("Type"),rs.getDouble("Amount"),rs.getString("TankLevel"),rs.getString("TankTemp"));
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -146,6 +147,11 @@ public class RdbOperations {
 		ArrayList<String> values = new ArrayList<>();
 		values.add(vending.getIdVending());
 		values.add(vending.getStringStatus());
+		values.add(vending.getLocation());
+		values.add(vending.getType());
+		values.add(String.valueOf(vending.getAmount()));
+		values.add(vending.getTankLevel());
+		values.add(vending.getTankTemp());
 		String query = QueryGenerator.getInsertIntoValuesQuery("Vending", values);
 		
 		con = this.startConnection(con);
@@ -165,6 +171,40 @@ public class RdbOperations {
 	public void updateVendingStatus(String idVending,VendingMachineStatus newStatus) {
 		
 		String set = "Status = '"+newStatus+"'";
+		String whereStatement = "idVending = '"+idVending+"'";
+		String query = QueryGenerator.getUpdateSetQuery("Vending", set, whereStatement);
+		con = this.startConnection(con);
+		Statement st;	
+		try {
+			st = con.createStatement();
+			st.executeUpdate(query); // usato per eseguire una query di inserimento.
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		this.closeConnection(con);
+	}
+	
+	public void updateVendingAmount(String idVending,double amount) {
+		String set = "Amount = '"+String.valueOf(amount)+"'";
+		String whereStatement = "idVending = '"+idVending+"'";
+		String query = QueryGenerator.getUpdateSetQuery("Vending", set, whereStatement);
+		con = this.startConnection(con);
+		Statement st;	
+		try {
+			st = con.createStatement();
+			st.executeUpdate(query); // usato per eseguire una query di inserimento.
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		this.closeConnection(con);
+	}
+	
+	public void updateVendingTankLevel(String idVending,String tankLevel) {
+		String set = "TankLevel = '"+tankLevel+"'";
 		String whereStatement = "idVending = '"+idVending+"'";
 		String query = QueryGenerator.getUpdateSetQuery("Vending", set, whereStatement);
 		con = this.startConnection(con);
@@ -456,7 +496,7 @@ public class RdbOperations {
 			st = con.createStatement();
 			rs = st.executeQuery(query);
 			while(rs.next()) {
-				OperatorPOJO res = new OperatorPOJO(rs.getString("code"), rs.getString("name"), rs.getString("username"), rs.getString("password"), rs.getString("type"));
+				OperatorPOJO res = new OperatorPOJO(rs.getString("CF"), rs.getString("Name"), rs.getString("Username"), rs.getString("Password"), rs.getString("Type"));
 				result.add(res);
 			}
 		} catch (SQLException e) {
@@ -469,7 +509,7 @@ public class RdbOperations {
 	
 	public OperatorPOJO getOperator (String code) {
 		OperatorPOJO result=null;
-		String query = QueryGenerator.getSelectFromWhereQuery("*","Operator","code= '"+code+"'");
+		String query = QueryGenerator.getSelectFromWhereQuery("*","Operator","CF= '"+code+"'");
 		
 		con = this.startConnection(con);
 		Statement st;
@@ -477,8 +517,10 @@ public class RdbOperations {
 		try {
 			st = con.createStatement();
 			rs = st.executeQuery(query);
+			while (rs.next()) {
+				result = new OperatorPOJO(rs.getString("CF"), rs.getString("Name"), rs.getString("Username"), rs.getString("Password"), rs.getString("Type"));	
+			}
 			
-			result = new OperatorPOJO(rs.getString("code"), rs.getString("name"), rs.getString("username"), rs.getString("password"), rs.getString("type"));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -545,8 +587,9 @@ public class RdbOperations {
 		try {
 			st = con.createStatement();
 			rs = st.executeQuery(query);
-			
-			result = new KeyPOJO(rs.getString("idKey"), rs.getDouble("credit"));
+			while (rs.next()) {
+				result = new KeyPOJO(rs.getString("idKey"), rs.getDouble("credit"));
+			}	
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -598,8 +641,9 @@ public class RdbOperations {
 		try {
 			st = con.createStatement();
 			rs = st.executeQuery(query);
-			
-			result = rs.getDouble("credit");
+			while(rs.next()) {
+				result = rs.getDouble("credit");
+			}	
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

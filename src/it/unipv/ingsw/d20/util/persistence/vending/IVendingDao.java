@@ -35,5 +35,13 @@ public interface IVendingDao {
 	
 	public void updateVendingStatus(String idVending,VendingMachineStatus newStatus);
 	
+	public void updateVendingAmount(String idVending,double amount);
+	
+	public void updateVendingTankLevel(String idVending,String tankLevel);
+	
+	// public void updateVendingTankTemp(String idVending,String TankTemp); DA VEDERE UTILITA'
+	
+	
+	
 
 }

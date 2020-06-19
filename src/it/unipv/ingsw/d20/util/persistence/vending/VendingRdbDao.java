@@ -41,4 +41,14 @@ public class VendingRdbDao implements IVendingDao{
 		return op.getVending(idVending);
 	}
 
+	@Override
+	public void updateVendingAmount(String idVending, double amount) {
+		op.updateVendingAmount(idVending, amount);
+	}
+
+	@Override
+	public void updateVendingTankLevel(String idVending, String tankLevel) {
+		op.updateVendingTankLevel(idVending, tankLevel);
+	}
+
 }

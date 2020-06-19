@@ -52,5 +52,13 @@ public class OperatorPOJO {
 	public void setType(String type) {
 		this.type = type;
 	}
+
+	@Override
+	public String toString() {
+		return "OperatorPOJO [code=" + code + ", name=" + name + ", username=" + username + ", password=" + password
+				+ ", type=" + type + "]";
+	}
+	
+	
 	
 }

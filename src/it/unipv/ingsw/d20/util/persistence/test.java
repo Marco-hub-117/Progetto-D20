@@ -35,7 +35,7 @@ public class test {
 		}
 		
 		IBeverageDescriptionDao IbvDao = pf.getBeverageDescriptionDao();
-		BeverageDescriptionPOJO bvpojo = IbvDao.getBeverageDescriptionByBevName("Caffï¿½ latte");
+		BeverageDescriptionPOJO bvpojo = IbvDao.getBeverageDescriptionByBevName("Caffè latte");
 		System.out.println(bvpojo);
 		
 		IBvCatalogDao ibvcat = pf.getBvCatalogDao();
