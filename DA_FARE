@@ -1,21 +1,21 @@
-questa settimana:
+per il 26/6:
 -web app: completamento e collegamento a DB
--test
--commenti (decidiamo uno standard es. italiano e prima di ogni metodo non getter/setter)
--login operatore e relativo interfacciamento DB
-- gestione delle sale, solo nel db o anche in locale? eventualmente aggiornare in db col timer ogni tot minuti
-//migliorare gui operatore e aggiungere tasto per ritirare i soldi
-
-prossima settimana:
+-test su cashcontainer, tankhandler, sale
+-commenti in italiano e prima di ogni metodo e di ogni classe, non getter/setter (eventualmente su attributi importanti) + javadoc
+-gestione delle sale, solo nel db o anche in locale? eventualmente aggiornare in db col timer ogni tot minuti
 -sistemare wiki git
--javadoc
--controllare qualità del codice (struttura classi/metodi, nomi, pattern)
--animazione grafica o tentativo app android
+-controllare qualità del codice (struttura classi/metodi, nomi completi in inglese)
 -file di istruzioni per avviare il tutto
 
 ultima settimana:
--interfaccia testuale per cliente, operatore, operatore remoto
 -slide per presentazione
 -organizzare presentazione
+-interfaccia testuale per cliente, operatore, operatore remoto
+-animazione grafica o tentativo app android
 
-(ovviamente le spartizioni sono indicative, si possono scambiare cose)
+LUIGI: DOCUMENTAZIONE DEL PROGETTO
+CAPPE: DOCUMENTAZIONE DEI REQUISITI
+LUCA: PROGETTAZIONE DELL'INTERFACCIA
+NICOLO: QUALITA CODICE
+MARCO: VERIFICA E CONVALIDA
+DAVIDE: DOCUMENTAZIONE CODICE
