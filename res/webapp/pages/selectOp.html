@@ -1,5 +1,5 @@
 @args() {
-    it.unipv.ingsw.d20.company.webapp.Operator operator
+    it.unipv.ingsw.d20.util.persistence.operator.OperatorPOJO operator
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -27,7 +27,7 @@
 		
 					<div class="text-right">
 						<div class="btn">						
-							<a href="/goodbye" class="btn btn-danger">Log Out</a>
+							<a href="/d20/goodbye" class="btn btn-danger">Log Out</a>
 						</div>
 	  				</div>	
   						
@@ -39,12 +39,12 @@
   			</div>
  
   			<div class="options">
-  				<form class="form-signin" action="/goodbye">
+  				<form class="form-signin" action="/d20/goodbye">
   					<h1 class="h3 mb-3 font-weight-normal text-white">Select an operation</h1>
-					<a href="/vendings" class="btn btn-lg btn-primary btn-block">Vending Machines Monitoring</a>
- 					<a href="/operators" class="btn btn-lg btn-primary btn-block">Register Operator</a>
- 			 		<a href="/keys" class="btn btn-lg btn-primary btn-block">Register Key</a>
- 			 		<a href="/beverages" class="btn btn-lg btn-primary btn-block">Manage Beverages</a>
+					<a href="/d20/vendings" class="btn btn-lg btn-primary btn-block">Vending Machines Monitoring</a>
+ 					<a href="/d20/operators" class="btn btn-lg btn-primary btn-block">Register Operator</a>
+ 			 		<a href="/d20/keys" class="btn btn-lg btn-primary btn-block">Register Key</a>
+ 			 		<a href="/d20/beverages" class="btn btn-lg btn-primary btn-block">Manage Beverages</a>
   	 				<button type="submit" class="btn btn-lg btn-danger btn-block">Log out</button>    					
   					<p class="mt-5 mb-3 text-white">&copy; Progetto D - Ingegneria del Software 2020</p>
 				</form>
