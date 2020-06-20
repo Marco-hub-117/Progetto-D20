@@ -114,7 +114,7 @@ public class VendingMachine {
 	 * 
 	 */
 	public void startTransaction(BeverageDescription bvDesc) throws InsufficientCreditException { 
-		Sale s = new Sale(bvDesc, credit); //se il credito non è sufficiente per erogare la bevanda lancia eccezione
+		Sale sale = new Sale(bvDesc, credit); //se il credito non è sufficiente per erogare la bevanda lancia eccezione
 		//TODO saveSaleIntoLocal();
 		saveCashContainerIntoLocal();
 		
@@ -123,9 +123,8 @@ public class VendingMachine {
 		
 		Beverage bev = new Beverage(); bev.start();
 		System.out.println("Erogato " + bvDesc.getName() + " correttamente");
-		credit = s.getRest();
-		salesRegister.add(s);
-		this.updateInfoToDb();
+		credit = sale.getRest();
+		// this.saveSale(sale);
 	}
 	
 	public HashMap<Ingredients, Double> getTanksLevels() {
@@ -286,11 +285,22 @@ public class VendingMachine {
 	/**
 	 * Questo metodo serve per notificare al db una serie di informazioni come livello e temperatura dei tanks e amount
 	 */
+	public void updateInfoToDb() {  // DA SPOSTARE NEL THRED CON IL TIMER. RIVEDERE CON NICOLO
+		try {
+			this.saveTanksLevelToDb();
+			this.saveTanksTempToDb();
+			this.notifyAmount();
+		} catch (Exception e) {
+			System.out.println("Connessione al DB assente");
+		}
+	}
 	
-	public void updateInfoToDb() {
-		this.saveTanksLevelToDb();
-		this.saveTanksTempToDb();
-		this.notifyAmount();
+	public void saveSale(Sale sale) {
+		try {
+			// salvare direttamente la sale sul db
+		} catch (Exception e) { // implementare la giusta eccezione
+			// salva la sale nel file locale.
+		}
 	}
 	
 }
