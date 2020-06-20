@@ -51,4 +51,10 @@ public class VendingRdbDao implements IVendingDao{
 		op.updateVendingTankLevel(idVending, tankLevel);
 	}
 
+	@Override
+	public void updateVendingTankTemp(String idVending, String tankTemp) {
+		// TODO Auto-generated method stub
+		op.updateVendingTankTemp(idVending, tankTemp);
+	}
+
 }

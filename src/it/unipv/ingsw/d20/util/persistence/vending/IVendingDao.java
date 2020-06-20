@@ -39,7 +39,7 @@ public interface IVendingDao {
 	
 	public void updateVendingTankLevel(String idVending,String tankLevel);
 	
-	// public void updateVendingTankTemp(String idVending,String TankTemp); DA VEDERE UTILITA'
+	public void updateVendingTankTemp(String idVending,String tankTemp); 
 	
 	
 	

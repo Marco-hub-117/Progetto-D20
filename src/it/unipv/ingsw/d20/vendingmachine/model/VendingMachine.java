@@ -3,6 +3,7 @@ package it.unipv.ingsw.d20.vendingmachine.model;
 
 import it.unipv.ingsw.d20.util.persistence.PersistenceFacade;
 import it.unipv.ingsw.d20.util.persistence.local.VendingLocalIO;
+import it.unipv.ingsw.d20.util.persistence.vending.IVendingDao;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.BeverageCatalog;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.BeverageDescription;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.Beverage;
@@ -124,6 +125,7 @@ public class VendingMachine {
 		System.out.println("Erogato " + bvDesc.getName() + " correttamente");
 		credit = s.getRest();
 		salesRegister.add(s);
+		this.updateInfoToDb();
 	}
 	
 	public HashMap<Ingredients, Double> getTanksLevels() {
@@ -133,39 +135,30 @@ public class VendingMachine {
 	public void refillTanks(String id){
 		tankHandler.refillTank(id); 
 		saveTankIntoLocal();
+		this.saveTanksLevelToDb();
 	}
 	
 	/**
 	 * Metodo che gestisce il ritiro del credito dalla VendingMachine.
-	 * @throws WithdrawAmountException
-	 * @throws RefillMachineException
 	 */
-	public double withdrawAmount() throws WithdrawAmountException, RefillMachineException { //Vedere se refill o OFF
+	public double withdrawAmount() throws WithdrawAmountException, RefillMachineException { 
 		double withdrawnAmount = cashContainer.withdrawAmount();
 		saveCashContainerIntoLocal();
-		//lanciare le eccezioni non so come, fate voi lol
+		this.notifyAmount();
 		return withdrawnAmount;
 	}
 
-	public void modifyTankSettings(String id, Double temp) throws RefillMachineException, TankAbsentException{ //serve per modificare la temperatura del tank
-	/*	
-		if(status.equals(VendingMachineStatus.REFILL)) {
-			if(tankList.containsKey(id)) {
-				tankList.get(id).setTemperature(temp);
-			}else {
-				throw new TankAbsentException("Tank non presente");
-			}
-		}else {
-			throw new RefillMachineException("Stato della macchinetta non corretto");
-		}*/
-	}
-
-	public void setIngredient(String code, String name, Double quantity) {		
-		/*
-		 * Creare nella classe beverageCatalog un metodo che permette l'aggiunta di un ingrediente 
-		 * passando come argomento il nome dell'ingrediente, e non un'oggetto Ingredients.
-		 */
-		//this.bvCatalog.setIngredient(code, name, quantity);
+	/**
+	 * Modifica la temperatura di un tank
+	 * @param id tank
+	 * @param temp
+	 */
+	public void modifyTankSettings(String id, Double temp) { 
+		try {
+			tankHandler.modifyTankSettings(id, temp);
+		} catch (TankAbsentException e) {
+			System.out.println(e.getMessage());
+		}
 	}
 	
 	public BeverageCatalog getCatalogFromLocal() {
@@ -206,6 +199,9 @@ public class VendingMachine {
 	
 	public void setStatus(VendingMachineStatus status) {
 		this.status = status;
+		PersistenceFacade pf = PersistenceFacade.getInstance();
+		IVendingDao vd = pf.getVendingDao();
+		vd.updateVendingStatus(this.id, status);
 	}
 	
 	public boolean isCorrectId(String insertedId) {
@@ -242,4 +238,59 @@ public class VendingMachine {
 	public HashMap<Ingredients, Tank> getTankList() {
 		return tankHandler.getTankList();
 	}
+	
+	/**
+	 * Serve per aggiornare il credito, che la vending attualmente contiene, sul db  
+	 */
+	
+	public void notifyAmount() {		
+		PersistenceFacade pf = PersistenceFacade.getInstance();
+		IVendingDao vd = pf.getVendingDao();
+		vd.updateVendingAmount(this.id, cashContainer.getTotalAmount());
+	}
+	
+	public void saveTanksLevelToDb() {
+		PersistenceFacade pf = PersistenceFacade.getInstance();
+		IVendingDao vd = pf.getVendingDao();
+		String levels = "";
+		Boolean first = true;	//serve per costruire correttamente la stringa sul db, utilizzata solo 1 volta nel ciclo
+		HashMap<Ingredients, Double> tanksLevels= tankHandler.getTanksLevel();
+		for(Ingredients i : tanksLevels.keySet()) {
+			if(first) {
+				levels += tanksLevels.get(i);
+				first = false;
+			}else {
+				levels += "-" + tanksLevels.get(i) ;
+			}
+		}
+		vd.updateVendingTankLevel(this.id, levels);
+	}
+
+	public void saveTanksTempToDb() {
+		PersistenceFacade pf = PersistenceFacade.getInstance();
+		IVendingDao vd = pf.getVendingDao();
+		String temp = "";
+		Boolean first = true;	//serve per costruire correttamente la stringa sul db, utilizzata solo 1 volta nel ciclo
+		HashMap<Ingredients, Tank> tanksTemp= tankHandler.getTankList();
+		for(Ingredients i : tanksTemp.keySet()) {
+			if(first) {
+				temp += tanksTemp.get(i).getTemperature();
+				first = false;
+			}else {
+				temp += "-" + tanksTemp.get(i).getTemperature() ;
+			}
+		}
+		vd.updateVendingTankTemp(this.id, temp);
+	}
+
+	/**
+	 * Questo metodo serve per notificare al db una serie di informazioni come livello e temperatura dei tanks e amount
+	 */
+	
+	public void updateInfoToDb() {
+		this.saveTanksLevelToDb();
+		this.saveTanksTempToDb();
+		this.notifyAmount();
+	}
+	
 }

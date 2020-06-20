@@ -220,6 +220,24 @@ public class RdbOperations {
 		this.closeConnection(con);
 	}
 	
+	public void updateVendingTankTemp(String idVending,String tankTemp) {
+		String set = "TankTemp = '"+tankTemp+"'";
+		String whereStatement = "idVending = '"+idVending+"'";
+		String query = QueryGenerator.getUpdateSetQuery("Vending", set, whereStatement);
+		con = this.startConnection(con);
+		Statement st;	
+		try {
+			st = con.createStatement();
+			st.executeUpdate(query); // usato per eseguire una query di inserimento.
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		this.closeConnection(con);
+	
+	}
+	
 	// DI SEGUITO CI SARANNO LE QUERY RELATIVE ALLA SALE
 	
 	public void addSale(SalePOJO sale) {
