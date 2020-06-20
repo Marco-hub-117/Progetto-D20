@@ -10,14 +10,14 @@ public class OperatorPOJO {
 	
 	private String code;
 	private String name;
-	private String username;
+	//private String username;
 	private String password;
 	private String type;
 	
-	public OperatorPOJO(String code, String name, String username, String password, String type) {
+	public OperatorPOJO(String code, String name, String password, String type) {
 		this.code = code;
 		this.name = name;
-		this.username = username;
+		//this.username = username;
 		this.password = password;
 		this.type = type;
 	}
@@ -34,12 +34,12 @@ public class OperatorPOJO {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getUsername() {
+	/*public String getUsername() {
 		return username;
 	}
 	public void setUsername(String username) {
 		this.username = username;
-	}
+	}*/
 	public String getPassword() {
 		return password;
 	}
@@ -55,7 +55,7 @@ public class OperatorPOJO {
 
 	@Override
 	public String toString() {
-		return "OperatorPOJO [code=" + code + ", name=" + name + ", username=" + username + ", password=" + password
+		return "OperatorPOJO [code=" + code + ", name=" + name + ", password=" + password
 				+ ", type=" + type + "]";
 	}
 	

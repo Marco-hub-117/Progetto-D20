@@ -9,16 +9,17 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.rythmengine.Rythm;
 
-@SuppressWarnings("serial")
-public class OperatorsServlet extends HttpServlet {
-	/*
-	private Operator loggedOperator;
-	 WebPagesHandler handler;
-	
-	public HomeServlet(){
-		handler=new WebPagesHandler();
-	}
+import it.unipv.ingsw.d20.company.webapp.WebAppController;
+import it.unipv.ingsw.d20.company.webapp.WebPagesHandler;
 
+@SuppressWarnings("serial")
+public class OperatorsServlet extends WebAppServlet {
+	
+	public OperatorsServlet(WebAppController controller, WebPagesHandler handler){
+		super(controller, handler);
+	}
+	
+	/*
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		if (loggedOperator!=null) {

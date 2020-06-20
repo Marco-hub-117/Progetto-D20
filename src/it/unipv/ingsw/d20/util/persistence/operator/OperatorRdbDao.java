@@ -28,8 +28,8 @@ public class OperatorRdbDao implements IOperatorDao{
 	}
 
 	@Override
-	public void addOperator(String code, String name, String username, String password, String type) {
-		OperatorPOJO operator= new OperatorPOJO(code, name, username, password, type);
+	public void addOperator(String code, String name, String password, String type) {
+		OperatorPOJO operator= new OperatorPOJO(code, name, password, type);
 		op.addOperator(operator);
 	}
 

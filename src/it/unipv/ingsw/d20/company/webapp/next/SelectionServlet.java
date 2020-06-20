@@ -19,38 +19,41 @@ import it.unipv.ingsw.d20.company.webapp.WebPagesHandler;
 @SuppressWarnings("serial")
 public class SelectionServlet extends WebAppServlet {
 	
-	private static String folder = "res/webapp/pages/"; //da togliere
-	
 	public SelectionServlet(WebAppController controller, WebPagesHandler handler){
 		super(controller, handler);
 	}
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
 		String url=req.getPathInfo();
-		if (url==null) { //succede nel caso in cui si ha /selection senza niente dopo
-			//resp.getWriter().write(Rythm.render(folder + "selectOp.html", loggedOperator));
-			System.out.println("pagina non valida");
-			resp.getWriter().write(Rythm.render(folder + "conferma.html", "pagina non valida")); //solo questo lo renderizza giusto
+		if (controller.getLoggedOperator()!=null) {
+			if (url==null) { 
+				resp.getWriter().write(Rythm.render(handler.getPage("/select"), controller.getLoggedOperator()));
+			}
+			else if (url.equals("/")) {
+				resp.getWriter().write(Rythm.render(handler.getPage("/select"), controller.getLoggedOperator()));
+				System.out.println("giusto");
+			}		
+			else {
+				resp.getWriter().write(Rythm.render(handler.getPage("/select"), controller.getLoggedOperator()));
+			}
+		//si possono anche togliere i vari if else, per ora li lascio x eventuale debug
 		}
-		else if (url.equals("/")) {
-			//resp.getWriter().write(Rythm.render(folder + "selectOp.html", loggedOperator));
-			System.out.println("pagina valida");
-			resp.getWriter().write(Rythm.render(folder + "conferma.html", "pagina valida"));
-		}		
 		else {
-			//resp.getWriter().write(Rythm.render(handler.getPage("/login")));
-			System.out.println("pagina comuqnue valida");
-			resp.getWriter().write(Rythm.render(folder + "conferma.html", "pagina comuqnue valida"));
+			resp.getWriter().write(Rythm.render(handler.getPage("/login") + "login.html"));
 		}
-		System.out.println("secondo:"+url);
 	}
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-	
-		
+		if (req.getPathInfo().equals("/logout")) {
+			controller.setNotLogged();
+			System.out.println("sloggato");
+			resp.sendRedirect("/d20/goodbye");
+			//verificare se all'interno degli html i path siano assoluti o relativi
+			//verificare se quando faccio redirect si intedne percorso interno alla servlet o generale
+			
+		} 	
 	}
 }
 	
