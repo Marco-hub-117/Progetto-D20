@@ -16,9 +16,9 @@ import it.unipv.ingsw.d20.company.webapp.WebPagesHandler;
 import it.unipv.ingsw.d20.util.persistence.vending.VendingPOJO;
 
 @SuppressWarnings("serial")
-public class VendingServlet extends WebAppServlet {
+public class VendingsServlet extends WebAppServlet {
 
-	public VendingServlet(WebAppController controller, WebPagesHandler handler) {
+	public VendingsServlet(WebAppController controller, WebPagesHandler handler) {
 		super(controller, handler);
 	}
 	

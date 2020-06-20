@@ -15,12 +15,13 @@ import it.unipv.ingsw.d20.util.persistence.vending.IVendingDao;
 import it.unipv.ingsw.d20.util.persistence.vending.VendingPOJO;
 
 public class WebAppController {
-	PersistenceFacade facade;
-	IVendingDao vendingsManager;
-	IOperatorDao operatorsManager;
-	IKeyDao keysManager;
-	IBeverageDescriptionDao beveragesManager;
-	IIngredientRecipeDao ingredientsManager;
+	private PersistenceFacade facade;
+	private IVendingDao vendingsManager;
+	private IOperatorDao operatorsManager;
+	private IKeyDao keysManager;
+	private IBeverageDescriptionDao beveragesManager;
+	private IIngredientRecipeDao ingredientsManager;
+	private OperatorPOJO loggedOperator;
 	
 	public WebAppController() {
 		facade= PersistenceFacade.getInstance();
@@ -33,14 +34,11 @@ public class WebAppController {
 	//IN FASE DI ELABORAZIONE
 	
 	public OperatorPOJO getLoggedOperator() {
-		/*Operator operator=Operators.getMy(req.getParameter("username"));
-		loggedOperator=operator.checkLogIn(req.getParameter("username"), req.getParameter("inputPassword"));
-		return loggedOperator;*/
-		return null;
+		return loggedOperator;
 	}
 	
-	public Object doNothing() {
-		return null;
+	public void setNotLogged() {
+		loggedOperator=null;
 	}
 
 	public List<VendingPOJO> getAllVendingMachines() {
@@ -63,8 +61,25 @@ public class WebAppController {
 		return operatorsManager.getOperator(code);
 	}
 	
-	public void addOperator(String code, String name, String username, String password, String type) {
-		operatorsManager.addOperator(code, name, username, password, type);
+	public void addOperator(String code, String name, String password, String type) {
+		operatorsManager.addOperator(code, name, password, type);
+	}
+	
+	public void checkOperatorLogIn (String username, String password) throws InvalidPasswordException, InvalidUserException{
+		OperatorPOJO operator;
+		if (getOperator(username)==null) {
+			throw new InvalidUserException();
+		}
+		else {
+			operator=getOperator(username);
+		}
+		
+		if (operator.getCode().equals(username) && operator.getPassword().equals(password)) {
+			loggedOperator=getOperator(username);
+		}
+		else {
+			throw new InvalidPasswordException();
+		}
 	}
 	
 	public List<KeyPOJO> getAllKeys() {
@@ -100,4 +115,5 @@ public class WebAppController {
 	public void updateIngredients (String idRecipe, String ingredientName, double quantity) {
 		ingredientsManager.updateIngredientRecipe(idRecipe, ingredientName, quantity);
 	}
+	
 }

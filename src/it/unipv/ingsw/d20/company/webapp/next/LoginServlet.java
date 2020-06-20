@@ -2,9 +2,7 @@ package it.unipv.ingsw.d20.company.webapp.next;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -12,8 +10,6 @@ import org.rythmengine.Rythm;
 
 import it.unipv.ingsw.d20.company.webapp.InvalidPasswordException;
 import it.unipv.ingsw.d20.company.webapp.InvalidUserException;
-import it.unipv.ingsw.d20.company.webapp.Operator;
-import it.unipv.ingsw.d20.company.webapp.Operators;
 import it.unipv.ingsw.d20.company.webapp.WebAppController;
 import it.unipv.ingsw.d20.company.webapp.WebPagesHandler;
 
@@ -27,15 +23,16 @@ public class LoginServlet extends WebAppServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String url=req.getPathInfo();
-		System.out.println("primo:"+url);
-		/*if  (url.equals("/login") || url.equals("/wrong_user") || url.equals("/wrong_password")) {
+		
+		if (url==null) { 
+			resp.getWriter().write(Rythm.render(handler.getPage("/login"))); 
+		}
+		else if  (url.equals("/wrong_user") || url.equals("/wrong_password") || url.equals("/goodbye")) {
 			resp.getWriter().write(Rythm.render(handler.getPage(url)));
 		}			
 		else {
 			resp.getWriter().write(Rythm.render(handler.getPage("/login")));
-		}	*/
-		
-		
+		}
 	}
 	
 	@Override
@@ -45,12 +42,12 @@ public class LoginServlet extends WebAppServlet {
 			controller.checkOperatorLogIn(req.getParameter("username"), req.getParameter("inputPassword"));	
 		} catch (InvalidUserException eu) {
 		   System.out.println("Invalid Operator Username");
-		   resp.sendRedirect("/wrong_user");
+		   resp.sendRedirect("/d20/wrong_user");
 		} catch (InvalidPasswordException ep) {
 		   System.out.println("Invalid Password");
-		   resp.sendRedirect("/wrong_password");
+		   resp.sendRedirect("/d20/wrong_password");
 		}
-		resp.sendRedirect("/select");
+		resp.sendRedirect("/d20/selection/");
 	}
 	
 }

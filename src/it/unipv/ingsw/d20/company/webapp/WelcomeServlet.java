@@ -23,9 +23,9 @@ public class WelcomeServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		if (loggedOperator!=null) {
-			if (req.getPathInfo().equals("/select")) {
+			if (req.getPathInfo().equals("/select")) { //OK
 				resp.getWriter().write(Rythm.render(folder + "selectOp.html", loggedOperator));
-			}
+			} 
 			else if (req.getPathInfo().equals("/vendings")) {
 				resp.getWriter().write(Rythm.render(folder + "vendingsTable.html", Vendings.all()));
 			}
@@ -65,16 +65,16 @@ public class WelcomeServlet extends HttpServlet {
 			}
 		}
 		else {	
-			if  (req.getPathInfo().equals("/login")) {
+			if  (req.getPathInfo().equals("/login")) { //OK
 				resp.getWriter().write(Rythm.render(folder + "login.html"));
 			}			
-			else if (req.getPathInfo().equals("/wrong_user")) {
+			else if (req.getPathInfo().equals("/wrong_user")) { //OK
 				resp.getWriter().write(Rythm.render(folder + "loginWrongUser.html"));
 			}
-			else if (req.getPathInfo().equals("/wrong_password")) {
+			else if (req.getPathInfo().equals("/wrong_password")) { //OK
 				resp.getWriter().write(Rythm.render(folder + "loginWrongPassword.html"));
 			}else {
-				resp.getWriter().write(Rythm.render(folder + "login.html"));
+				resp.getWriter().write(Rythm.render(folder + "login.html")); //OK
 			}
 		}
 		
