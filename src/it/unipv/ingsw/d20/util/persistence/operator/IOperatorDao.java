@@ -12,6 +12,6 @@ public interface IOperatorDao {
 	
 	public OperatorPOJO getOperator(String code);
 	
-	public void addOperator(String code, String name, String username, String password, String type);
+	public void addOperator(String code, String name, String password, String type);
 
 }

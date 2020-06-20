@@ -496,7 +496,7 @@ public class RdbOperations {
 			st = con.createStatement();
 			rs = st.executeQuery(query);
 			while(rs.next()) {
-				OperatorPOJO res = new OperatorPOJO(rs.getString("CF"), rs.getString("Name"), rs.getString("Username"), rs.getString("Password"), rs.getString("Type"));
+				OperatorPOJO res = new OperatorPOJO(rs.getString("CF"), rs.getString("Name"), rs.getString("Password"), rs.getString("Type"));
 				result.add(res);
 			}
 		} catch (SQLException e) {
@@ -518,7 +518,7 @@ public class RdbOperations {
 			st = con.createStatement();
 			rs = st.executeQuery(query);
 			while (rs.next()) {
-				result = new OperatorPOJO(rs.getString("CF"), rs.getString("Name"), rs.getString("Username"), rs.getString("Password"), rs.getString("Type"));	
+				result = new OperatorPOJO(rs.getString("CF"), rs.getString("Name"), rs.getString("Password"), rs.getString("Type"));	
 			}
 			
 		} catch (SQLException e) {
@@ -534,7 +534,6 @@ public class RdbOperations {
 		ArrayList<String> values = new ArrayList<>();
 		values.add(operator.getCode()); 
 		values.add(operator.getName()); 
-		values.add(operator.getUsername()); 
 		values.add(operator.getPassword());
 		values.add(operator.getType());
 		String query = QueryGenerator.getInsertIntoValuesQuery("Operator", values);	
