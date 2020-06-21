@@ -16,9 +16,9 @@ public class TankListener implements ActionListener {
 	private int pos;
 	
 	public TankListener(int pos, VendingMachine vm, OperatorGui gui) {
-		this.pos=pos;
-		this.vm=vm;
-		this.gui=gui;
+		this.pos = pos;
+		this.vm = vm;
+		this.gui = gui;
 	}
 	@Override
 	public void actionPerformed(ActionEvent arg0) {

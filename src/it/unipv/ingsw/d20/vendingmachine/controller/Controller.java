@@ -111,7 +111,6 @@ public class Controller {
 				else 
 					JOptionPane.showMessageDialog(null, "Non si possono ritirare ulteriori monete.");
 			} catch (WithdrawAmountException | RefillMachineException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 		});

@@ -134,7 +134,7 @@ public class VendingMachine {
 	public void refillTanks(String id){
 		tankHandler.refillTank(id); 
 		saveTankIntoLocal();
-		this.saveTanksLevelToDb();
+		//saveTanksLevelToDb();
 	}
 	
 	/**
@@ -143,7 +143,7 @@ public class VendingMachine {
 	public double withdrawAmount() throws WithdrawAmountException, RefillMachineException { 
 		double withdrawnAmount = cashContainer.withdrawAmount();
 		saveCashContainerIntoLocal();
-		this.notifyAmount();
+		//notifyAmount();
 		return withdrawnAmount;
 	}
 
@@ -198,9 +198,9 @@ public class VendingMachine {
 	
 	public void setStatus(VendingMachineStatus status) {
 		this.status = status;
-		PersistenceFacade pf = PersistenceFacade.getInstance();
-		IVendingDao vd = pf.getVendingDao();
-		vd.updateVendingStatus(this.id, status);
+		//PersistenceFacade pf = PersistenceFacade.getInstance();
+		//IVendingDao vd = pf.getVendingDao();
+		//vd.updateVendingStatus(this.id, status);
 	}
 	
 	public boolean isCorrectId(String insertedId) {
@@ -218,8 +218,8 @@ public class VendingMachine {
 		return credit;
 	}
 	
-	public void setCurrentAmount(double amount) {
-		credit=amount;
+	public void resetCredit() {
+		credit = 0;
 	}
 
 	public VendingMachineStatus getStatus() {
@@ -301,6 +301,10 @@ public class VendingMachine {
 		} catch (Exception e) { // implementare la giusta eccezione
 			// salva la sale nel file locale.
 		}
+	}
+	
+	public double getTotalAmount() {
+		return cashContainer.getTotalAmount();
 	}
 	
 }

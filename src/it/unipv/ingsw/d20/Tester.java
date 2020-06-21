@@ -1,6 +1,8 @@
 package it.unipv.ingsw.d20;
 
 import it.unipv.ingsw.d20.vendingmachine.model.VendingMachine;
+import it.unipv.ingsw.d20.vendingmachine.model.exceptions.RefillMachineException;
+import it.unipv.ingsw.d20.vendingmachine.model.exceptions.WithdrawAmountException;
 
 /**
  * 
@@ -9,8 +11,11 @@ import it.unipv.ingsw.d20.vendingmachine.model.VendingMachine;
  */
 public class Tester {
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+	public static void main(String[] args) throws WithdrawAmountException, RefillMachineException {
+		VendingMachine vm = new VendingMachine("ID000001");
+		System.out.println(vm.getTotalAmount());
+		vm.withdrawAmount();
+		System.out.println(vm.getTotalAmount());
 	
 	}
 }

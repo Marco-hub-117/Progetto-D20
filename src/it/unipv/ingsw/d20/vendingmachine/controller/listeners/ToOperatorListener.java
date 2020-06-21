@@ -42,7 +42,7 @@ public class ToOperatorListener implements ActionListener {
 		OperatorGui gui = new OperatorGui(vm.getTankNumber()); //istanzio una nuova interfaccia dell'operatore
 		new Controller(vm, gui); //controller associato all'interfaccia dell'operatore
 		
-		vm.setCurrentAmount(0);
+		vm.resetCredit();
 		vm.setStatus(VendingMachineStatus.REFILL);
 	}
 
