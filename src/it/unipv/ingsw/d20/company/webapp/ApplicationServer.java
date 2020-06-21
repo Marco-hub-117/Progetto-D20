@@ -51,7 +51,7 @@ public class ApplicationServer {
         handler.addServlet(holderPwd, "/d20/selection/vendings/style/*");
         handler.addServlet(holderPwd, "/d20/selection/operators/style/*");
         handler.addServlet(holderPwd, "/d20/selection/keys/style/*");
-        handler.addServlet(holderPwd, "/d20/selectino/beverages/style/*");
+        handler.addServlet(holderPwd, "/d20/selection/beverages/style/*");
     }
 
 }
