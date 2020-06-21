@@ -17,8 +17,8 @@ public class WebAppLauncher {
       	
        WebAppController controller= new WebAppController();
        controller.addOperator("adm", "Admin Adminus", "adm", "Remote Operator");
-       //controller.addKey("KEY123", 4.44);
        System.out.println("admin registrato");
+       controller.addKey("KEY123", 4.44);
        WebPagesHandler handler=new WebPagesHandler();
        List<Servlet> servletList= new LinkedList<>();
        servletList.add(new LoginServlet(controller, handler));

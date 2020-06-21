@@ -32,6 +32,7 @@ public class OperatorsServlet extends WebAppServlet {
 				resp.getWriter().write(Rythm.render(handler.getPage("/operators"), controller.getAllOperators()));
 			}
 			else {
+				url.substring(0, url.length()-1); //da controllare
 				resp.getWriter().write(Rythm.render(handler.getPage(url)));
 			}
 		}
