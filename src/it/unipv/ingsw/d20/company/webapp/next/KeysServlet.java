@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.rythmengine.Rythm;
 
+import it.unipv.ingsw.d20.company.webapp.Operators;
+import it.unipv.ingsw.d20.company.webapp.Vending;
+import it.unipv.ingsw.d20.company.webapp.Vendings;
 import it.unipv.ingsw.d20.company.webapp.WebAppController;
 import it.unipv.ingsw.d20.company.webapp.WebPagesHandler;
 
@@ -19,15 +22,38 @@ public class KeysServlet extends WebAppServlet {
 	public KeysServlet(WebAppController controller, WebPagesHandler handler){
 		super(controller, handler);
 	}
-	/*
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		if (loggedOperator!=null) {
-			handler.renderPage(req.getPathInfo(), resp);
+		String url= req.getPathInfo();
+				
+		if (controller.getLoggedOperator()!=null) {
+			if (url==null) { 
+				resp.getWriter().write(Rythm.render(handler.getPage("/select"), controller.getLoggedOperator()));
+			}
+			else if (url.equals("/")) {
+				resp.getWriter().write(Rythm.render(handler.getPage(url), controller.getAllKeys()));
+			}
+			else {
+				resp.getWriter().write(Rythm.render(handler.getPage(url)));
+			}
 		}
-		else {	
-			
+		else {
+			resp.sendRedirect("/d20/");
 		}
+	}
+	
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-	}*/
+		if (req.getPathInfo().equals("/save_key")) {
+			String credit=req.getParameter("credit");
+			double creditNum=Double.parseDouble(credit.substring(0, credit.length()));	
+			controller.addKey(req.getParameter("id"), creditNum);
+			resp.sendRedirect("/d20/keys");
+		}
+		else if (req.getPathInfo().equals("/deactivate")) {
+			controller.deactivateKey(req.getParameter("id"));
+		}
+	}
 }

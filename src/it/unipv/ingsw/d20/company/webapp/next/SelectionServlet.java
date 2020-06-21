@@ -26,34 +26,31 @@ public class SelectionServlet extends WebAppServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String url=req.getPathInfo();
+		
 		if (controller.getLoggedOperator()!=null) {
 			if (url==null) { 
 				resp.getWriter().write(Rythm.render(handler.getPage("/select"), controller.getLoggedOperator()));
+				System.out.println("interpreto qui1");
 			}
 			else if (url.equals("/")) {
 				resp.getWriter().write(Rythm.render(handler.getPage("/select"), controller.getLoggedOperator()));
 				System.out.println("giusto");
+				System.out.println("interpreto qui2");
 			}		
 			else {
 				resp.getWriter().write(Rythm.render(handler.getPage("/select"), controller.getLoggedOperator()));
+				System.out.println("interpreto qui3");
 			}
 		//si possono anche togliere i vari if else, per ora li lascio x eventuale debug
 		}
 		else {
-			resp.getWriter().write(Rythm.render(handler.getPage("/login") + "login.html"));
+			resp.sendRedirect("/d20/");
 		}
 	}
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		if (req.getPathInfo().equals("/logout")) {
-			controller.setNotLogged();
-			System.out.println("sloggato");
-			resp.sendRedirect("/d20/goodbye");
-			//verificare se all'interno degli html i path siano assoluti o relativi
-			//verificare se quando faccio redirect si intedne percorso interno alla servlet o generale
-			
-		} 	
+		
 	}
 }
 	

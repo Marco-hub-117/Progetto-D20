@@ -37,17 +37,24 @@ public class LoginServlet extends WebAppServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-	
-		try {   	
-			controller.checkOperatorLogIn(req.getParameter("username"), req.getParameter("inputPassword"));	
-		} catch (InvalidUserException eu) {
-		   System.out.println("Invalid Operator Username");
-		   resp.sendRedirect("/d20/wrong_user");
-		} catch (InvalidPasswordException ep) {
-		   System.out.println("Invalid Password");
-		   resp.sendRedirect("/d20/wrong_password");
+		
+		if (req.getPathInfo().equals("/logout")) {
+			controller.setNotLogged();
+			System.out.println("sloggato da loginServlet");
+			resp.sendRedirect("/d20/goodbye");
 		}
-		resp.sendRedirect("/d20/selection/");
+		else {
+			try {   	
+				controller.checkOperatorLogIn(req.getParameter("username"), req.getParameter("inputPassword"));	
+			} catch (InvalidUserException eu) {
+			   System.out.println("Invalid Operator Username");
+			   resp.sendRedirect("/d20/wrong_user");
+			} catch (InvalidPasswordException ep) {
+			   System.out.println("Invalid Password");
+			   resp.sendRedirect("/d20/wrong_password");
+			}
+			resp.sendRedirect("/d20/selection/");
+		}
 	}
 	
 }

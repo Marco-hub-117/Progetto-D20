@@ -7,6 +7,10 @@ import it.unipv.ingsw.d20.util.persistence.RdbOperations;
 public class KeyRdbDao implements IKeyDao{
 	
 	private RdbOperations op;
+	
+	public KeyRdbDao () {
+		op = new RdbOperations();
+	}
 
 	@Override
 	public ArrayList<KeyPOJO> getAllKeys() {

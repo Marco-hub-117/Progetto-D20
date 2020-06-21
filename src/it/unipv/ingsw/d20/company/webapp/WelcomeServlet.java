@@ -42,22 +42,22 @@ public class WelcomeServlet extends HttpServlet {
 			else if (req.getPathInfo().equals("/report_confirmed")) {
 				resp.getWriter().write(Rythm.render(folder + "reportConfirmed.html"));
 			}
-			else if (req.getPathInfo().equals("/add_operator")) {
+			else if (req.getPathInfo().equals("/add_operator")) { //OK
 				resp.getWriter().write(Rythm.render(folder + "operatorForm.html"));
 			}
-			else if (req.getPathInfo().equals("/operators")) {
+			else if (req.getPathInfo().equals("/operators")) { //OK
 				resp.getWriter().write(Rythm.render(folder + "operatorsTable.html", Operators.all()));
 			}
-			else if (req.getPathInfo().equals("/keys")) {
+			else if (req.getPathInfo().equals("/keys")) { //OK
 				resp.getWriter().write(Rythm.render(folder + "keysTable.html", Vendings.all()));
 			}
-			else if (req.getPathInfo().equals("/add_key")) {
+			else if (req.getPathInfo().equals("/add_key")) { //OK
 				resp.getWriter().write(Rythm.render(folder + "keyForm.html"));
 			}
 			else if (req.getPathInfo().equals("/beverages")) {
 				resp.getWriter().write(Rythm.render(folder + "beveragesTable.html", Vendings.all()));
 			}
-			else if (req.getPathInfo().equals("/goodbye")) {
+			else if (req.getPathInfo().equals("/goodbye")) { //OK
 				resp.getWriter().write(Rythm.render(folder + "goodbye.html"));
 			}
 			else {
@@ -87,7 +87,7 @@ public class WelcomeServlet extends HttpServlet {
 			Vendings.add(Integer.parseInt(req.getParameter("id")), req.getParameter("location"), req.getParameter("status"), req.getParameter("type"));
 			resp.sendRedirect("/vendings");
 		} 
-		else if (req.getPathInfo().equals("/save_operator")) {
+		else if (req.getPathInfo().equals("/save_operator")) { //OK
 			Operators.add(req.getParameter("first_name")+" "+req.getParameter("last_name"), req.getParameter("username"), req.getParameter("password"),  req.getParameter("type"));
 			resp.sendRedirect("/operators");
 		}
@@ -95,7 +95,7 @@ public class WelcomeServlet extends HttpServlet {
 			System.out.println("AIUTOOO");
 			resp.sendRedirect("/report_confirmed");
 		} 
-		else if (req.getPathInfo().equals("/try_login")) {
+		else if (req.getPathInfo().equals("/try_login")) { //OK
 		    try {   	
 			Operator operator=Operators.getMy(req.getParameter("username"));
 			loggedOperator=operator.checkLogIn(req.getParameter("username"), req.getParameter("inputPassword"));	
