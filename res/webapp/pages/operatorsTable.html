@@ -1,5 +1,5 @@
 @args() {
-	List<it.unipv.ingsw.d20.company.webapp.Operator> operators
+	List<it.unipv.ingsw.d20.util.persistence.operator.OperatorPOJO> operators
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -9,14 +9,14 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 	
-		<link rel="stylesheet" "type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-		<link rel="stylesheet" "type="text/css" href="style/tables/vendor/bootstrap/css/bootstrap.min.css">
-		<link rel="stylesheet" "type="text/css" href="style/tables/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-		<link rel="stylesheet" "type="text/css" href="style/tables/vendor/animate/animate.css">
-		<link rel="stylesheet" "type="text/css" href="style/tables/vendor/select2/select2.min.css">
-		<link rel="stylesheet" "type="text/css" href="style/tables/vendor/perfect-scrollbar/perfect-scrollbar.css">
-		<link rel="stylesheet" "type="text/css" href="style/tables/css/util.css">
-		<link rel="stylesheet" "type="text/css" href="style/tables/css/main.css">
+		<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="style/tables/vendor/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="style/tables/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" href="style/tables/vendor/animate/animate.css">
+		<link rel="stylesheet" type="text/css" href="style/tables/vendor/select2/select2.min.css">
+		<link rel="stylesheet" type="text/css" href="style/tables/vendor/perfect-scrollbar/perfect-scrollbar.css">
+		<link rel="stylesheet" type="text/css" href="style/tables/css/util.css">
+		<link rel="stylesheet" type="text/css" href="style/tables/css/main.css">
 	</head>
 
 	<body>
@@ -31,7 +31,9 @@
 		
 					<div class="text-right">
 						<div class="btn">
-							<a href="/goodbye" class="btn btn-danger">Log Out</a>
+							<form method="POST" action="/d20/logout"> 
+                       		 	<button class="btn btn-lg btn-danger btn-block" type="submit">Log Out</button>
+                       		</form>
 						</div>
 	  				</div>			
 	  			</div>					
@@ -42,7 +44,7 @@
 				
 					<div class="text-right">
 						<div class="btn">
-							<a href="/add_operator" class="btn btn-lg btn-primary btn-block">Add</a>
+							<a href="/d20/selection/operators/add_operator/" class="btn btn-lg btn-primary btn-block">Add</a>
 						</div>
 		  			</div>		
 		  					
@@ -57,10 +59,10 @@
 							</thead>
 							
 							<tbody>		
-								@for (it.unipv.ingsw.d20.company.webapp.Operator it: operators) {
+								@for (it.unipv.ingsw.d20.util.persistence.operator.OperatorPOJO it: operators) {
 									<tr> 
 										<td>@(it.getName())</td>
-										<td>@(it.getUsername())</td> 
+										<td>@(it.getCode())</td> 
 										<td>@(it.getType())</td>
 									</tr>
 								}		
@@ -71,7 +73,7 @@
 					<div class="container">
 						<div class="text-center"> 
 							<div class="btn">
-								<a href="/select" class="btn btn-lg btn-secondary">Done</a>
+								<a href="/d20/selection/" class="btn btn-lg btn-secondary">Done</a>
 		  					</div>
 		  				</div>
 		  			</div>
