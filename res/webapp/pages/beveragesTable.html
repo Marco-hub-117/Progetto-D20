@@ -1,5 +1,5 @@
 @args() {
-	List<it.unipv.ingsw.d20.company.webapp.Vending> vending
+	List<it.unipv.ingsw.d20.util.persistence.beveragedescription.BeverageDescriptionPOJO> beverages
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -31,7 +31,9 @@
 	
 					<div class="text-right">
 						<div class="btn">
-							<a href="/goodbye" class="btn btn-danger">Log Out</a>
+							<form method="POST" action="/d20/logout"> 
+                       		 	<button class="btn btn-danger btn-block" type="submit">Log Out</button>
+                       		</form>
 						</div>
   					</div>			
   				</div>					
@@ -41,7 +43,7 @@
 				<div class="wrap-table100"> 
 					<div class="text-right">
 						<div class="btn">
-							<a href="/add_vending" class="btn btn-lg btn-primary btn-block">Add</a>
+							<a href="/d20/selection/operators/add_beverage" class="btn btn-lg btn-primary btn-block">Add</a>
 						</div>
   					</div>		
   					
@@ -56,12 +58,12 @@
 							</thead>
 							
 							<tbody>
-								@for (it.unipv.ingsw.d20.company.webapp.Vending it: vending) {
+								@for (it.unipv.ingsw.d20.util.persistence.beveragedescription.BeverageDescriptionPOJO it: beverages) {
 									<tr> 
-										<td>@(it.getId())</td> 
-										<td>@(it.getLocation())</td> 
+										<td>@(it.getBvName()) </td> 
+										<td>@(it.getPrice()) &#8364;</td> 
 										<td>										
-										<a href="/settings?id=@(it.getId())" class="btn btn-secondary">Edit</a>									
+										<a href="/d20/selection/beverages/beverage_edit?bevname=@(it.getBvName())" class="btn btn-secondary">Edit</a>									
 										</td> 
 									</tr>
 								}		
@@ -72,7 +74,7 @@
 						<div class="container">
 							<div class="text-center"> 
 								<div class="btn">
-									<a href="/select" class="btn btn-lg btn-secondary">Done</a>
+									<a href="/d20/selection/" class="btn btn-lg btn-secondary">Done</a>
 								</div>
 							</div>
 						 </div>

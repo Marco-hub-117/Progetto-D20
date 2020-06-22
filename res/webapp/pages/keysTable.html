@@ -1,5 +1,5 @@
 @args() {
-	List<it.unipv.ingsw.d20.util.persistence.keys.KeyPOJO> keys
+	List<it.unipv.ingsw.d20.util.persistence.key.KeyPOJO> keys
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -30,9 +30,11 @@
   					</div>	
 	
 					<div class="text-right">
-						<form method="POST" action="/d20/logout"> 
+						<div class="btn">
+							<form method="POST" action="/d20/logout"> 
                        		 	<button class="btn btn-danger btn-block" type="submit">Log Out</button>
-                       	</form>
+                       		</form>
+						</div>
   					</div>			
   				</div>					
   			</div>
@@ -56,7 +58,7 @@
 							</thead>
 							
 							<tbody>
-								@for (it.unipv.ingsw.d20.util.persistence.keys.KeyPOJO it: keys) {
+								@for (it.unipv.ingsw.d20.util.persistence.key.KeyPOJO it: keys) {
 									<tr> 
 										<td>@(it.getSerialCode())</td> 
 										<td>@(it.getCredit())</td> 
