@@ -3,13 +3,11 @@ package it.unipv.ingsw.d20.company.webapp.next;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.rythmengine.Rythm;
 
-import it.unipv.ingsw.d20.company.webapp.Operators;
 import it.unipv.ingsw.d20.company.webapp.WebAppController;
 import it.unipv.ingsw.d20.company.webapp.WebPagesHandler;
 
@@ -32,8 +30,9 @@ public class OperatorsServlet extends WebAppServlet {
 				resp.getWriter().write(Rythm.render(handler.getPage("/operators"), controller.getAllOperators()));
 			}
 			else {
-				url.substring(0, url.length()-1); //da controllare
-				resp.getWriter().write(Rythm.render(handler.getPage(url)));
+				System.out.println(url);
+				String urlTrimmed=url.substring(0, url.length()-1); //da controllare
+				resp.getWriter().write(Rythm.render(handler.getPage(urlTrimmed)));
 			}
 		}
 		else {
@@ -46,7 +45,7 @@ public class OperatorsServlet extends WebAppServlet {
 		
 		if (req.getPathInfo().equals("/save_operator")) {
 		controller.addOperator(req.getParameter("username"), req.getParameter("first_name")+" "+req.getParameter("last_name"), req.getParameter("password"), req.getParameter("type"));
-		resp.sendRedirect("/d20/operators");
+		resp.sendRedirect("/d20/selection/operators/");
 		}
 	
 	}

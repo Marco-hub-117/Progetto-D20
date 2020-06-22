@@ -24,14 +24,19 @@ public class LoginServlet extends WebAppServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String url=req.getPathInfo();
 		
-		if (url==null) { 
-			resp.getWriter().write(Rythm.render(handler.getPage("/login"))); 
+		if (controller.getLoggedOperator()==null) {
+			if (url==null) { 
+				resp.getWriter().write(Rythm.render(handler.getPage("/login"))); 
+			}
+			else if  (url.equals("/wrong_user") || url.equals("/wrong_password") || url.equals("/goodbye")) {
+				resp.getWriter().write(Rythm.render(handler.getPage(url)));
+			}			
+			else {
+				resp.getWriter().write(Rythm.render(handler.getPage("/login")));
+			}
 		}
-		else if  (url.equals("/wrong_user") || url.equals("/wrong_password") || url.equals("/goodbye")) {
-			resp.getWriter().write(Rythm.render(handler.getPage(url)));
-		}			
 		else {
-			resp.getWriter().write(Rythm.render(handler.getPage("/login")));
+			resp.getWriter().write(Rythm.render(handler.getPage("/select"), controller.getLoggedOperator()));
 		}
 	}
 	

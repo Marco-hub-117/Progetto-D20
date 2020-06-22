@@ -26,20 +26,20 @@ public class WelcomeServlet extends HttpServlet {
 			if (req.getPathInfo().equals("/select")) { //OK
 				resp.getWriter().write(Rythm.render(folder + "selectOp.html", loggedOperator));
 			} 
-			else if (req.getPathInfo().equals("/vendings")) {
+			else if (req.getPathInfo().equals("/vendings")) { //OK
 				resp.getWriter().write(Rythm.render(folder + "vendingsTable.html", Vendings.all()));
 			}
-			else if (req.getPathInfo().equals("/add_vending")) {
+			else if (req.getPathInfo().equals("/add_vending")) { //OK
 				resp.getWriter().write(Rythm.render(folder + "vendingForm.html"));
 			}
-			else if (req.getPathInfo().equals("/settings")) {
+			else if (req.getPathInfo().equals("/settings")) { //OK
 				Vending vending = Vendings.get(Integer.parseInt((req.getParameter("id"))));
 				resp.getWriter().write(Rythm.render(folder + "vendingSettings.html", vending, Vendings.all()));
 			}
-			else if (req.getPathInfo().equals("/report")) {
+			else if (req.getPathInfo().equals("/report")) { //OK
 				resp.getWriter().write(Rythm.render(folder + "vendingReport.html", Operators.all()));
 			}
-			else if (req.getPathInfo().equals("/report_confirmed")) {
+			else if (req.getPathInfo().equals("/report_confirmed")) { //OK
 				resp.getWriter().write(Rythm.render(folder + "reportConfirmed.html"));
 			}
 			else if (req.getPathInfo().equals("/add_operator")) { //OK
@@ -54,7 +54,7 @@ public class WelcomeServlet extends HttpServlet {
 			else if (req.getPathInfo().equals("/add_key")) { //OK
 				resp.getWriter().write(Rythm.render(folder + "keyForm.html"));
 			}
-			else if (req.getPathInfo().equals("/beverages")) {
+			else if (req.getPathInfo().equals("/beverages")) { //OK
 				resp.getWriter().write(Rythm.render(folder + "beveragesTable.html", Vendings.all()));
 			}
 			else if (req.getPathInfo().equals("/goodbye")) { //OK
@@ -110,7 +110,7 @@ public class WelcomeServlet extends HttpServlet {
 		    }
 		    resp.sendRedirect("/select");
 		}
-		else if (req.getPathInfo().equals("/logout")) {
+		else if (req.getPathInfo().equals("/logout")) { //OK
 			loggedOperator=null;
 			resp.sendRedirect("/goodbye");
 		} 

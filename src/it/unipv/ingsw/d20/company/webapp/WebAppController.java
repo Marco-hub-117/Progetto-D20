@@ -29,6 +29,7 @@ public class WebAppController {
 		operatorsManager=facade.getOperatorDao();
 		keysManager=facade.getKeyDao();
 		beveragesManager=facade.getBeverageDescriptionDao();	
+		ingredientsManager=facade.getIngredientRecipeDao();
 	}
 		
 	//IN FASE DI ELABORAZIONE

@@ -3,16 +3,11 @@ package it.unipv.ingsw.d20.company.webapp.next;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.rythmengine.Rythm;
 
-import it.unipv.ingsw.d20.company.webapp.InvalidPasswordException;
-import it.unipv.ingsw.d20.company.webapp.InvalidUserException;
-import it.unipv.ingsw.d20.company.webapp.Operator;
-import it.unipv.ingsw.d20.company.webapp.Operators;
 import it.unipv.ingsw.d20.company.webapp.WebAppController;
 import it.unipv.ingsw.d20.company.webapp.WebPagesHandler;
 

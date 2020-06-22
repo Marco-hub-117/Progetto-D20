@@ -3,15 +3,11 @@ package it.unipv.ingsw.d20.company.webapp.next;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.rythmengine.Rythm;
 
-import it.unipv.ingsw.d20.company.webapp.Operators;
-import it.unipv.ingsw.d20.company.webapp.Vending;
-import it.unipv.ingsw.d20.company.webapp.Vendings;
 import it.unipv.ingsw.d20.company.webapp.WebAppController;
 import it.unipv.ingsw.d20.company.webapp.WebPagesHandler;
 
@@ -32,7 +28,7 @@ public class KeysServlet extends WebAppServlet {
 				resp.getWriter().write(Rythm.render(handler.getPage("/select"), controller.getLoggedOperator()));
 			}
 			else if (url.equals("/")) {
-				resp.getWriter().write(Rythm.render(handler.getPage(url), controller.getAllKeys()));
+				resp.getWriter().write(Rythm.render(handler.getPage("/keys"), controller.getAllKeys()));
 			}
 			else {
 				resp.getWriter().write(Rythm.render(handler.getPage(url)));
@@ -48,9 +44,10 @@ public class KeysServlet extends WebAppServlet {
 		
 		if (req.getPathInfo().equals("/save_key")) {
 			String credit=req.getParameter("credit");
-			double creditNum=Double.parseDouble(credit.substring(0, credit.length()));	
+			double creditNum=Double.parseDouble(credit.substring(0, credit.length()-1));	
+			System.out.println(":"+req.getParameter("id")+":"+creditNum);
 			controller.addKey(req.getParameter("id"), creditNum);
-			resp.sendRedirect("/d20/keys");
+			resp.sendRedirect("/d20/keys/");
 		}
 		else if (req.getPathInfo().equals("/deactivate")) {
 			controller.deactivateKey(req.getParameter("id"));

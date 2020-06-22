@@ -411,7 +411,7 @@ public class RdbOperations {
 	public BeverageDescriptionPOJO getBeverageDescriptionByBevName(String bevName) {
 		BeverageDescriptionPOJO result = null;
 		String whereStatement = "BevName = '"+bevName+"'";
-		String query = QueryGenerator.getSelectFromWhereQuery("*", "BeverageDescriptions", whereStatement);
+		String query = QueryGenerator.getSelectFromWhereQuery("*", "BeverageDescription", whereStatement);
 		con = this.startConnection(con);
 		Statement st;
 		ResultSet rs;
@@ -620,7 +620,7 @@ public class RdbOperations {
 		values.add(key.getSerialCode()); 
 		values.add((String.valueOf(key.getCredit()))); 
 		String query = QueryGenerator.getInsertIntoValuesQuery("Key", values);	
-		
+		System.out.println("#"+query+"#");
 		con = this.startConnection(con);
 		Statement st;	
 		try {
