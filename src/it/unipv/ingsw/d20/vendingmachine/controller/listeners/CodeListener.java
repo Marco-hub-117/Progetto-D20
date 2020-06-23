@@ -26,11 +26,9 @@ public class CodeListener implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		int intValue = (int) value;
-		
 		switch(intValue) {
 		case(10): //Ok button
 			gui.setEnabled(false);
-		
 			try {
 				vm.insertCode(gui.getDisplay());
 				Double credit = vm.getCredit();
@@ -43,17 +41,14 @@ public class CodeListener implements ActionListener{
 			} catch (InsufficientIngredientsException e) {
 				JOptionPane.showMessageDialog(null, e.getMessage());
 			}
-			
 			gui.setEnabled(true);
 		break;
 		case(-1): //Canc button
 			StringBuilder sbDisp = new StringBuilder(gui.getDisplay());
 			sbDisp.deleteCharAt(sbDisp.length() - 1);
-			
 			if (sbDisp.toString().isEmpty() || sbDisp.toString().startsWith("E")) {
 				Double credit = vm.getCredit();
 				String creditToString = String.format("%.2f", credit);
-				
 				gui.setDisplay("E" + creditToString);
 			} else {
 				gui.setDisplay(sbDisp.toString());
@@ -61,15 +56,12 @@ public class CodeListener implements ActionListener{
 		break;
 		default:
 			String display = "";
-			
 			if (!gui.getDisplay().startsWith("E")) {
 				display = gui.getDisplay() + intValue;
 			} else {
 				display = String.valueOf(intValue);
 			}
-			
 			gui.setDisplay(display);
 		}
 	}
 }
-

@@ -37,7 +37,6 @@ public class CoinListener implements ActionListener{
 		} else { //altrimenti inserisce una moneta
 			vm.insertCoin(this.value);
 		}
-		
 		//aggiorno grafica
 		Double credit = vm.getCredit();
 		String creditToString = String.format("%.2f", credit);

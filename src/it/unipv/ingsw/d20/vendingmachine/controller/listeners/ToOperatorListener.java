@@ -25,7 +25,6 @@ public class ToOperatorListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		opLogin = new OperatorLoginFrame();
-		
 		opLogin.getEnterButton().addActionListener(al -> {
 			if (vm.isCorrectId(opLogin.getInsertedKey())) { //controlla che la chiave inserita corrisponda all'id della macchina
 				opLogin.dispose();
@@ -38,10 +37,8 @@ public class ToOperatorListener implements ActionListener {
 	
 	public void openOperatorGui() {
 		gui.dispose(); //chiudo l'interfaccia del cliente
-		
 		OperatorGui gui = new OperatorGui(vm.getTankNumber()); //istanzio una nuova interfaccia dell'operatore
 		new Controller(vm, gui); //controller associato all'interfaccia dell'operatore
-		
 		vm.resetCredit();
 		vm.setStatus(VendingMachineStatus.REFILL);
 	}

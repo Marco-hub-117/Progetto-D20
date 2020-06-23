@@ -20,20 +20,18 @@ public class TankListener implements ActionListener {
 		this.vm = vm;
 		this.gui = gui;
 	}
+	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		OperatorButton p = gui.getButtons()[pos];
 		vm.refillTanks(p.getTankId()); 
-		
 		//aggiorno la grafica
 		HashMap<Ingredients,Double> tankLevels = new HashMap<Ingredients, Double>();
 		tankLevels = vm.getTanksLevels();
-		
 		int count = 0;
 		for(Map.Entry<Ingredients, Double> entry : tankLevels.entrySet()) {
 			gui.setElements(String.valueOf(entry.getKey()), String.valueOf(entry.getValue()), count);
 			count++;
 		}
 	}
-
 }

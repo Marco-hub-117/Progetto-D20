@@ -10,21 +10,40 @@ public class BeverageCatalog {
 	public BeverageCatalog() {
 		catalog = new HashMap<String, BeverageDescription>();
 	}
-	
-	public BeverageDescription getBeverageDesc(String code) { //dato il codice della bevanda ne restiruisce la relativa BeverageDescription
+	/**
+	 * Restituisce la BeverageDescription della bevanda dato il suo codice
+	 * 
+	 * @param code codice della bevanda
+	 * 
+	 */
+	public BeverageDescription getBeverageDesc(String code) {
 		if(catalog.containsKey(code)) {	
 			return catalog.get(code);
 		} else {
 			return null;
 		}
 	}
-	
-	public void setIngredient(String code, Ingredients i, Double q) { //dato il codice della bevanda ne imposta un ingrediente e la relativa quantità
+	/**
+	 * Dato il codice di una bevanda ne imposta un ingrediente e la relativa
+	 * 
+	 * @param code codice della bevanda
+	 * @param i ingrediente
+	 * @param q quantita'
+	 * 
+	 * 
+	 */
+	public void setIngredient(String code, Ingredients i, Double q) {
 		if(catalog.containsKey(code)) {
 			catalog.get(code).changeQuantity(i, q);
 		}
 	}
-	
+	/**
+	 * Aggiunge una nuova BeverageDescription
+	 * 
+	 * @param b bevanda da aggiungere
+	 * 
+	 * 
+	 */
 	public void addBeverageDescription(BeverageDescription b) {//aggiunge una nuova BeverageDescription
 		catalog.put(b.getCode(), b);
 	}

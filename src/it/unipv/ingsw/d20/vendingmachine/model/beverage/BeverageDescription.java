@@ -16,15 +16,27 @@ public class BeverageDescription {
 		this.price = price;
 		this.ingredients = new HashMap<Ingredients, Double>();
 	}
-	
+	/**
+	 * Aggiunge un ingrediente alla bevanda con la quantita' pari a 0
+	 * @param i Ingrediente da aggiungere
+	 * 
+	 */
 	public void addIngredient(Ingredients i) {//aggiunge un ingrediente e imposta la sua quantita a 0.0
 		ingredients.put(i, 0.0);
 	}
-	
+	/**
+	 * Aggiunge un ingrediente alla bevanda specificando la quantita'
+	 * @param i Ingrediente da aggiungere
+	 * @param q Quantita' 
+	 */
 	public void addIngredient(Ingredients i, double q) {//aggiunge un ingrediente specificando la quantita
 		ingredients.put(i, q);
 	}
-	
+	/**
+	 * Cambia la quantita' di un ingrediente gia' presente
+	 * @param i Ingrediente da cambiare
+	 * @param q Quantita' nuova
+	 */
 	public void changeQuantity(Ingredients i, double q){ //cambia la quantità di un ingrediente già presente
 		ingredients.replace(i, q); //cambia la quantità solo se la chiave esiste
 	}

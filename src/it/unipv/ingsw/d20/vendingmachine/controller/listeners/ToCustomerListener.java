@@ -22,11 +22,8 @@ public class ToCustomerListener implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		 gui.dispose(); //chiudo l'interfaccia dell'operatore
-		 
 		 CustomerGui gui = new CustomerGui(); //istanzio una nuova interfaccia del cliente
 		 new Controller(vm, gui); //controller associato all'interfaccia del cliente
-		 
 		 vm.setStatus(VendingMachineStatus.ONLINE);
 	}
-
 }
