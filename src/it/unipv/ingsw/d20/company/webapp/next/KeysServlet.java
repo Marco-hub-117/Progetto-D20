@@ -43,10 +43,13 @@ public class KeysServlet extends WebAppServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		if (req.getPathInfo().equals("/save_key")) {
+			String serialCode=req.getParameter("code");
+			int codeNum=Integer.parseInt(serialCode.substring(0, serialCode.length()-1));
 			String credit=req.getParameter("credit");
 			double creditNum=Double.parseDouble(credit.substring(0, credit.length()-1));	
-			System.out.println(":"+req.getParameter("id")+":"+creditNum);
-			controller.addKey(req.getParameter("id"), creditNum);
+			System.out.println(":"+codeNum+":"+creditNum);
+			
+			controller.addKey(codeNum, creditNum);
 			resp.sendRedirect("/d20/keys/");
 		}
 		else if (req.getPathInfo().equals("/deactivate")) {

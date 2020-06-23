@@ -91,7 +91,7 @@ public class WebAppController {
 		return keysManager.getKey(serialCode);
 	}
 	
-	public void addKey(String serialCode, double credit) {
+	public void addKey(int serialCode, double credit) {
 		keysManager.addKey(serialCode, credit);
 	}
 	

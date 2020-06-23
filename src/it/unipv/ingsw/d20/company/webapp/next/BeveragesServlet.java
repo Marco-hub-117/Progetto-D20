@@ -44,7 +44,14 @@ public class BeveragesServlet extends WebAppServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	
 		if (req.getPathInfo().equals("/save_beverage")) {
-			//controller.updateIngredients(idRecipe, ingredientName, quantity);
+			BeverageDescriptionPOJO desc=controller.getBeverageDescription(req.getParameter("bvName"));
+			String idRecipe=desc.getIdRecipe();
+			
+			String ingredientName=req.getParameter("firstRowA");
+			String quantity=req.getParameter("firstRowB");
+			
+			System.out.println("eccola: "+ingredientName+":"+quantity);
+			controller.updateIngredients(idRecipe, ingredientName, Double.parseDouble(quantity));
 			resp.sendRedirect("/d20/selection/beverages/");
 		} 
 	}
