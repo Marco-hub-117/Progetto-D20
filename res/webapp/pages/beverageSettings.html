@@ -27,61 +27,60 @@
                 	<div class="card-heading">
                    		<h2 class="title">Beverage Settings</h2>
                 	</div>
-                <form method="POST" action="/d20/selection/beverages/save_beverage"> 	
-                	<div class="card-body">
-                		<div class="form-row">
-                        	<div class="name">Beverage:</div>
-                        	<div class="value" name="bvName">
-                            	<div class="nameBig">@(beverage.getBvName())</div>  
-                        	</div>
-             	 		</div>
-              
-               			<div class="form-row">
-                        	<div class="name">Price:</div>
-                        	<div class="value">
-                            	<div class="nameBig">@(beverage.getPrice()) &#8364</div> 
-                        	</div>
-               			</div>
-                             			
-              			<div class="form-row">                            						 		
-							<div class="table100">
-								<table>
-									<thead>											 
-										<tr class="table100-head">
-											<th class="column5">Ingredient</th>
-											<th class="column7">Quantity</th>								
-										</tr>												 
-									</thead>
-								
-									<tbody>
-										<tr>
-											<td>
-												<input type="text" value=@(ingredients.get(0).getIngredientName()) name="firstRowA" readonly>
-											</td> 							
-											<td>
-												<div class="box-spinner">
-													<input type="number" value=@(ingredients.get(0).getQuantity()) name="firstRowB" step="any">
-												</div>
-											</td>
-										</tr>
-															
-									</tbody>
-								<table>
-							</div>							
+                	
+               		<form method="POST" action="/d20/selection/beverages/save_beverage" class="text-center"> 	
+	                	<div class="card-body">
+	                		<div class="form-row">
+	                        	<div class="name">Beverage:</div>
+	                        	<div class="value">
+	                            	<div class="nameBig" id="bevname">@(beverage.getBvName())</div>  
+	                        	</div>
+	             	 		</div>
+	              
+	               			<div class="form-row">
+	                        	<div class="name">Price:</div>
+	                        	<div class="value">
+	                            	<div class="nameBig" id="price">@(beverage.getPrice()) &#8364</div> 
+	                        	</div>
+	               			</div>
+	                             			
+	              			<div class="form-row">                            						 		
+								<div class="table100">
+									<table>
+										<thead>											 
+											<tr class="table100-head">
+												<th class="column5">Ingredient</th>
+												<th class="column7">Quantity</th>								
+											</tr>												 
+										</thead>
+									
+										<tbody>
+											<tr>
+												<td>
+													<input type="text" value=@(ingredients.get(0).getIngredientName()) name="firstRowA" readonly>
+												</td> 							
+												<td>
+													<div class="box-spinner">
+														<input type="number" value=@(ingredients.get(0).getQuantity()) name="firstRowB" step="0.01">
+													</div>
+												</td>
+											</tr>
+																
+										</tbody>
+									</table>
+								</div>							
+							</div>
+							<br></br>
 						</div>
-						<br></br>
-						
-							
-                   				<button class="btn btn--radius-2 btn--blue" type="submit">Save</button>                   				
-                </form>
-                  		
-               			<br></br>                    
-                        <div class="text-center">
-                        	<form method="GET" action="/d20/selection/beverages/">							
-								<button class="btn btn--radius-2 btn--neutral" type="submit">Cancel</button>
-							</form>
-                        </div>            		 	            		         		 		                    
-      				</div>	
+                   			<button class="btn btn--radius-2 btn--blue" type="submit">Save</button>                   				
+                	</form>
+                  	 <br></br>	            
+                    <div class="text-center">
+                       <form method="GET" action="/d20/selection/beverages/">							
+							<button class="btn btn--radius-2 btn--neutral" type="submit">Cancel</button>
+						</form>
+                    </div>   
+                    <br></br>         		 	            		         		 		                    
     			</div>
   			</div>
  		</div>
