@@ -27,11 +27,11 @@
                 	<div class="card-heading">
                    		<h2 class="title">Beverage Settings</h2>
                 	</div>
-                	
+                <form method="POST" action="/d20/selection/beverages/save_beverage"> 	
                 	<div class="card-body">
                 		<div class="form-row">
                         	<div class="name">Beverage:</div>
-                        	<div class="value">
+                        	<div class="value" name="bvName">
                             	<div class="nameBig">@(beverage.getBvName())</div>  
                         	</div>
              	 		</div>
@@ -52,62 +52,29 @@
 											<th class="column7">Quantity</th>								
 										</tr>												 
 									</thead>
-									
+								
 									<tbody>
 										<tr>
-											<td>@(ingredients.get(0).getIngredientName())</td> 							
+											<td>
+												<input type="text" value=@(ingredients.get(0).getIngredientName()) name="firstRowA" readonly>
+											</td> 							
 											<td>
 												<div class="box-spinner">
-													<input type="number" value=@(ingredients.get(0).getQuantity())>
+													<input type="number" value=@(ingredients.get(0).getQuantity()) name="firstRowB" step="any">
 												</div>
 											</td>
 										</tr>
-
-										<tr>
-											<td>@(ingredients.get(1).getIngredientName())</td> 							
-											<td>
-												<div class="box-spinner">
-													<input type="number" value=@(ingredients.get(1).getQuantity())>
-												</div>
-											</td>
-										</tr>
-									
-										<tr>
-											<td>@(ingredients.get(2).getIngredientName())</td> 							
-											<td>
-												<div class="box-spinner">
-													<input type="number" value=@(ingredients.get(2).getQuantity())>
-												</div>
-											</td>
-										</tr>
-
-										<tr>
-											<td>@(ingredients.get(3).getIngredientName())</td> 							
-											<td>
-												<div class="box-spinner">
-													<input type="number" value=@(ingredients.get(3).getQuantity())>
-												</div>
-											</td>
-										</tr>
-
-										<tr>
-											<td>@(ingredients.get(4).getIngredientName())</td> 							
-											<td>
-												<div class="box-spinner">
-													<input type="number" value=@(ingredients.get(4).getQuantity())>
-												</div>
-											</td>
-										</tr>											
+															
 									</tbody>
 								<table>
 							</div>							
 						</div>
 						<br></br>
-						<div class="text-center">
-							<form method="POST" action="/d20/selection/beverages/save_beverage"> 
+						
+							
                    				<button class="btn btn--radius-2 btn--blue" type="submit">Save</button>                   				
-                   			</form>
-                  		</div>
+                </form>
+                  		
                			<br></br>                    
                         <div class="text-center">
                         	<form method="GET" action="/d20/selection/beverages/">							
