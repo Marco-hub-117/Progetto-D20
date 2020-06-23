@@ -23,7 +23,7 @@ public class KeyRdbDao implements IKeyDao{
 	}
 
 	@Override
-	public void addKey(String serialCode, double credit) {
+	public void addKey(int serialCode, double credit) {
 		KeyPOJO key= new KeyPOJO(serialCode, credit);
 		op.addKey(key);
 	}

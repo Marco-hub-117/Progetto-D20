@@ -9,7 +9,7 @@ public interface IKeyDao {
 	
 	public KeyPOJO getKey(String serialCode);
 	
-	public void addKey(String serialCode, double credit);
+	public void addKey(int serialCode, double credit);
 	
 	public boolean updateCredit(String serialCode, double credit);
 

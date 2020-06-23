@@ -583,7 +583,7 @@ public class RdbOperations {
 			st = con.createStatement();
 			rs = st.executeQuery(query);
 			while(rs.next()) {
-				KeyPOJO res = new KeyPOJO(rs.getString("idKey"), rs.getDouble("credit"));
+				KeyPOJO res = new KeyPOJO(rs.getInt("idKey"), rs.getDouble("credit"));
 				result.add(res);
 			}
 		} catch (SQLException e) {
@@ -605,7 +605,7 @@ public class RdbOperations {
 			st = con.createStatement();
 			rs = st.executeQuery(query);
 			while (rs.next()) {
-				result = new KeyPOJO(rs.getString("idKey"), rs.getDouble("credit"));
+				result = new KeyPOJO(rs.getInt("idKey"), rs.getDouble("credit"));
 			}	
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -617,7 +617,7 @@ public class RdbOperations {
 	
 	public void addKey(KeyPOJO key) {
 		ArrayList<String> values = new ArrayList<>();
-		values.add(key.getSerialCode()); 
+		values.add((String.valueOf(key.getSerialCode()))); 
 		values.add((String.valueOf(key.getCredit()))); 
 		String query = QueryGenerator.getInsertIntoValuesQuery("Key", values);	
 		System.out.println("#"+query+"#");
