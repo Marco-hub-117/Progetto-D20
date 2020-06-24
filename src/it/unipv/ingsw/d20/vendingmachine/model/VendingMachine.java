@@ -45,11 +45,8 @@ public class VendingMachine {
 	public VendingMachine(String id) {	
 		this.id = id;
 		this.credit = 0.0;
-		
 		salesRegister = new ArrayList<Sale>(); //DA IMLEMENTARE COME BVCATALOG E TANKLIST
-		
 		keyHandler = new KeyHandler();
-		
 		bvCatalog = getCatalogFromLocal();//la vending istanzia il catalogo delle bevande prendedolo dal file locale
 		tankHandler = new TankHandler(getTanksFromLocal());
 		cashContainer = getCashContainerFromLocal(); 
@@ -60,16 +57,23 @@ public class VendingMachine {
 	 * 
 	 */
 	public void insertCoin(double coinValue) {
-		cashContainer.addCoin(coinValue); //aggiunge la moneta al CashHandler
+		cashContainer.addCoin(coinValue); 
 		saveCashContainerIntoLocal();
-		credit += coinValue;			//e aggiorna il credito
+		credit += coinValue;			
 	}
-	
+	/**
+	 * Inserisce una chiavetta
+	 * @throws UnrecognisedKeyException 
+	 * 
+	 */
 	public void insertKey() throws UnrecognisedKeyException { 
 		keyHandler.insertKey(credit);
 		credit=keyHandler.getCreditOnKey();
 	}
-	
+	/**
+	 * Espelle una chiavetta
+	 * 
+	 */
 	public void ejectKey() { 
 		keyHandler.ejectKey();
 		credit = 0.0;
@@ -130,7 +134,11 @@ public class VendingMachine {
 	public HashMap<Ingredients, Double> getTanksLevels() {
 		return tankHandler.getTanksLevel();
 	}
-
+	/**
+	 * Permette di riempire un Tank
+	 * @param id id del Tank da riempire 
+	 * 
+	 */
 	public void refillTanks(String id){
 		tankHandler.refillTank(id); 
 		saveTankIntoLocal();
@@ -139,6 +147,8 @@ public class VendingMachine {
 	
 	/**
 	 * Metodo che gestisce il ritiro del credito dalla VendingMachine.
+	 * @throws WithdrawAmountException
+	 * @throws RefillMachineException
 	 */
 	public double withdrawAmount() throws WithdrawAmountException, RefillMachineException { 
 		double withdrawnAmount = cashContainer.withdrawAmount();
@@ -283,7 +293,7 @@ public class VendingMachine {
 	}
 
 	/**
-	 * Questo metodo serve per notificare al db una serie di informazioni come livello e temperatura dei tanks e amount
+	 * Questo metodo serve per notificare al db una serie di informazioni come livello, temperatura dei tanks e amount
 	 */
 	public void updateInfoToDb() {  // DA SPOSTARE NEL THRED CON IL TIMER. RIVEDERE CON NICOLO
 		try {

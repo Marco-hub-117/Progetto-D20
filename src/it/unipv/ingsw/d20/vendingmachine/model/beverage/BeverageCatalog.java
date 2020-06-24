@@ -44,7 +44,7 @@ public class BeverageCatalog {
 	 * 
 	 * 
 	 */
-	public void addBeverageDescription(BeverageDescription b) {//aggiunge una nuova BeverageDescription
+	public void addBeverageDescription(BeverageDescription b) {
 		catalog.put(b.getCode(), b);
 	}
 	

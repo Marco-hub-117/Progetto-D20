@@ -21,7 +21,7 @@ public class BeverageDescription {
 	 * @param i Ingrediente da aggiungere
 	 * 
 	 */
-	public void addIngredient(Ingredients i) {//aggiunge un ingrediente e imposta la sua quantita a 0.0
+	public void addIngredient(Ingredients i) {
 		ingredients.put(i, 0.0);
 	}
 	/**
@@ -29,7 +29,7 @@ public class BeverageDescription {
 	 * @param i Ingrediente da aggiungere
 	 * @param q Quantita' 
 	 */
-	public void addIngredient(Ingredients i, double q) {//aggiunge un ingrediente specificando la quantita
+	public void addIngredient(Ingredients i, double q) {
 		ingredients.put(i, q);
 	}
 	/**
@@ -37,8 +37,8 @@ public class BeverageDescription {
 	 * @param i Ingrediente da cambiare
 	 * @param q Quantita' nuova
 	 */
-	public void changeQuantity(Ingredients i, double q){ //cambia la quantità di un ingrediente già presente
-		ingredients.replace(i, q); //cambia la quantità solo se la chiave esiste
+	public void changeQuantity(Ingredients i, double q){ 
+		ingredients.replace(i, q);
 	}
 	
 	public String getName() {
