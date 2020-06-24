@@ -8,6 +8,7 @@ import java.net.Socket;
 import java.util.Date;
 
 import it.unipv.ingsw.d20.company.Company;
+import it.unipv.ingsw.d20.company.VendingMachineInfo;
 
 /**
  * Questa classe gestisce la connessione con una macchinetta,
@@ -45,11 +46,12 @@ public class ConnectedClient extends Thread {
 			 * come notifica per settarne lo status sul database.
 			 */
 			String vmMessage = in.readLine();
-			
+			String[] msgParts = vmMessage.split("	");
+					
 			if (vmMessage.equals("")) {
 				out.println(Company.registerNewVendingMachine()); //registra la nuova vending e le restituisce il suo ID
-			} else {
-				Company.vendingMachineStatusList.replace(vmMessage, new Date()); //aggiorna l'ora dell'ultimo update della vm che ha mandato il messaggio
+			} else if (msgParts.length == 3){
+				Company.vendingMachineStatusList.replace(msgParts[0], new VendingMachineInfo(msgParts[1], msgParts[2])); //aggiorna l'ora dell'ultimo update della vm che ha mandato il messaggio
 			}
         
 			socket.close();

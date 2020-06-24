@@ -31,7 +31,7 @@ public class Company {
 	 * Questa mappa contiene la lista di tutte le macchinette attualmente registrate
 	 * insieme con il loro status.
 	 */
-	public static Map<String, Date> vendingMachineStatusList = new HashMap<>();
+	public static Map<String, VendingMachineInfo> vendingMachineStatusList = new HashMap<>();
 	
 	
 	/**
@@ -58,7 +58,7 @@ public class Company {
         ArrayList<VendingPOJO> vendingList = v.getAllVendings();
         
         for (VendingPOJO vp : vendingList) { //riempie la mappa con tutte le vending machine già registrate nel database
-        	vendingMachineStatusList.put(vp.getIdVending(), new Date());
+        	vendingMachineStatusList.put(vp.getIdVending(), new VendingMachineInfo());
         }
         
         Timer timer = new Timer();																   //ogni 10 minuti aggiorna lo status nel db di tutte le vending 
@@ -90,7 +90,7 @@ public class Company {
 		IVendingDao ivd = pf.getVendingDao();
 		ivd.addVending(new VendingPOJO(IDNumber, null));*/
 		
-		vendingMachineStatusList.put(IDNumber, new Date());
+		vendingMachineStatusList.put(IDNumber, new VendingMachineInfo());
 		
 		return IDNumber;
 	}

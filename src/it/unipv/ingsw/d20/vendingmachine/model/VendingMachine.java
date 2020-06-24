@@ -338,7 +338,7 @@ public class VendingMachine {
 		for (Tank t : tankHandler.getTankList().values()) {
 			infoBuilder.append(t.getId()); infoBuilder.append(" ");
 			infoBuilder.append(t.getLevel()); infoBuilder.append(" ");
-			infoBuilder.append(t.getTemperature()); infoBuilder.append("	");
+			infoBuilder.append(t.getTemperature()); infoBuilder.append(" ");
 		}
 		
 		info = infoBuilder.toString();

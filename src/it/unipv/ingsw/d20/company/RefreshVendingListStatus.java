@@ -29,8 +29,8 @@ public class RefreshVendingListStatus extends TimerTask {
 		
 		Date now = new Date();
 		
-		for (Entry<String, Date> entry : Company.vendingMachineStatusList.entrySet()) {
-			Date lastUpdate = entry.getValue();
+		for (Entry<String, VendingMachineInfo> entry : Company.vendingMachineStatusList.entrySet()) {
+			Date lastUpdate = entry.getValue().getLastUpdate();
 			
 			if ((v.getVendingStatusById(entry.getKey()) != VendingMachineStatus.OFF) && 
 					(now.getTime() - lastUpdate.getTime()) > TimeUnit.MINUTES.toMillis(11)) { //se sono passati più di 11 minuti dall'ultimo update
