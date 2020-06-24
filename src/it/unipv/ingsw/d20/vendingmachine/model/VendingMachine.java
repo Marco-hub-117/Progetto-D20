@@ -37,6 +37,8 @@ public class VendingMachine {
 	private CashContainer cashContainer;
 	private KeyHandler keyHandler;
 	
+	public static String info;
+	
 	/**
 	 * Costruttore della classe VendingMachine
 	 * @param id Stringa che rappresenta l'ID univoco della macchinetta
@@ -50,7 +52,10 @@ public class VendingMachine {
 		bvCatalog = getCatalogFromLocal();//la vending istanzia il catalogo delle bevande prendedolo dal file locale
 		tankHandler = new TankHandler(getTanksFromLocal());
 		cashContainer = getCashContainerFromLocal(); 
+		
+		rebuildInfo();
 	}
+	
 	/**
 	 * Questo metodo gestisce l'inserimento di una moneta 
 	 * @param coinValue è il valore della moneta
@@ -59,8 +64,10 @@ public class VendingMachine {
 	public void insertCoin(double coinValue) {
 		cashContainer.addCoin(coinValue); 
 		saveCashContainerIntoLocal();
+		rebuildInfo();
 		credit += coinValue;			
 	}
+	
 	/**
 	 * Inserisce una chiavetta
 	 * @throws UnrecognisedKeyException 
@@ -68,8 +75,9 @@ public class VendingMachine {
 	 */
 	public void insertKey() throws UnrecognisedKeyException { 
 		keyHandler.insertKey(credit);
-		credit=keyHandler.getCreditOnKey();
+		credit = keyHandler.getCreditOnKey();
 	}
+	
 	/**
 	 * Espelle una chiavetta
 	 * 
@@ -78,6 +86,7 @@ public class VendingMachine {
 		keyHandler.ejectKey();
 		credit = 0.0;
 	}
+	
 	/**
 	 * Questo metodo restituisce il resto al cliente
 	 * @throws InsufficientCashForRestException
@@ -90,6 +99,7 @@ public class VendingMachine {
 		}
 		cashContainer.dispenseRest(credit);
 		saveCashContainerIntoLocal();
+		rebuildInfo();
 		credit = 0.0;
 	}
 	
@@ -121,9 +131,9 @@ public class VendingMachine {
 		Sale sale = new Sale(bvDesc, credit); //se il credito non è sufficiente per erogare la bevanda lancia eccezione
 		//TODO saveSaleIntoLocal();
 		saveCashContainerIntoLocal();
-		
 		tankHandler.scaleTanksLevel(bvDesc);
 		saveTankIntoLocal();
+		rebuildInfo();
 		
 		Beverage bev = new Beverage(); bev.start();
 		System.out.println("Erogato " + bvDesc.getName() + " correttamente");
@@ -134,6 +144,7 @@ public class VendingMachine {
 	public HashMap<Ingredients, Double> getTanksLevels() {
 		return tankHandler.getTanksLevel();
 	}
+	
 	/**
 	 * Permette di riempire un Tank
 	 * @param id id del Tank da riempire 
@@ -142,6 +153,7 @@ public class VendingMachine {
 	public void refillTanks(String id){
 		tankHandler.refillTank(id); 
 		saveTankIntoLocal();
+		rebuildInfo();
 		//saveTanksLevelToDb();
 	}
 	
@@ -153,6 +165,7 @@ public class VendingMachine {
 	public double withdrawAmount() throws WithdrawAmountException, RefillMachineException { 
 		double withdrawnAmount = cashContainer.withdrawAmount();
 		saveCashContainerIntoLocal();
+		rebuildInfo();
 		//notifyAmount();
 		return withdrawnAmount;
 	}
@@ -315,6 +328,20 @@ public class VendingMachine {
 	
 	public double getTotalAmount() {
 		return cashContainer.getTotalAmount();
+	}
+	
+	private void rebuildInfo() {
+		StringBuilder infoBuilder = new StringBuilder();
+		
+		infoBuilder.append(id); infoBuilder.append("	");
+		infoBuilder.append(cashContainer.getTotalAmount()); infoBuilder.append("	");
+		for (Tank t : tankHandler.getTankList().values()) {
+			infoBuilder.append(t.getId()); infoBuilder.append(" ");
+			infoBuilder.append(t.getLevel()); infoBuilder.append(" ");
+			infoBuilder.append(t.getTemperature()); infoBuilder.append("	");
+		}
+		
+		info = infoBuilder.toString();
 	}
 	
 }

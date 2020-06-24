@@ -18,8 +18,8 @@ public class VendingMachineClient {
 		out = new PrintWriter(socket.getOutputStream(), true);
 	}
 	
-	public void connectToServer(String IDNumber) throws IOException {
-		out.println(IDNumber);
+	public void connectToServer(String info) throws IOException {
+		out.println(info);
 	}
 
 	public String firstConnectionToServer() throws IOException {

@@ -15,16 +15,12 @@ public class UpdateStatus extends TimerTask {
 	@Override
 	public void run() {
 		PersistenceFacade pf = PersistenceFacade.getInstance();
-		VendingLocalIO v = pf.getVendingLocalIO();
-		
-		String IDNumber = v.getVendingIDFromLocal();
+		//VendingLocalIO v = pf.getVendingLocalIO();
 		
 		try {
 			VendingMachineClient vmc = new VendingMachineClient();
-			
-			vmc.connectToServer(IDNumber);
+			vmc.connectToServer(VendingMachine.info);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
