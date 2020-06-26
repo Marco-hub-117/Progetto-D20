@@ -20,6 +20,10 @@ import it.unipv.ingsw.d20.util.persistence.operator.OperatorPOJO;
 import it.unipv.ingsw.d20.util.persistence.vending.IVendingDao;
 import it.unipv.ingsw.d20.util.persistence.vending.VendingPOJO;
 
+/**
+ * Gestisce le operazioni delle servlet, costituendo per esse un'interfaccia verso il DB e la Company.
+ *
+ */
 public class WebAppController {
 	private PersistenceFacade facade;
 	private IVendingDao vendingsManager;
@@ -34,7 +38,6 @@ public class WebAppController {
 		Operator, RemoteOperator;
 	}
 	
-	
 	public WebAppController() {
 		facade= PersistenceFacade.getInstance();
 		vendingsManager=facade.getVendingDao();
@@ -45,38 +48,13 @@ public class WebAppController {
 		infoList =Company.vendingMachineInfoList;
 	}
 		
-	//IN FASE DI ELABORAZIONE
-	
+	//GESTIONE DEL LOGIN
 	public OperatorPOJO getLoggedOperator() {
 		return loggedOperator;
 	}
 	
 	public void setNotLogged() {
 		loggedOperator=null;
-	}
-
-	public List<VendingPOJO> getAllVendingMachines() {
-		return vendingsManager.getAllVendings();
-	}
-	
-	public VendingPOJO getVendingMachine(String id) {
-		return vendingsManager.getVending(id);
-	}
-	
-	public VendingMachineInfo getVendingMachineInfo(String id) {
-		return infoList.get(id);	
-	}
-	
-	public List<OperatorPOJO> getAllOperators() {
-		return operatorsManager.getAllOperators();
-	}
-	
-	public OperatorPOJO getOperator(String code) {
-		return operatorsManager.getOperator(code);
-	}
-	
-	public void addOperator(String code, String name, String password, String type) {
-		operatorsManager.addOperator(code, name, password, type);
 	}
 	
 	public void checkOperatorLogIn (String username, String password) throws InvalidPasswordException, InvalidUserException{
@@ -90,7 +68,6 @@ public class WebAppController {
 		}
 		
 		checkLimitation();
-		
 	}
 	
 	private OperatorPOJO lookForOperator(String username) throws InvalidUserException {
@@ -112,7 +89,6 @@ public class WebAppController {
 			setLimited(false);
 		}
 	}
-	
 	private void setLimited(boolean bool) {
 		this.limited=bool;
 	}
@@ -121,36 +97,54 @@ public class WebAppController {
 		return limited;
 	}
 
-	public List<KeyPOJO> getAllKeys() {
-		return keysManager.getAllKeys();
+	//VENDING MACHINES
+	public List<VendingPOJO> getAllVendingMachines() {
+		return vendingsManager.getAllVendings();
 	}
 	
-	public KeyPOJO getKey(String serialCode) {
-		return keysManager.getKey(serialCode);
+	public VendingPOJO getVendingMachine(String id) {
+		return vendingsManager.getVending(id);
+	}
+	
+	public VendingMachineInfo getVendingMachineInfo(String id) {
+		return infoList.get(id);	
+	}
+	
+	//OPERATORS
+	public List<OperatorPOJO> getAllOperators() {
+		return operatorsManager.getAllOperators();
+	}
+	
+	public OperatorPOJO getOperator(String code) {
+		return operatorsManager.getOperator(code);
+	}
+	
+	public void addOperator(String code, String name, String password, String type) {
+		operatorsManager.addOperator(code, name, password, type);
+	}
+	
+	//KEYS
+	public List<KeyPOJO> getAllKeys() {
+		return keysManager.getAllKeys();
 	}
 	
 	public void addKey(int serialCode, double credit) {
 		keysManager.addKey(serialCode, credit);
 	}
 	
-	//magari toglierlo se non necessario (cioè prendo il credito dirett. dal pojo)
-	public double getKeyCredit(String serialCode) {
-		return keysManager.getCredit(serialCode);
-	}
-	
 	public void deactivateKey(String serialCode) {
 		keysManager.deactivateKey(serialCode);
 	}
 	
+	//BEVERAGES
 	public List<BeverageDescriptionPOJO> getAllBeverageDescriptions() {
 		return beveragesManager.getAllBeverageDescriptions();
 	}
+	
 	public BeverageDescriptionPOJO getBeverageDescription(String beverageName) {
 		return beveragesManager.getBeverageDescriptionByBevName(beverageName);
 	}
-	public List<IngredientRecipePOJO> getIngredients(String idRecipe) {
-		return ingredientsManager.getAllIngredientRecipeByIdRecipe(idRecipe);
-	}
+	
 	public void updateIngredients (String idRecipe, String ingredientName, double quantity) {
 		ingredientsManager.updateIngredientRecipe(idRecipe, ingredientName, quantity);
 	}
@@ -190,11 +184,6 @@ public class WebAppController {
 			}
 		}
 		return ingredientsQuantities;
-	}
-	
-	public String trimUrl(String url) {
-		String[] splittedUrl=url.split("/");
-		return ("/"+splittedUrl[splittedUrl.length-1]);
 	}
 	
 }

@@ -12,6 +12,11 @@ import it.unipv.ingsw.d20.company.webapp.servlets.OperatorsServlet;
 import it.unipv.ingsw.d20.company.webapp.servlets.SelectionServlet;
 import it.unipv.ingsw.d20.company.webapp.servlets.VendingsServlet;
 
+/**
+ * Crea il controllore della WebApp, il gestore delle pagine, le servlet e l'ApplicationServer, consentendo
+ * di avviare l'applicazione web.
+ *
+ */
 public class WebAppLauncher {
 	
 	//Utile per i test.

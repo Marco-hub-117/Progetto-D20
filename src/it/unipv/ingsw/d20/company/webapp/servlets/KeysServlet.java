@@ -26,7 +26,7 @@ public class KeysServlet extends WebAppServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String url=controller.trimUrl(req.getRequestURI());
+		String url=handler.trimUrl(req.getRequestURI());
 				
 		if (controller.getLoggedOperator()!=null && controller.isLimited()==false) {
 			resp.getWriter().write(Rythm.render(handler.getPage(url), controller.getAllKeys()));

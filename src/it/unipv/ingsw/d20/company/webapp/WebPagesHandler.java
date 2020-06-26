@@ -3,6 +3,10 @@ package it.unipv.ingsw.d20.company.webapp;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Permette di associare a una stringa (parte finale di url) il documento html corrispondente.
+ *
+ */
 public class WebPagesHandler {
 	
 	private static String folder = "res/webapp/pages/";
@@ -45,5 +49,11 @@ public class WebPagesHandler {
     	return folder + urlToPage.get("404");
     	}
 	}
+    
+    //Elabora l'url in modo da avere solo l'ultima parte
+  	public String trimUrl(String url) {
+  		String[] splittedUrl=url.split("/");
+  		return ("/"+splittedUrl[splittedUrl.length-1]);
+  	}
     
 }

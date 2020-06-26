@@ -9,6 +9,10 @@ import org.eclipse.jetty.servlet.DefaultServlet;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
 
+/**
+ * Gestisce le servlet per le varie pagine e per lo stile grafico.
+ *
+ */
 public class ApplicationServer {
 
     private int port;
