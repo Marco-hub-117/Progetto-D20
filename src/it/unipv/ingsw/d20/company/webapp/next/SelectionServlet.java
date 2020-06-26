@@ -11,6 +11,10 @@ import org.rythmengine.Rythm;
 import it.unipv.ingsw.d20.company.webapp.WebAppController;
 import it.unipv.ingsw.d20.company.webapp.WebPagesHandler;
 
+/**
+ * Servlet che gestisce le richieste sul path /d20/selection/* (l'utente seleziona l'operazione desiderata). 
+ *
+ */
 @SuppressWarnings("serial")
 public class SelectionServlet extends WebAppServlet {
 	
@@ -20,50 +24,20 @@ public class SelectionServlet extends WebAppServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String url=req.getPathInfo();
-		String urll=req.getContextPath();
+		String url=controller.trimUrl(req.getRequestURI());
 		
-		if (controller.getLoggedOperator()!=null && controller.isLimited()==false) {
-			if (url==null) { 
-				resp.getWriter().write(Rythm.render(handler.getPage("/select"), controller.getLoggedOperator()));
-				System.out.println("interpreto qui1");
-			}
-			else if (url.equals("/")) {
-				resp.getWriter().write(Rythm.render(handler.getPage("/select"), controller.getLoggedOperator()));
-				System.out.println("giusto");
-				System.out.println("interpreto qui2");
-			}		
-			else {
-				resp.getWriter().write(Rythm.render(handler.getPage("/select"), controller.getLoggedOperator()));
-				System.out.println("interpreto qui3");
-			}
-		//si possono anche togliere i vari if else, per ora li lascio x eventuale debug
-		}
-		else if (controller.getLoggedOperator()!=null && controller.isLimited()) {
-			if (url==null) { 
-				resp.getWriter().write(Rythm.render(handler.getPage("/select_limited"), controller.getLoggedOperator()));
-				System.out.println("interpreto qui1 limited");
-			}
-			else if (url.equals("/")) {
-				resp.getWriter().write(Rythm.render(handler.getPage("/select_limited"), controller.getLoggedOperator()));
-				System.out.println("giusto");
-				System.out.println("interpreto qui2 limited");
-			}		
-			else {
-				resp.getWriter().write(Rythm.render(handler.getPage("/select_limited"), controller.getLoggedOperator()));
-				System.out.println("interpreto qui3 limited");
-			}	
+		if (controller.getLoggedOperator()!=null && controller.isLimited()){
+			url="/selection_limited";
 		}
 		
+		if (controller.getLoggedOperator()!=null) {
+			resp.getWriter().write(Rythm.render(handler.getPage(url), controller.getLoggedOperator()));
+		}
 		else {
 			resp.sendRedirect("/d20/");
 		}
 	}
-	
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-	}
+
 }
 	
 

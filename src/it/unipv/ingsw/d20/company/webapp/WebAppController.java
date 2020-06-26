@@ -192,4 +192,9 @@ public class WebAppController {
 		return ingredientsQuantities;
 	}
 	
+	public String trimUrl(String url) {
+		String[] splittedUrl=url.split("/");
+		return ("/"+splittedUrl[splittedUrl.length-1]);
+	}
+	
 }

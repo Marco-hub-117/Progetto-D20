@@ -13,11 +13,12 @@ public class WebPagesHandler {
     	urlToPage = new HashMap<>();
     	//navigation pages
     	urlToPage.put("404", "notFound.html");
+    	urlToPage.put("/d20", "login.html");
     	urlToPage.put("/login", "login.html");
     	urlToPage.put("/wrong_user", "loginWrongUser.html");
     	urlToPage.put("/wrong_password", "loginWrongPassword.html");
-    	urlToPage.put("/select", "selectOp.html");
-    	urlToPage.put("/select_limited", "selectOpLimited.html");
+    	urlToPage.put("/selection", "selectOp.html");
+    	urlToPage.put("/selection_limited", "selectOpLimited.html");
     	urlToPage.put("/goodbye", "goodbye.html");       	
     	//vendings pages
     	urlToPage.put("/vendings", "vendingsTable.html");
@@ -37,7 +38,12 @@ public class WebPagesHandler {
     }
    
     public String getPage(String url) {
+    	if (urlToPage.get(url)!=null) {
 		return folder + urlToPage.get(url);
+    	}
+    	else {
+    	return folder + urlToPage.get("404");
+    	}
 	}
     
 }
