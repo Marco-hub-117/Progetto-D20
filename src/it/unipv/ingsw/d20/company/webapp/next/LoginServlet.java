@@ -8,10 +8,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.rythmengine.Rythm;
 
-import it.unipv.ingsw.d20.company.webapp.InvalidPasswordException;
-import it.unipv.ingsw.d20.company.webapp.InvalidUserException;
 import it.unipv.ingsw.d20.company.webapp.WebAppController;
 import it.unipv.ingsw.d20.company.webapp.WebPagesHandler;
+import it.unipv.ingsw.d20.company.webapp.exceptions.InvalidPasswordException;
+import it.unipv.ingsw.d20.company.webapp.exceptions.InvalidUserException;
 
 @SuppressWarnings("serial")
 public class LoginServlet extends WebAppServlet {

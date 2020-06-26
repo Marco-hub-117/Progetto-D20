@@ -5,6 +5,8 @@ import java.util.Map;
 
 import it.unipv.ingsw.d20.company.Company;
 import it.unipv.ingsw.d20.company.VendingMachineInfo;
+import it.unipv.ingsw.d20.company.webapp.exceptions.InvalidPasswordException;
+import it.unipv.ingsw.d20.company.webapp.exceptions.InvalidUserException;
 import it.unipv.ingsw.d20.util.persistence.PersistenceFacade;
 import it.unipv.ingsw.d20.util.persistence.beveragedescription.BeverageDescriptionPOJO;
 import it.unipv.ingsw.d20.util.persistence.beveragedescription.IBeverageDescriptionDao;

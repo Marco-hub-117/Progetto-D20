@@ -21,7 +21,7 @@ public class WebAppLauncher {
        //controller.addOperator("adm", "Admin Adminus", "adm", "Remote Operator");
        //controller.addOperator("a", "Altro Admin", "a", "Remote Operator");
        //System.out.println("admin registrato");
-       controller.addKey(111, 5.0);
+       //controller.addKey(111, 5.0);
        
        WebPagesHandler handler=new WebPagesHandler();
        List<Servlet> servletList= new LinkedList<>();

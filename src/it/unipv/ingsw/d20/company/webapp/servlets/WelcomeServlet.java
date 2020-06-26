@@ -1,4 +1,4 @@
-package it.unipv.ingsw.d20.company.webapp;
+package it.unipv.ingsw.d20.company.webapp.servlets;
 
 import java.io.IOException;
 
@@ -8,6 +8,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.rythmengine.Rythm;
+
+import it.unipv.ingsw.d20.company.webapp.Operator;
+import it.unipv.ingsw.d20.company.webapp.Operators;
+import it.unipv.ingsw.d20.company.webapp.Vending;
+import it.unipv.ingsw.d20.company.webapp.Vendings;
+import it.unipv.ingsw.d20.company.webapp.WebAppController;
+import it.unipv.ingsw.d20.company.webapp.exceptions.InvalidPasswordException;
 
 @SuppressWarnings("serial")
 public class WelcomeServlet extends HttpServlet {
