@@ -11,32 +11,28 @@ import org.rythmengine.Rythm;
 import it.unipv.ingsw.d20.company.webapp.WebAppController;
 import it.unipv.ingsw.d20.company.webapp.WebPagesHandler;
 
+/**
+ * Servlet che gestisce le richieste sul path /d20/selection/operators/* (visualizzare la tabella degli operatori,
+ * aggiungere operatori).
+ *
+ */
 @SuppressWarnings("serial")
 public class OperatorsServlet extends WebAppServlet {
 	
 	public OperatorsServlet(WebAppController controller, WebPagesHandler handler){
 		super(controller, handler);
+		setBasicUrl("/d20/selection/operators/");
 	}
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String url= req.getPathInfo();
+		String url=controller.trimUrl(req.getRequestURI());
 				
-		if (controller.getLoggedOperator()!=null) {
-			if (url==null) { 
-				resp.getWriter().write(Rythm.render(handler.getPage("/select"), controller.getLoggedOperator()));
-			}
-			else if (url.equals("/")) {
-				resp.getWriter().write(Rythm.render(handler.getPage("/operators"), controller.getAllOperators()));
-			}
-			else {
-				System.out.println(url);
-				String urlTrimmed=url.substring(0, url.length()-1); //da controllare
-				resp.getWriter().write(Rythm.render(handler.getPage(urlTrimmed)));
-			}
+		if (controller.getLoggedOperator()!=null && controller.isLimited()==false) {
+			resp.getWriter().write(Rythm.render(handler.getPage(url), controller.getAllOperators()));
 		}
 		else {
-			resp.sendRedirect("/d20/");
+			resp.sendRedirect(home);
 		}
 	}
 	
@@ -45,9 +41,8 @@ public class OperatorsServlet extends WebAppServlet {
 		
 		if (req.getPathInfo().equals("/save_operator")) {
 		controller.addOperator(req.getParameter("username"), req.getParameter("first_name")+" "+req.getParameter("last_name"), req.getParameter("password"), req.getParameter("type"));
-		resp.sendRedirect("/d20/selection/operators/");
+		resp.sendRedirect(getBasicUrl());
 		}
-	
 	}
 	
 }

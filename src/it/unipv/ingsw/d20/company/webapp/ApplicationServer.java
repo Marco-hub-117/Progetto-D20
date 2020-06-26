@@ -23,8 +23,7 @@ public class ApplicationServer {
     public void start() throws Exception {
         server = new Server(port);
         ServletContextHandler handler = new ServletContextHandler();
-        
-        //handler.addServlet(new ServletHolder(servletList.get(0)), "/");
+     
         handler.addServlet(new ServletHolder(servletList.get(0)), "/");
         handler.addServlet(new ServletHolder(servletList.get(1)), "/d20/*");
         handler.addServlet(new ServletHolder(servletList.get(2)), "/d20/selection/*");
@@ -47,6 +46,7 @@ public class ApplicationServer {
         holderPwd.setInitParameter("resourceBase", "./res/webapp/style");
         holderPwd.setInitParameter("dirAllowed","false");
         holderPwd.setInitParameter("pathInfoOnly","true");
+        
         handler.addServlet(holderPwd, "/style/*");
         handler.addServlet(holderPwd, "/d20/style/*");
         handler.addServlet(holderPwd, "/d20/selection/style/*");

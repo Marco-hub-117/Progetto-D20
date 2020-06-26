@@ -13,6 +13,11 @@ import it.unipv.ingsw.d20.company.webapp.WebAppController;
 import it.unipv.ingsw.d20.company.webapp.WebPagesHandler;
 import it.unipv.ingsw.d20.util.persistence.vending.VendingPOJO;
 
+/**
+ * Servlet che gestisce le richieste sul path /d20/selection/vendings/* (visualizzare la tabella dei distributori,
+ * monitorare e modificare i settaggi, segnalare guasti).
+ *
+ */
 @SuppressWarnings("serial")
 public class VendingsServlet extends WebAppServlet {
 
@@ -20,13 +25,14 @@ public class VendingsServlet extends WebAppServlet {
 		super(controller, handler);
 	}
 	
+	//DA CONTROLLARE
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String url=req.getPathInfo();
+		String url=controller.trimUrl(req.getRequestURI());
 		
-		if (controller.getLoggedOperator()!=null) {
-			if (url.equals("/")) {
-				resp.getWriter().write(Rythm.render(handler.getPage("/vendings"), controller.getAllVendingMachines()));
+		if (controller.getLoggedOperator()!=null && controller.isLimited()==false) {
+			if (url.equals(getBasicUrl())) {
+				resp.getWriter().write(Rythm.render(handler.getPage(url), controller.getAllVendingMachines()));
 			}
 			else if (url.equals("/settings")) {
 			VendingPOJO vending=controller.getVendingMachine((req.getParameter("id")));
@@ -36,23 +42,10 @@ public class VendingsServlet extends WebAppServlet {
 			else if (url.equals("/report")) {
 				resp.getWriter().write(Rythm.render(handler.getPage(url), controller.getAllOperators()));
 			}
-			else {
-				resp.getWriter().write(Rythm.render(handler.getPage(url))); //controllare
-			}
 		}
 		else {
-			resp.sendRedirect("/d20/");
+			resp.sendRedirect(home);
 		}
-	}
-	
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-	
-		if (req.getPathInfo().equals("/save_vending")) {
-			/*TOGLIERE??
-			Vendings.add(Integer.parseInt(req.getParameter("id")), req.getParameter("location"), req.getParameter("status"), req.getParameter("type"));
-			resp.sendRedirect("/vendings");*/
-		} 
 	}
 
 }

@@ -17,9 +17,11 @@ import it.unipv.ingsw.d20.company.webapp.WebPagesHandler;
  */
 @SuppressWarnings("serial")
 public class SelectionServlet extends WebAppServlet {
+	private String alternativeUrl;
 	
 	public SelectionServlet(WebAppController controller, WebPagesHandler handler){
 		super(controller, handler);
+		alternativeUrl="/selection_limited";
 	}
 
 	@Override
@@ -27,14 +29,14 @@ public class SelectionServlet extends WebAppServlet {
 		String url=controller.trimUrl(req.getRequestURI());
 		
 		if (controller.getLoggedOperator()!=null && controller.isLimited()){
-			url="/selection_limited";
+			url=alternativeUrl;
 		}
 		
 		if (controller.getLoggedOperator()!=null) {
 			resp.getWriter().write(Rythm.render(handler.getPage(url), controller.getLoggedOperator()));
 		}
 		else {
-			resp.sendRedirect("/d20/");
+			resp.sendRedirect(home);
 		}
 	}
 

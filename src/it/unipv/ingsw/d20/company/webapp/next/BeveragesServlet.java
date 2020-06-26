@@ -12,36 +12,42 @@ import org.rythmengine.Rythm;
 import it.unipv.ingsw.d20.company.webapp.WebAppController;
 import it.unipv.ingsw.d20.company.webapp.WebPagesHandler;
 import it.unipv.ingsw.d20.util.persistence.beveragedescription.BeverageDescriptionPOJO;
-import it.unipv.ingsw.d20.util.persistence.ingredientrecipe.IngredientRecipePOJO;
 
+/**
+ * Servlet che gestisce le richieste sul path /d20/selection/beverages/* (visualizzare la tabella delle bevande,
+ * modificare le ricette).
+ *
+ */
 @SuppressWarnings("serial")
 public class BeveragesServlet extends WebAppServlet {
 	
 	public BeveragesServlet(WebAppController controller, WebPagesHandler handler) {
 		super(controller, handler);
+		setBasicUrl("/d20/selection/beverages/");
 	}
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String url=req.getPathInfo();
+		String url=controller.trimUrl(req.getRequestURI());
 		
-		if (controller.getLoggedOperator()!=null) {
-			if (url.equals("/")) {
-				resp.getWriter().write(Rythm.render(handler.getPage("/beverages"), controller.getAllBeverageDescriptions()));
+		if (controller.getLoggedOperator()!=null && controller.isLimited()==false) {
+			if (url.equals(getBasicUrl())) {
+				resp.getWriter().write(Rythm.render(handler.getPage(url), controller.getAllBeverageDescriptions()));
 			}
 			else {
 			BeverageDescriptionPOJO beverage=controller.getBeverageDescription(req.getParameter("bevname"));
 			List<String> ingredientsNames=controller.getIngredientsNames(beverage.getIdRecipe());
 			List<Double> ingredientsQuantities=controller.getIngredientsQuantities(beverage.getIdRecipe());
 			
-			resp.getWriter().write(Rythm.render(handler.getPage("/beverage_edit"), beverage, ingredientsNames, ingredientsQuantities));
+			resp.getWriter().write(Rythm.render(handler.getPage(url), beverage, ingredientsNames, ingredientsQuantities));
 			}
 		}
 		else {
-			resp.sendRedirect("/d20/");
+			resp.sendRedirect(home);
 		}
 	}
 	
+	//DA SISTEMARE
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	
@@ -58,7 +64,7 @@ public class BeveragesServlet extends WebAppServlet {
 			
 			System.out.println("eccola: "+ingredientName+":"+quantity);
 			controller.updateIngredients(idRecipe, ingredientName, Double.parseDouble(quantity));
-			resp.sendRedirect("/d20/selection/beverages/");
+			resp.sendRedirect(getBasicUrl());
 		} 
 	}
 }

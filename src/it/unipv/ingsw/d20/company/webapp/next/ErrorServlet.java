@@ -10,9 +10,11 @@ import org.rythmengine.Rythm;
 
 import it.unipv.ingsw.d20.company.webapp.WebAppController;
 import it.unipv.ingsw.d20.company.webapp.WebPagesHandler;
-import it.unipv.ingsw.d20.company.webapp.exceptions.InvalidPasswordException;
-import it.unipv.ingsw.d20.company.webapp.exceptions.InvalidUserException;
 
+/**
+ * Servlet che visualizza un messaggio d'errore se il path specificato è errato.
+ *
+ */
 @SuppressWarnings("serial")
 public class ErrorServlet extends WebAppServlet {
 	
