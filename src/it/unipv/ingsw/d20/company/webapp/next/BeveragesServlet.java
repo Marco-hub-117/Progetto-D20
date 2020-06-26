@@ -31,8 +31,10 @@ public class BeveragesServlet extends WebAppServlet {
 			}
 			else {
 			BeverageDescriptionPOJO beverage=controller.getBeverageDescription(req.getParameter("bevname"));
-			List<IngredientRecipePOJO> ingredients=controller.getIngredients(beverage.getIdRecipe());
-			resp.getWriter().write(Rythm.render(handler.getPage("/beverage_edit"), beverage, ingredients));
+			List<String> ingredientsNames=controller.getIngredientsNames(beverage.getIdRecipe());
+			List<Double> ingredientsQuantities=controller.getIngredientsQuantities(beverage.getIdRecipe());
+			
+			resp.getWriter().write(Rythm.render(handler.getPage("/beverage_edit"), beverage, ingredientsNames, ingredientsQuantities));
 			}
 		}
 		else {
@@ -46,12 +48,13 @@ public class BeveragesServlet extends WebAppServlet {
 		if (req.getPathInfo().equals("/save_beverage")) {
 			
 			String bevname=req.getParameter("bevname"); //dà excepiton
+			System.out.println("bevname:"+bevname);
 			BeverageDescriptionPOJO desc=controller.getBeverageDescription(bevname);
 			String idRecipe=desc.getIdRecipe();
 			System.out.println(idRecipe);
 			
-			String ingredientName=req.getParameter("firstRowA");
-			String quantity=req.getParameter("firstRowB");
+			String ingredientName=req.getParameter("a1");
+			String quantity=req.getParameter("a2");
 			
 			System.out.println("eccola: "+ingredientName+":"+quantity);
 			controller.updateIngredients(idRecipe, ingredientName, Double.parseDouble(quantity));

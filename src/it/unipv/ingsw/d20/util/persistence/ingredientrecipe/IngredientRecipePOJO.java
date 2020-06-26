@@ -5,6 +5,7 @@ public class IngredientRecipePOJO {
 	private String idRecipe;
 	private String ingredientName;
 	private double quantity;
+	public static int maxIngredients=5;
 	
 	
 	/**
