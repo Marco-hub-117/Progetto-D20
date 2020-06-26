@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import it.unipv.ingsw.d20.vendingmachine.model.VendingMachineStatus;
 
 /**
- * Interfaccia per Accedere a un VendingDao. � possibile utilizzarla per ottenere le informazioni necessarie.
+ * Interfaccia per accedere a un VendingDao. E' possibile utilizzarla per ottenere le informazioni necessarie.
  *
  */
 public interface IVendingDao {
@@ -15,12 +15,6 @@ public interface IVendingDao {
 	 * Per esempio attraverso un database o un file di testo.
 	 */
 	
-	/**
-	 * Restituisce l'indirizzo della vending machine 
-	 * @param id della vending
-	 * @return indirizzo della vending con l'id passato come parametro.
-	 */
-	public VendingMachineStatus getVendingStatusById(String id);
 	
 	/**
 	 * Aggiunge una VendingMachine al database
@@ -31,17 +25,13 @@ public interface IVendingDao {
 	
 	public ArrayList<VendingPOJO> getAllVendings();
 	
-	public VendingPOJO getVending(String idVending);
+	public VendingPOJO getVending(String idVending);	
 	
-	public void updateVendingStatus(String idVending,VendingMachineStatus newStatus);
-	
-	public void updateVendingAmount(String idVending,double amount);
-	
-	public void updateVendingTankLevel(String idVending,String tankLevel);
-	
-	public void updateVendingTankTemp(String idVending,String tankTemp); 
-	
-	
-	
+	/**
+	 * Restituisce la posizione della vending machine 
+	 * @param id della vending
+	 * @return posizione della vending con l'id passato come parametro.
+	 */
+	//public VendingMachineStatus getVendingLocationById(String id);
 
 }

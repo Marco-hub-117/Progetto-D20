@@ -112,7 +112,7 @@ public class RdbOperations {
 			st = con.createStatement();
 			rs = st.executeQuery(query);
 			while(rs.next()) {
-				VendingPOJO res = new VendingPOJO(rs.getString("idVending"),VendingMachineStatus.valueOf(rs.getString("Status")),rs.getString("Location"),rs.getString("Type"),rs.getDouble("Amount"),rs.getString("TankLevel"),rs.getString("TankTemp"));
+				VendingPOJO res = new VendingPOJO(rs.getString("idVending"),rs.getString("Location"),rs.getString("Type"));
 				result.add(res);
 			}
 		} catch (SQLException e) {
@@ -133,7 +133,7 @@ public class RdbOperations {
 			st = con.createStatement();
 			rs = st.executeQuery(query);
 			while(rs.next()) {
-				result = new VendingPOJO(rs.getString("idVending"),VendingMachineStatus.valueOf(rs.getString("Status")),rs.getString("Location"),rs.getString("Type"),rs.getDouble("Amount"),rs.getString("TankLevel"),rs.getString("TankTemp"));
+				result = new VendingPOJO(rs.getString("idVending"),rs.getString("Location"),rs.getString("Type"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -145,13 +145,9 @@ public class RdbOperations {
 	
 	public void addVending(VendingPOJO vending) {	
 		ArrayList<String> values = new ArrayList<>();
-		values.add(vending.getIdVending());
-		values.add(vending.getStringStatus());
+		values.add(vending.getId());
 		values.add(vending.getLocation());
 		values.add(vending.getType());
-		values.add(String.valueOf(vending.getAmount()));
-		values.add(vending.getTankLevel());
-		values.add(vending.getTankTemp());
 		String query = QueryGenerator.getInsertIntoValuesQuery("Vending", values);
 		
 		con = this.startConnection(con);

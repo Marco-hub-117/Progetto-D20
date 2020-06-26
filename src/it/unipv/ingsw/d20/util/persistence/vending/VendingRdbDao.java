@@ -17,10 +17,6 @@ public class VendingRdbDao implements IVendingDao{
 		op = new RdbOperations();
 	}
 	
-	public VendingMachineStatus getVendingStatusById(String id) {
-		return op.getVendingStatusById(id);
-	}
-
 	@Override
 	public void addVending(VendingPOJO vending) {
 		op.addVending(vending);
@@ -32,29 +28,8 @@ public class VendingRdbDao implements IVendingDao{
 	}
 
 	@Override
-	public void updateVendingStatus(String idVending, VendingMachineStatus newStatus) {
-		op.updateVendingStatus(idVending, newStatus);
-	}
-
-	@Override
 	public VendingPOJO getVending(String idVending) {
 		return op.getVending(idVending);
-	}
-
-	@Override
-	public void updateVendingAmount(String idVending, double amount) {
-		op.updateVendingAmount(idVending, amount);
-	}
-
-	@Override
-	public void updateVendingTankLevel(String idVending, String tankLevel) {
-		op.updateVendingTankLevel(idVending, tankLevel);
-	}
-
-	@Override
-	public void updateVendingTankTemp(String idVending, String tankTemp) {
-		// TODO Auto-generated method stub
-		op.updateVendingTankTemp(idVending, tankTemp);
 	}
 
 }

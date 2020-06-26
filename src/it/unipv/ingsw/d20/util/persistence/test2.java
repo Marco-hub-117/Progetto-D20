@@ -16,17 +16,17 @@ public class test2 {
 		PersistenceFacade pf = PersistenceFacade.getInstance();
 		
 		IVendingDao a = pf.getVendingDao();
-		System.out.println(a.getVendingStatusById("id3"));
+		//System.out.println(a.getVendingStatusById("id3"));
 		
-		VendingPOJO vProva = new VendingPOJO("id10",VendingMachineStatus.ONLINE,"Pavia","A",100,"90-80-70-100","10-20-20-5");
+		//VendingPOJO vProva = new VendingPOJO("id10",VendingMachineStatus.ONLINE,"Pavia","A",100,"90-80-70-100","10-20-20-5");
 		
 		//a.addVending(vProva);
 		
 		System.out.println(a.getVending("id10"));
 		
-		a.updateVendingStatus("id10", VendingMachineStatus.OFF);
-		a.updateVendingAmount("id10", 1000);
-		a.updateVendingTankLevel("id10", "80-80-60-20");
+		//a.updateVendingStatus("id10", VendingMachineStatus.OFF);
+		//a.updateVendingAmount("id10", 1000);
+		//a.updateVendingTankLevel("id10", "80-80-60-20");
 		
 		System.out.println(a.getVending("id10"));
 		

@@ -24,8 +24,8 @@ public class test {
 		PersistenceFacade pf = PersistenceFacade.getInstance();
 		
 		IVendingDao a = pf.getVendingDao();
-		System.out.println(a.getVendingStatusById("id3"));
-		a.updateVendingStatus("id1", VendingMachineStatus.OFF);
+		//System.out.println(a.getVendingStatusById("id3"));
+		//a.updateVendingStatus("id1", VendingMachineStatus.OFF);
 		
 		IIngredientRecipeDao IrDao = pf.getIngredientRecipeDao();
 		ArrayList<IngredientRecipePOJO> result = new ArrayList<>();
@@ -35,7 +35,7 @@ public class test {
 		}
 		
 		IBeverageDescriptionDao IbvDao = pf.getBeverageDescriptionDao();
-		BeverageDescriptionPOJO bvpojo = IbvDao.getBeverageDescriptionByBevName("Caffè latte");
+		BeverageDescriptionPOJO bvpojo = IbvDao.getBeverageDescriptionByBevName("Caffï¿½ latte");
 		System.out.println(bvpojo);
 		
 		IBvCatalogDao ibvcat = pf.getBvCatalogDao();
