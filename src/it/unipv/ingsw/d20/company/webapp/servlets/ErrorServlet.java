@@ -12,7 +12,7 @@ import it.unipv.ingsw.d20.company.webapp.WebAppController;
 import it.unipv.ingsw.d20.company.webapp.WebPagesHandler;
 
 /**
- * Servlet che visualizza un messaggio d'errore se il path specificato è errato.
+ * Servlet che visualizza un messaggio d'errore se il path specificato è inesistente.
  *
  */
 @SuppressWarnings("serial")

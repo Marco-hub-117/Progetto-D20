@@ -30,8 +30,8 @@ public class VendingsServlet extends WebAppServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String url=handler.trimUrl(req.getRequestURI());
 		
-		if (controller.getLoggedOperator()!=null && controller.isLimited()==false) {
-			if (url.equals(getBasicUrl())) {
+		if (controller.getLoggedOperator()!=null) {
+			if (url.equals(handler.trimUrl(getBasicUrl()))) {
 				resp.getWriter().write(Rythm.render(handler.getPage(url), controller.getAllVendingMachines()));
 			}
 			else if (url.equals("/settings")) {

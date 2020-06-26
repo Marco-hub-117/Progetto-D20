@@ -31,7 +31,7 @@ public class BeveragesServlet extends WebAppServlet {
 		String url=handler.trimUrl(req.getRequestURI());
 		
 		if (controller.getLoggedOperator()!=null && controller.isLimited()==false) {
-			if (url.equals(getBasicUrl())) {
+			if (url.equals(handler.trimUrl(getBasicUrl()))) {
 				resp.getWriter().write(Rythm.render(handler.getPage(url), controller.getAllBeverageDescriptions()));
 			}
 			else {

@@ -21,7 +21,7 @@ public class KeysServlet extends WebAppServlet {
 	
 	public KeysServlet(WebAppController controller, WebPagesHandler handler){
 		super(controller, handler);
-		setBasicUrl("/d20/selection/operators/");
+		setBasicUrl("/d20/selection/keys/");
 	}
 	
 	@Override
