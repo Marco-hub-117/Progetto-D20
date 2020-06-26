@@ -25,12 +25,13 @@ public class ApplicationServer {
         ServletContextHandler handler = new ServletContextHandler();
         
         //handler.addServlet(new ServletHolder(servletList.get(0)), "/");
-        handler.addServlet(new ServletHolder(servletList.get(0)), "/d20/*");
-        handler.addServlet(new ServletHolder(servletList.get(1)), "/d20/selection/*");
-        handler.addServlet(new ServletHolder(servletList.get(2)), "/d20/selection/vendings/*");
-        handler.addServlet(new ServletHolder(servletList.get(3)), "/d20/selection/operators/*");
-        handler.addServlet(new ServletHolder(servletList.get(4)), "/d20/selection/keys/*");
-        handler.addServlet(new ServletHolder(servletList.get(5)), "/d20/selection/beverages/*");
+        handler.addServlet(new ServletHolder(servletList.get(0)), "/");
+        handler.addServlet(new ServletHolder(servletList.get(1)), "/d20/*");
+        handler.addServlet(new ServletHolder(servletList.get(2)), "/d20/selection/*");
+        handler.addServlet(new ServletHolder(servletList.get(3)), "/d20/selection/vendings/*");
+        handler.addServlet(new ServletHolder(servletList.get(4)), "/d20/selection/operators/*");
+        handler.addServlet(new ServletHolder(servletList.get(5)), "/d20/selection/keys/*");
+        handler.addServlet(new ServletHolder(servletList.get(6)), "/d20/selection/beverages/*");
         
         addStaticFileServing(handler);
         server.setHandler(handler);
@@ -46,6 +47,7 @@ public class ApplicationServer {
         holderPwd.setInitParameter("resourceBase", "./res/webapp/style");
         holderPwd.setInitParameter("dirAllowed","false");
         holderPwd.setInitParameter("pathInfoOnly","true");
+        handler.addServlet(holderPwd, "/style/*");
         handler.addServlet(holderPwd, "/d20/style/*");
         handler.addServlet(holderPwd, "/d20/selection/style/*");
         handler.addServlet(holderPwd, "/d20/selection/vendings/style/*");
