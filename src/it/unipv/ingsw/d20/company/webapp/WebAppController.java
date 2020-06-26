@@ -1,7 +1,10 @@
 package it.unipv.ingsw.d20.company.webapp;
 
 import java.util.List;
+import java.util.Map;
 
+import it.unipv.ingsw.d20.company.Company;
+import it.unipv.ingsw.d20.company.VendingMachineInfo;
 import it.unipv.ingsw.d20.util.persistence.PersistenceFacade;
 import it.unipv.ingsw.d20.util.persistence.beveragedescription.BeverageDescriptionPOJO;
 import it.unipv.ingsw.d20.util.persistence.beveragedescription.IBeverageDescriptionDao;
@@ -22,6 +25,7 @@ public class WebAppController {
 	private IBeverageDescriptionDao beveragesManager;
 	private IIngredientRecipeDao ingredientsManager;
 	private OperatorPOJO loggedOperator;
+	private Map<String, VendingMachineInfo> infoList;
 	
 	public WebAppController() {
 		facade= PersistenceFacade.getInstance();
@@ -30,6 +34,7 @@ public class WebAppController {
 		keysManager=facade.getKeyDao();
 		beveragesManager=facade.getBeverageDescriptionDao();	
 		ingredientsManager=facade.getIngredientRecipeDao();
+		infoList =Company.vendingMachineInfoList;
 	}
 		
 	//IN FASE DI ELABORAZIONE
@@ -49,10 +54,10 @@ public class WebAppController {
 	public VendingPOJO getVendingMachine(String id) {
 		return vendingsManager.getVending(id);
 	}
-	//presa una vending POJO, dovrei poter prelevare location, type, status, amount, tanksLevels, tanksTemps
 	
-	//public void setTankTemps(String id, Double[] temps);
-	
+	public VendingMachineInfo getVendingMachineInfo(String id) {
+		return infoList.get(id);	
+	}
 	
 	public List<OperatorPOJO> getAllOperators() {
 		return operatorsManager.getAllOperators();

@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.rythmengine.Rythm;
 
+import it.unipv.ingsw.d20.company.VendingMachineInfo;
 import it.unipv.ingsw.d20.company.webapp.WebAppController;
 import it.unipv.ingsw.d20.company.webapp.WebPagesHandler;
 import it.unipv.ingsw.d20.util.persistence.vending.VendingPOJO;
@@ -29,7 +30,8 @@ public class VendingsServlet extends WebAppServlet {
 			}
 			else if (url.equals("/settings")) {
 			VendingPOJO vending=controller.getVendingMachine((req.getParameter("id")));
-			resp.getWriter().write(Rythm.render(handler.getPage(url), vending, controller.getAllVendingMachines())); //ma l'ultimo param serve??
+			VendingMachineInfo temporaryInfo=controller.getVendingMachineInfo((req.getParameter("id")));
+			resp.getWriter().write(Rythm.render(handler.getPage(url), vending, temporaryInfo));
 			}
 			else if (url.equals("/report")) {
 				resp.getWriter().write(Rythm.render(handler.getPage(url), controller.getAllOperators()));

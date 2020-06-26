@@ -3,6 +3,7 @@ package it.unipv.ingsw.d20.company;
 import java.util.Date;
 import java.util.List;
 
+import it.unipv.ingsw.d20.vendingmachine.model.VendingMachineStatus;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.Ingredients;
 import it.unipv.ingsw.d20.vendingmachine.model.tanks.Tank;
 
@@ -11,15 +12,17 @@ public class VendingMachineInfo {
 	private Date lastUpdate;
 	private double currentAmount;
 	private List<Tank> tankList;
+	private VendingMachineStatus status;
 	
 	public VendingMachineInfo() {
 		currentAmount = 0;
 		refreshLastUpdate();
 	}
 	
-	public VendingMachineInfo(String cashInfo, String tankInfo) {
+	public VendingMachineInfo(String cashInfo, String tankInfo, String statusInfo) {
 		currentAmount = Double.parseDouble(cashInfo);
 		setTankList(tankInfo);
+		setStatusString(statusInfo);
 		refreshLastUpdate();
 	}
 	
@@ -51,6 +54,22 @@ public class VendingMachineInfo {
 			tankList.add(t);
 		}
 		
+	}
+	
+	public VendingMachineStatus getStatus() {
+		return status;
+	}
+	
+	public String getStatusString() {
+		return status.toString();
+	}
+	
+	public void setStatus(VendingMachineStatus status) {
+		this.status=status;	
+	}
+	
+	public void setStatusString(String statusInfo) {
+		status=VendingMachineStatus.valueOf(statusInfo);
 	}
 
 }

@@ -265,13 +265,13 @@ public class VendingMachine {
 	 * Serve per aggiornare il credito, che la vending attualmente contiene, sul db  
 	 */
 	
-	public void notifyAmount() {		
+	/*public void notifyAmount() {		
 		PersistenceFacade pf = PersistenceFacade.getInstance();
 		IVendingDao vd = pf.getVendingDao();
 		vd.updateVendingAmount(this.id, cashContainer.getTotalAmount());
-	}
+	}*/
 	
-	public void saveTanksLevelToDb() {
+	/*public void saveTanksLevelToDb() {
 		PersistenceFacade pf = PersistenceFacade.getInstance();
 		IVendingDao vd = pf.getVendingDao();
 		String levels = "";
@@ -286,9 +286,9 @@ public class VendingMachine {
 			}
 		}
 		vd.updateVendingTankLevel(this.id, levels);
-	}
+	}*/
 
-	public void saveTanksTempToDb() {
+	/*public void saveTanksTempToDb() {
 		PersistenceFacade pf = PersistenceFacade.getInstance();
 		IVendingDao vd = pf.getVendingDao();
 		String temp = "";
@@ -303,12 +303,12 @@ public class VendingMachine {
 			}
 		}
 		vd.updateVendingTankTemp(this.id, temp);
-	}
+	}*/
 
 	/**
 	 * Questo metodo serve per notificare al db una serie di informazioni come livello, temperatura dei tanks e amount
 	 */
-	public void updateInfoToDb() {  // DA SPOSTARE NEL THRED CON IL TIMER. RIVEDERE CON NICOLO
+	/*public void updateInfoToDb() {  // DA SPOSTARE NEL THRED CON IL TIMER. RIVEDERE CON NICOLO
 		try {
 			this.saveTanksLevelToDb();
 			this.saveTanksTempToDb();
@@ -316,7 +316,7 @@ public class VendingMachine {
 		} catch (Exception e) {
 			System.out.println("Connessione al DB assente");
 		}
-	}
+	}*/
 	
 	public void saveSale(Sale sale) {
 		try {
