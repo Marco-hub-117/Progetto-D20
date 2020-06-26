@@ -59,7 +59,7 @@
 							</thead>
 							
 							<tbody>
-								@for (it.unipv.ingsw.d20.util.persistence.vending.VendingPOJO: vendings) {
+								@for (it.unipv.ingsw.d20.util.persistence.vending.VendingPOJO it: vendings) {
 									<tr> 
 										<td>@(it.getId())</td> 
 										<td>@(it.getLocation())</td> 
