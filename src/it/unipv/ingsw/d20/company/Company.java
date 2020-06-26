@@ -9,6 +9,8 @@ import java.util.Map;
 import java.util.Timer;
 import java.util.concurrent.TimeUnit;
 
+import it.unipv.ingsw.d20.company.constants.Cities;
+import it.unipv.ingsw.d20.company.constants.Streets;
 import it.unipv.ingsw.d20.company.net.CompanyServer;
 import it.unipv.ingsw.d20.util.persistence.PersistenceFacade;
 import it.unipv.ingsw.d20.util.persistence.vending.IVendingDao;
@@ -85,10 +87,11 @@ public class Company {
 	 */
 	public static String registerNewVendingMachine() {
 		String IDNumber = generateNewID();
+		String location = generateNewLocation();
 		
 		/*PersistenceFacade pf = PersistenceFacade.getInstance();
 		IVendingDao ivd = pf.getVendingDao();
-		ivd.addVending(new VendingPOJO(IDNumber, null));*/
+		ivd.addVending(new VendingPOJO(IDNumber, location, null));*/
 		
 		vendingMachineInfoList.put(IDNumber, new VendingMachineInfo());
 		
@@ -105,6 +108,21 @@ public class Company {
 		
 		String fileName = "IDN" + vendingIDNumber;
 		return fileName; 
+	}
+	
+	/**
+	 * Genera la posizone per una macchinetta che è stata accesa per la prima volta.
+	 * @return stringa con la posizione generata
+	 */
+	private static String generateNewLocation() {
+		int i=(int)((Math.random())*10);
+		int j=(int)((Math.random())*10);
+		String city=(Cities.values())[i].toString();
+		String street=(Streets.values())[j].toString();
+		int number=(int)((Math.random())*100);
+	
+		String location = city+ ", VIA " + street+ " "+ number ;
+		return location; 
 	}
 	
 }

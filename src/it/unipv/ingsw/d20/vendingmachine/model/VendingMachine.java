@@ -340,6 +340,7 @@ public class VendingMachine {
 			infoBuilder.append(t.getLevel()); infoBuilder.append(" ");
 			infoBuilder.append(t.getTemperature()); infoBuilder.append(" ");
 		}
+		infoBuilder.append(status);
 		
 		info = infoBuilder.toString();
 	}
