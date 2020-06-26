@@ -1,5 +1,5 @@
 @args() {
-	List<it.unipv.ingsw.d20.company.webapp.Operator> operators
+	List<it.unipv.ingsw.d20.util.persistence.operator.OperatorPOJO> operators
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -59,7 +59,7 @@
 	                                    <div class="rs-select2 js-select-simple select--no-search">
 	                                        <select name="operator" required>
 	                                            <option disabled="disabled" selected="selected" value="">Choose Operator</option>
-	                                            @for (it.unipv.ingsw.d20.company.webapp.Operator it: operators) {
+	                                            @for (<it.unipv.ingsw.d20.util.persistence.operator.OperatorPOJO> it: operators) {
 	                                           			 <option>@(it.getName())</option>	                                       
 	                                            }		                                            
 	                                        </select>		                                      	

@@ -1,5 +1,5 @@
 @args() {
-	List<it.unipv.ingsw.d20.company.webapp.Vending> vending
+	List<it.unipv.ingsw.d20.util.persistence.vending.VendingPOJO> vendings
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -53,17 +53,17 @@
 								<tr class="table100-head">
 									<th class="column1">ID</th>
 									<th class="column2">Location</th>
-									<th class="column3">Status</th>
+									<th class="column3">Type</th>
 									<th class="column4">Manage</th>
 								</tr>
 							</thead>
 							
 							<tbody>
-								@for (it.unipv.ingsw.d20.company.webapp.Vending it: vending) {
+								@for (it.unipv.ingsw.d20.util.persistence.vending.VendingPOJO: vendings) {
 									<tr> 
 										<td>@(it.getId())</td> 
 										<td>@(it.getLocation())</td> 
-										<td>@(it.getStatus())</td>
+										<td>@(it.getType())</td>
 										<td>										
 										<a href="/d20/selection/vendings/settings?id=@(it.getId())" class="btn btn-secondary">Settings</a>									
 										</td> 
