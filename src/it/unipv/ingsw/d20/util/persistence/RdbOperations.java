@@ -570,7 +570,7 @@ public class RdbOperations {
 	public ArrayList<KeyPOJO> getAllKeys() {
 		
 		ArrayList<KeyPOJO> result = new ArrayList<>();
-		String query = "SELECT * FROM Key";
+		String query = "SELECT * FROM prova.Key";
 		
 		con = this.startConnection(con);
 		Statement st;
@@ -579,7 +579,7 @@ public class RdbOperations {
 			st = con.createStatement();
 			rs = st.executeQuery(query);
 			while(rs.next()) {
-				KeyPOJO res = new KeyPOJO(rs.getInt("idKey"), rs.getDouble("credit"));
+				KeyPOJO res = new KeyPOJO(rs.getInt("Code"), rs.getDouble("Credit"));
 				result.add(res);
 			}
 		} catch (SQLException e) {
@@ -592,7 +592,7 @@ public class RdbOperations {
 	
 	public KeyPOJO getKey (String serialCode) {
 		KeyPOJO result=null;
-		String query = QueryGenerator.getSelectFromWhereQuery("*","Key","serialCode="+serialCode);
+		String query = QueryGenerator.getSelectFromWhereQuery("*","prova.Key","Code="+serialCode);
 		
 		con = this.startConnection(con);
 		Statement st;
@@ -601,7 +601,7 @@ public class RdbOperations {
 			st = con.createStatement();
 			rs = st.executeQuery(query);
 			while (rs.next()) {
-				result = new KeyPOJO(rs.getInt("idKey"), rs.getDouble("credit"));
+				result = new KeyPOJO(rs.getInt("Code"), rs.getDouble("Credit"));
 			}	
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -615,8 +615,8 @@ public class RdbOperations {
 		ArrayList<String> values = new ArrayList<>();
 		values.add((String.valueOf(key.getSerialCode()))); 
 		values.add((String.valueOf(key.getCredit()))); 
-		String query = QueryGenerator.getInsertIntoValuesQuery("Key", values);	
-		System.out.println("#"+query+"#");
+		String query = QueryGenerator.getInsertIntoValuesQuery("prova.Key", values);	
+		
 		con = this.startConnection(con);
 		Statement st;	
 		try {
@@ -631,7 +631,7 @@ public class RdbOperations {
 	}
 	
 	public void updateKeyCredit(String serialCode, double newCredit) {
-		String query = QueryGenerator.getUpdateSetQuery("Key", "credit = '"+newCredit+"'", "serialCode = '"+serialCode+"'");
+		String query = QueryGenerator.getUpdateSetQuery("prova.Key", "Credit = '"+newCredit+"'", "Code = '"+serialCode+"'");
 		con = this.startConnection(con);
 		Statement st;	
 		try {
@@ -646,7 +646,7 @@ public class RdbOperations {
 	
 	public double getKeyCredit(String serialCode) {
 		double result = 0; 
-		String query = QueryGenerator.getSelectFromWhereQuery("credit", "Key", "serialCode = '"+serialCode+"'");
+		String query = QueryGenerator.getSelectFromWhereQuery("Credit", "prova.Key", "Code = '"+serialCode+"'");
 		
 		con = this.startConnection(con);
 		Statement st;
@@ -665,7 +665,7 @@ public class RdbOperations {
 	}
 	
 	public void deactivateKey(String serialCode) {
-		String query = QueryGenerator.getDeleteWhereQuery("Key", "serialCode = '"+serialCode+"'");
+		String query = QueryGenerator.getDeleteWhereQuery("prova.Key", "Code = '"+serialCode+"'");
 		
 		con = this.startConnection(con);
 		Statement st;	

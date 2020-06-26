@@ -44,16 +44,17 @@ public class KeysServlet extends WebAppServlet {
 		
 		if (req.getPathInfo().equals("/save_key")) {
 			String serialCode=req.getParameter("code");
-			int codeNum=Integer.parseInt(serialCode.substring(0, serialCode.length()-1));
+			int codeNum=Integer.parseInt(serialCode);
 			String credit=req.getParameter("credit");
 			double creditNum=Double.parseDouble(credit.substring(0, credit.length()-1));	
 			System.out.println(":"+codeNum+":"+creditNum);
 			
 			controller.addKey(codeNum, creditNum);
-			resp.sendRedirect("/d20/keys/");
+			resp.sendRedirect("/d20/selection/keys/");
 		}
 		else if (req.getPathInfo().equals("/deactivate")) {
 			controller.deactivateKey(req.getParameter("id"));
+			resp.sendRedirect("/d20/selection/keys/");
 		}
 	}
 }
