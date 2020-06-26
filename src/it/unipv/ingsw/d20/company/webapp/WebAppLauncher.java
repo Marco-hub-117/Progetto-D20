@@ -4,13 +4,13 @@ import java.util.LinkedList;
 import java.util.List;
 import javax.servlet.Servlet;
 
-import it.unipv.ingsw.d20.company.webapp.next.BeveragesServlet;
-import it.unipv.ingsw.d20.company.webapp.next.ErrorServlet;
-import it.unipv.ingsw.d20.company.webapp.next.KeysServlet;
-import it.unipv.ingsw.d20.company.webapp.next.LoginServlet;
-import it.unipv.ingsw.d20.company.webapp.next.OperatorsServlet;
-import it.unipv.ingsw.d20.company.webapp.next.SelectionServlet;
-import it.unipv.ingsw.d20.company.webapp.next.VendingsServlet;
+import it.unipv.ingsw.d20.company.webapp.servlets.BeveragesServlet;
+import it.unipv.ingsw.d20.company.webapp.servlets.ErrorServlet;
+import it.unipv.ingsw.d20.company.webapp.servlets.KeysServlet;
+import it.unipv.ingsw.d20.company.webapp.servlets.LoginServlet;
+import it.unipv.ingsw.d20.company.webapp.servlets.OperatorsServlet;
+import it.unipv.ingsw.d20.company.webapp.servlets.SelectionServlet;
+import it.unipv.ingsw.d20.company.webapp.servlets.VendingsServlet;
 
 public class WebAppLauncher {
 	

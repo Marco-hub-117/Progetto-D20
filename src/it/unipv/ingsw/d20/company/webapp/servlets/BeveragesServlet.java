@@ -1,4 +1,4 @@
-package it.unipv.ingsw.d20.company.webapp.next;
+package it.unipv.ingsw.d20.company.webapp.servlets;
 
 import java.io.IOException;
 import java.util.List;
