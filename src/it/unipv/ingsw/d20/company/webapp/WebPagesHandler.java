@@ -12,10 +12,12 @@ public class WebPagesHandler {
     public WebPagesHandler(){	
     	urlToPage = new HashMap<>();
     	//navigation pages
+    	urlToPage.put("404", "notFound.html");
     	urlToPage.put("/login", "login.html");
     	urlToPage.put("/wrong_user", "loginWrongUser.html");
     	urlToPage.put("/wrong_password", "loginWrongPassword.html");
     	urlToPage.put("/select", "selectOp.html");
+    	urlToPage.put("/select_limited", "selectOpLimited.html");
     	urlToPage.put("/goodbye", "goodbye.html");       	
     	//vendings pages
     	urlToPage.put("/vendings", "vendingsTable.html");

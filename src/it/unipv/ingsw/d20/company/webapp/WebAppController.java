@@ -1,5 +1,6 @@
 package it.unipv.ingsw.d20.company.webapp;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -27,7 +28,12 @@ public class WebAppController {
 	private IBeverageDescriptionDao beveragesManager;
 	private IIngredientRecipeDao ingredientsManager;
 	private OperatorPOJO loggedOperator;
+	private boolean limited; //E' true quando l'operatore loggato è un operatore e non un operatore remoto
 	private Map<String, VendingMachineInfo> infoList;
+	private enum OperatorType{
+		Operator, RemoteOperator;
+	}
+	
 	
 	public WebAppController() {
 		facade= PersistenceFacade.getInstance();
@@ -74,13 +80,7 @@ public class WebAppController {
 	}
 	
 	public void checkOperatorLogIn (String username, String password) throws InvalidPasswordException, InvalidUserException{
-		OperatorPOJO operator;
-		if (getOperator(username)==null) {
-			throw new InvalidUserException();
-		}
-		else {
-			operator=getOperator(username);
-		}
+		OperatorPOJO operator=lookForOperator(username);
 		
 		if (operator.getCode().equals(username) && operator.getPassword().equals(password)) {
 			loggedOperator=getOperator(username);
@@ -88,8 +88,39 @@ public class WebAppController {
 		else {
 			throw new InvalidPasswordException();
 		}
+		
+		checkLimitation();
+		
 	}
 	
+	private OperatorPOJO lookForOperator(String username) throws InvalidUserException {
+		OperatorPOJO operator;
+		if (getOperator(username)==null) {
+			throw new InvalidUserException();
+		}
+		else {
+			operator=getOperator(username);
+		}
+		return operator;
+	}
+	
+	private void checkLimitation() {
+		if (loggedOperator.getType().equals(OperatorType.Operator.toString())){
+			setLimited(true);
+		}
+		else {
+			setLimited(false);
+		}
+	}
+	
+	private void setLimited(boolean bool) {
+		this.limited=bool;
+	}
+	
+	public boolean isLimited() {
+		return limited;
+	}
+
 	public List<KeyPOJO> getAllKeys() {
 		return keysManager.getAllKeys();
 	}
@@ -122,6 +153,43 @@ public class WebAppController {
 	}
 	public void updateIngredients (String idRecipe, String ingredientName, double quantity) {
 		ingredientsManager.updateIngredientRecipe(idRecipe, ingredientName, quantity);
+	}
+	
+	public List<String> getIngredientsNames(String idRecipe) {
+		List<String> ingredientsNames=new LinkedList<>();
+		List<IngredientRecipePOJO> recipe= ingredientsManager.getAllIngredientRecipeByIdRecipe(idRecipe);
+		
+		for (IngredientRecipePOJO entry: recipe) {
+			ingredientsNames.add(entry.getIngredientName());
+		}
+		
+		if (ingredientsNames.size()<IngredientRecipePOJO.maxIngredients) {
+			int ingredientNumber= ingredientsNames.size();
+			int i;
+			for (i=0; i<(IngredientRecipePOJO.maxIngredients-ingredientNumber); i++) {
+				ingredientsNames.add("None");
+			}
+		}
+		return ingredientsNames;
+	}
+	
+	public List<Double> getIngredientsQuantities(String idRecipe) {
+		List<Double> ingredientsQuantities=new LinkedList<>();
+		List<IngredientRecipePOJO> recipe= ingredientsManager.getAllIngredientRecipeByIdRecipe(idRecipe);
+		
+		for (IngredientRecipePOJO entry: recipe) {
+			ingredientsQuantities.add(entry.getQuantity());
+		}
+		
+		if (ingredientsQuantities.size()<IngredientRecipePOJO.maxIngredients) {
+			int ingredientNumber= ingredientsQuantities.size();
+		
+			int i;
+			for (i=0; i<(IngredientRecipePOJO.maxIngredients-ingredientNumber); i++) {
+				ingredientsQuantities.add(0.0);
+			}
+		}
+		return ingredientsQuantities;
 	}
 	
 }

@@ -36,7 +36,10 @@ public class LoginServlet extends WebAppServlet {
 			}
 		}
 		else {
-			resp.getWriter().write(Rythm.render(handler.getPage("/select"), controller.getLoggedOperator()));
+			if (controller.isLimited())
+				resp.getWriter().write(Rythm.render(handler.getPage("/select_limited"), controller.getLoggedOperator()));
+			else
+				resp.getWriter().write(Rythm.render(handler.getPage("/select"), controller.getLoggedOperator()));
 		}
 	}
 	
