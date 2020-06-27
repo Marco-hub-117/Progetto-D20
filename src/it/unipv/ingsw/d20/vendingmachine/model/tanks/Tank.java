@@ -64,6 +64,10 @@ public class Tank {
 		return temperature;
 	}
 	
+	public double getVolume() {
+		return volume;
+	}
+	
 	public void setTemperature(double temperature) {
 		this.temperature = temperature;
 	}

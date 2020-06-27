@@ -89,7 +89,7 @@ public class VendingLocalIO {
 			while(inputStream.hasNext()) {
 				riga = inputStream.nextLine();
 				result = riga.split(",");
-				Tank t = new Tank(Ingredients.valueOf(result[0]),Double.valueOf(result[1]),Double.valueOf(result[2]));
+				Tank t = new Tank(Ingredients.valueOf(result[0]),Double.valueOf(result[1]),Double.valueOf(result[2]), 10); //10 volume casuale per fare test
 				if (!(tankList.containsKey(t.getId()))) 
 					tankList.put(t.getId(), t);
 				result = null;
