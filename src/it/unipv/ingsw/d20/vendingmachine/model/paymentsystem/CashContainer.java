@@ -42,7 +42,7 @@ public class CashContainer {
 	}
 	
 	public void dispenseRest(double credit) throws InsufficientCashForRestException {	
-		int creditX100 = (int) credit * 100; //opero sul credito moltiplicato per 100 a causa dell'approssimazione della virgola mobile
+		int creditX100 = (int) (credit * 100); //opero sul credito moltiplicato per 100 a causa dell'approssimazione della virgola mobile
 
 		if(creditX100 > (int) (totalAmount * 100)) {
 			throw new InsufficientCashForRestException();
@@ -62,7 +62,7 @@ public class CashContainer {
 			throw new InsufficientCashForRestException();
 		}
 		
-		System.out.println("Dispensed ï¿½" + credit);
+		System.out.println("Dispensed €" + credit);
 		
 		refreshTotalAmount();
 	}
