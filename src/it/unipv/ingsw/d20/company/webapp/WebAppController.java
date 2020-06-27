@@ -13,10 +13,10 @@ import it.unipv.ingsw.d20.util.persistence.beveragedescription.BeverageDescripti
 import it.unipv.ingsw.d20.util.persistence.beveragedescription.IBeverageDescriptionDao;
 import it.unipv.ingsw.d20.util.persistence.ingredientrecipe.IIngredientRecipeDao;
 import it.unipv.ingsw.d20.util.persistence.ingredientrecipe.IngredientRecipePOJO;
-import it.unipv.ingsw.d20.util.persistence.key.IKeyDao;
-import it.unipv.ingsw.d20.util.persistence.key.KeyPOJO;
 import it.unipv.ingsw.d20.util.persistence.operator.IOperatorDao;
 import it.unipv.ingsw.d20.util.persistence.operator.OperatorPOJO;
+import it.unipv.ingsw.d20.util.persistence.paymentKey.IKeyDao;
+import it.unipv.ingsw.d20.util.persistence.paymentKey.KeyPOJO;
 import it.unipv.ingsw.d20.util.persistence.vending.IVendingDao;
 import it.unipv.ingsw.d20.util.persistence.vending.VendingPOJO;
 
