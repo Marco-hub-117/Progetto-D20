@@ -2,7 +2,9 @@ package it.unipv.ingsw.d20.vendingmachine.model.beverage;
 
 import java.util.HashMap;
 import java.util.Map;
-
+/**
+ * La classe rappresenta il catalogo delle bevande, ogni bevanda è associata alla sua descrizione
+ */
 public class BeverageCatalog {
 	
 	private Map<String, BeverageDescription> catalog;

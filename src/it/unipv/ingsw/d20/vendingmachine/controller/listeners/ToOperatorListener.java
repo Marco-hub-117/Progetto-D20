@@ -35,7 +35,7 @@ public class ToOperatorListener implements ActionListener {
 		});		
 	}
 	
-	public void openOperatorGui() {
+	private void openOperatorGui() {
 		gui.dispose(); //chiudo l'interfaccia del cliente
 		OperatorGui gui = new OperatorGui(vm.getTankNumber()); //istanzio una nuova interfaccia dell'operatore
 		new Controller(vm, gui); //controller associato all'interfaccia dell'operatore

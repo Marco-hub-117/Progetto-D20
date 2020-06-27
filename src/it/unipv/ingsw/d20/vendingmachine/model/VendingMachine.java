@@ -28,7 +28,9 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Timer;
 import java.util.concurrent.TimeUnit;
-
+/**
+ * La classe rappresenta il distributore automatico di bevande
+ */
 public class VendingMachine {
 
 	private String id;
