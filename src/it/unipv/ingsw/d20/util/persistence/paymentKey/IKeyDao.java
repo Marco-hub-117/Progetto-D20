@@ -1,4 +1,4 @@
-package it.unipv.ingsw.d20.util.persistence.key;
+package it.unipv.ingsw.d20.util.persistence.paymentKey;
 
 import java.util.ArrayList;
 

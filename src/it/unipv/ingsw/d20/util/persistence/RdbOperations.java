@@ -10,8 +10,8 @@ import java.util.ArrayList;
 import it.unipv.ingsw.d20.util.persistence.beveragecatalog.BvCatalogPOJO;
 import it.unipv.ingsw.d20.util.persistence.beveragedescription.BeverageDescriptionPOJO;
 import it.unipv.ingsw.d20.util.persistence.ingredientrecipe.IngredientRecipePOJO;
-import it.unipv.ingsw.d20.util.persistence.key.KeyPOJO;
 import it.unipv.ingsw.d20.util.persistence.operator.OperatorPOJO;
+import it.unipv.ingsw.d20.util.persistence.paymentKey.KeyPOJO;
 import it.unipv.ingsw.d20.util.persistence.sale.SalePOJO;
 import it.unipv.ingsw.d20.util.persistence.vending.VendingPOJO;
 import it.unipv.ingsw.d20.vendingmachine.model.VendingMachineStatus;
@@ -570,7 +570,7 @@ public class RdbOperations {
 	public ArrayList<KeyPOJO> getAllKeys() {
 		
 		ArrayList<KeyPOJO> result = new ArrayList<>();
-		String query = "SELECT * FROM prova.Key";
+		String query = "SELECT * FROM PaymentKey";
 		
 		con = this.startConnection(con);
 		Statement st;
