@@ -2,7 +2,7 @@ package it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions;
 
 /**
  * L'eccezione viene lanciata quando non il credito inserito non è sufficiente per pagare la bevanda scelta
- *
+ * 
  */
 
 /*In vista di estensioni di una classe Payment generica. I motivi di fallimento del pagamento

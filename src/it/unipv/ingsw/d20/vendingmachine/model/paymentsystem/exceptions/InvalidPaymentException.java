@@ -1,7 +1,7 @@
 package it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions;
 
 /**
- * @author Luigi Zaccaria Del Pio
+ * Famiglia di eccezioni per sviluppi futuri sui metodi di pagamento
  *
  */
 @SuppressWarnings("serial")

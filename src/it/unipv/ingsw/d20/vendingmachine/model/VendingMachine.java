@@ -111,6 +111,7 @@ public class VendingMachine {
 	
 	/**
 	 * Questo metodo permette al cliente di inserire il codice della bevanda, inizializza la vendita dopo aver fatto i controlli
+	 * @param code Codice della bevanda inserita
 	 * @throws InsufficientCreditException
 	 * @throws NonExistentCodeException
 	 * @throws InsufficientIngredientsException 
@@ -130,17 +131,17 @@ public class VendingMachine {
 	
 	/**
 	 * Questo metodo esegue la transazione e l'erogazione effettiva della bevanda
+	 * @param bvDesc Descrizione delle bevanda
 	 * @throws InsufficientCreditException 
 	 * 
 	 */
 	public void startTransaction(BeverageDescription bvDesc) throws InsufficientCreditException { 
-		Sale sale = new Sale(id, bvDesc, credit); //se il credito non è sufficiente per erogare la bevanda lancia eccezione
+		Sale sale = new Sale(id, bvDesc, credit);
 		//TODO saveSaleIntoLocal();
 		saveCashContainerIntoLocal();
 		tankHandler.scaleTanksLevel(bvDesc);
 		saveTankIntoLocal();
 		rebuildInfo();
-		
 		Beverage bev = new Beverage(); bev.start();
 		System.out.println("Erogato " + bvDesc.getName() + " correttamente");
 		credit = sale.getRest();
@@ -178,8 +179,8 @@ public class VendingMachine {
 
 	/**
 	 * Modifica la temperatura di un tank
-	 * @param id tank
-	 * @param temp
+	 * @param id Id del tank
+	 * @param temp Temperatura da impostare
 	 */
 	public void modifyTankSettings(String id, Double temp) { 
 		try {

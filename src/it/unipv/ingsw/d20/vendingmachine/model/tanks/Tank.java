@@ -11,9 +11,10 @@ public class Tank {
 	private double temperature;
 	private double volume; //capacita nominale del serbatoio
 	/**
-	 * Costruttore del Tank, la temperatura è inizializzata a 20°C, la quantita' a 0
+	 * Costruttore della classe Tank, la temperatura è inizializzata a 20°C, la quantita' a 0
 	 * 
 	 * @param ingredient ingrediente contenuto nel Tank
+	 * @param volume capacità nominale del serbatoio
 	 * 
 	 */
 	public Tank(Ingredients ingredient, double volume) {
@@ -28,6 +29,7 @@ public class Tank {
 	 * @param ingredient ingrediente contenuto nel Tank
 	 * @param level livello di riempimento del Tank
 	 * @param temperature temperatura del Tank
+	 * @param volume capacità nominale del serbatoio
 	 */
 	public Tank(Ingredients ingredient, double level, double temperature, double volume) {
 		this.ingredient = ingredient;

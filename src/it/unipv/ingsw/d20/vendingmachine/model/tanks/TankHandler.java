@@ -7,15 +7,22 @@ import java.util.Map.Entry;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.BeverageDescription;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.Ingredients;
 import it.unipv.ingsw.d20.vendingmachine.model.exceptions.TankAbsentException;
-
+/**
+ * La classe gestisce i serbatoi degli ingredienti del distributore
+ */
 public class TankHandler {
 	
 	private HashMap<Ingredients,Tank> tankList;
-	
+	/**
+	 * Costruttore della classe TankHandler
+	 */
 	public TankHandler(HashMap<Ingredients,Tank> tankList) {
 		this.tankList = tankList;
 	}
-	
+	/**
+	 * Metodo che controlla se la quantità nei serbatoi è sufficiente per erogare la bevanda
+	 * @param bvDesc Descrizione delle bevanda da erogare
+	 */
 	public boolean isAvailable(BeverageDescription bvDesc) {
 		Map<Ingredients, Double> recipe = bvDesc.getIngredients();
 		
@@ -27,17 +34,21 @@ public class TankHandler {
 		
 		return true;
 	}
-	
+	/**
+	 * Il metodo serve per ridurre la quantità nei serbatoi dopo l'erogazione della bevanda
+	 * @param bvDesc Descrizione delle bevanda da erogare
+	 */
 	public void scaleTanksLevel(BeverageDescription bvDesc) {
 		for (Entry<Ingredients, Double> entry : bvDesc.getIngredients().entrySet()) {
 			tankList.get(entry.getKey()).lowerLevelBy(entry.getValue());
 		}
 	}
-
-	public HashMap<Ingredients, Tank> getTankList() {
-		return tankList;
-	}
-	
+	/**
+	 * Il metodo permette di modificare la temperatura di un serbatoio
+	 * @param id Id del serbatoio
+	 * @param temp nuova temperatura
+	 * @throws TankAbsentException
+	 */	
 	public void modifyTankSettings(String id, double temp) throws TankAbsentException {
 		Ingredients ingredient = Ingredients.valueOf(id);
 		
@@ -47,7 +58,10 @@ public class TankHandler {
 			throw new TankAbsentException("Tank non presente");
 		}
 	}
-
+	/**
+	 * Il metodo permette di ottenere il livello di riempimento di tutti i serbatoi
+	 * 
+	 */	
 	public HashMap<Ingredients, Double> getTanksLevel() {
 		HashMap<Ingredients, Double> tanksLevel = new HashMap<Ingredients, Double>();
 		
@@ -57,13 +71,19 @@ public class TankHandler {
 		
 		return tanksLevel;
 	}
-
+	/**
+	 * Il metodo riempie un serbatoio
+	 * @param id Id del serbatoio da riempire
+	 */
 	public void refillTank(String id) {
 		Ingredients ingredient = Ingredients.valueOf(id);
-		
 		tankList.get(ingredient).refill();		
 	}
-
+	
+	public HashMap<Ingredients, Tank> getTankList() {
+		return tankList;
+	}
+	
 	public int getTankNumber() {
 		return tankList.size();
 	}
