@@ -189,37 +189,49 @@ public class VendingMachine {
 			System.out.println(e.getMessage());
 		}
 	}
-	
+	/**
+	 * Il metodo permette di ottenere il catalogo delle bevande dalla persistenza locale
+	 */
 	public BeverageCatalog getCatalogFromLocal() {
 		PersistenceFacade pf = PersistenceFacade.getInstance();
 		VendingLocalIO v = pf.getVendingLocalIO();
 		return v.getCatalogFromLocal();
 	}
-
+	/**
+	 * Il metodo permette di salvare nella persistenza locale il catalogo delle bevande
+	 */
 	public void saveCatalogIntoLocal () {
 		PersistenceFacade pf = PersistenceFacade.getInstance();
 		VendingLocalIO v = pf.getVendingLocalIO();
 		v.saveCatalogIntoLocal(bvCatalog);
 	}
-	
+	/**
+	 * Il metodo permette di ottenere i serbatoi dalla persistenza locale
+	 */
 	public HashMap<Ingredients,Tank> getTanksFromLocal() {
 		PersistenceFacade pf = PersistenceFacade.getInstance();
 		VendingLocalIO v = pf.getVendingLocalIO();
 		return v.getTanksFromLocal();
 	}
-	
+	/**
+	 * Il metodo permette di salvare nella persistenza locale i serbatoi
+	 */
 	public void saveTankIntoLocal() {
 		PersistenceFacade pf = PersistenceFacade.getInstance();
 		VendingLocalIO v = pf.getVendingLocalIO();
 		v.saveTankIntoLocal(tankHandler.getTankList());
 	}
-	
+	/**
+	 * Il metodo permette di ottenere la classe di gestione del denaro dalla persistenza locale
+	 */
 	private CashContainer getCashContainerFromLocal() {
 		PersistenceFacade pf = PersistenceFacade.getInstance();
 		VendingLocalIO v = pf.getVendingLocalIO();
 		return v.getCashContainerFromLocal();
 	}
-	
+	/**
+	 * Il metodo permette di salvare nella persistenza locale la classe di gestione del denaro
+	 */
 	public void saveCashContainerIntoLocal() {
 		PersistenceFacade pf = PersistenceFacade.getInstance();
 		VendingLocalIO v = pf.getVendingLocalIO();
@@ -232,7 +244,11 @@ public class VendingMachine {
 		//IVendingDao vd = pf.getVendingDao();
 		//vd.updateVendingStatus(this.id, status);
 	}
-	
+	/**
+	 * 
+	 * 
+	 * 
+	 */
 	public boolean isCorrectId(String insertedId) {
 		if (id.equals(insertedId)) 
 			return true;
@@ -324,7 +340,9 @@ public class VendingMachine {
 			System.out.println("Connessione al DB assente");
 		}
 	}*/
-	
+	/**
+	 * Il metodo permette di salvare nella persistenza locale gli oggetti Sale
+	 */
 	public void saveSaleIntoLocal(Sale sale) {
 		PersistenceFacade pf = PersistenceFacade.getInstance();
 		VendingLocalIO v = pf.getVendingLocalIO();
