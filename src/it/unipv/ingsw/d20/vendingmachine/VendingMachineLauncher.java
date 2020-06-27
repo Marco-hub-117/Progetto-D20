@@ -28,9 +28,9 @@ public class VendingMachineLauncher {
 		}
 		
 		PersistenceFacade pf = PersistenceFacade.getInstance();
-		VendingLocalIO v = pf.getVendingLocalIO();
+		//VendingLocalIO v = pf.getVendingLocalIO();
 		
-		String IDNumber = v.getVendingIDFromLocal();
+		String IDNumber = pf.localMachine.getVendingIDFromLocal();
 		
 		VendingMachine vm = new VendingMachine(IDNumber);
 		CustomerGui gui= new CustomerGui();

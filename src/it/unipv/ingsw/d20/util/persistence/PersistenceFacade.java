@@ -18,7 +18,25 @@ public class PersistenceFacade {
 	
 	private static PersistenceFacade instance;
 	
-	private PersistenceFacade() {}
+	public final IVendingDao vendingMachine;
+	public final ISaleDao sale;
+	public final IBvCatalogDao beverageCatalog;
+	public final IBeverageDescriptionDao beverageDescription;
+	public final IIngredientRecipeDao ingredientRecipe;
+	public final IKeyDao key;
+	public final IOperatorDao operator;
+	public final VendingLocalIO localMachine;
+	
+	private PersistenceFacade() {
+		vendingMachine = new VendingRdbDao();
+		sale = new SaleRdbDao();
+		beverageCatalog = new BvCatalogRdbDao();
+		beverageDescription = new BeverageDescriptionRdbDao();
+		ingredientRecipe = new IngredientRecipeRdbDao();
+		key = new KeyRdbDao();
+		operator = new OperatorRdbDao();
+		localMachine = new VendingLocalIO();
+	}
 	
 	public static synchronized PersistenceFacade getInstance() {
 		
@@ -28,7 +46,7 @@ public class PersistenceFacade {
 		return instance;
 	}
 
-	public IVendingDao getVendingDao() {
+	/*public IVendingDao getVendingDao() {
 		return new VendingRdbDao();
 	}
 	
@@ -58,7 +76,7 @@ public class PersistenceFacade {
 	
 	public IOperatorDao getOperatorDao() {
 		return new OperatorRdbDao();
-	}
+	}*/
 	
 
 }

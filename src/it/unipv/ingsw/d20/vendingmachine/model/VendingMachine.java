@@ -30,7 +30,7 @@ public class VendingMachine {
 
 	private String id;
 	private VendingMachineStatus status;
-	private ArrayList<Sale> salesRegister;
+	//private ArrayList<Sale> salesRegister;
 	private double credit; //soldi attualmente inseriti
 	private TankHandler tankHandler;
 	private BeverageCatalog bvCatalog;	//catalogo delle bevande
@@ -185,38 +185,38 @@ public class VendingMachine {
 	
 	public BeverageCatalog getCatalogFromLocal() {
 		PersistenceFacade pf = PersistenceFacade.getInstance();
-		VendingLocalIO v = pf.getVendingLocalIO();
-		return v.getCatalogFromLocal();
+		//VendingLocalIO v = pf.getVendingLocalIO();
+		return pf.localMachine.getCatalogFromLocal();
 	}
 
 	public void saveCatalogIntoLocal () {
 		PersistenceFacade pf = PersistenceFacade.getInstance();
-		VendingLocalIO v = pf.getVendingLocalIO();
-		v.saveCatalogIntoLocal(bvCatalog);
+		//VendingLocalIO v = pf.getVendingLocalIO();
+		pf.localMachine.saveCatalogIntoLocal(bvCatalog);
 	}
 	
 	public HashMap<Ingredients,Tank> getTanksFromLocal() {
 		PersistenceFacade pf = PersistenceFacade.getInstance();
-		VendingLocalIO v = pf.getVendingLocalIO();
-		return v.getTanksFromLocal();
+		//VendingLocalIO v = pf.getVendingLocalIO();
+		return pf.localMachine.getTanksFromLocal();
 	}
 	
 	public void saveTankIntoLocal() {
 		PersistenceFacade pf = PersistenceFacade.getInstance();
-		VendingLocalIO v = pf.getVendingLocalIO();
-		v.saveTankIntoLocal(tankHandler.getTankList());
+		//VendingLocalIO v = pf.getVendingLocalIO();
+		pf.localMachine.saveTankIntoLocal(tankHandler.getTankList());
 	}
 	
 	private CashContainer getCashContainerFromLocal() {
 		PersistenceFacade pf = PersistenceFacade.getInstance();
-		VendingLocalIO v = pf.getVendingLocalIO();
-		return v.getCashContainerFromLocal();
+		//VendingLocalIO v = pf.getVendingLocalIO();
+		return pf.localMachine.getCashContainerFromLocal();
 	}
 	
 	public void saveCashContainerIntoLocal() {
 		PersistenceFacade pf = PersistenceFacade.getInstance();
-		VendingLocalIO v = pf.getVendingLocalIO();
-		v.saveCashContainerIntoLocal(cashContainer);
+		//VendingLocalIO v = pf.getVendingLocalIO();
+		pf.localMachine.saveCashContainerIntoLocal(cashContainer);
 	}
 	
 	public void setStatus(VendingMachineStatus status) {
@@ -320,8 +320,8 @@ public class VendingMachine {
 	
 	public void saveSaleIntoLocal(Sale sale) {
 		PersistenceFacade pf = PersistenceFacade.getInstance();
-		VendingLocalIO v = pf.getVendingLocalIO();
-		v.saveSaleIntoLocal(sale);
+		//VendingLocalIO v = pf.getVendingLocalIO();
+		pf.localMachine.saveSaleIntoLocal(sale);
 	}
 	
 	public double getTotalAmount() {
