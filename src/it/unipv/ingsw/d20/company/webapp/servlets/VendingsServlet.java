@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.rythmengine.Rythm;
 
 import it.unipv.ingsw.d20.company.VendingMachineInfo;
+import it.unipv.ingsw.d20.company.webapp.ReportPOJO;
 import it.unipv.ingsw.d20.company.webapp.WebAppController;
 import it.unipv.ingsw.d20.company.webapp.WebPagesHandler;
 import it.unipv.ingsw.d20.util.persistence.vending.VendingPOJO;
@@ -49,6 +50,22 @@ public class VendingsServlet extends WebAppServlet {
 		}
 		else {
 			resp.sendRedirect(home);
+		}
+	}
+	
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		if (req.getPathInfo().equals("/send_report")) {
+			String vendingID=req.getParameter("vendingId");
+			String problem=req.getParameter("problem");
+			String details=req.getParameter("details");
+			String operatorName=req.getParameter("operator");
+			controller.addReport(new ReportPOJO(vendingID, problem, details, operatorName));
+		}
+		else if (req.getPathInfo().equals("/remove_report")) {
+			controller.removeReport(req.getParameter("vendingId"), req.getParameter("problem"));
+			resp.sendRedirect(getBasicUrl());
 		}
 	}
 

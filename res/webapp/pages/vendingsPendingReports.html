@@ -1,5 +1,5 @@
 @args() {
-	List<it.unipv.ingsw.d20.company.webapp.ReportList.ReportPOJO> reports
+	List<it.unipv.ingsw.d20.company.webapp.ReportPOJO> reports
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -40,7 +40,7 @@
   			</div>
 	
 			<div class="container-table100">			
-				<div class="wrap-table100">
+				<div class="wrap-table100">	
 					<div class="table100">
 						<table>
 							<thead>
@@ -53,13 +53,15 @@
 							</thead>
 							
 							<tbody>
-								@for (it.unipv.ingsw.d20.company.webapp.ReportList.ReportPOJO it: reports) {
+								@for (it.unipv.ingsw.d20.company.webapp.ReportPOJO it: reports) {
 									<tr> 
 										<td>@(it.getVendingID())</td> 
 										<td>@(it.getProblem()) @(it.getDetails())</td> 
 										<td>@(it.getOperatorName())</td>
-										<td>										
-										<a href="/d20/selection/vendings/" class="btn btn-secondary">Solved</a>									
+										<td>			
+											<form method="POST" action="/d20/selection/vendings/remove_report?vendingId=@(it.getVendingID())&problem=@(it.getProblem())"> 							
+												<button class="btn btn-primary btn-block" type="submit">Solved</button>									
+											</form>
 										</td> 
 									</tr>
 								}		

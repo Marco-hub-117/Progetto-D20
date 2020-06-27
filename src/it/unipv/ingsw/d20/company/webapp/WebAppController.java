@@ -35,7 +35,7 @@ public class WebAppController {
 	private boolean limited; //E' true quando l'operatore loggato è un operatore e non un operatore remoto
 	private Map<String, VendingMachineInfo> infoList;
 	public static String absenceString="None";
-	private ReportList reportList;
+	private List<ReportPOJO> reportList;
 	
 	private enum OperatorType{
 		Operator, RemoteOperator;
@@ -49,7 +49,8 @@ public class WebAppController {
 		beveragesManager=facade.getBeverageDescriptionDao();	
 		ingredientsManager=facade.getIngredientRecipeDao();
 		infoList =Company.vendingMachineInfoList;
-		reportList=new ReportList();
+		reportList=new LinkedList<>();
+		reportList.add(new ReportPOJO("VEND1", "Connection Lost", "testing report", "Mr.Tester"));
 	}
 		
 	//GESTIONE DEL LOGIN
@@ -190,8 +191,20 @@ public class WebAppController {
 		return ingredientsQuantities;
 	}
 
-	public ReportList getReportList() {
+	public List<ReportPOJO> getReportList() {
 		return reportList;
+	}
+	
+	public void addReport(ReportPOJO report) {
+		reportList.add(report);
+	}
+	
+	public void removeReport(String id, String problem) {
+		for (ReportPOJO report: reportList) {
+			if (report.getVendingID().equals(id) && report.getProblem().equals(problem)) {
+				reportList.remove(report);
+			}
+		}
 	}
 	
 }
