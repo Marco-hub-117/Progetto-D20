@@ -318,7 +318,7 @@ public class RdbOperations {
 			st = con.createStatement();
 			rs = st.executeQuery(query);
 			while(rs.next()) {
-				BvCatalogPOJO res = new BvCatalogPOJO (rs.getString("idBevDesc"),rs.getInt("type"));
+				BvCatalogPOJO res = new BvCatalogPOJO (rs.getString("idBvDesc"),rs.getInt("type"));
 				result.add(res);
 			}
 		} catch (SQLException e) {

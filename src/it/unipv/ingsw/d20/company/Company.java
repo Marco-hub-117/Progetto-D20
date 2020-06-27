@@ -87,11 +87,12 @@ public class Company {
 	 */
 	public static String registerNewVendingMachine() {
 		String IDNumber = generateNewID();
-		String location = generateNewLocation();
+		//String location = generateNewLocation();
+		String location=null;
 		
-		/*PersistenceFacade pf = PersistenceFacade.getInstance();
+		PersistenceFacade pf = PersistenceFacade.getInstance();
 		IVendingDao ivd = pf.getVendingDao();
-		ivd.addVending(new VendingPOJO(IDNumber, location, null));*/
+		ivd.addVending(new VendingPOJO(IDNumber, location, null));
 		
 		vendingMachineInfoList.put(IDNumber, new VendingMachineInfo());
 		

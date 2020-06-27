@@ -18,14 +18,14 @@ public class PersistenceFacade {
 	
 	private static PersistenceFacade instance;
 	
-	public final IVendingDao vendingMachine;
-	public final ISaleDao sale;
-	public final IBvCatalogDao beverageCatalog;
-	public final IBeverageDescriptionDao beverageDescription;
-	public final IIngredientRecipeDao ingredientRecipe;
-	public final IKeyDao key;
-	public final IOperatorDao operator;
-	public final VendingLocalIO localMachine;
+	private final IVendingDao vendingMachine;
+	private final ISaleDao sale;
+	private final IBvCatalogDao beverageCatalog;
+	private final IBeverageDescriptionDao beverageDescription;
+	private final IIngredientRecipeDao ingredientRecipe;
+	private final IKeyDao key;
+	private final IOperatorDao operator;
+	private final VendingLocalIO localMachine;
 	
 	private PersistenceFacade() {
 		vendingMachine = new VendingRdbDao();
@@ -46,37 +46,36 @@ public class PersistenceFacade {
 		return instance;
 	}
 
-	/*public IVendingDao getVendingDao() {
-		return new VendingRdbDao();
+	public IVendingDao getVendingDao() {
+		return vendingMachine;
 	}
 	
 	public ISaleDao getSaleDao() {
-		return new SaleRdbDao();
+		return sale;
 	}
 	
 	public IBvCatalogDao getBvCatalogDao() {
-		return new BvCatalogRdbDao();
+		return beverageCatalog;
 	}
 	
 	public IBeverageDescriptionDao getBeverageDescriptionDao() {
-		return new BeverageDescriptionRdbDao();
+		return beverageDescription;
 	}
 	
 	public IIngredientRecipeDao getIngredientRecipeDao() {
-		return new IngredientRecipeRdbDao();
+		return ingredientRecipe;
 	}
 	
 	public VendingLocalIO getVendingLocalIO() {
-		return new VendingLocalIO();
+		return localMachine;
 	}
 
 	public IKeyDao getKeyDao() {
-		return new KeyRdbDao();
+		return key;
 	}
 	
 	public IOperatorDao getOperatorDao() {
-		return new OperatorRdbDao();
-	}*/
-	
+		return operator;
+	}
 
 }

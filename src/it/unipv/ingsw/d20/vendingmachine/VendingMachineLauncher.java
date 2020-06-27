@@ -28,21 +28,24 @@ public class VendingMachineLauncher {
 		}
 		
 		PersistenceFacade pf = PersistenceFacade.getInstance();
-		//VendingLocalIO v = pf.getVendingLocalIO();
+		VendingLocalIO v = pf.getVendingLocalIO();
 		
-		String IDNumber = pf.localMachine.getVendingIDFromLocal();
+		String IDNumber = v.getVendingIDFromLocal();
 		
 		VendingMachine vm = new VendingMachine(IDNumber);
 		CustomerGui gui= new CustomerGui();
 		
 		new Controller(vm,gui);
 		
-		/*try {
+		try {
 			VendingMachineClient client = new VendingMachineClient();
 		
 			if (IDNumber.equals("")) {
-				IDNumber = client.firstConnectionToServer();
+			    String info = client.firstConnectionToServer();
+			    String[] infoSplit=info.split("/");
+			    IDNumber=infoSplit[0];
 				v.saveVendingIDIntoLocal(IDNumber);
+				//v.saveVendingLocationIntoLocal(infoSplit[1]);
 				System.out.println("IDNumber printed");
 				
 				//Inizializzazione dei file locali (catalogo preso dal db)
@@ -52,9 +55,6 @@ public class VendingMachineLauncher {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-		Timer timer = new Timer();
-		timer.schedule(new UpdateStatus(), new Date(), TimeUnit.MINUTES.toMillis(10)); //ogni 10 minuti viene notificata la company */
 	}
 
 }
