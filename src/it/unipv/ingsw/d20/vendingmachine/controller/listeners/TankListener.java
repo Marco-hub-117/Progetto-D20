@@ -29,8 +29,12 @@ public class TankListener implements ActionListener {
 		HashMap<Ingredients,Double> tankLevels = new HashMap<Ingredients, Double>();
 		tankLevels = vm.getTanksLevels();
 		int count = 0;
+		String key="";
+		String value="";
 		for(Map.Entry<Ingredients, Double> entry : tankLevels.entrySet()) {
-			gui.setElements(String.valueOf(entry.getKey()), String.valueOf(entry.getValue()), count);
+			key=String.valueOf(entry.getKey());
+			value=String.valueOf(entry.getValue());
+			gui.setElements(key, value, count);
 			count++;
 		}
 	}

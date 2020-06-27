@@ -94,7 +94,7 @@ public class Controller {
 		tankLevels=vm.getTanksLevels();
 		int k=0;
 		for(Map.Entry<Ingredients, Double> i : tankLevels.entrySet()) {
-			opGui.setElements(String.valueOf(i.getKey()),i.getValue()+"",k);
+			opGui.setElements(String.valueOf(i.getKey()),String.format("%.2f", i.getValue())+"",k);
 			k++;
 		}
 	}

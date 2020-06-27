@@ -9,16 +9,18 @@ public class Tank {
 	private Ingredients ingredient;
 	private double level; //il livello è in percentuale
 	private double temperature;
+	private double volume; //capacita nominale del serbatoio
 	/**
 	 * Costruttore del Tank, la temperatura è inizializzata a 20°C, la quantita' a 0
 	 * 
 	 * @param ingredient ingrediente contenuto nel Tank
 	 * 
 	 */
-	public Tank(Ingredients ingredient) {
+	public Tank(Ingredients ingredient, double volume) {
 		this.ingredient = ingredient;
 		this.level = 0; 
 		this.temperature = 20; //si inizializza la temperatura a 20 gradi centigradi
+		this.volume=volume;
 	}
 	/**
 	 * Costruttore del Tank permette di specificare sia la temperatura sia il livello
@@ -27,10 +29,12 @@ public class Tank {
 	 * @param level livello di riempimento del Tank
 	 * @param temperature temperatura del Tank
 	 */
-	public Tank(Ingredients ingredient, double level, double temperature) {
+	public Tank(Ingredients ingredient, double level, double temperature, double volume) {
 		this.ingredient = ingredient;
-		this.level = level;
+		if(level>100) this.level=100;
+		else this.level = level;
 		this.temperature = temperature; 
+		this.volume=volume;
 	}
 	/**
 	 * Abbassa il livello di riempimento del Tank della quantità specificata
@@ -38,7 +42,7 @@ public class Tank {
 	 * @param quantity quantità da diminuire
 	 */
 	public void lowerLevelBy(double quantity) {
-		level -= quantity;
+		level = level - quantity*100/volume;
 	}
 	/**
 	 * Riporta al massimo il livello del riempimento del Tank
