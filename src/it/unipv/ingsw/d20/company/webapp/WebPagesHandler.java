@@ -26,7 +26,7 @@ public class WebPagesHandler {
     	urlToPage.put("/goodbye", "goodbye.html");       	
     	//vendings pages
     	urlToPage.put("/vendings", "vendingsTable.html");
-    	urlToPage.put("/reports", "vendingReports.html");
+    	urlToPage.put("/pending_reports", "vendingReports.html");
     	urlToPage.put("/settings", "vendingSettings.html");
     	urlToPage.put("/report", "vendingReport.html");
     	urlToPage.put("/report_confirmed", "reportConfirmed.html");

@@ -35,6 +35,8 @@ public class WebAppController {
 	private boolean limited; //E' true quando l'operatore loggato è un operatore e non un operatore remoto
 	private Map<String, VendingMachineInfo> infoList;
 	public static String absenceString="None";
+	private ReportList reportList;
+	
 	private enum OperatorType{
 		Operator, RemoteOperator;
 	}
@@ -47,6 +49,7 @@ public class WebAppController {
 		beveragesManager=facade.getBeverageDescriptionDao();	
 		ingredientsManager=facade.getIngredientRecipeDao();
 		infoList =Company.vendingMachineInfoList;
+		reportList=new ReportList();
 	}
 		
 	//GESTIONE DEL LOGIN
@@ -185,6 +188,10 @@ public class WebAppController {
 			}
 		}
 		return ingredientsQuantities;
+	}
+
+	public ReportList getReportList() {
+		return reportList;
 	}
 	
 }

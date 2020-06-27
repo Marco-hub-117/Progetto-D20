@@ -23,6 +23,7 @@ public class VendingsServlet extends WebAppServlet {
 
 	public VendingsServlet(WebAppController controller, WebPagesHandler handler) {
 		super(controller, handler);
+		setBasicUrl("/d20/selection/vendings/");
 	}
 	
 	//DA CONTROLLARE
@@ -41,6 +42,9 @@ public class VendingsServlet extends WebAppServlet {
 			}
 			else if (url.equals("/report")) {
 				resp.getWriter().write(Rythm.render(handler.getPage(url), controller.getAllOperators()));
+			}
+			else if (url.equals("/pending_reports")) {
+				resp.getWriter().write(Rythm.render(handler.getPage(url), controller.getReportList()));
 			}
 		}
 		else {
