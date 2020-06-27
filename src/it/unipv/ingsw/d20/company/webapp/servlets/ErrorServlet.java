@@ -18,13 +18,22 @@ import it.unipv.ingsw.d20.company.webapp.WebPagesHandler;
 @SuppressWarnings("serial")
 public class ErrorServlet extends WebAppServlet {
 	
+	/**
+	 * Il costruttore chiama il costruttore della superclasse passando le istanze di WebAppController e WebPagesHandler
+	 * @param controller istanza di WebAppController.
+	 * @param handler istanza di WebPagesHandler
+	 */
 	public ErrorServlet(WebAppController controller, WebPagesHandler handler){
 		super(controller, handler);
 	}
 
+	/**
+	 * Gestisce la richiesta (unica) di tipo GET.
+	 * @param req richiesta HTTP
+	 * @param resp risposta HTTP
+	 */
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-	
 		resp.getWriter().write(Rythm.render(handler.getPage("404")));
 	}
 	

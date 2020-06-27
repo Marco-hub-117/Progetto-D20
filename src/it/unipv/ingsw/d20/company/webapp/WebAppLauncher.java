@@ -13,13 +13,17 @@ import it.unipv.ingsw.d20.company.webapp.servlets.SelectionServlet;
 import it.unipv.ingsw.d20.company.webapp.servlets.VendingsServlet;
 
 /**
- * Crea il controllore della WebApp, il gestore delle pagine, le servlet e l'ApplicationServer, consentendo
- * di avviare l'applicazione web.
+ * Permette di impostare e avviare l'applicazione web.
  *
  */
 public class WebAppLauncher {
 	
-	//Utile per i test.
+	/**
+	 * Crea un'istanza di WebAppController, una di WebPagesHandler, le servlet e l'ApplicationServer, consentendo
+	 * di avviare l'applicazione web.
+	 * Utile per i test indipendenti dal resto del sistema.
+	 *
+	 */
     public static void main(String[] argv) throws Exception {
       	
        WebAppController controller= new WebAppController();       
@@ -40,6 +44,11 @@ public class WebAppLauncher {
        
     }
     
+    /**
+     * Crea un'istanza di WebAppController, una di WebPagesHandler, le servlet e l'ApplicationServer, consentendo
+     * di avviare l'applicazione web.
+     *
+     */
     public static void start() throws Exception {
     	
     	WebAppController controller= new WebAppController();       

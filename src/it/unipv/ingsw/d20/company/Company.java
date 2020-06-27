@@ -33,7 +33,7 @@ public class Company {
 	 * Questa mappa contiene la lista di tutte le macchinette attualmente registrate
 	 * insieme con le loro informazioni temporanee.
 	 */
-	public static Map<String, VendingMachineInfo> vendingMachineInfoList = new HashMap<>();
+	public static Map<String, VendingMachineInfo> vendingMachineInfoList;
 	
 	
 	/**

@@ -19,11 +19,23 @@ import it.unipv.ingsw.d20.company.webapp.WebPagesHandler;
 public class SelectionServlet extends WebAppServlet {
 	private String alternativeUrl;
 	
+	/**
+	 * Il costruttore chiama il costruttore della superclasse passando le istanze di WebAppController e WebPagesHandler
+	 *e imposta l'url alternativo a cui si farà riferimento quando l'operatore non è di tipo remoto e, quindi, ha 
+	 *un accesso limitato alle funzionalità.
+	 * @param controller istanza di WebAppController
+	 * @param handler istanza di WebPagesHandler
+	 */
 	public SelectionServlet(WebAppController controller, WebPagesHandler handler){
 		super(controller, handler);
 		alternativeUrl="/selection_limited";
 	}
 
+	/**
+	 * Gestisce le richieste di tipo POST.
+	 * @param req richiesta HTTP
+	 * @param resp risposta HTTP
+	 */
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String url=handler.trimUrl(req.getRequestURI());

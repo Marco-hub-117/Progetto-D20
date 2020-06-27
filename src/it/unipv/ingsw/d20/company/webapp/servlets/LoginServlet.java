@@ -20,10 +20,20 @@ import it.unipv.ingsw.d20.company.webapp.exceptions.InvalidUserException;
 @SuppressWarnings("serial")
 public class LoginServlet extends WebAppServlet {
 	
+	/**
+	 * Il costruttore chiama il costruttore della superclasse passando le istanze di WebAppController e WebPagesHandler
+	 * @param controller istanza di WebAppController.
+	 * @param handler istanza di WebPagesHandler
+	 */
 	public LoginServlet(WebAppController controller, WebPagesHandler handler){
 		super(controller, handler);
 	}
 
+	/**
+	 * Gestisce le richieste di tipo GET.
+	 * @param req richiesta HTTP
+	 * @param resp risposta HTTP
+	 */
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String url=handler.trimUrl(req.getRequestURI());
@@ -36,6 +46,11 @@ public class LoginServlet extends WebAppServlet {
 		}
 	}
 	
+	/**
+	 * Gestisce le richieste di tipo POST.
+	 * @param req richiesta HTTP
+	 * @param resp risposta HTTP
+	 */
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		

@@ -4,13 +4,21 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Permette di associare a una stringa (parte finale di url) il documento html corrispondente.
+ * Permette di associare a una stringa (parte finale dell'url di una richiesta HTTP) il documento HTML corrispondente.
  *
  */
 public class WebPagesHandler {
 	
+	/**
+	 * Percorso relativo della cartella in cui sono collocati i file HTML.
+	 *
+	 */
 	private static String folder = "res/webapp/pages/";
 	
+	/**
+	 * Mappa che implementa le associazioni url-documento HTMl.
+	 *
+	 */
 	private final Map<String, String> urlToPage;
 
     public WebPagesHandler(){	
@@ -41,6 +49,10 @@ public class WebPagesHandler {
     	urlToPage.put("/beverage_edit", "beverageSettings.html");
     }
    
+    /**
+	 * @param url parte finale dell'url di una richiesta HTTP
+	 * @return percorso relativo del file HTML da visualizzare
+	 */
     public String getPage(String url) {
     	if (urlToPage.get(url)!=null) {
 		return folder + urlToPage.get(url);
@@ -50,7 +62,10 @@ public class WebPagesHandler {
     	}
 	}
     
-    //Elabora l'url in modo da avere solo l'ultima parte
+    /**
+	 * @param url url relativo a una richiesta HTTP
+	 * @return parte finale dell'url di una richiesta HTTP
+	 */
   	public String trimUrl(String url) {
   		String[] splittedUrl=url.split("/");
   		return ("/"+splittedUrl[splittedUrl.length-1]);
