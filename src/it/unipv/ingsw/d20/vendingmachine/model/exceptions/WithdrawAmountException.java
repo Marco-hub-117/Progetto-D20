@@ -1,13 +1,11 @@
 package it.unipv.ingsw.d20.vendingmachine.model.exceptions;
-
+/**
+ * L'eccezione viene generata se si cerca di ritirare l'importo minore di 10€
+ *
+ */
 @SuppressWarnings("serial")
 public class WithdrawAmountException extends Exception{
-	
-	/**
-	 * Eccezione se si cerca di ritirare l'importo minore di 10€
-	 * @param message
-	 */
-	
+
 	public WithdrawAmountException(String message) {
 		super(message);
 	}

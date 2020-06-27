@@ -1,12 +1,14 @@
 package it.unipv.ingsw.d20.vendingmachine.model.paymentsystem;
 
-import java.text.DecimalFormat;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.BeverageDescription;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.*;
-
+/**
+ * La classe gestisce la vendita di una bevanda
+ * 
+ */
 public class Sale {
 	
 	String vmId;
@@ -14,16 +16,26 @@ public class Sale {
 	private BeverageDescription beverageDescription;
 	private double price;
 	private double rest;
-	
+	/**
+	 * Costruttore della classe Sale
+	 * @param vmId Id del distributore
+	 * @param beverageDescription Descrizione delle bevanda da erogare
+	 * @param credit Credito inserito
+	 * @throws InsufficientCreditException
+	 */
 	public Sale(String vmId, BeverageDescription beverageDescription, double credit) throws InsufficientCreditException {
 		this.vmId = vmId;
 		this.beverageDescription = beverageDescription;
 		date = new Date();
 		price = beverageDescription.getPrice();
-		
 		rest = checkCredit(credit, price);
 	}
-	
+	/**
+	 * Il metodo controlla che il credito sia sufficiente per la bevanda selezionata
+	 * @param credit Credito inserito
+	 * @param price Costo della bevanda
+	 * @throws InsufficientCreditException
+	 */
 	public double checkCredit(double credit, double price) throws InsufficientCreditException {
 		if (credit >= price) {
 			return credit - price;

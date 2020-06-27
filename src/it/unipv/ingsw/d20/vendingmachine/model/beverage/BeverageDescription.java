@@ -2,7 +2,9 @@ package it.unipv.ingsw.d20.vendingmachine.model.beverage;
 
 import java.util.HashMap;
 import java.util.Map;
-
+/**
+ * La classe rappresenta la descrizione di una bevanda
+ */
 public class BeverageDescription {
 
 	private String code;

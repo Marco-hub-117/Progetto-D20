@@ -3,7 +3,7 @@ package it.unipv.ingsw.d20.vendingmachine.model.paymentsystem;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.InsufficientCashForRestException;
 
 /**
- * Javadoc test for CashContainer class.
+ * La classe gestisce il denaro presente nel distributore automatico
  *
  */
 public class CashContainer {
@@ -12,7 +12,10 @@ public class CashContainer {
 	private int[] coinNumber = new int[6];
 	
 	private double totalAmount;
-	
+	/**
+	 * Costruttore della classe CashContainer
+	 * @param cashQuantity numero di monete per ogni valore presenti nel distributore
+	 */
 	public CashContainer(int[] cashQuantity) {
 		for (int i = 0; i < coinNumber.length; i++) {
 			coinNumber[i] = cashQuantity[i];
@@ -20,7 +23,10 @@ public class CashContainer {
 
 		refreshTotalAmount();
 	}
-	
+	/**
+	 * Questo metodo aggiunge una moneta alla cassa del distributore
+	 * @param coin valore della moneta
+	 */
 	public void addCoin(double coin) {
 		int index;
 		for (index = 0; index < coinValue.length; index++) {
@@ -28,19 +34,24 @@ public class CashContainer {
 				break;
 			}
 		}
-		
 		coinNumber[index]++;
-		
 		refreshTotalAmount();
 	}
-	
+	/**
+	 * Questo metodo aggiorna il totale del denaro presenta nel distributore
+	 * 
+	 */
 	public void refreshTotalAmount() {
 		totalAmount = 0;
 		for (int i = 0; i < coinValue.length; i++) {
 			totalAmount += coinValue[i] * coinNumber[i]; //moltiplica il valore della moneta per il numero di monete di quel tipo
 		}
 	}
-	
+	/**
+	 * Questo metodo calcola il resto da erogare
+	 * @param credit credito attualmente inserito 
+	 * @throws InsufficientCashForRestException
+	 */
 	public void dispenseRest(double credit) throws InsufficientCashForRestException {	
 		int creditX100 = (int) (credit * 100); //opero sul credito moltiplicato per 100 a causa dell'approssimazione della virgola mobile
 
@@ -62,11 +73,14 @@ public class CashContainer {
 			throw new InsufficientCashForRestException();
 		}
 		
-		System.out.println("Dispensed €" + credit);
+		System.out.println("Dispensed ï¿½" + credit);
 		
 		refreshTotalAmount();
 	}
-	
+	/**
+	 * Questo metodo gestisce il ritiro delle monete da parte dell'operatore
+	 *
+	 */
 	public double withdrawAmount() {
 		double total = 0;
 		

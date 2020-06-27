@@ -9,7 +9,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
-
+/**
+ * La classe rappresenta l'erogazione di una bevanda
+ */
 public class Beverage extends Thread {
 	
 	private static final int WINDOW_WIDTH = 500, WINDOW_HEIGHT = 225;
@@ -58,7 +60,7 @@ public class Beverage extends Thread {
   
         fill(); 
 	}
-	
+
 	private void fill() { 
         try { 
             while (progress <= 100) { 

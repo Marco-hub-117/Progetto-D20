@@ -1,7 +1,7 @@
 package it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions;
 
 /**
- * @author Luigi Zaccaria Del Pio
+ * L'eccezione viene lanciata quando non il credito inserito non è sufficiente per pagare la bevanda scelta
  *
  */
 

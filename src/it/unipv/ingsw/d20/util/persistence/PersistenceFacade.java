@@ -3,11 +3,11 @@ package it.unipv.ingsw.d20.util.persistence;
 import it.unipv.ingsw.d20.util.persistence.beveragecatalog.*;
 import it.unipv.ingsw.d20.util.persistence.beveragedescription.*;
 import it.unipv.ingsw.d20.util.persistence.ingredientrecipe.*;
-import it.unipv.ingsw.d20.util.persistence.key.IKeyDao;
-import it.unipv.ingsw.d20.util.persistence.key.KeyRdbDao;
 import it.unipv.ingsw.d20.util.persistence.local.VendingLocalIO;
 import it.unipv.ingsw.d20.util.persistence.operator.IOperatorDao;
 import it.unipv.ingsw.d20.util.persistence.operator.OperatorRdbDao;
+import it.unipv.ingsw.d20.util.persistence.paymentKey.IKeyDao;
+import it.unipv.ingsw.d20.util.persistence.paymentKey.KeyRdbDao;
 import it.unipv.ingsw.d20.util.persistence.sale.*;
 import it.unipv.ingsw.d20.util.persistence.vending.*;
 
