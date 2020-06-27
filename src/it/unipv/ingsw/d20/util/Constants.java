@@ -20,5 +20,7 @@ public class Constants {
 	public static final String CASHCONTAINERSTATUSPATH = "cashContainerStatus";
 
 	public static final String VENDINGTYPEPATH = "vendingType";
+
+	public static final String SALELISTPATH = "saleList";
 	
 }

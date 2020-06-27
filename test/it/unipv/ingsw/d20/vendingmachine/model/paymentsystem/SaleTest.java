@@ -9,11 +9,13 @@ import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.Insuffic
 
 class SaleTest {
 	
+	private String vendingMachineID = "TEST_ID";
+	
 	@Test
 	void test1() throws InsufficientCreditException {
 		BeverageDescription b = new BeverageDescription("001","caffe", 1.0);
 		double credit=1;
-		Sale sale = new Sale(b, credit);
+		Sale sale = new Sale(vendingMachineID, b, credit);
 		double real=sale.getRest();
 		double expected=0;
 		assertEquals(expected, real);
@@ -22,7 +24,7 @@ class SaleTest {
 	void test2() throws InsufficientCreditException {
 		BeverageDescription b = new BeverageDescription("001","caffe", 2.1);
 		double credit=100;
-		Sale sale = new Sale(b, credit);
+		Sale sale = new Sale(vendingMachineID, b, credit);
 		double real=sale.getRest();
 		double expected=97.9;
 		assertEquals(expected, real);

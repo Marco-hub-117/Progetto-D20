@@ -1,21 +1,22 @@
 package it.unipv.ingsw.d20.vendingmachine.model;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.TimerTask;
 
 import it.unipv.ingsw.d20.util.persistence.PersistenceFacade;
 import it.unipv.ingsw.d20.util.persistence.local.VendingLocalIO;
 import it.unipv.ingsw.d20.util.persistence.sale.ISaleDao;
+import it.unipv.ingsw.d20.util.persistence.sale.SalePOJO;
 import it.unipv.ingsw.d20.vendingmachine.model.net.VendingMachineClient;
-import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.Sale;
 
 public class UpdateStatus extends TimerTask {
 
 	@Override
 	public void run() {
 		PersistenceFacade pf = PersistenceFacade.getInstance();
-		//VendingLocalIO v = pf.getVendingLocalIO();
+		VendingLocalIO v = pf.getVendingLocalIO();
 		
 		try {
 			VendingMachineClient vmc = new VendingMachineClient();
@@ -24,16 +25,22 @@ public class UpdateStatus extends TimerTask {
 			e.printStackTrace();
 		}
 		
-		List<Sale> saleList = null; //TODO = v.getSaleFromLocal();
+		List<String> saleList = v.getSaleListFromLocal();
 		ISaleDao saleDao = pf.getSaleDao();
 		
-		for (Sale s : saleList) {
-			//aggiungere la sale al database
-		}
+		if (saleList == null)
+			return;
 		
-		//TODO v.emptyLocalSale(); 
-		//svuota il file locale con le sale, sono ormai nel database
-
+		try {
+			for (String s : saleList) {
+				String[] split = s.split("	");
+				saleDao.addSale(new SalePOJO(split[0], split[1], split[2]));
+			}
+			
+			v.emptyLocalSale(); //svuota il file locale con le sale, sono ormai nel database
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

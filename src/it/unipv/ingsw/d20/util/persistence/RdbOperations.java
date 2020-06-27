@@ -236,7 +236,7 @@ public class RdbOperations {
 	
 	// DI SEGUITO CI SARANNO LE QUERY RELATIVE ALLA SALE
 	
-	public void addSale(SalePOJO sale) {
+	public void addSale(SalePOJO sale) throws SQLException {
 		
 		ArrayList<String> values = new ArrayList<>();
 		values.add(sale.getIdVending()); // primo attributo nella table
@@ -246,14 +246,14 @@ public class RdbOperations {
 		String query = QueryGenerator.getInsertIntoValuesQuery("Sale", values);	
 		con = this.startConnection(con);
 		Statement st;	
-		try {
+		//try {
 			st = con.createStatement();
 			st.executeUpdate(query); // usato per eseguire una query di inserimento.
 			
-		} catch (SQLException e) {
+		//} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		//	e.printStackTrace();
+		//}
 		this.closeConnection(con);
 	}
 

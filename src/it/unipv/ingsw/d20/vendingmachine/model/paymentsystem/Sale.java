@@ -9,12 +9,14 @@ import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.*;
 
 public class Sale {
 	
+	String vmId;
 	private Date date;
 	private BeverageDescription beverageDescription;
 	private double price;
 	private double rest;
 	
-	public Sale(BeverageDescription beverageDescription, double credit) throws InsufficientCreditException {
+	public Sale(String vmId, BeverageDescription beverageDescription, double credit) throws InsufficientCreditException {
+		this.vmId = vmId;
 		this.beverageDescription = beverageDescription;
 		date = new Date();
 		price = beverageDescription.getPrice();
@@ -34,13 +36,17 @@ public class Sale {
 	public String toString() { 
 		StringBuilder saleInfo = new StringBuilder();
 		
+		saleInfo.append(vmId + "	");
+		
+		saleInfo.append(beverageDescription.getName() + "	");
+		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-		saleInfo.append("Date: " + sdf.format(date) + "\n");
+		saleInfo.append(sdf.format(date) + "	");
 		
-		saleInfo.append("Product: " + beverageDescription.getCode() + "\n");
+		//saleInfo.append(beverageDescription.getName() + "	");
 		
-		DecimalFormat df = new DecimalFormat("0.00");
-		saleInfo.append("Total: �" + df.format(price) + "\n");
+		//DecimalFormat df = new DecimalFormat("0.00");
+		//saleInfo.append(df.format(price) + "	");
 		
 		return saleInfo.toString();
 	}

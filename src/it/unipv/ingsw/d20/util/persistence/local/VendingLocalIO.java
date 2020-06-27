@@ -6,7 +6,9 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -15,6 +17,7 @@ import it.unipv.ingsw.d20.vendingmachine.model.beverage.BeverageCatalog;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.BeverageDescription;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.Ingredients;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.CashContainer;
+import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.Sale;
 import it.unipv.ingsw.d20.vendingmachine.model.tanks.Tank;
 
 public class VendingLocalIO {
@@ -218,6 +221,56 @@ public class VendingLocalIO {
 			System.out.println("An error occurred.");
 			e.printStackTrace();
 		} 
+	}
+
+	public void saveSaleIntoLocal(Sale sale) {
+		String nomeFile = Constants.FILEPATH + Constants.SALELISTPATH;
+		
+		try {
+			FileWriter myWriter = new FileWriter(nomeFile, true);
+			PrintWriter myPrintWriter   = new PrintWriter(myWriter);
+			
+			myPrintWriter.println(sale.toString());
+			
+			myWriter.close();
+		} catch (IOException e) {
+			System.out.println("An error occurred.");
+			e.printStackTrace();
+		} 
+		
+	}
+
+	public List<String> getSaleListFromLocal() {
+		ArrayList<String> saleList = new ArrayList<>();
+		
+		String nomeFile = Constants.FILEPATH + Constants.SALELISTPATH;
+		
+		try {
+			BufferedReader reader = new BufferedReader(new FileReader(nomeFile));
+			String buff;
+			
+			while ((buff = reader.readLine()) != null) {
+				saleList.add(buff);
+			}
+			
+			reader.close();
+		} catch(FileNotFoundException e) {
+			System.out.println(e);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return saleList;
+	}
+
+	public void emptyLocalSale() { //svuota il file con la lista delle sale
+		try {
+			PrintWriter writer = new PrintWriter(Constants.FILEPATH + Constants.SALELISTPATH);
+			writer.print("");
+			writer.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}		
 	}
 	
 }

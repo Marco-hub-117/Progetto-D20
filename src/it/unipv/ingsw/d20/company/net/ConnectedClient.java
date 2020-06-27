@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.util.Date;
 
 import it.unipv.ingsw.d20.company.Company;
 import it.unipv.ingsw.d20.company.VendingMachineInfo;
@@ -28,7 +27,7 @@ public class ConnectedClient extends Thread {
 	}
 	
 	/**
-	 * Riceve una stringa dalla macchinetta e lo gestisce. Se il messaggio è vuoto
+	 * Riceve una stringa dalla macchinetta e la gestisce. Se il messaggio è vuoto
 	 * significa che la macchinetta è stata accesa per la prima volta, altrimenti
 	 * è solo una notifica del suo status.
 	 */
@@ -42,7 +41,7 @@ public class ConnectedClient extends Thread {
 			 * Se la stringa ricevuta dalla vending machine (client) è vuota, significa
 			 * che è la prima volta che si connette e bisogna aggiungerla al data base,
 			 * facendole poi sapere l'ID che le è stato assegnato.
-			 * Se la stringa ricevuta contiene l'ID della vending machine, verrà utilizzata
+			 * Se la stringa ricevuta contiene l'ID della vending machine e altre informazioni, verrà utilizzata
 			 * come notifica per settarne lo status sul database.
 			 */
 			String vmMessage = in.readLine();

@@ -47,7 +47,7 @@ public class VendingMachine {
 	public VendingMachine(String id) {	
 		this.id = id;
 		this.credit = 0.0;
-		salesRegister = new ArrayList<Sale>(); //DA IMLEMENTARE COME BVCATALOG E TANKLIST
+		//salesRegister = new ArrayList<Sale>(); //DA IMLEMENTARE COME BVCATALOG E TANKLIST
 		keyHandler = new KeyHandler();
 		bvCatalog = getCatalogFromLocal();//la vending istanzia il catalogo delle bevande prendedolo dal file locale
 		tankHandler = new TankHandler(getTanksFromLocal());
@@ -128,7 +128,7 @@ public class VendingMachine {
 	 * 
 	 */
 	public void startTransaction(BeverageDescription bvDesc) throws InsufficientCreditException { 
-		Sale sale = new Sale(bvDesc, credit); //se il credito non è sufficiente per erogare la bevanda lancia eccezione
+		Sale sale = new Sale(id, bvDesc, credit); //se il credito non è sufficiente per erogare la bevanda lancia eccezione
 		//TODO saveSaleIntoLocal();
 		saveCashContainerIntoLocal();
 		tankHandler.scaleTanksLevel(bvDesc);
@@ -138,7 +138,7 @@ public class VendingMachine {
 		Beverage bev = new Beverage(); bev.start();
 		System.out.println("Erogato " + bvDesc.getName() + " correttamente");
 		credit = sale.getRest();
-		// this.saveSale(sale);
+		saveSaleIntoLocal(sale);
 	}
 	
 	public HashMap<Ingredients, Double> getTanksLevels() {
@@ -318,12 +318,10 @@ public class VendingMachine {
 		}
 	}*/
 	
-	public void saveSale(Sale sale) {
-		try {
-			// salvare direttamente la sale sul db
-		} catch (Exception e) { // implementare la giusta eccezione
-			// salva la sale nel file locale.
-		}
+	public void saveSaleIntoLocal(Sale sale) {
+		PersistenceFacade pf = PersistenceFacade.getInstance();
+		VendingLocalIO v = pf.getVendingLocalIO();
+		v.saveSaleIntoLocal(sale);
 	}
 	
 	public double getTotalAmount() {

@@ -1,5 +1,6 @@
 package it.unipv.ingsw.d20.util.persistence.sale;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public interface ISaleDao {
@@ -7,8 +8,9 @@ public interface ISaleDao {
 	/**
 	 * Registra una nuova sale.
 	 * @param sale passato come un salePOJO
+	 * @throws SQLException 
 	 */
-	public void addSale(SalePOJO sale);
+	public void addSale(SalePOJO sale) throws SQLException;
 	
 	/**
 	 * Ottiene una sale data la sua key ( composta dagli attributi idVending e date)

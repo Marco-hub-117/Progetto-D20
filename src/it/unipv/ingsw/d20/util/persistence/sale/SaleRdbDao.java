@@ -1,5 +1,6 @@
 package it.unipv.ingsw.d20.util.persistence.sale;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import it.unipv.ingsw.d20.util.persistence.RdbOperations;
 
@@ -12,7 +13,7 @@ public class SaleRdbDao implements ISaleDao{
 	}
 
 	@Override
-	public void addSale(SalePOJO sale) {
+	public void addSale(SalePOJO sale) throws SQLException {
 		op.addSale(sale);
 	}
 
