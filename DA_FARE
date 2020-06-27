@@ -2,10 +2,12 @@ per il 26/6:
 -web app: completamento e collegamento a DB
 -test su cashcontainer, tankhandler, sale
 -commenti in italiano e prima di ogni metodo e di ogni classe, non getter/setter (eventualmente su attributi importanti) + javadoc
--gestione delle sale, solo nel db o anche in locale? eventualmente aggiornare in db col timer ogni tot minuti
+-creare cataloghi giusti
 -sistemare wiki git
 -controllare qualità del codice (struttura classi/metodi, nomi completi in inglese)
 -file di istruzioni per avviare il tutto
+-gestire la qta scalata dai tank
+-catalogo invernale ed estivo (cambiando enum degli ingredienti)
 
 ultima settimana:
 -slide per presentazione
