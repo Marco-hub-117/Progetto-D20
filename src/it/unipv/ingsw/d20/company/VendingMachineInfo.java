@@ -1,5 +1,6 @@
 package it.unipv.ingsw.d20.company;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -11,12 +12,12 @@ public class VendingMachineInfo {
 	
 	private Date lastUpdate;
 	private double currentAmount;
-	private List<Tank> tankList;
+	private List<Tank> tankList = new ArrayList<>();
 	private VendingMachineStatus status;
 	
 	public VendingMachineInfo() {
 		currentAmount = 0;
-		refreshLastUpdate();
+;		refreshLastUpdate();
 	}
 	
 	public VendingMachineInfo(String cashInfo, String tankInfo, String statusInfo) {
@@ -44,12 +45,13 @@ public class VendingMachineInfo {
 	
 	private void setTankList(String tankInfo) {
 		String[] infoSplit = tankInfo.split(" ");
-		
-		for (int i = 0; i < infoSplit.length; i += 3) {
+
+		for (int i = 0; i < infoSplit.length; i = i + 4) {
 			Ingredients ingredient = Ingredients.valueOf(infoSplit[i]);
 			double level = Double.parseDouble(infoSplit[i + 1]);
 			double temperature = Double.parseDouble(infoSplit[i + 2]);
-			Tank t = new Tank(ingredient, level, temperature);
+			double volume = Double.parseDouble(infoSplit[i + 3]);
+			Tank t = new Tank(ingredient, level, temperature, volume);
 			
 			tankList.add(t);
 		}

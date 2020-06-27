@@ -52,12 +52,9 @@ public class BeveragesServlet extends WebAppServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	
 		if (req.getPathInfo().equals("/save_beverage")) {
-			
-			String bevname=req.getParameter("bevname"); //dà excepiton
-			System.out.println("bevname:"+bevname);
+			String bevname=req.getParameter("bevname");
 			BeverageDescriptionPOJO desc=controller.getBeverageDescription(bevname);
 			String idRecipe=desc.getIdRecipe();
-			System.out.println(idRecipe);
 			
 			String ingredientName=req.getParameter("a1");
 			String quantity=req.getParameter("a2");

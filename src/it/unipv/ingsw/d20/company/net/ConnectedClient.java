@@ -45,7 +45,7 @@ public class ConnectedClient extends Thread {
 			 * come notifica per settarne lo status sul database.
 			 */
 			String vmMessage = in.readLine();
-			String[] msgParts = vmMessage.split("	");
+			String[] msgParts = vmMessage.split("/");
 					
 			if (vmMessage.length() == 1) {
 				out.println(Company.registerNewVendingMachine(vmMessage)); //registra la nuova vending e le restituisce il suo ID

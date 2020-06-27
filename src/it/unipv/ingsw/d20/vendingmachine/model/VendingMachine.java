@@ -338,14 +338,15 @@ public class VendingMachine {
 	private void rebuildInfo() {
 		StringBuilder infoBuilder = new StringBuilder();
 		
-		infoBuilder.append(id); infoBuilder.append("	");
-		infoBuilder.append(cashContainer.getTotalAmount()); infoBuilder.append("	");
+		infoBuilder.append(id); infoBuilder.append("/");
+		infoBuilder.append(cashContainer.getTotalAmount()); infoBuilder.append("/");
 		for (Tank t : tankHandler.getTankList().values()) {
 			infoBuilder.append(t.getId()); infoBuilder.append(" ");
 			infoBuilder.append(t.getLevel()); infoBuilder.append(" ");
 			infoBuilder.append(t.getTemperature()); infoBuilder.append(" ");
+			infoBuilder.append(t.getVolume()); infoBuilder.append(" ");
 		}
-		infoBuilder.append("	"); infoBuilder.append(status);
+		infoBuilder.append("/"); infoBuilder.append(status);
 		
 		info = infoBuilder.toString();
 	}

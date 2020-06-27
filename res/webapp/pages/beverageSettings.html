@@ -29,12 +29,12 @@
                    		<h2 class="title">Beverage Settings</h2>
                 	</div>
                 	
-               		<form method="POST" action="/d20/selection/beverages/save_beverage" class="text-center"> 	
+               		<form method="POST" action="/d20/selection/beverages/save_beverage?bevname=@(beverage.getBvName())" class="text-center"> 	
 	                	<div class="card-body">
 	                		<div class="form-row">
 	                        	<div class="name">Beverage:</div>
-	                        	<div class="value" id="bevname">
-	                            	<div class="nameBig">@(beverage.getBvName())</div>  
+	                        	<div class="value" >
+	                            	<div name="bevname" class="nameBig">@(beverage.getBvName())</div>  
 	                        	</div>
 	             	 		</div>
 	              
