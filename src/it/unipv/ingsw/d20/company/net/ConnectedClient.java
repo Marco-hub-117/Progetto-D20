@@ -47,9 +47,9 @@ public class ConnectedClient extends Thread {
 			String vmMessage = in.readLine();
 			String[] msgParts = vmMessage.split("	");
 					
-			if (vmMessage.equals("")) {
-				out.println(Company.registerNewVendingMachine()); //registra la nuova vending e le restituisce il suo ID
-			} else if (msgParts.length == 4){
+			if (vmMessage.length() == 1) {
+				out.println(Company.registerNewVendingMachine(vmMessage)); //registra la nuova vending e le restituisce il suo ID
+			} else if (msgParts.length == 4) {
 				Company.vendingMachineInfoList.replace(msgParts[0], new VendingMachineInfo(msgParts[1], msgParts[2], msgParts[3])); //aggiorna l'ora dell'ultimo update della vm che ha mandato il messaggio
 			}
         

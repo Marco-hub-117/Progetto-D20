@@ -31,6 +31,7 @@ public class VendingMachineLauncher {
 		VendingLocalIO v = pf.getVendingLocalIO();
 		
 		String IDNumber = v.getVendingIDFromLocal();
+		String type = v.getVendingTypeFromLocal();
 		
 		VendingMachine vm = new VendingMachine(IDNumber);
 		CustomerGui gui= new CustomerGui();
@@ -41,7 +42,7 @@ public class VendingMachineLauncher {
 			VendingMachineClient client = new VendingMachineClient();
 		
 			if (IDNumber.equals("")) {
-			    String info = client.firstConnectionToServer();
+			    String info = client.firstConnectionToServer(type);
 			    String[] infoSplit=info.split("/");
 			    IDNumber=infoSplit[0];
 				v.saveVendingIDIntoLocal(IDNumber);

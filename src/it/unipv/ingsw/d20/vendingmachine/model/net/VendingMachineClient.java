@@ -23,8 +23,8 @@ public class VendingMachineClient {
 		socket.close();
 	}
 
-	public String firstConnectionToServer() throws IOException {
-		out.println("");
+	public String firstConnectionToServer(String type) throws IOException {
+		out.println(type);
 		return in.readLine();
 	}
 

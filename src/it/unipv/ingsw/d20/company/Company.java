@@ -85,14 +85,13 @@ public class Company {
 	 * volta e la registra nel data base.
 	 * @return ID della nuova macchinetta
 	 */
-	public static String registerNewVendingMachine() {
+	public static String registerNewVendingMachine(String type) {
 		String IDNumber = generateNewID();
-		//String location = generateNewLocation();
-		String location=null;
+		String location = generateNewLocation();
 		
 		PersistenceFacade pf = PersistenceFacade.getInstance();
 		IVendingDao ivd = pf.getVendingDao();
-		ivd.addVending(new VendingPOJO(IDNumber, location, null));
+		ivd.addVending(new VendingPOJO(IDNumber, location, type));
 		
 		vendingMachineInfoList.put(IDNumber, new VendingMachineInfo());
 		
