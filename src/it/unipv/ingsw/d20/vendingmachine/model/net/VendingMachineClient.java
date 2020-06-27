@@ -20,6 +20,7 @@ public class VendingMachineClient {
 	
 	public void connectToServer(String info) throws IOException {
 		out.println(info);
+		socket.close();
 	}
 
 	public String firstConnectionToServer() throws IOException {
