@@ -34,6 +34,7 @@ public class WebAppController {
 	private OperatorPOJO loggedOperator;
 	private boolean limited; //E' true quando l'operatore loggato è un operatore e non un operatore remoto
 	private Map<String, VendingMachineInfo> infoList;
+	public static String absenceString="None";
 	private enum OperatorType{
 		Operator, RemoteOperator;
 	}

@@ -56,11 +56,14 @@ public class BeveragesServlet extends WebAppServlet {
 			BeverageDescriptionPOJO desc=controller.getBeverageDescription(bevname);
 			String idRecipe=desc.getIdRecipe();
 			
-			String ingredientName=req.getParameter("a1");
-			String quantity=req.getParameter("a2");
-			
-			System.out.println("eccola: "+ingredientName+":"+quantity);
-			controller.updateIngredients(idRecipe, ingredientName, Double.parseDouble(quantity));
+			int i;
+			for (i=1; i<11; i+=2) {
+				String ingredientName=req.getParameter((String.valueOf(i)));
+				String quantity=req.getParameter(String.valueOf(i+1));
+				if (!ingredientName.equals(WebAppController.absenceString)){
+				controller.updateIngredients(idRecipe, ingredientName, Double.parseDouble(quantity));
+				}
+			}
 			resp.sendRedirect(getBasicUrl());
 		} 
 	}
