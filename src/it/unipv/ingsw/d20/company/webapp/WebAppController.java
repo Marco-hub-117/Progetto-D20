@@ -115,6 +115,10 @@ public class WebAppController {
 		return infoList.get(id);	
 	}
 	
+	public Map<String, VendingMachineInfo> getAllVendingMachineInfo() {
+		return infoList;	
+	}
+	
 	//OPERATORS
 	public List<OperatorPOJO> getAllOperators() {
 		return operatorsManager.getAllOperators();

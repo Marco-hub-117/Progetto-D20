@@ -31,7 +31,7 @@ public class Company {
 	
 	/**
 	 * Questa mappa contiene la lista di tutte le macchinette attualmente registrate
-	 * insieme con il loro status.
+	 * insieme con le loro informazioni temporanee.
 	 */
 	public static Map<String, VendingMachineInfo> vendingMachineInfoList = new HashMap<>();
 	
@@ -121,7 +121,7 @@ public class Company {
 		String street=(Streets.values())[j].toString();
 		int number=(int)((Math.random())*100);
 	
-		String location = city+ ", VIA " + street+ " "+ number ;
+		String location = city+ ", Via " + street+ " "+ number ;
 		return location; 
 	}
 	

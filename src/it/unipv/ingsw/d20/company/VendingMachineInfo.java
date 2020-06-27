@@ -17,7 +17,7 @@ public class VendingMachineInfo {
 	
 	public VendingMachineInfo() {
 		currentAmount = 0;
-;		refreshLastUpdate();
+		refreshLastUpdate();
 	}
 	
 	public VendingMachineInfo(String cashInfo, String tankInfo, String statusInfo) {

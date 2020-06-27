@@ -35,6 +35,9 @@ public class WebAppLauncher {
        servletList.add(new BeveragesServlet(controller, handler));
        
        new ApplicationServer(8080, servletList).start();
+       
+       System.out.println(controller.getAllVendingMachineInfo().get("IDN20200627163138").getStatus());
+       
     }
     
     public static void start() throws Exception {
