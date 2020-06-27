@@ -10,8 +10,8 @@ import java.util.ArrayList;
 import it.unipv.ingsw.d20.util.persistence.beveragecatalog.BvCatalogPOJO;
 import it.unipv.ingsw.d20.util.persistence.beveragedescription.BeverageDescriptionPOJO;
 import it.unipv.ingsw.d20.util.persistence.ingredientrecipe.IngredientRecipePOJO;
-import it.unipv.ingsw.d20.util.persistence.key.KeyPOJO;
 import it.unipv.ingsw.d20.util.persistence.operator.OperatorPOJO;
+import it.unipv.ingsw.d20.util.persistence.paymentKey.KeyPOJO;
 import it.unipv.ingsw.d20.util.persistence.sale.SalePOJO;
 import it.unipv.ingsw.d20.util.persistence.vending.VendingPOJO;
 import it.unipv.ingsw.d20.vendingmachine.model.VendingMachineStatus;
@@ -570,7 +570,7 @@ public class RdbOperations {
 	public ArrayList<KeyPOJO> getAllKeys() {
 		
 		ArrayList<KeyPOJO> result = new ArrayList<>();
-		String query = "SELECT * FROM prova.Key";
+		String query = "SELECT * FROM PaymentKey";
 		
 		con = this.startConnection(con);
 		Statement st;
@@ -592,7 +592,7 @@ public class RdbOperations {
 	
 	public KeyPOJO getKey (String serialCode) {
 		KeyPOJO result=null;
-		String query = QueryGenerator.getSelectFromWhereQuery("*","prova.Key","Code="+serialCode);
+		String query = QueryGenerator.getSelectFromWhereQuery("*","PaymentKey","Code="+serialCode);
 		
 		con = this.startConnection(con);
 		Statement st;
@@ -615,7 +615,7 @@ public class RdbOperations {
 		ArrayList<String> values = new ArrayList<>();
 		values.add((String.valueOf(key.getSerialCode()))); 
 		values.add((String.valueOf(key.getCredit()))); 
-		String query = QueryGenerator.getInsertIntoValuesQuery("prova.Key", values);	
+		String query = QueryGenerator.getInsertIntoValuesQuery("PaymentKey", values);	
 		
 		con = this.startConnection(con);
 		Statement st;	
@@ -631,7 +631,7 @@ public class RdbOperations {
 	}
 	
 	public void updateKeyCredit(String serialCode, double newCredit) {
-		String query = QueryGenerator.getUpdateSetQuery("prova.Key", "Credit = '"+newCredit+"'", "Code = '"+serialCode+"'");
+		String query = QueryGenerator.getUpdateSetQuery("PaymentKey", "Credit = '"+newCredit+"'", "Code = '"+serialCode+"'");
 		con = this.startConnection(con);
 		Statement st;	
 		try {
@@ -646,7 +646,7 @@ public class RdbOperations {
 	
 	public double getKeyCredit(String serialCode) {
 		double result = 0; 
-		String query = QueryGenerator.getSelectFromWhereQuery("Credit", "prova.Key", "Code = '"+serialCode+"'");
+		String query = QueryGenerator.getSelectFromWhereQuery("Credit", "PaymentKey", "Code = '"+serialCode+"'");
 		
 		con = this.startConnection(con);
 		Statement st;
@@ -665,7 +665,7 @@ public class RdbOperations {
 	}
 	
 	public void deactivateKey(String serialCode) {
-		String query = QueryGenerator.getDeleteWhereQuery("prova.Key", "Code = '"+serialCode+"'");
+		String query = QueryGenerator.getDeleteWhereQuery("PaymentKey", "Code = '"+serialCode+"'");
 		
 		con = this.startConnection(con);
 		Statement st;	

@@ -1,5 +1,5 @@
 @args() {
-	List<it.unipv.ingsw.d20.util.persistence.key.KeyPOJO> keys
+	List<it.unipv.ingsw.d20.util.persistence.paymentKey.KeyPOJO> keys
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -58,7 +58,7 @@
 							</thead>
 							
 							<tbody>
-								@for (it.unipv.ingsw.d20.util.persistence.key.KeyPOJO it: keys) {
+								@for (it.unipv.ingsw.d20.util.persistence.paymentKey.KeyPOJO it: keys) {
 									<tr> 
 										<td>@(it.getSerialCode())</td> 
 										<td>@(it.getCredit()) &#8364</td> 

@@ -1,4 +1,4 @@
-package it.unipv.ingsw.d20.util.persistence.key;
+package it.unipv.ingsw.d20.util.persistence.paymentKey;
 
 public class KeyPOJO {
 	
@@ -22,5 +22,12 @@ public class KeyPOJO {
 	public void setCredit(double credit) {
 		this.credit = credit;
 	}
+
+	@Override
+	public String toString() {
+		return "KeyPOJO [serialCode=" + serialCode + ", credit=" + credit + "]";
+	}
+	
+	
 
 }
