@@ -3,7 +3,6 @@ package it.unipv.ingsw.d20.util.persistence.vending;
 import java.util.ArrayList;
 
 import it.unipv.ingsw.d20.util.persistence.RdbOperations;
-import it.unipv.ingsw.d20.vendingmachine.model.VendingMachineStatus;
 
 /**
  * Implementazione dell'interfaccia IVendingDao. Implementa il DAO relativo al database relazionale.

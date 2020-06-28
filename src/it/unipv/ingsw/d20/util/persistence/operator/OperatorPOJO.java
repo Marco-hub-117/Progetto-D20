@@ -1,6 +1,5 @@
 package it.unipv.ingsw.d20.util.persistence.operator;
 
-import it.unipv.ingsw.d20.vendingmachine.model.VendingMachineStatus;
 
 /**
  * Classe che serve come "contenitore" di informazioni di una table Operator del database.
@@ -34,12 +33,6 @@ public class OperatorPOJO {
 	public void setName(String name) {
 		this.name = name;
 	}
-	/*public String getUsername() {
-		return username;
-	}
-	public void setUsername(String username) {
-		this.username = username;
-	}*/
 	public String getPassword() {
 		return password;
 	}

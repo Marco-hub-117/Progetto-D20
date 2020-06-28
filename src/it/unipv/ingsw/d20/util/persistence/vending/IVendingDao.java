@@ -2,8 +2,6 @@ package it.unipv.ingsw.d20.util.persistence.vending;
 
 import java.util.ArrayList;
 
-import it.unipv.ingsw.d20.vendingmachine.model.VendingMachineStatus;
-
 /**
  * Interfaccia per accedere a un VendingDao. E' possibile utilizzarla per ottenere le informazioni necessarie.
  *
