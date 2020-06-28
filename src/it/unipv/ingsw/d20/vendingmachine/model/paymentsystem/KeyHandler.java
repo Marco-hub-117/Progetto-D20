@@ -1,7 +1,11 @@
 package it.unipv.ingsw.d20.vendingmachine.model.paymentsystem;
 
+import java.util.ArrayList;
 import java.util.Random;
 
+import it.unipv.ingsw.d20.util.persistence.PersistenceFacade;
+import it.unipv.ingsw.d20.util.persistence.paymentKey.IKeyDao;
+import it.unipv.ingsw.d20.util.persistence.paymentKey.KeyPOJO;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.UnrecognisedKeyException;
 /**
  * La classe gestisce l'uso delle chiavette
@@ -25,7 +29,7 @@ public class KeyHandler {
 	 * @throws UnrecognisedKeyException
 	 */
 	public void insertKey(double credit) throws UnrecognisedKeyException {
-		if (Math.random() < 0.20) { //la chiavetta non e' valida nel 20% dei casi
+		/*if (Math.random() < 0.20) { //la chiavetta non e' valida nel 20% dei casi
 			throw new UnrecognisedKeyException();
 		} else {
 			keyInserted = true;
@@ -33,9 +37,25 @@ public class KeyHandler {
 			Random rand = new Random();
 			creditOnKey = credit + rand.nextInt(10) * 1.0 + rand.nextInt(10) * 0.5 + rand.nextInt(10) * 0.2 + 
 					rand.nextInt(10) * 0.1 + rand.nextInt(10) * 0.05;			
+		}*/
+		
+		PersistenceFacade pf = PersistenceFacade.getInstance();
+		IKeyDao kDao = pf.getKeyDao();
+		ArrayList<KeyPOJO> keyList = kDao.getAllKeys();
+		int maxIndex = (int) 4/3 * keyList.size();
+		
+		Random rand = new Random();
+		int index;
+		if ((index = rand.nextInt(maxIndex)) >= keyList.size())
+			throw new UnrecognisedKeyException();
+		else {
+			KeyPOJO key = keyList.get(index);
+			creditOnKey = key.getCredit();
 		}
+			
 		
 	}
+	
 	/**
 	 * Il metodo permette di espellere la chiavetta
 	 * 

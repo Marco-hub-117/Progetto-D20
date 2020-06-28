@@ -1,18 +1,8 @@
 package it.unipv.ingsw.d20.vendingmachine.view.customer;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.FontFormatException;
-import java.awt.GraphicsEnvironment;
 import java.awt.GridLayout;
-import java.io.File;
-import java.io.IOException;
-
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.SwingConstants;
 
 @SuppressWarnings("serial")
 public class KeyboardPanel extends JPanel {

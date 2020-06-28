@@ -12,7 +12,10 @@ public class Paths {
 	
 	public static final String RES_FOLDER = "res/";
 	
+	
 	public static final String IMG_FOLDER = "img/";
+	
+	public static final String FONT_FOLDER = "font/";
 	
 	
 	public static final String BEVERAGE_CATALOG = "beverageCatalog";
@@ -29,5 +32,7 @@ public class Paths {
 	
 	
 	public static final String GEAR_ICON = "gearicon.png";
+	
+	public static final String DISPLAY_FONT = "DS-DIGIB.TTF";
 	
 }

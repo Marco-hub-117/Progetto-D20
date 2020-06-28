@@ -4,6 +4,11 @@ import java.awt.Font;
 
 import javax.swing.JButton;
 
+/**
+ * Pulsante personalizzato che viene premuto dal cliente.
+ * Gli viene associato un valore in modo da riconoscerne il ruolo.
+ *
+ */
 @SuppressWarnings("serial")
 public class CustomerButton extends JButton {
 	

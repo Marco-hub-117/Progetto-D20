@@ -7,10 +7,17 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+/**
+ * GUI dedicata al cliente. Nella parte sinistra c'è un pannello contenente il
+ * catalogo (e un tasto per l'accesso alla modalità operatore), nella parte destra
+ * tutti i possibili pulsanti che interessano il cliente (tastierino numerico e
+ * controllo del credito).
+ *
+ */
 @SuppressWarnings("serial")
 public class CustomerGui extends JFrame {
 	
-	private static int WIDTH = 1100, HEIGHT = 675;
+	private static final int WIDTH = 1100, HEIGHT = 675;
 	
 	private CatalogPanel catalogPanel;
 	private KeyboardPanel keyboardPanel;

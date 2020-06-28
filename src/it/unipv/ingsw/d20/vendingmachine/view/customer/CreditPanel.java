@@ -1,6 +1,7 @@
 package it.unipv.ingsw.d20.vendingmachine.view.customer;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
 
@@ -8,6 +9,12 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+/**
+ * Pannello che contiene tutti i tasti relativi al credito: ottenimento 
+ * del resto, inserimento ed espulsione di una chiavetta e inserimento dei
+ * diversi tipi di monete.
+ *
+ */
 @SuppressWarnings("serial")
 public class CreditPanel extends JPanel {
 	
@@ -17,15 +24,24 @@ public class CreditPanel extends JPanel {
 	
 	public CreditPanel() {
 		setLayout(new GridLayout(4, 1));
+		setBackground(Color.DARK_GRAY);
 		
-		JPanel restPanel = new JPanel(); restPanel.setLayout(new BorderLayout());
-		cashButtons[0] = new CustomerButton("Resto", -1); cashButtons[0].setFont(cashButtons[0].getFont().deriveFont(Font.PLAIN, 25));
-		restPanel.add(cashButtons[0], BorderLayout.CENTER); restPanel.add(new JLabel(" "), BorderLayout.SOUTH);
+		JPanel restPanel = new JPanel(); restPanel.setLayout(new BorderLayout()); restPanel.setBackground(Color.DARK_GRAY);
+		cashButtons[0] = new CustomerButton("Resto", -1); 
+		cashButtons[0].setFont(cashButtons[0].getFont().deriveFont(Font.PLAIN, 25));
+		cashButtons[0].setBackground(Color.DARK_GRAY);
+		restPanel.add(cashButtons[0], BorderLayout.CENTER); 
+		restPanel.add(new JLabel(" "), BorderLayout.SOUTH); //label vuota utile per la grafica
 		
 		
 		JPanel keyPanel = new JPanel(); keyPanel.setLayout(new GridLayout(1, 2));
-		insertKeyButton = new JButton("Inserisci chiavetta"); insertKeyButton.setFont(insertKeyButton.getFont().deriveFont(Font.PLAIN, 25)); keyPanel.add(insertKeyButton);
-		ejectKeyButton = new JButton("Espelli chiavetta"); ejectKeyButton.setFont(ejectKeyButton.getFont().deriveFont(Font.PLAIN, 25)); keyPanel.add(ejectKeyButton);
+		insertKeyButton = new JButton("Inserisci chiavetta"); 
+		insertKeyButton.setFont(insertKeyButton.getFont().deriveFont(Font.PLAIN, 25)); 
+		insertKeyButton.setBackground(Color.DARK_GRAY);
+		ejectKeyButton = new JButton("Espelli chiavetta"); 
+		ejectKeyButton.setFont(ejectKeyButton.getFont().deriveFont(Font.PLAIN, 25));
+		ejectKeyButton.setBackground(Color.DARK_GRAY);
+		keyPanel.add(insertKeyButton); keyPanel.add(ejectKeyButton);
 		
 		
 		JPanel coinPanel1 = new JPanel(); coinPanel1.setLayout(new GridLayout(1, 3));
@@ -33,12 +49,13 @@ public class CreditPanel extends JPanel {
 		
 		initializeButtons();
 		
-		for (int i = 1; i < cashButtons.length; i++) {
+		for (int i = 1; i < cashButtons.length; i++) { //aggiunge tutti i pulsanti per l'inserimento di monete nel posto giusto
 			if (i < (cashButtons.length + 1) / 2) {
 				coinPanel1.add(cashButtons[i]);
 			} else {
 				coinPanel2.add(cashButtons[i]);
 			}
+			cashButtons[i].setBackground(Color.DARK_GRAY);
 		}		
 		
 		
