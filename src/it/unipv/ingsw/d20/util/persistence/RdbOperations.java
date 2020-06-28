@@ -15,7 +15,6 @@ import it.unipv.ingsw.d20.util.persistence.paymentKey.KeyPOJO;
 import it.unipv.ingsw.d20.util.persistence.sale.SalePOJO;
 import it.unipv.ingsw.d20.util.persistence.vending.VendingPOJO;
 import it.unipv.ingsw.d20.vendingmachine.model.VendingMachineStatus;
-import it.unipv.ingsw.d20.vendingmachine.model.beverage.Ingredients;
 
 /**
  * Classe che implementa la connessione con il database. Implementa tutte le possibili operazioni con esso.

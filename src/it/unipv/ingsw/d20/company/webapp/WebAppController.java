@@ -186,6 +186,7 @@ public class WebAppController {
 		return ingredientsQuantities;
 	}
 	
+	//METODI UTILI PER GESTIRE MANCANZE DI VALORI
 	public List<String> fillWithNone(List<String> list) {
 		List<String> OutList=list;
 		if (OutList.size()<IngredientRecipePOJO.maxIngredients) {
@@ -210,6 +211,7 @@ public class WebAppController {
 		return OutList;
 	}
 	
+	//VENDING MACHINES (INFO TEMPORANEE)
 	public String getVendingStatus(String id) {
 		VendingMachineInfo info=getVendingMachineInfo(id);
 		return info.getStatusString();
@@ -269,7 +271,7 @@ public class WebAppController {
 	}
 
 	
-	
+	//GESTIONE DEI REPORT
 	public List<ReportPOJO> getReportList() {
 		return reportList;
 	}
