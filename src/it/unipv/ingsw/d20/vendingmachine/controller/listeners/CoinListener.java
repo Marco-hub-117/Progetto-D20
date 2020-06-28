@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 import it.unipv.ingsw.d20.vendingmachine.model.VendingMachine;
 import it.unipv.ingsw.d20.vendingmachine.model.exceptions.KeyRestException;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.InsufficientCashForRestException;
+import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.InvalidCoinException;
 import it.unipv.ingsw.d20.vendingmachine.view.customer.CustomerGui;
 
 /**
@@ -35,7 +36,18 @@ public class CoinListener implements ActionListener {
 	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		if (value == -1) { //se e' -1 restituisce il resto
+		try {
+			if (value == -1) {
+				double buffCredit = vm.getCredit();
+				vm.dispenseCash();
+				JOptionPane.showMessageDialog(null, "Dispensed ï¿½" + String.format("%.2f", buffCredit));
+			} else
+				vm.insertCoin(this.value);
+		} catch (InsufficientCashForRestException | KeyRestException | InvalidCoinException e) {
+			JOptionPane.showMessageDialog(null, e.getMessage());
+		}
+		
+		/*if (value == -1) { //se e' -1 restituisce il resto
 			try {
 				double buffCredit = vm.getCredit();
 				vm.dispenseCash();
@@ -47,7 +59,7 @@ public class CoinListener implements ActionListener {
 			}
 		} else { //altrimenti inserisce una moneta
 			vm.insertCoin(this.value);
-		}
+		}*/
 		
 		//aggiorna la grafica solo se non è stato inserito un codice
 		if (gui.getDisplay().startsWith("E")) {

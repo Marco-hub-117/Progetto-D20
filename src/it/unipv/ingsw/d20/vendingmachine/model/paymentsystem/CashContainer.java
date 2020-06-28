@@ -1,9 +1,10 @@
 package it.unipv.ingsw.d20.vendingmachine.model.paymentsystem;
 
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.InsufficientCashForRestException;
+import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.InvalidCoinException;
 
 /**
- * La classe gestisce il denaro presente nel distributore automatico
+ * La classe gestisce il denaro presente nel distributore automatico.
  *
  */
 public class CashContainer {
@@ -12,6 +13,7 @@ public class CashContainer {
 	private int[] coinNumber = new int[6];
 	
 	private double totalAmount;
+	
 	/**
 	 * Costruttore della classe CashContainer
 	 * @param cashQuantity numero di monete per ogni valore presenti nel distributore
@@ -23,11 +25,16 @@ public class CashContainer {
 
 		refreshTotalAmount();
 	}
+	
 	/**
-	 * Questo metodo aggiunge una moneta alla cassa del distributore
+	 * Questo metodo aggiunge una moneta alla cassa del distributore.
 	 * @param coin valore della moneta
+	 * @throws InvalidCoinException 
 	 */
-	public void addCoin(double coin) {
+	public void addCoin(double coin) throws InvalidCoinException {
+		if (Math.random() < 0.05)
+			throw new InvalidCoinException("La moneta inserita non è valida.");
+		
 		int index;
 		for (index = 0; index < coinValue.length; index++) {
 			if (coinValue[index] == coin) {
@@ -37,9 +44,9 @@ public class CashContainer {
 		coinNumber[index]++;
 		refreshTotalAmount();
 	}
+	
 	/**
 	 * Questo metodo aggiorna il totale del denaro presenta nel distributore
-	 * 
 	 */
 	public void refreshTotalAmount() {
 		totalAmount = 0;
@@ -47,6 +54,7 @@ public class CashContainer {
 			totalAmount += coinValue[i] * coinNumber[i]; //moltiplica il valore della moneta per il numero di monete di quel tipo
 		}
 	}
+	
 	/**
 	 * Questo metodo calcola il resto da erogare
 	 * @param credit credito attualmente inserito 
@@ -77,6 +85,7 @@ public class CashContainer {
 		
 		refreshTotalAmount();
 	}
+	
 	/**
 	 * Questo metodo gestisce il ritiro delle monete da parte dell'operatore
 	 *

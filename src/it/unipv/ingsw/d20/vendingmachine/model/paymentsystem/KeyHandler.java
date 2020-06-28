@@ -29,16 +29,6 @@ public class KeyHandler {
 	 * @throws UnrecognisedKeyException
 	 */
 	public void insertKey(double credit) throws UnrecognisedKeyException {
-		/*if (Math.random() < 0.20) { //la chiavetta non e' valida nel 20% dei casi
-			throw new UnrecognisedKeyException();
-		} else {
-			keyInserted = true;
-			
-			Random rand = new Random();
-			creditOnKey = credit + rand.nextInt(10) * 1.0 + rand.nextInt(10) * 0.5 + rand.nextInt(10) * 0.2 + 
-					rand.nextInt(10) * 0.1 + rand.nextInt(10) * 0.05;			
-		}*/
-		
 		PersistenceFacade pf = PersistenceFacade.getInstance();
 		IKeyDao kDao = pf.getKeyDao();
 		ArrayList<KeyPOJO> keyList = kDao.getAllKeys();

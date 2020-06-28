@@ -19,6 +19,7 @@ import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.KeyHandler;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.Sale;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.InsufficientCashForRestException;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.InsufficientCreditException;
+import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.InvalidCoinException;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.UnrecognisedKeyException;
 import it.unipv.ingsw.d20.vendingmachine.model.tanks.Tank;
 import it.unipv.ingsw.d20.vendingmachine.model.tanks.TankHandler;
@@ -65,9 +66,10 @@ public class VendingMachine {
 	/**
 	 * Questo metodo gestisce l'inserimento di una moneta 
 	 * @param coinValue è il valore della moneta
+	 * @throws InvalidCoinException 
 	 * 
 	 */
-	public void insertCoin(double coinValue) {
+	public void insertCoin(double coinValue) throws InvalidCoinException {
 		cashContainer.addCoin(coinValue); 
 		saveCashContainerIntoLocal();
 		rebuildInfo();
