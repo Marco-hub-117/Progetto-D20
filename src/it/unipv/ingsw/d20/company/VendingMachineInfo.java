@@ -21,10 +21,11 @@ public class VendingMachineInfo {
 	private VendingMachineStatus status;
 	
 	/**
-	 * Costruttore che imposta solo l'ammontare corrente a 0.
+	 * Costruttore che imposta solo l'ammontare corrente a 0 e lo status su OFF.
 	 */
 	public VendingMachineInfo() {
 		currentAmount = 0;
+		status = VendingMachineStatus.OFF;
 		refreshLastUpdate();
 	}
 	

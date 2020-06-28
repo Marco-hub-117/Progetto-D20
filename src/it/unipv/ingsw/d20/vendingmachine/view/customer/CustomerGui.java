@@ -1,19 +1,11 @@
 package it.unipv.ingsw.d20.vendingmachine.view.customer;
 
-import java.awt.Color;
 import java.awt.Container;
 import java.awt.GridLayout;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
-
-import it.unipv.ingsw.d20.util.persistence.PersistenceFacade;
-import it.unipv.ingsw.d20.util.persistence.local.VendingLocalIO;
-import it.unipv.ingsw.d20.vendingmachine.controller.Controller;
-import it.unipv.ingsw.d20.vendingmachine.model.VendingMachine;
 
 @SuppressWarnings("serial")
 public class CustomerGui extends JFrame {

@@ -23,7 +23,7 @@ public class CodePanel extends JPanel {
 		setLayout(new BorderLayout());	
 		
 		JPanel displayPanel = new JPanel(); displayPanel.setLayout(new BorderLayout()); displayPanel.setBackground(Color.BLACK);
-		display = new JLabel(" E0,00"); 
+		display = new JLabel(" E0,00"); //alla creazione imposto il credito nullo sul display
 		display.setBackground(Color.BLACK); display.setForeground(Color.WHITE); display.setHorizontalAlignment(SwingConstants.RIGHT);
 		displayPanel.add(display, BorderLayout.CENTER);
 		
