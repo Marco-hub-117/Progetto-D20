@@ -33,6 +33,8 @@ public class Paths {
 	
 	public static final String GEAR_ICON = "gearicon.png";
 	
+	public static final String JAVA_IMG = "java.png";
+	
 	public static final String DISPLAY_FONT = "DS-DIGIB.TTF";
 	
 }

@@ -7,6 +7,12 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+/**
+ * La GUI dedicata all'operatore. E' possibile visionare la percentuale
+ * di riempimento dei tank e riempirli. E' anche possibile ritirare le monete
+ * contenute nella macchinetta.
+ *
+ */
 @SuppressWarnings("serial")
 public class OperatorGui extends JFrame {
 	
@@ -46,7 +52,7 @@ public class OperatorGui extends JFrame {
 	}
 	
 	public void setElements(String name, String level, int position) {
-		operatorPanel.setElements(name, level, position);
+		operatorPanel.setElement(name, level, position);
 	}
 	
 	public JButton getWithdrawCashButton() {

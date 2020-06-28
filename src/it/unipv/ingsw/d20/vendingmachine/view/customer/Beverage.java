@@ -1,4 +1,4 @@
-package it.unipv.ingsw.d20.vendingmachine.model.beverage;
+package it.unipv.ingsw.d20.vendingmachine.view.customer;
 
 import java.awt.Container;
 import java.awt.Dimension;
@@ -9,8 +9,10 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
+
 /**
- * La classe rappresenta l'erogazione di una bevanda
+ * Classe che simula l'erogazione di una bevanda.
+ * 
  */
 public class Beverage extends Thread {
 	
@@ -78,7 +80,7 @@ public class Beverage extends Thread {
   
                 Thread.sleep(125);
                 
-                if (Math.random() < 0.10);
+                if (Math.random() < 0.10); //per un andamento "a scatti" della progress bar
                 else 
                  progress += 5; 
             } 

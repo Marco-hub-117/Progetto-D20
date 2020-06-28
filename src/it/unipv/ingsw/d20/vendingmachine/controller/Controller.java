@@ -19,6 +19,11 @@ import it.unipv.ingsw.d20.vendingmachine.view.customer.CustomerGui;
 import it.unipv.ingsw.d20.vendingmachine.view.operator.OperatorButton;
 import it.unipv.ingsw.d20.vendingmachine.view.operator.OperatorGui;
 
+/**
+ * Classe che si occupa di gestire la connessione tra il modello della
+ * vending machine e la GUI.
+ *
+ */
 public class Controller {
 	private VendingMachine vm;
 	private CustomerGui userGui;

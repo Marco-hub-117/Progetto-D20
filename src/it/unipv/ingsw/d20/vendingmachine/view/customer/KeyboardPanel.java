@@ -4,6 +4,11 @@ import java.awt.GridLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+/**
+ * Pannello che contiene tutti i pulsanti della GUI: il
+ * tastierino numerico e i pulsanti per gestire il credito.
+ *
+ */
 @SuppressWarnings("serial")
 public class KeyboardPanel extends JPanel {
 	

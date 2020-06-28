@@ -11,6 +11,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 
+/**
+ * Frame che permette di verificare l'identità di un operatore
+ * tramite una chiave da inserire.
+ *
+ */
 @SuppressWarnings("serial")
 public class OperatorLoginFrame extends JFrame {
 	

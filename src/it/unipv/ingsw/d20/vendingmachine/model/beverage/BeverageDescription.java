@@ -2,8 +2,10 @@ package it.unipv.ingsw.d20.vendingmachine.model.beverage;
 
 import java.util.HashMap;
 import java.util.Map;
+
 /**
- * La classe rappresenta la descrizione di una bevanda
+ * Classe che rappresenta la descrizione di una bevanda.
+ * 
  */
 public class BeverageDescription {
 
@@ -18,24 +20,26 @@ public class BeverageDescription {
 		this.price = price;
 		this.ingredients = new HashMap<Ingredients, Double>();
 	}
+	
 	/**
-	 * Aggiunge un ingrediente alla bevanda con la quantita' pari a 0
+	 * Aggiunge un ingrediente alla bevanda con la quantita' pari a 0.
 	 * @param i Ingrediente da aggiungere
-	 * 
 	 */
 	public void addIngredient(Ingredients i) {
 		ingredients.put(i, 0.0);
 	}
+	
 	/**
-	 * Aggiunge un ingrediente alla bevanda specificando la quantita'
+	 * Aggiunge un ingrediente alla bevanda specificando la quantita'.
 	 * @param i Ingrediente da aggiungere
 	 * @param q Quantita' 
 	 */
 	public void addIngredient(Ingredients i, double q) {
 		ingredients.put(i, q);
 	}
+	
 	/**
-	 * Cambia la quantita' di un ingrediente gia' presente
+	 * Cambia la quantita' di un ingrediente gia' presente.
 	 * @param i Ingrediente da cambiare
 	 * @param q Quantita' nuova
 	 */

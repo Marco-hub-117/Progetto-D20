@@ -8,6 +8,12 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JTextArea;
 
+import it.unipv.ingsw.d20.util.Paths;
+
+/**
+ * Area di testo personalizzata con il logo di Java.
+ *
+ */
 @SuppressWarnings("serial")
 public class CustomTextArea extends JTextArea {
 	
@@ -17,7 +23,7 @@ public class CustomTextArea extends JTextArea {
 		super(30, 35);
 		
 		try {
-			javaImg = ImageIO.read(new File("res/img/java.png"));
+			javaImg = ImageIO.read(new File(Paths.RES_FOLDER + Paths.IMG_FOLDER + Paths.JAVA_IMG));
 		} catch(IOException e) {
 			e.printStackTrace();
 		}

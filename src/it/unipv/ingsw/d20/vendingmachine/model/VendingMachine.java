@@ -5,7 +5,6 @@ import it.unipv.ingsw.d20.util.persistence.PersistenceFacade;
 import it.unipv.ingsw.d20.util.persistence.local.VendingLocalIO;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.BeverageCatalog;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.BeverageDescription;
-import it.unipv.ingsw.d20.vendingmachine.model.beverage.Beverage;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.Ingredients;
 import it.unipv.ingsw.d20.vendingmachine.model.exceptions.InsufficientIngredientsException;
 import it.unipv.ingsw.d20.vendingmachine.model.exceptions.KeyRestException;
@@ -22,6 +21,7 @@ import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.InvalidC
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.UnrecognisedKeyException;
 import it.unipv.ingsw.d20.vendingmachine.model.tanks.Tank;
 import it.unipv.ingsw.d20.vendingmachine.model.tanks.TankHandler;
+import it.unipv.ingsw.d20.vendingmachine.view.customer.Beverage;
 
 import java.util.Date;
 import java.util.HashMap;

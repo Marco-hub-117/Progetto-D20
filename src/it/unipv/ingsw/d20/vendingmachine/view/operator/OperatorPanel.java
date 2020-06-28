@@ -6,6 +6,11 @@ import java.awt.GridLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+/**
+ * Pannello che contiene le informazioni relative ai tank e i pulsanti
+ * per riempirli.
+ *
+ */
 @SuppressWarnings("serial")
 public class OperatorPanel extends JPanel {
 	
@@ -35,7 +40,8 @@ public class OperatorPanel extends JPanel {
 			this.add(refillTankButtons[i]);
 		}
 	}
-	public void setElements(String name,String level, int pos) {
+	
+	public void setElement(String name, String level, int pos) {
 		tankIngredient[pos].setText(name);
 		tankLevel[pos].setText(level);
 		refillTankButtons[pos].setIdTank(name);

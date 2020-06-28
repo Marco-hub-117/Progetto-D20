@@ -2,6 +2,11 @@ package it.unipv.ingsw.d20.vendingmachine.view.operator;
 
 import javax.swing.JButton;
 
+/**
+ * Pulsante personalizzato che viene premuto dall'operatore.
+ * Gli vengono assegnati l'ID del tank annesso e la sua posizione.
+ *
+ */
 @SuppressWarnings("serial")
 public class OperatorButton extends JButton {
 
