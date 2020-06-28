@@ -27,7 +27,6 @@ public class KeyListener implements ActionListener {
 				vm.insertKey();
 				gui.getInsertKeyButton().setEnabled(false);
 				gui.getEjectKeyButton().setEnabled(true);
-				gui.setDisplay("PAXXO");
 			} catch (UnrecognisedKeyException e) {
 				JOptionPane.showMessageDialog(null, e.getMessage());
 			}

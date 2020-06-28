@@ -8,7 +8,10 @@ import org.junit.jupiter.api.Test;
 
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.BeverageDescription;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.Ingredients;
-
+/**
+ * Test JUnit 5 sulla classe TankHandler
+ * 
+ * */
 class TankHandlerTest {
 	private HashMap<Ingredients,Tank> tankList=new HashMap<Ingredients,Tank>();
 	private Ingredients i1=Ingredients.CHOCOLATE;
@@ -30,7 +33,7 @@ class TankHandlerTest {
 		q=new TankHandler(tankList);
 		b1.addIngredient(i2,1);
 		b1.addIngredient(i3,0.5);
-		b1.addIngredient(i4, 50.0);
+		b1.addIngredient(i4, 5.0);
 	}
 	@Test
 	void testisAvailable() {

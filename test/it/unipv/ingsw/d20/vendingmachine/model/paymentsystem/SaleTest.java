@@ -6,7 +6,10 @@ import org.junit.jupiter.api.Test;
 
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.BeverageDescription;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.InsufficientCreditException;
-
+/**
+ * Test JUnit 5 sulla classe Sale
+ * 
+ * */
 class SaleTest {
 	
 	private String vendingMachineID = "TEST_ID";
