@@ -47,20 +47,6 @@ public class CoinListener implements ActionListener {
 			JOptionPane.showMessageDialog(null, e.getMessage());
 		}
 		
-		/*if (value == -1) { //se e' -1 restituisce il resto
-			try {
-				double buffCredit = vm.getCredit();
-				vm.dispenseCash();
-				JOptionPane.showMessageDialog(null, "Dispensed ï¿½" + String.format("%.2f", buffCredit));
-			} catch (InsufficientCashForRestException e) {
-				JOptionPane.showMessageDialog(null, e.getMessage());
-			} catch (KeyRestException e) {
-				JOptionPane.showMessageDialog(null, e.getMessage());
-			}
-		} else { //altrimenti inserisce una moneta
-			vm.insertCoin(this.value);
-		}*/
-		
 		//aggiorna la grafica solo se non è stato inserito un codice
 		if (gui.getDisplay().startsWith("E")) {
 			double credit = vm.getCredit();

@@ -3,7 +3,6 @@ package it.unipv.ingsw.d20.vendingmachine.model;
 
 import it.unipv.ingsw.d20.util.persistence.PersistenceFacade;
 import it.unipv.ingsw.d20.util.persistence.local.VendingLocalIO;
-import it.unipv.ingsw.d20.util.persistence.vending.IVendingDao;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.BeverageCatalog;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.BeverageDescription;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.Beverage;
@@ -24,13 +23,14 @@ import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.Unrecogn
 import it.unipv.ingsw.d20.vendingmachine.model.tanks.Tank;
 import it.unipv.ingsw.d20.vendingmachine.model.tanks.TankHandler;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Timer;
 import java.util.concurrent.TimeUnit;
+
 /**
- * La classe rappresenta il distributore automatico di bevande
+ * Rappresenta il modello del distributore automatico di bevande.
+ * 
  */
 public class VendingMachine {
 
@@ -42,12 +42,11 @@ public class VendingMachine {
 	private CashContainer cashContainer;
 	private KeyHandler keyHandler;
 	
-	public static String info = "lol";
+	public static String info = "";
 	
 	/**
 	 * Costruttore della classe VendingMachine
 	 * @param id Stringa che rappresenta l'ID univoco della macchinetta
-	 * 
 	 */
 	public VendingMachine(String id) {	
 		this.id = id;
@@ -67,7 +66,6 @@ public class VendingMachine {
 	 * Questo metodo gestisce l'inserimento di una moneta 
 	 * @param coinValue è il valore della moneta
 	 * @throws InvalidCoinException 
-	 * 
 	 */
 	public void insertCoin(double coinValue) throws InvalidCoinException {
 		cashContainer.addCoin(coinValue); 
@@ -77,9 +75,8 @@ public class VendingMachine {
 	}
 	
 	/**
-	 * Inserisce una chiavetta
+	 * Inserisce una chiavetta.
 	 * @throws UnrecognisedKeyException 
-	 * 
 	 */
 	public void insertKey() throws UnrecognisedKeyException { 
 		keyHandler.insertKey(credit);
@@ -87,11 +84,10 @@ public class VendingMachine {
 	}
 	
 	/**
-	 * Espelle una chiavetta
-	 * 
+	 * Espelle la chiavetta.
 	 */
 	public void ejectKey() { 
-		keyHandler.ejectKey();
+		keyHandler.ejectKey(credit);
 		credit = 0.0;
 	}
 	
@@ -99,7 +95,6 @@ public class VendingMachine {
 	 * Questo metodo restituisce il resto al cliente
 	 * @throws InsufficientCashForRestException
 	 * @throws KeyRestException 
-	 * 
 	 */
 	public void dispenseCash() throws InsufficientCashForRestException, KeyRestException { 
 		if (keyHandler.keyIsInserted()) { 
@@ -117,7 +112,6 @@ public class VendingMachine {
 	 * @throws InsufficientCreditException
 	 * @throws NonExistentCodeException
 	 * @throws InsufficientIngredientsException 
-	 * 
 	 */
 	public void insertCode(String code) throws InsufficientCreditException, NonExistentCodeException, InsufficientIngredientsException { 
 		BeverageDescription bvDesc = bvCatalog.getBeverageDesc(code);
@@ -135,7 +129,6 @@ public class VendingMachine {
 	 * Questo metodo esegue la transazione e l'erogazione effettiva della bevanda
 	 * @param bvDesc Descrizione delle bevanda
 	 * @throws InsufficientCreditException 
-	 * 
 	 */
 	public void startTransaction(BeverageDescription bvDesc) throws InsufficientCreditException { 
 		Sale sale = new Sale(id, bvDesc, credit);
@@ -157,7 +150,6 @@ public class VendingMachine {
 	/**
 	 * Permette di riempire un Tank
 	 * @param id id del Tank da riempire 
-	 * 
 	 */
 	public void refillTanks(String id){
 		tankHandler.refillTank(id); 
@@ -191,6 +183,7 @@ public class VendingMachine {
 			System.out.println(e.getMessage());
 		}
 	}
+	
 	/**
 	 * Il metodo permette di ottenere il catalogo delle bevande dalla persistenza locale
 	 */
@@ -199,6 +192,7 @@ public class VendingMachine {
 		VendingLocalIO v = pf.getVendingLocalIO();
 		return v.getCatalogFromLocal();
 	}
+	
 	/**
 	 * Il metodo permette di salvare nella persistenza locale il catalogo delle bevande
 	 */
@@ -207,6 +201,7 @@ public class VendingMachine {
 		VendingLocalIO v = pf.getVendingLocalIO();
 		v.saveCatalogIntoLocal(bvCatalog);
 	}
+	
 	/**
 	 * Il metodo permette di ottenere i serbatoi dalla persistenza locale
 	 */
@@ -215,6 +210,7 @@ public class VendingMachine {
 		VendingLocalIO v = pf.getVendingLocalIO();
 		return v.getTanksFromLocal();
 	}
+	
 	/**
 	 * Il metodo permette di salvare nella persistenza locale i serbatoi
 	 */
@@ -223,6 +219,7 @@ public class VendingMachine {
 		VendingLocalIO v = pf.getVendingLocalIO();
 		v.saveTankIntoLocal(tankHandler.getTankList());
 	}
+	
 	/**
 	 * Il metodo permette di ottenere la classe di gestione del denaro dalla persistenza locale
 	 */
@@ -231,6 +228,7 @@ public class VendingMachine {
 		VendingLocalIO v = pf.getVendingLocalIO();
 		return v.getCashContainerFromLocal();
 	}
+	
 	/**
 	 * Il metodo permette di salvare nella persistenza locale la classe di gestione del denaro
 	 */
@@ -242,14 +240,10 @@ public class VendingMachine {
 	
 	public void setStatus(VendingMachineStatus status) {
 		this.status = status;
-		//PersistenceFacade pf = PersistenceFacade.getInstance();
-		//IVendingDao vd = pf.getVendingDao();
-		//vd.updateVendingStatus(this.id, status);
 	}
+	
 	/**
-	 * 
-	 * 
-	 * 
+	 * Verifica che la stringa ricevuta come parametro corrisponda all'ID.
 	 */
 	public boolean isCorrectId(String insertedId) {
 		if (id.equals(insertedId)) 
@@ -286,62 +280,6 @@ public class VendingMachine {
 		return tankHandler.getTankList();
 	}
 	
-	/**
-	 * Serve per aggiornare il credito, che la vending attualmente contiene, sul db  
-	 */
-	
-	/*public void notifyAmount() {		
-		PersistenceFacade pf = PersistenceFacade.getInstance();
-		IVendingDao vd = pf.getVendingDao();
-		vd.updateVendingAmount(this.id, cashContainer.getTotalAmount());
-	}*/
-	
-	/*public void saveTanksLevelToDb() {
-		PersistenceFacade pf = PersistenceFacade.getInstance();
-		IVendingDao vd = pf.getVendingDao();
-		String levels = "";
-		Boolean first = true;	//serve per costruire correttamente la stringa sul db, utilizzata solo 1 volta nel ciclo
-		HashMap<Ingredients, Double> tanksLevels= tankHandler.getTanksLevel();
-		for(Ingredients i : tanksLevels.keySet()) {
-			if(first) {
-				levels += tanksLevels.get(i);
-				first = false;
-			}else {
-				levels += "-" + tanksLevels.get(i) ;
-			}
-		}
-		vd.updateVendingTankLevel(this.id, levels);
-	}*/
-
-	/*public void saveTanksTempToDb() {
-		PersistenceFacade pf = PersistenceFacade.getInstance();
-		IVendingDao vd = pf.getVendingDao();
-		String temp = "";
-		Boolean first = true;	//serve per costruire correttamente la stringa sul db, utilizzata solo 1 volta nel ciclo
-		HashMap<Ingredients, Tank> tanksTemp= tankHandler.getTankList();
-		for(Ingredients i : tanksTemp.keySet()) {
-			if(first) {
-				temp += tanksTemp.get(i).getTemperature();
-				first = false;
-			}else {
-				temp += "-" + tanksTemp.get(i).getTemperature() ;
-			}
-		}
-		vd.updateVendingTankTemp(this.id, temp);
-	}*/
-
-	/**
-	 * Questo metodo serve per notificare al db una serie di informazioni come livello, temperatura dei tanks e amount
-	 */
-	/*public void updateInfoToDb() {  // DA SPOSTARE NEL THRED CON IL TIMER. RIVEDERE CON NICOLO
-		try {
-			this.saveTanksLevelToDb();
-			this.saveTanksTempToDb();
-			this.notifyAmount();
-		} catch (Exception e) {
-			System.out.println("Connessione al DB assente");
-		}
-	}*/
 	/**
 	 * Il metodo permette di salvare nella persistenza locale gli oggetti Sale
 	 */

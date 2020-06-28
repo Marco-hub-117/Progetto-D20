@@ -14,15 +14,18 @@ import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.Unrecogn
 public class KeyHandler {
 	
 	private boolean keyInserted;
+	private int keySerialCode;
 	private double creditOnKey;
+	
 	/**
 	 * Costruttore della classe KeyHandler
 	 *
 	 */
 	public KeyHandler() {
 		keyInserted = false;
-		creditOnKey=0.0;
+		creditOnKey = 0.0;
 	}
+	
 	/**
 	 * Il metodo gestisce l'inserimento di una chiavetta
 	 * @param credit credito già presente prima dell'inserimento della chiavetta
@@ -40,20 +43,25 @@ public class KeyHandler {
 			throw new UnrecognisedKeyException();
 		else {
 			KeyPOJO key = keyList.get(index);
+			keySerialCode = key.getSerialCode();
 			creditOnKey = key.getCredit();
 		}
-			
-		
 	}
 	
 	/**
-	 * Il metodo permette di espellere la chiavetta
+	 * Aggiorna il credito residuo della chiavetta sul database
+	 * e la espelle dalla macchinetta.
 	 * 
 	 */
-	public void ejectKey() {
-		keyInserted = false; //reinizializza le variabili di classe
-		creditOnKey = 0; 
+	public void ejectKey(double residualCredit) {
+		PersistenceFacade pf = PersistenceFacade.getInstance();
+		IKeyDao kDao = pf.getKeyDao();
+		kDao.updateCredit(String.valueOf(keySerialCode), residualCredit); //aggiorna il credito sul DB
 		
+		//reinizializza le variabili di classe
+		keySerialCode = 0;
+		creditOnKey = 0.0; 
+		keyInserted = false; 
 	}
 
 	public double getCreditOnKey() {
