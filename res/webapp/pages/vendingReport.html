@@ -1,5 +1,6 @@
 @args() {
 	List<it.unipv.ingsw.d20.util.persistence.operator.OperatorPOJO> operators
+	String vendingID
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -25,7 +26,7 @@
                 	</div>
                 	
                 	<div class="card-body">
-		            	<form method="POST" action="/d20/selection/vendings/send_report?id=@(id)">
+		            	<form method="POST" action="/d20/selection/vendings/send_report?id=@(vendingID)">
 	                
 	                        <div class="form-row">
 	                            <div class="name">Problem</div>
@@ -76,9 +77,7 @@
                              </br></br>
 	                    </form>
                     	<div class="text-center"> 
-                    		<form method="GET" action="/d20/selection/vendings/?vendingId=@(id)"> 
-                       		 	<button class="btn btn--radius-2 btn--neutral" type="submit">Cancel</button>
-                       		 </form>
+                       		 <a href="/d20/selection/vendings/settings?id=@(vendingID)" class="btn btn--radius-2 btn--neutral">Go Back</a>
                          </div>                            	            
                 	</div>
             	</div>

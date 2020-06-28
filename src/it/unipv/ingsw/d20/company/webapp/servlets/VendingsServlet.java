@@ -59,7 +59,8 @@ public class VendingsServlet extends WebAppServlet {
 			resp.getWriter().write(Rythm.render(handler.getPage(url), vending, status, currentAmount, tanksNames, tanksLevels, tanksTemps));
 			}
 			else if (url.equals("/report")) {
-				resp.getWriter().write(Rythm.render(handler.getPage(url), controller.getAllOperators()));
+				System.out.println(req.getParameter("id"));
+				resp.getWriter().write(Rythm.render(handler.getPage(url), controller.getAllOperators(), req.getParameter("id")));
 			}
 			else if (url.equals("/pending_reports")) {
 				resp.getWriter().write(Rythm.render(handler.getPage(url), controller.getReportList()));
@@ -79,7 +80,7 @@ public class VendingsServlet extends WebAppServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		if (req.getPathInfo().equals("/send_report")) {
-			String vendingID=req.getParameter("vendingId");
+			String vendingID=req.getParameter("id");
 			String problem=req.getParameter("problem");
 			String details=req.getParameter("details");
 			String operatorName=req.getParameter("operator");
@@ -87,7 +88,7 @@ public class VendingsServlet extends WebAppServlet {
 		}
 		else if (req.getPathInfo().equals("/remove_report")) {
 			controller.removeReport(req.getParameter("vendingId"), req.getParameter("problem"));
-			resp.sendRedirect(getBasicUrl());
+			resp.sendRedirect(getBasicUrl()+"/reports");
 		}
 		else if (req.getPathInfo().equals("/save_settings")) {
 			List<Double> tanksTemps=new LinkedList<>();
