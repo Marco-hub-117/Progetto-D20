@@ -11,7 +11,7 @@ import it.unipv.ingsw.d20.vendingmachine.model.exceptions.NonExistentCodeExcepti
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.InsufficientCreditException;
 import it.unipv.ingsw.d20.vendingmachine.view.customer.CustomerGui;
 
-public class CodeListener implements ActionListener{
+public class CodeListener implements ActionListener {
 	
 	private double value;	
 	private VendingMachine vm;
@@ -26,24 +26,24 @@ public class CodeListener implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		int intValue = (int) value;
-		switch(intValue) {
-		case(10): //Ok button
+		if (intValue == 10) { //Ok button
 			gui.setEnabled(false);
 			try {
 				vm.insertCode(gui.getDisplay());
-				Double credit = vm.getCredit();
-				String creditToString = String.format("%.2f", credit);
-				gui.setDisplay("E" + creditToString);
 			} catch (InsufficientCreditException e) {
 				JOptionPane.showMessageDialog(null, e.getMessage());
 			} catch (NonExistentCodeException e) {
 				JOptionPane.showMessageDialog(null, e.getMessage());
 			} catch (InsufficientIngredientsException e) {
 				JOptionPane.showMessageDialog(null, e.getMessage());
+			} finally {
+				double credit = vm.getCredit();
+				String creditToString = String.format("%.2f", credit);
+				gui.setDisplay("E" + creditToString);
 			}
 			gui.setEnabled(true);
-		break;
-		case(-1): //Canc button
+		}
+		else if (intValue == -1) { //Canc button
 			StringBuilder sbDisp = new StringBuilder(gui.getDisplay());
 			sbDisp.deleteCharAt(sbDisp.length() - 1);
 			if (sbDisp.toString().isEmpty() || sbDisp.toString().startsWith("E")) {
@@ -53,8 +53,8 @@ public class CodeListener implements ActionListener{
 			} else {
 				gui.setDisplay(sbDisp.toString());
 			}
-		break;
-		default:
+		}
+		else {
 			String display = "";
 			if (!gui.getDisplay().startsWith("E")) {
 				display = gui.getDisplay() + intValue;

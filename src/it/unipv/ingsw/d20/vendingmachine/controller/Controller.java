@@ -26,10 +26,8 @@ public class Controller {
 	
 	/**
 	 * Costruttore usato per l'interfaccia grafica del cliente
-	 * 
 	 * @param m il modello rappresentato dalla classe VendingMachine
 	 * @param gui la GUI
-	 * 
 	 */
 	public Controller(VendingMachine m, CustomerGui gui) {
 		this.userGui = gui;
@@ -44,10 +42,8 @@ public class Controller {
 	
 	/**
 	 * Costruttore usato per l'interfaccia grafica dell'operatore
-	 * 
 	 * @param m il modello rappresentato dalla classe VendingMachine
 	 * @param gui la GUI
-	 * 
 	 */
 	public Controller(VendingMachine m, OperatorGui gui) {
 		this.vm = m;

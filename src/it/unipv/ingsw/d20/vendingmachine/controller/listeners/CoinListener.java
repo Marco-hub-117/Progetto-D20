@@ -10,7 +10,12 @@ import it.unipv.ingsw.d20.vendingmachine.model.exceptions.KeyRestException;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.InsufficientCashForRestException;
 import it.unipv.ingsw.d20.vendingmachine.view.customer.CustomerGui;
 
-public class CoinListener implements ActionListener{
+/**
+ * Listener dei tasti che riguartano l'inserimento di una moneta
+ * o l'erogazione del resto.
+ *
+ */
+public class CoinListener implements ActionListener {
 	
 	private double value;	
 	private VendingMachine vm;
@@ -38,9 +43,11 @@ public class CoinListener implements ActionListener{
 			vm.insertCoin(this.value);
 		}
 		//aggiorno grafica
-		Double credit = vm.getCredit();
-		String creditToString = String.format("%.2f", credit);
-		gui.setDisplay("E" + creditToString);
+		if (gui.getDisplay().startsWith("E")) {
+			double credit = vm.getCredit();
+			String creditToString = String.format("%.2f", credit);
+			gui.setDisplay("E" + creditToString);
+		}
 	}
 	
 }

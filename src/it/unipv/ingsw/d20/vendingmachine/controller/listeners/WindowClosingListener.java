@@ -2,28 +2,42 @@ package it.unipv.ingsw.d20.vendingmachine.controller.listeners;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.IOException;
 
-import it.unipv.ingsw.d20.util.persistence.PersistenceFacade;
-import it.unipv.ingsw.d20.util.persistence.vending.IVendingDao;
 import it.unipv.ingsw.d20.vendingmachine.model.VendingMachine;
 import it.unipv.ingsw.d20.vendingmachine.model.VendingMachineStatus;
+import it.unipv.ingsw.d20.vendingmachine.model.net.VendingMachineClient;
 
+/**
+ * Listener che aggiorna la company un'ultima volta prima di terminare
+ * il programma.
+ *
+ */
 public class WindowClosingListener extends WindowAdapter {
 	
-	private VendingMachine m;
+	private VendingMachine vm;
 	
-	public WindowClosingListener(VendingMachine m) {
-		this.m = m;
+	/**
+	 * Costruttore che istanzia la vending machine.
+	 * @param vm vending machine
+	 */
+	public WindowClosingListener(VendingMachine vm) {
+		this.vm = vm;
 	}
 	
+	/**
+	 * Imposta lo status della macchinetta su OFF e notifica la company
+	 * che è stato uno spegnimento regolare.
+	 */
 	public void windowClosing(WindowEvent e) {
-		//PersistenceFacade pf = PersistenceFacade.getInstance();
-		//IVendingDao v = pf.getVendingDao();
+		vm.setStatus(VendingMachineStatus.OFF);
 		
-		//v.updateVendingStatus(m.getId(), VendingMachineStatus.OFF);
-		
-		System.out.println("Status OFF");
-		m.setStatus(VendingMachineStatus.OFF); //superfluo
+		try {
+			VendingMachineClient vmc = new VendingMachineClient();
+			vmc.connectToServer(VendingMachine.info);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
 	}
 
 }

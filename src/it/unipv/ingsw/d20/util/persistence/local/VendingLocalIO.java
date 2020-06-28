@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
-import it.unipv.ingsw.d20.util.Constants;
+import it.unipv.ingsw.d20.util.Paths;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.BeverageCatalog;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.BeverageDescription;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.Ingredients;
@@ -26,7 +26,7 @@ public class VendingLocalIO {
 	
 	public BeverageCatalog getCatalogFromLocal() {
 		BeverageCatalog bvCatalog = new BeverageCatalog();
-		String nomeFile = Constants.FILEPATH + Constants.BVCATPATH;
+		String nomeFile = Paths.ASSETS_FOLDER + Paths.BEVERAGE_CATALOG;
 		Scanner inputStream = null;
 		
 		try {
@@ -56,7 +56,7 @@ public class VendingLocalIO {
 	}
 
 	public void saveCatalogIntoLocal (BeverageCatalog bvCatalog) {
-		String nomeFile = Constants.FILEPATH + Constants.BVCATPATH;
+		String nomeFile = Paths.ASSETS_FOLDER + Paths.BEVERAGE_CATALOG;
 		try {
 			FileWriter myWriter = new FileWriter(nomeFile);
 			PrintWriter myPrintWriter   = new PrintWriter(myWriter);
@@ -78,7 +78,7 @@ public class VendingLocalIO {
 
 	public HashMap<Ingredients,Tank> getTanksFromLocal() {
 		HashMap<Ingredients,Tank> tankList = new HashMap<>();
-		String nomeFile = Constants.FILEPATH + Constants.TANKSPATH;
+		String nomeFile = Paths.ASSETS_FOLDER + Paths.TANKS;
 		Scanner inputStream = null;
 		
 		try {
@@ -105,7 +105,7 @@ public class VendingLocalIO {
 	}
 	
 	public void saveTankIntoLocal(HashMap<Ingredients,Tank> tankList) {
-		String nomeFile = Constants.FILEPATH + Constants.TANKSPATH;
+		String nomeFile = Paths.ASSETS_FOLDER + Paths.TANKS;
 		try {
 			FileWriter myWriter = new FileWriter(nomeFile);
 			PrintWriter myPrintWriter   = new PrintWriter(myWriter);
@@ -122,7 +122,7 @@ public class VendingLocalIO {
 	}
 	
 	public String getVendingIDFromLocal() {
-		String fileName = Constants.FILEPATH + Constants.VENDINGPATH;
+		String fileName = Paths.ASSETS_FOLDER + Paths.VENDING_ID;
 		
 		String IDNumber = null;
 		
@@ -147,7 +147,7 @@ public class VendingLocalIO {
 	}
 	
 	public void saveVendingIDIntoLocal(String IDNumber) {
-		String fileName = Constants.FILEPATH + Constants.VENDINGPATH;
+		String fileName = Paths.ASSETS_FOLDER + Paths.VENDING_ID;
 		
 		PrintWriter out;
 		try {
@@ -162,7 +162,7 @@ public class VendingLocalIO {
 	}
 	
 	public String getVendingTypeFromLocal() {
-		String fileName = Constants.FILEPATH + Constants.VENDINGTYPEPATH;
+		String fileName = Paths.ASSETS_FOLDER + Paths.VENDING_TYPE;
 		
 		String type = null;
 		
@@ -185,7 +185,7 @@ public class VendingLocalIO {
 	public CashContainer getCashContainerFromLocal() {
 		int[] cashQuantity = new int[6];
 		
-		String nomeFile = Constants.FILEPATH + Constants.CASHCONTAINERSTATUSPATH;
+		String nomeFile = Paths.ASSETS_FOLDER + Paths.CASH_CONTAINER_STATUS;
 		Scanner inputStream = null;
 		
 		try {
@@ -206,7 +206,7 @@ public class VendingLocalIO {
 	}
 	
 	public void saveCashContainerIntoLocal(CashContainer cashContainer) {
-		String nomeFile = Constants.FILEPATH + Constants.CASHCONTAINERSTATUSPATH;
+		String nomeFile = Paths.ASSETS_FOLDER + Paths.CASH_CONTAINER_STATUS;
 		
 		try {
 			FileWriter myWriter = new FileWriter(nomeFile);
@@ -224,7 +224,7 @@ public class VendingLocalIO {
 	}
 
 	public void saveSaleIntoLocal(Sale sale) {
-		String nomeFile = Constants.FILEPATH + Constants.SALELISTPATH;
+		String nomeFile = Paths.ASSETS_FOLDER + Paths.SALE_LIST;
 		
 		try {
 			FileWriter myWriter = new FileWriter(nomeFile, true);
@@ -243,7 +243,7 @@ public class VendingLocalIO {
 	public List<String> getSaleListFromLocal() {
 		ArrayList<String> saleList = new ArrayList<>();
 		
-		String nomeFile = Constants.FILEPATH + Constants.SALELISTPATH;
+		String nomeFile = Paths.ASSETS_FOLDER + Paths.SALE_LIST;
 		
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader(nomeFile));
@@ -265,7 +265,7 @@ public class VendingLocalIO {
 
 	public void emptyLocalSale() { //svuota il file con la lista delle sale
 		try {
-			PrintWriter writer = new PrintWriter(Constants.FILEPATH + Constants.SALELISTPATH);
+			PrintWriter writer = new PrintWriter(Paths.ASSETS_FOLDER + Paths.SALE_LIST);
 			writer.print("");
 			writer.close();
 		} catch (FileNotFoundException e) {
