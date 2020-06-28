@@ -9,8 +9,8 @@ public class BeverageDescriptionRdbDao implements IBeverageDescriptionDao {
 	
 	private RdbOperations op;
 	
-	public BeverageDescriptionRdbDao() {
-		op = new RdbOperations();
+	public BeverageDescriptionRdbDao(RdbOperations op) {
+		this.op = op;
 	}
 
 	@Override

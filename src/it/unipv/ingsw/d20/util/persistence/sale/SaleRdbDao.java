@@ -8,8 +8,8 @@ public class SaleRdbDao implements ISaleDao{
 	
 	private RdbOperations op;
 	
-	public SaleRdbDao() {
-		op = new RdbOperations();
+	public SaleRdbDao(RdbOperations op) {
+		this.op = op;
 	}
 
 	@Override

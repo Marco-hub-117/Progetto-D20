@@ -18,6 +18,7 @@ public class PersistenceFacade {
 	
 	private static PersistenceFacade instance;
 	
+	private final RdbOperations op;
 	private final IVendingDao vendingMachine;
 	private final ISaleDao sale;
 	private final IBvCatalogDao beverageCatalog;
@@ -28,13 +29,14 @@ public class PersistenceFacade {
 	private final VendingLocalIO localMachine;
 	
 	private PersistenceFacade() {
-		vendingMachine = new VendingRdbDao();
-		sale = new SaleRdbDao();
-		beverageCatalog = new BvCatalogRdbDao();
-		beverageDescription = new BeverageDescriptionRdbDao();
-		ingredientRecipe = new IngredientRecipeRdbDao();
-		key = new KeyRdbDao();
-		operator = new OperatorRdbDao();
+		op=new RdbOperations();
+		vendingMachine = new VendingRdbDao(op);
+		sale = new SaleRdbDao(op);
+		beverageCatalog = new BvCatalogRdbDao(op);
+		beverageDescription = new BeverageDescriptionRdbDao(op);
+		ingredientRecipe = new IngredientRecipeRdbDao(op);
+		key = new KeyRdbDao(op);
+		operator = new OperatorRdbDao(op);
 		localMachine = new VendingLocalIO();
 	}
 	
