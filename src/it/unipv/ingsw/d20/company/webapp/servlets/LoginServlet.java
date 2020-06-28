@@ -33,6 +33,8 @@ public class LoginServlet extends WebAppServlet {
 	 * Gestisce le richieste di tipo GET.
 	 * @param req richiesta HTTP
 	 * @param resp risposta HTTP
+	 * @throws ServletException
+	 * @throws IOException
 	 */
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -50,6 +52,8 @@ public class LoginServlet extends WebAppServlet {
 	 * Gestisce le richieste di tipo POST.
 	 * @param req richiesta HTTP
 	 * @param resp risposta HTTP
+	 * @throws ServletException
+	 * @throws IOException
 	 */
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

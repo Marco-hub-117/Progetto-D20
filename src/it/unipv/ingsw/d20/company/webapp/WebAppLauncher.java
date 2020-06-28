@@ -22,6 +22,7 @@ public class WebAppLauncher {
 	 * Crea un'istanza di WebAppController, una di WebPagesHandler, le servlet e l'ApplicationServer, consentendo
 	 * di avviare l'applicazione web.
 	 * Utile per i test indipendenti dal resto del sistema.
+	 * @throws Exception
 	 *
 	 */
     public static void main(String[] argv) throws Exception {
@@ -45,6 +46,7 @@ public class WebAppLauncher {
     /**
      * Crea un'istanza di WebAppController, una di WebPagesHandler, le servlet e l'ApplicationServer, consentendo
      * di avviare l'applicazione web.
+     * @throws Exception
      *
      */
     public static void start() throws Exception {

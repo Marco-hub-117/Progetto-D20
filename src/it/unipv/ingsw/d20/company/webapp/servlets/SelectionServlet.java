@@ -25,6 +25,7 @@ public class SelectionServlet extends WebAppServlet {
 	 *un accesso limitato alle funzionalità.
 	 * @param controller istanza di WebAppController
 	 * @param handler istanza di WebPagesHandler
+	 * 
 	 */
 	public SelectionServlet(WebAppController controller, WebPagesHandler handler){
 		super(controller, handler);
@@ -35,6 +36,8 @@ public class SelectionServlet extends WebAppServlet {
 	 * Gestisce le richieste di tipo POST.
 	 * @param req richiesta HTTP
 	 * @param resp risposta HTTP
+	 * @throws ServletException
+	 * @throws IOException
 	 */
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

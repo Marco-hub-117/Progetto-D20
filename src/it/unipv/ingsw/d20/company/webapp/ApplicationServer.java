@@ -1,8 +1,10 @@
 package it.unipv.ingsw.d20.company.webapp;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.Servlet;
+import javax.servlet.ServletException;
 
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.DefaultServlet;
@@ -46,6 +48,7 @@ public class ApplicationServer {
     /**
 	 * Crea un'istanza di Server e vi associa un ServletContextHandler, che presenta l'elenco delle Servlet utilizzate.
 	 * Avvia il Server che gestisce l'applicazione web.
+	 * @throws Exception
 	 */
     public void start() throws Exception {
         server = new Server(port);
@@ -66,6 +69,7 @@ public class ApplicationServer {
     
     /**
 	 * Arresta il Server che gestisce l'applicazione web.
+	 * @throws Exception
 	 */
     public void stop() throws Exception {
         server.stop();
