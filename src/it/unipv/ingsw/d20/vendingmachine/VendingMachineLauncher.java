@@ -31,22 +31,19 @@ public class VendingMachineLauncher {
 		VendingLocalIO v = pf.getVendingLocalIO();
 		
 		String IDNumber = v.getVendingIDFromLocal();
-		String type = v.getVendingTypeFromLocal();
+		int type = Integer.parseInt(v.getVendingTypeFromLocal());
 		
 		try {
 			if (IDNumber.equals("")) {
 				VendingMachineClient client = new VendingMachineClient();
 				
-			    String info = client.firstConnectionToServer(type);
-			    String[] infoSplit=info.split("/");
-			    IDNumber=infoSplit[0];
+			    IDNumber = client.firstConnectionToServer(String.valueOf(type)); //manda al DB il tipo e riceve un ID
 				v.saveVendingIDIntoLocal(IDNumber);
-				//v.saveVendingLocationIntoLocal(infoSplit[1]);
-				System.out.println("IDNumber printed");
+				System.out.println("Registration completed.");
 				
-				//Inizializzazione dei file locali (catalogo preso dal db)
+				//Inizializzazione del catalogo
 				IBvCatalogDao bv = pf.getBvCatalogDao(); 
-				v.saveCatalogIntoLocal(bv.getBeverageCatalog(Integer.parseInt(v.getVendingTypeFromLocal())));				
+				v.saveCatalogIntoLocal(bv.getBeverageCatalog(type));				
 			} 
 		} catch (IOException e) {
 			e.printStackTrace();
