@@ -10,7 +10,13 @@ import java.net.Socket;
  * partire un nuovo thread per la sua gestione.
  *
  */
-public class CompanyServer {
+public class CompanyServer extends Thread{
+	
+	private int port;
+
+	public CompanyServer(int port) {
+		this.port = port;
+	}
 
 	/**
 	 * Permette di accettare continuamente nuove connessioni.
@@ -18,13 +24,17 @@ public class CompanyServer {
 	 * @throws IOException
 	 */
 	@SuppressWarnings("resource")
-	public void serverLoop(int port) throws IOException {
-		ServerSocket serverSocket = new ServerSocket(port);
-		while (true) {
-			Socket socket = serverSocket.accept();
-			ConnectedClient client = new ConnectedClient(socket);
-			client.start();
-		}		
+	public void run() {
+		try {
+			ServerSocket serverSocket = new ServerSocket(port);
+			while (true) {
+				Socket socket = serverSocket.accept();
+				ConnectedClient client = new ConnectedClient(socket);
+				client.start();
+			}
+		} catch (IOException ie) {
+			
+		}
 	}
 
 }

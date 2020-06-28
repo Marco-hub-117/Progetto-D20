@@ -46,12 +46,8 @@ public class Company {
 		vendingMachineInfoList = new HashMap<>();
 		
 		int port = 8888;
-        CompanyServer server = new CompanyServer();
-        try {
-        	server.serverLoop(port);
-        } catch (IOException e) {
-        	e.printStackTrace();
-        }    
+        CompanyServer server = new CompanyServer(port);
+        server.start();
         
         PersistenceFacade pf = PersistenceFacade.getInstance();
         IVendingDao v = pf.getVendingDao();
