@@ -59,11 +59,11 @@ public class VendingMachine {
 		
 		rebuildInfo();
 		Timer timer = new Timer();
-		timer.schedule(new UpdateInfoTimerTask(), new Date(), TimeUnit.MINUTES.toMillis(1)); //ogni 10 minuti viene notificata la company */
+		timer.schedule(new UpdateInfoTimerTask(), new Date(), TimeUnit.MINUTES.toMillis(1)); //ogni minuto viene notificata la company
 	}
 	
 	/**
-	 * Questo metodo gestisce l'inserimento di una moneta 
+	 * Metodo che permette di inserire una moneta.
 	 * @param coinValue è il valore della moneta
 	 * @throws InvalidCoinException 
 	 */
@@ -92,7 +92,7 @@ public class VendingMachine {
 	}
 	
 	/**
-	 * Questo metodo restituisce il resto al cliente
+	 * Metodo che restituisce il resto al cliente.
 	 * @throws InsufficientCashForRestException
 	 * @throws KeyRestException 
 	 */
@@ -107,7 +107,7 @@ public class VendingMachine {
 	}
 	
 	/**
-	 * Questo metodo permette al cliente di inserire il codice della bevanda, inizializza la vendita dopo aver fatto i controlli
+	 * Metodo che permette al cliente di inserire il codice della bevanda, inizializza la vendita dopo aver fatto i controlli
 	 * @param code Codice della bevanda inserita
 	 * @throws InsufficientCreditException
 	 * @throws NonExistentCodeException
@@ -126,20 +126,22 @@ public class VendingMachine {
 	}
 	
 	/**
-	 * Questo metodo esegue la transazione e l'erogazione effettiva della bevanda
+	 * Metodo che esegue la transazione e l'erogazione effettiva della bevanda.
 	 * @param bvDesc Descrizione delle bevanda
 	 * @throws InsufficientCreditException 
 	 */
 	public void startTransaction(BeverageDescription bvDesc) throws InsufficientCreditException { 
 		Sale sale = new Sale(id, bvDesc, credit);
-		//TODO saveSaleIntoLocal();
 		saveCashContainerIntoLocal();
 		tankHandler.scaleTanksLevel(bvDesc);
 		saveTankIntoLocal();
 		rebuildInfo();
-		Beverage bev = new Beverage(); bev.start();
+		
+		Beverage bev = new Beverage(); bev.start(); //eroga la bevanda
 		System.out.println("Erogato " + bvDesc.getName() + " correttamente");
+		
 		credit = sale.getRest();
+		
 		saveSaleIntoLocal(sale);
 	}
 	
@@ -148,14 +150,13 @@ public class VendingMachine {
 	}
 	
 	/**
-	 * Permette di riempire un Tank
+	 * Riempie il tank indicato dal parametro.
 	 * @param id id del Tank da riempire 
 	 */
-	public void refillTanks(String id){
+	public void refillTank(String id){
 		tankHandler.refillTank(id); 
 		saveTankIntoLocal();
 		rebuildInfo();
-		//saveTanksLevelToDb();
 	}
 	
 	/**
@@ -167,12 +168,11 @@ public class VendingMachine {
 		double withdrawnAmount = cashContainer.withdrawAmount();
 		saveCashContainerIntoLocal();
 		rebuildInfo();
-		//notifyAmount();
 		return withdrawnAmount;
 	}
 
 	/**
-	 * Modifica la temperatura di un tank
+	 * Modifica la temperatura del tank passato come parametro.
 	 * @param id Id del tank
 	 * @param temp Temperatura da impostare
 	 */
@@ -185,7 +185,7 @@ public class VendingMachine {
 	}
 	
 	/**
-	 * Il metodo permette di ottenere il catalogo delle bevande dalla persistenza locale
+	 * Metodo che permette di ottenere il catalogo delle bevande dalla persistenza locale.
 	 */
 	public BeverageCatalog getCatalogFromLocal() {
 		PersistenceFacade pf = PersistenceFacade.getInstance();
@@ -194,7 +194,7 @@ public class VendingMachine {
 	}
 	
 	/**
-	 * Il metodo permette di salvare nella persistenza locale il catalogo delle bevande
+	 * Metodo che permette di salvare nella persistenza locale il catalogo delle bevande.
 	 */
 	public void saveCatalogIntoLocal () {
 		PersistenceFacade pf = PersistenceFacade.getInstance();
@@ -203,7 +203,7 @@ public class VendingMachine {
 	}
 	
 	/**
-	 * Il metodo permette di ottenere i serbatoi dalla persistenza locale
+	 * Metodo che permette di ottenere i serbatoi dalla persistenza locale.
 	 */
 	public HashMap<Ingredients,Tank> getTanksFromLocal() {
 		PersistenceFacade pf = PersistenceFacade.getInstance();
@@ -212,7 +212,7 @@ public class VendingMachine {
 	}
 	
 	/**
-	 * Il metodo permette di salvare nella persistenza locale i serbatoi
+	 * Metodo che permette di salvare nella persistenza locale i serbatoi.
 	 */
 	public void saveTankIntoLocal() {
 		PersistenceFacade pf = PersistenceFacade.getInstance();
@@ -221,7 +221,7 @@ public class VendingMachine {
 	}
 	
 	/**
-	 * Il metodo permette di ottenere la classe di gestione del denaro dalla persistenza locale
+	 * Metodo che permette di ottenere la classe di gestione del denaro dalla persistenza locale.
 	 */
 	private CashContainer getCashContainerFromLocal() {
 		PersistenceFacade pf = PersistenceFacade.getInstance();
@@ -230,7 +230,7 @@ public class VendingMachine {
 	}
 	
 	/**
-	 * Il metodo permette di salvare nella persistenza locale la classe di gestione del denaro
+	 * Metodo che permette di salvare nella persistenza locale la classe di gestione del denaro.
 	 */
 	public void saveCashContainerIntoLocal() {
 		PersistenceFacade pf = PersistenceFacade.getInstance();
@@ -281,7 +281,7 @@ public class VendingMachine {
 	}
 	
 	/**
-	 * Il metodo permette di salvare nella persistenza locale gli oggetti Sale
+	 * Metodo che permette di salvare nella persistenza locale gli oggetti Sale
 	 */
 	public void saveSaleIntoLocal(Sale sale) {
 		PersistenceFacade pf = PersistenceFacade.getInstance();
@@ -293,6 +293,9 @@ public class VendingMachine {
 		return cashContainer.getTotalAmount();
 	}
 	
+	/**
+	 * Aggiorna l'attributo info con le informazioni attuali della macchinetta.
+	 */
 	private void rebuildInfo() {
 		StringBuilder infoBuilder = new StringBuilder();
 		

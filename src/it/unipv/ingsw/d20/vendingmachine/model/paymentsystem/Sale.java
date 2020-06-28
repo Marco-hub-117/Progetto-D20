@@ -5,8 +5,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.BeverageDescription;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.*;
+
 /**
- * La classe gestisce la vendita di una bevanda
+ * Classe che gestisce la vendita di una bevanda.
  * 
  */
 public class Sale {
@@ -16,6 +17,7 @@ public class Sale {
 	private BeverageDescription beverageDescription;
 	private double price;
 	private double rest;
+	
 	/**
 	 * Costruttore della classe Sale
 	 * @param vmId Id del distributore
@@ -30,13 +32,15 @@ public class Sale {
 		price = beverageDescription.getPrice();
 		rest = checkCredit(credit, price);
 	}
+	
 	/**
-	 * Il metodo controlla che il credito sia sufficiente per la bevanda selezionata
+	 * Il metodo controlla che il credito sia sufficiente per la bevanda selezionata e,
+	 * se possibile, ritorna il resto.
 	 * @param credit Credito inserito
 	 * @param price Costo della bevanda
 	 * @throws InsufficientCreditException
 	 */
-	public double checkCredit(double credit, double price) throws InsufficientCreditException {
+	private double checkCredit(double credit, double price) throws InsufficientCreditException {
 		if (credit >= price) {
 			return credit - price;
 		} else { 
@@ -54,11 +58,6 @@ public class Sale {
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		saleInfo.append(sdf.format(date) + "	");
-		
-		//saleInfo.append(beverageDescription.getName() + "	");
-		
-		//DecimalFormat df = new DecimalFormat("0.00");
-		//saleInfo.append(df.format(price) + "	");
 		
 		return saleInfo.toString();
 	}

@@ -7,8 +7,9 @@ import it.unipv.ingsw.d20.util.persistence.PersistenceFacade;
 import it.unipv.ingsw.d20.util.persistence.paymentKey.IKeyDao;
 import it.unipv.ingsw.d20.util.persistence.paymentKey.KeyPOJO;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.UnrecognisedKeyException;
+
 /**
- * La classe gestisce l'uso delle chiavette
+ * Classe che gestisce l'uso delle chiavette.
  *
  */
 public class KeyHandler {
@@ -27,7 +28,7 @@ public class KeyHandler {
 	}
 	
 	/**
-	 * Il metodo gestisce l'inserimento di una chiavetta
+	 * Il metodo gestisce l'inserimento di una chiavetta.
 	 * @param credit credito già presente prima dell'inserimento della chiavetta
 	 * @throws UnrecognisedKeyException
 	 */
@@ -44,7 +45,7 @@ public class KeyHandler {
 		else {
 			KeyPOJO key = keyList.get(index);
 			keySerialCode = key.getSerialCode();
-			creditOnKey = key.getCredit();
+			creditOnKey = key.getCredit() + credit;
 		}
 	}
 	

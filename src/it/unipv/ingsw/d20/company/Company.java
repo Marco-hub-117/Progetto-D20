@@ -57,7 +57,7 @@ public class Company {
         }
         
         Timer timer = new Timer();																   
-		timer.schedule(new RefreshVendingListStatus(), new Date(), TimeUnit.MINUTES.toMillis(10)); //ogni 10 minuti aggiorna lo status di tutte le vending machine
+		timer.schedule(new RefreshVendingListStatus(), new Date(), TimeUnit.MINUTES.toMillis(2)); //ogni 2 minuti aggiorna lo status di tutte le vending machine
 	}
 	
 	/*public VendingMachine selectVendingMachine(String id) {

@@ -1,8 +1,10 @@
 package it.unipv.ingsw.d20.vendingmachine.model.tanks;
 
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.Ingredients;
+
 /**
- * La classe rappresenta il contenitore di un ingrediente.
+ * Rappresenta il serbatoio che contiene un ingrediente.
+ * 
  */
 public class Tank {
 	
@@ -10,12 +12,11 @@ public class Tank {
 	private double level; //il livello è in percentuale
 	private double temperature;
 	private double volume; //capacita nominale del serbatoio
+	
 	/**
 	 * Costruttore della classe Tank, la temperatura è inizializzata a 20°C, la quantita' a 0
-	 * 
 	 * @param ingredient ingrediente contenuto nel Tank
 	 * @param volume capacità nominale del serbatoio
-	 * 
 	 */
 	public Tank(Ingredients ingredient, double volume) {
 		this.ingredient = ingredient;
@@ -23,9 +24,9 @@ public class Tank {
 		this.temperature = 20; //si inizializza la temperatura a 20 gradi centigradi
 		this.volume=volume;
 	}
+	
 	/**
 	 * Costruttore del Tank permette di specificare sia la temperatura sia il livello
-	 * 
 	 * @param ingredient ingrediente contenuto nel Tank
 	 * @param level livello di riempimento del Tank
 	 * @param temperature temperatura del Tank
@@ -33,21 +34,23 @@ public class Tank {
 	 */
 	public Tank(Ingredients ingredient, double level, double temperature, double volume) {
 		this.ingredient = ingredient;
-		if(level>100) this.level=100;
+		if(level > 100) 
+			this.level = 100;
 		else this.level = level;
 		this.temperature = temperature; 
-		this.volume=volume;
+		this.volume = volume;
 	}
+	
 	/**
-	 * Abbassa il livello di riempimento del Tank della quantità specificata
-	 * 
+	 * Abbassa il livello di riempimento del tank della quantitàspecificata.
 	 * @param quantity quantità da diminuire
 	 */
 	public void lowerLevelBy(double quantity) {
 		level = level - quantity*100/volume;
 	}
+	
 	/**
-	 * Riporta al massimo il livello del riempimento del Tank
+	 * Riporta al massimo il livello di riempimento del tank.
 	 * 
 	 */
 	public void refill() { 

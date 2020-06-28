@@ -4,22 +4,22 @@ import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.Insuffic
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.InvalidCoinException;
 
 /**
- * La classe gestisce il denaro presente nel distributore automatico.
+ * La classe gestisce le monete presenti nel distributore automatico.
  *
  */
 public class CashContainer {
 	
 	private final double[] coinValue = {0.05, 0.10, 0.20, 0.50, 1.0, 2.0};
-	private int[] coinNumber = new int[6];
+	private int[] coinNumber = new int[6]; //contiene il numero di monete di ciascun tipo (nell'ordine di coinValue)
 	
 	private double totalAmount;
 	
 	/**
-	 * Costruttore della classe CashContainer
+	 * Costruttore della classe CashContainer.
 	 * @param cashQuantity numero di monete per ogni valore presenti nel distributore
 	 */
 	public CashContainer(int[] cashQuantity) {
-		for (int i = 0; i < coinNumber.length; i++) {
+		for (int i = 0; i < coinNumber.length; i++) { //inizializzazione del vettore coinNumber
 			coinNumber[i] = cashQuantity[i];
 		}
 
@@ -32,12 +32,12 @@ public class CashContainer {
 	 * @throws InvalidCoinException 
 	 */
 	public void addCoin(double coin) throws InvalidCoinException {
-		if (Math.random() < 0.05)
+		if (Math.random() < 0.05) //5% di probabilità che la moneta non sia valida
 			throw new InvalidCoinException("La moneta inserita non è valida.");
 		
 		int index;
 		for (index = 0; index < coinValue.length; index++) {
-			if (coinValue[index] == coin) {
+			if (coinValue[index] == coin) { //trova l'indice corrispondente al valore della moneta inserita
 				break;
 			}
 		}
@@ -46,7 +46,7 @@ public class CashContainer {
 	}
 	
 	/**
-	 * Questo metodo aggiorna il totale del denaro presenta nel distributore
+	 * Questo metodo aggiorna il totale del denaro presenta nel distributore.
 	 */
 	public void refreshTotalAmount() {
 		totalAmount = 0;
@@ -56,7 +56,7 @@ public class CashContainer {
 	}
 	
 	/**
-	 * Questo metodo calcola il resto da erogare
+	 * Questo metodo eroga in monete la quantità passata come parametro.
 	 * @param credit credito attualmente inserito 
 	 * @throws InsufficientCashForRestException
 	 */
@@ -67,7 +67,7 @@ public class CashContainer {
 			throw new InsufficientCashForRestException();
 		}
 		
-		for (int i = coinValue.length - 1; i >= 0; i--) {
+		for (int i = coinValue.length - 1; i >= 0; i--) { //dispensa le monete partendo da quelle più grandi
 			while (creditX100 >= (int) (coinValue[i] * 100)) {
 				if (coinNumber[i] == 0) {
 					break;
@@ -77,17 +77,13 @@ public class CashContainer {
 			}
 		}
 		
-		if (creditX100 != 0) {
-			throw new InsufficientCashForRestException();
-		}
-		
 		System.out.println("Dispensed ï¿½" + credit);
 		
 		refreshTotalAmount();
 	}
 	
 	/**
-	 * Questo metodo gestisce il ritiro delle monete da parte dell'operatore
+	 * Questo metodo gestisce il ritiro delle monete da parte dell'operatore.
 	 *
 	 */
 	public double withdrawAmount() {

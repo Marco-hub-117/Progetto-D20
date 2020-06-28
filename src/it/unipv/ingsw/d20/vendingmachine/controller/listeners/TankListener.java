@@ -35,7 +35,7 @@ public class TankListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		OperatorButton opButton = gui.getButtons()[position];
-		vm.refillTanks(opButton.getTankId()); //riempie il tank relativo al bottone
+		vm.refillTank(opButton.getTankId()); //riempie il tank relativo al bottone
 		
 		//aggiorno la grafica
 		HashMap<Ingredients,Double> tankLevels = new HashMap<Ingredients, Double>();

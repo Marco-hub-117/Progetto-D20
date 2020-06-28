@@ -10,6 +10,7 @@ OK - gestire la qta scalata dai tank
 -catalogo invernale ed estivo (cambiando enum degli ingredienti)
 
 ultima settimana:
+-(inserire setpoint temperatura più temperatura effettiva che varia come thread (timertask)?)
 -slide per presentazione
 -organizzare presentazione
 -interfaccia testuale per cliente, operatore, operatore remoto

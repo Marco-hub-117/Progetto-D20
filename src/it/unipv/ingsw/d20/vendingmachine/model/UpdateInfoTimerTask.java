@@ -11,6 +11,12 @@ import it.unipv.ingsw.d20.util.persistence.sale.ISaleDao;
 import it.unipv.ingsw.d20.util.persistence.sale.SalePOJO;
 import it.unipv.ingsw.d20.vendingmachine.model.net.VendingMachineClient;
 
+/**
+ * Periodicamente questa classe aggiorna la company con le informazioni attuali
+ * della macchinetta, aggiorna il catalogo nel caso sia stato modificato e 
+ * carica la lista delle vendite effettuate sul database.
+ *
+ */
 public class UpdateInfoTimerTask extends TimerTask {
 
 	@Override
@@ -20,7 +26,7 @@ public class UpdateInfoTimerTask extends TimerTask {
 		
 		try {
 			VendingMachineClient vmc = new VendingMachineClient();
-			vmc.connectToServer(VendingMachine.info);
+			vmc.connectToServer(VendingMachine.info); //invia le informazioni al server della company
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -33,20 +39,19 @@ public class UpdateInfoTimerTask extends TimerTask {
 		List<String> saleList = v.getSaleListFromLocal();
 		ISaleDao saleDao = pf.getSaleDao();
 		
-		if (saleList == null)
-			return;
-		
-		try {
-			for (String s : saleList) {
-				String[] split = s.split("	");
-				if (split.length == 3) {
-					saleDao.addSale(new SalePOJO(split[0], split[1], split[2]));
+		if (!saleList.isEmpty()) {
+			try {
+				for (String s : saleList) {
+					String[] split = s.split("	");
+					if (split.length == 3) {
+						saleDao.addSale(new SalePOJO(split[0], split[1], split[2])); //carica la sale nel database
+					}
 				}
+				
+				v.emptyLocalSale(); //svuota il file locale con le sale, sono ormai nel database
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
-			
-			v.emptyLocalSale(); //svuota il file locale con le sale, sono ormai nel database
-		} catch (Exception e) {
-			e.printStackTrace();
 		}
 	}
 
