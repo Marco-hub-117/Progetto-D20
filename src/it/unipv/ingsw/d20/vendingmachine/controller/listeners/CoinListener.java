@@ -11,7 +11,7 @@ import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.Insuffic
 import it.unipv.ingsw.d20.vendingmachine.view.customer.CustomerGui;
 
 /**
- * Listener dei tasti che riguartano l'inserimento di una moneta
+ * Listener dei tasti che riguardano l'inserimento di una moneta
  * o l'erogazione del resto.
  *
  */
@@ -21,6 +21,12 @@ public class CoinListener implements ActionListener {
 	private VendingMachine vm;
 	private CustomerGui gui;
 	
+	/**
+	 * Istanzia il valore del tasto annesso, la vending machine e la gui.
+	 * @param valore del tasto
+	 * @param vm istanza di vending machine
+	 * @param userGui gui dell'utente
+	 */
 	public CoinListener(double value, VendingMachine vm, CustomerGui userGui) {
 		this.value = value;
 		this.vm = vm;
@@ -42,7 +48,7 @@ public class CoinListener implements ActionListener {
 		} else { //altrimenti inserisce una moneta
 			vm.insertCoin(this.value);
 		}
-		//aggiorno grafica
+		//aggiorna la grafica solo se non è stato inserito un codice
 		if (gui.getDisplay().startsWith("E")) {
 			double credit = vm.getCredit();
 			String creditToString = String.format("%.2f", credit);
