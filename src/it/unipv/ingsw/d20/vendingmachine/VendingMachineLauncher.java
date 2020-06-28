@@ -41,7 +41,7 @@ public class VendingMachineLauncher {
 				v.saveVendingIDIntoLocal(IDNumber);
 				System.out.println("Registration completed.");
 				
-				//Inizializzazione del catalogo
+				//inizializzazione del catalogo
 				IBvCatalogDao bv = pf.getBvCatalogDao(); 
 				v.saveCatalogIntoLocal(bv.getBeverageCatalog(type));				
 			} 
