@@ -11,7 +11,7 @@ import it.unipv.ingsw.d20.util.persistence.sale.ISaleDao;
 import it.unipv.ingsw.d20.util.persistence.sale.SalePOJO;
 import it.unipv.ingsw.d20.vendingmachine.model.net.VendingMachineClient;
 
-public class UpdateStatusTimerTask extends TimerTask {
+public class UpdateInfoTimerTask extends TimerTask {
 
 	@Override
 	public synchronized void run() {

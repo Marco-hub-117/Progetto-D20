@@ -27,9 +27,9 @@ public class ConnectedClient extends Thread {
 	}
 	
 	/**
-	 * Riceve una stringa dalla macchinetta e la gestisce. Se il messaggio coontiene solo una cifra
+	 * Riceve una stringa dalla macchinetta e la gestisce. Se il messaggio contiene solo una cifra
 	 * significa che la macchinetta Ã¨ stata accesa per la prima volta e sta inviando il suo tipo per essere registrata, 
-	 * altrimenti sta notificando il suo status alla company.
+	 * altrimenti sta notificando le sue informazioni alla company.
 	 */
 	@Override
 	public void run() {
@@ -38,8 +38,8 @@ public class ConnectedClient extends Thread {
 			PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
 			
 			String vmMessage = in.readLine();
-			if (vmMessage != null) { //se il messaggio ricevuto è nullo non fa niente e chiude la socket
-				String[] msgParts = vmMessage.split("/"); //divide il messagio in più parti
+			if (vmMessage != null) { //se il messaggio ricevuto ï¿½ nullo non fa niente e chiude la socket
+				String[] msgParts = vmMessage.split("/"); //divide il messagio in piï¿½ parti
 			
 				if (msgParts.length == 1) { 
 					out.println(Company.registerNewVendingMachine(vmMessage)); //registra la nuova vending e le restituisce il suo ID

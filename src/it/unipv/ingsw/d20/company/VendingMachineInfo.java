@@ -9,7 +9,7 @@ import it.unipv.ingsw.d20.vendingmachine.model.beverage.Ingredients;
 import it.unipv.ingsw.d20.vendingmachine.model.tanks.Tank;
 
 /**
- * Classe che raccoglie tutte le informazioni utili relative ad una
+ * Classe che raccoglie tutte le informazioni (temporanee) relative ad una
  * determinata macchinetta.
  *
  */
