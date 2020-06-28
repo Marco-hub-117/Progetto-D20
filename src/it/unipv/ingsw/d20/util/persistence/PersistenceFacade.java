@@ -1,5 +1,7 @@
 package it.unipv.ingsw.d20.util.persistence;
 
+import java.sql.Connection;
+
 import it.unipv.ingsw.d20.util.persistence.beveragecatalog.*;
 import it.unipv.ingsw.d20.util.persistence.beveragedescription.*;
 import it.unipv.ingsw.d20.util.persistence.ingredientrecipe.*;
@@ -18,7 +20,7 @@ public class PersistenceFacade {
 	
 	private static PersistenceFacade instance;
 	
-	private final RdbOperations op;
+	private final RdbOperations operations;
 	private final IVendingDao vendingMachine;
 	private final ISaleDao sale;
 	private final IBvCatalogDao beverageCatalog;
@@ -29,14 +31,14 @@ public class PersistenceFacade {
 	private final VendingLocalIO localMachine;
 	
 	private PersistenceFacade() {
-		op=new RdbOperations();
-		vendingMachine = new VendingRdbDao(op);
-		sale = new SaleRdbDao(op);
-		beverageCatalog = new BvCatalogRdbDao(op);
-		beverageDescription = new BeverageDescriptionRdbDao(op);
-		ingredientRecipe = new IngredientRecipeRdbDao(op);
-		key = new KeyRdbDao(op);
-		operator = new OperatorRdbDao(op);
+		operations=new RdbOperations();
+		vendingMachine = new VendingRdbDao(operations);
+		sale = new SaleRdbDao(operations);
+		beverageCatalog = new BvCatalogRdbDao(operations);
+		beverageDescription = new BeverageDescriptionRdbDao(operations);
+		ingredientRecipe = new IngredientRecipeRdbDao(operations);
+		key = new KeyRdbDao(operations);
+		operator = new OperatorRdbDao(operations);
 		localMachine = new VendingLocalIO();
 	}
 	
@@ -80,4 +82,15 @@ public class PersistenceFacade {
 		return operator;
 	}
 
+	public RdbOperations getOperations() {
+		return operations;
+	}
+	
+	public boolean testConnection() {
+		Connection connection=null;
+		if (operations.isOpen(operations.startConnection(connection))) {
+			return true;
+		}
+		return false;
+	}
 }
