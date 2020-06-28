@@ -48,6 +48,8 @@ public class VendingMachineLauncher {
 		CustomerGui gui= new CustomerGui();
 		
 		new Controller(vm,gui);
+		
+		new MalfunctionGeneratorFrame(IDNumber); //crea il frame per la terminazione incontrollata della vending machine
 	}
 
 }
