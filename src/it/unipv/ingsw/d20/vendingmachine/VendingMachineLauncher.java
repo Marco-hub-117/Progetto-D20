@@ -33,15 +33,10 @@ public class VendingMachineLauncher {
 		String IDNumber = v.getVendingIDFromLocal();
 		String type = v.getVendingTypeFromLocal();
 		
-		VendingMachine vm = new VendingMachine(IDNumber);
-		CustomerGui gui= new CustomerGui();
-		
-		new Controller(vm,gui);
-		
 		try {
-			VendingMachineClient client = new VendingMachineClient();
-		
 			if (IDNumber.equals("")) {
+				VendingMachineClient client = new VendingMachineClient();
+				
 			    String info = client.firstConnectionToServer(type);
 			    String[] infoSplit=info.split("/");
 			    IDNumber=infoSplit[0];
@@ -56,6 +51,11 @@ public class VendingMachineLauncher {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+		VendingMachine vm = new VendingMachine(IDNumber);
+		CustomerGui gui= new CustomerGui();
+		
+		new Controller(vm,gui);
 	}
 
 }

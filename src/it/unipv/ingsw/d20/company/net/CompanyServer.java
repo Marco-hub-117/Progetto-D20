@@ -10,30 +10,34 @@ import java.net.Socket;
  * partire un nuovo thread per la sua gestione.
  *
  */
-public class CompanyServer extends Thread{
+public class CompanyServer extends Thread {
 	
 	private int port;
 
+	/**
+	 * Il costruttore istanzia solamente il numero di porta
+	 * @param numero di porta
+	 */
 	public CompanyServer(int port) {
 		this.port = port;
 	}
 
 	/**
 	 * Permette di accettare continuamente nuove connessioni.
-	 * @param port numero della socket
-	 * @throws IOException
 	 */
-	@SuppressWarnings("resource")
+	@Override
 	public void run() {
 		try {
+			@SuppressWarnings("resource")
 			ServerSocket serverSocket = new ServerSocket(port);
+			
 			while (true) {
 				Socket socket = serverSocket.accept();
 				ConnectedClient client = new ConnectedClient(socket);
 				client.start();
 			}
-		} catch (IOException ie) {
-			
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 
