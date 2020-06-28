@@ -19,6 +19,7 @@ import it.unipv.ingsw.d20.util.persistence.paymentKey.IKeyDao;
 import it.unipv.ingsw.d20.util.persistence.paymentKey.KeyPOJO;
 import it.unipv.ingsw.d20.util.persistence.vending.IVendingDao;
 import it.unipv.ingsw.d20.util.persistence.vending.VendingPOJO;
+import it.unipv.ingsw.d20.vendingmachine.model.tanks.Tank;
 
 /**
  * Gestisce le operazioni delle servlet, costituendo per esse un'interfaccia verso il DB e la Company.
@@ -35,6 +36,7 @@ public class WebAppController {
 	private boolean limited; //E' true quando l'operatore loggato è un operatore e non un operatore remoto
 	private Map<String, VendingMachineInfo> infoList;
 	public static String absenceString="None";
+	public Double absenceTemp=-100.0;
 	private List<ReportPOJO> reportList;
 	
 	private enum OperatorType{
@@ -166,13 +168,8 @@ public class WebAppController {
 			ingredientsNames.add(entry.getIngredientName());
 		}
 		
-		if (ingredientsNames.size()<IngredientRecipePOJO.maxIngredients) {
-			int ingredientNumber= ingredientsNames.size();
-			int i;
-			for (i=0; i<(IngredientRecipePOJO.maxIngredients-ingredientNumber); i++) {
-				ingredientsNames.add("None");
-			}
-		}
+		ingredientsNames=fillWithNone(ingredientsNames);
+		
 		return ingredientsNames;
 	}
 	
@@ -184,17 +181,95 @@ public class WebAppController {
 			ingredientsQuantities.add(entry.getQuantity());
 		}
 		
-		if (ingredientsQuantities.size()<IngredientRecipePOJO.maxIngredients) {
-			int ingredientNumber= ingredientsQuantities.size();
+		ingredientsQuantities=fillWithZeroes(ingredientsQuantities);
 		
-			int i;
-			for (i=0; i<(IngredientRecipePOJO.maxIngredients-ingredientNumber); i++) {
-				ingredientsQuantities.add(0.0);
-			}
-		}
 		return ingredientsQuantities;
 	}
+	
+	public List<String> fillWithNone(List<String> list) {
+		List<String> OutList=list;
+		if (OutList.size()<IngredientRecipePOJO.maxIngredients) {
+			int ingredientNumber= OutList.size();
+			int i;
+			for (i=0; i<(IngredientRecipePOJO.maxIngredients-ingredientNumber); i++) {
+				OutList.add(absenceString);
+			}
+		}
+		return OutList;
+	}
+	
+	public List<Double> fillWithZeroes(List<Double> list) {
+		List<Double> OutList=list;
+		if (OutList.size()<IngredientRecipePOJO.maxIngredients) {
+			int ingredientNumber= OutList.size();
+			int i;
+			for (i=0; i<(IngredientRecipePOJO.maxIngredients-ingredientNumber); i++) {
+				OutList.add(0.0);
+			}
+		}
+		return OutList;
+	}
+	
+	public String getVendingStatus(String id) {
+		VendingMachineInfo info=getVendingMachineInfo(id);
+		return info.getStatusString();
+	}
+	
+	public Double getVendingCurrentAmount(String id) {
+		VendingMachineInfo info=getVendingMachineInfo(id);
+		return info.getCurrentAmount();
+	}
+	
+	public List<Tank> getTanks(String id){
+		VendingMachineInfo info=getVendingMachineInfo(id);
+		List<Tank> tanks=info.getTankList();
+		return tanks;
+	}
+	
+	public List<String> getTanksNames(String id) {
+		List<Tank> tanks=getTanks(id);
+		List<String> tanksNames=new LinkedList<>();
+		
+		for (Tank entry: tanks) {
+			tanksNames.add(entry.getId().toString());
+		}
+		
+		tanksNames=fillWithNone(tanksNames);
+		
+		return tanksNames;
+	}
+	
+	public List<Double> getTanksLevels(String id) {
+		List<Tank> tanks=getTanks(id);
+		List<Double> tanksLevels=new LinkedList<>();
+		
+		for (Tank entry: tanks) {
+			tanksLevels.add(entry.getLevel());
+		}
+		
+		tanksLevels= fillWithZeroes(tanksLevels);
+		return tanksLevels;
+	}
+	
+	public List<Double> getTanksTemps(String id) {
+		List<Tank> tanks=getTanks(id);
+		List<Double> tanksTemps=new LinkedList<>();
+		
+		for (Tank entry: tanks) {
+			tanksTemps.add(entry.getTemperature());
+		}
+		
+		tanksTemps= fillWithZeroes(tanksTemps);
+		return tanksTemps;
+	}
+	
+	public void updateTanks(String vendingID, List<Double> updatedTanksTemps)  {
+		VendingMachineInfo info=getVendingMachineInfo(vendingID);
+		info.updateTanksTemp(updatedTanksTemps);
+	}
 
+	
+	
 	public List<ReportPOJO> getReportList() {
 		return reportList;
 	}

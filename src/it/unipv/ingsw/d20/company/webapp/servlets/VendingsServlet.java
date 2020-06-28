@@ -1,6 +1,8 @@
 package it.unipv.ingsw.d20.company.webapp.servlets;
 
 import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -49,8 +51,12 @@ public class VendingsServlet extends WebAppServlet {
 			}
 			else if (url.equals("/settings")) {
 			VendingPOJO vending=controller.getVendingMachine((req.getParameter("id")));
-			VendingMachineInfo temporaryInfo=controller.getVendingMachineInfo((req.getParameter("id")));
-			resp.getWriter().write(Rythm.render(handler.getPage(url), vending, temporaryInfo));
+			String status=controller.getVendingStatus((req.getParameter("id")));
+			Double currentAmount= controller.getVendingCurrentAmount((req.getParameter("id")));
+			List<String> tanksNames=controller.getTanksNames((req.getParameter("id")));
+			List<Double> tanksLevels=controller.getTanksLevels((req.getParameter("id")));
+			List<Double> tanksTemps=controller.getTanksTemps((req.getParameter("id")));
+			resp.getWriter().write(Rythm.render(handler.getPage(url), vending, status, currentAmount, tanksNames, tanksLevels, tanksTemps));
 			}
 			else if (url.equals("/report")) {
 				resp.getWriter().write(Rythm.render(handler.getPage(url), controller.getAllOperators()));
@@ -83,6 +89,19 @@ public class VendingsServlet extends WebAppServlet {
 			controller.removeReport(req.getParameter("vendingId"), req.getParameter("problem"));
 			resp.sendRedirect(getBasicUrl());
 		}
+		else if (req.getPathInfo().equals("/save_settings")) {
+			List<Double> tanksTemps=new LinkedList<>();
+			int i;
+			for (i=1; i<6; i++) {
+					double temp=Double.parseDouble(req.getParameter(String.valueOf(i)));
+					System.out.println(temp);
+					if (temp!=controller.absenceTemp) {
+						tanksTemps.add(temp);
+					}
+			}
+			controller.updateTanks(req.getParameter("id"), tanksTemps);
+		}
+		resp.sendRedirect(getBasicUrl());
 	}
 
 }

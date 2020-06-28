@@ -25,7 +25,7 @@
                 	</div>
                 	
                 	<div class="card-body">
-		            	<form method="POST" action="/d20/selection/vendings/send_report/?id=@(id)">
+		            	<form method="POST" action="/d20/selection/vendings/send_report?id=@(id)">
 	                
 	                        <div class="form-row">
 	                            <div class="name">Problem</div>
@@ -59,7 +59,7 @@
 	                                    <div class="rs-select2 js-select-simple select--no-search">
 	                                        <select name="operator" required>
 	                                            <option disabled="disabled" selected="selected" value="">Choose Operator</option>
-	                                            @for (<it.unipv.ingsw.d20.util.persistence.operator.OperatorPOJO> it: operators) {
+	                                            @for (it.unipv.ingsw.d20.util.persistence.operator.OperatorPOJO it: operators) {
 	                                           			 <option>@(it.getName())</option>	                                       
 	                                            }		                                            
 	                                        </select>		                                      	

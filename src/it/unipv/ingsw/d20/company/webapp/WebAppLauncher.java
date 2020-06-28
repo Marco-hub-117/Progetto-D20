@@ -40,8 +40,6 @@ public class WebAppLauncher {
        
        new ApplicationServer(8080, servletList).start();
        
-       System.out.println(controller.getAllVendingMachineInfo().get("IDN20200627163138").getStatus());
-       
     }
     
     /**

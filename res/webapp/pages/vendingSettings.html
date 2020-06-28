@@ -1,6 +1,10 @@
 @args() {
 	it.unipv.ingsw.d20.util.persistence.vending.VendingPOJO vending,
-	it.unipv.ingsw.d20.company.VendingMachineInfo temporaryInfo
+	String status,
+	Double currentAmount,
+	List<String> tanksNames,
+	List<String> tanksLevels,
+	List<String> tanksTemps
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -53,87 +57,96 @@
                			<div class="form-row">
                         	<div class="name">Status: </div>
                         	<div class="value">
-                            	<div class="nameBig">@(temporaryInfo.getStatus())</div>
+                            	<div class="nameBig">@(status)</div>
                         	</div>
                			</div>
                			
                			<div class="form-row">
                         	<div class="name">Current Amount: </div>
                         	<div class="value">
-                            	<div class="nameBig">@(temporaryInfo.getCurrentAmount())</div> 
+                            	<div class="nameBig">@(currentAmount) &#8364</div> 
                         	</div>
                			</div>
            
-              			<div class="form-row">                            						 		
-							<div class="table100">
-								<table>
-									<thead>											 
-										<tr class="table100-head">
-											<th class="column5">Tank</th>
-											<th class="column6">Level</th>
-											<th class="column7">Temperature</th>								
-										</tr>												 
-									</thead>
-									
-									<tbody>
-										<tr>
-											<!-- inserire -->
-											<td>primo</td> 
-											<td>secondo</td> 
-											<td>
-												<div class="box-spinner">
-													<input type="number" value="20">
-												</div>
-											</td>
-										</tr>
-
-										<tr>
-											<!-- inserire -->
-											<td>primo</td> 
-											<td>secondo</td> 
-											<td>
-												<div class="box-spinner">
-													<input type="number" value="20">
-										   		</div>
-											</td>													
-										</tr>
-									
-										<tr>
-											<!-- inserire -->
-											<td>primo</td> 
-											<td>secondo</td> 
-											<td>terzo</td>
-										</tr>
-
-										<tr>
-											<!-- inserire -->
-											<td>primo</td> 
-											<td>secondo</td> 
-											<td>terzo</td>
-										</tr>
-
-										<tr>
-											<!-- inserire -->
-											<td>primo</td> 
-											<td>secondo</td> 
-											<td>terzo</td>
-										</tr>												
-									</tbody>
-								</table>
-							</div>							
-						</div>
+           				<form method="POST" action="/d20/selection/vendings/save_settings?id=@(vending.getId())">
+	              			<div class="form-row">                            						 		
+								<div class="table100">
+									<table>
+										<thead>											 
+											<tr class="table100-head">
+												<th class="column5">Tank</th>
+												<th class="column6">Level</th>
+												<th class="column7">Temperature</th>								
+											</tr>												 
+										</thead>
+										
+										<tbody>
+											<tr>									
+												<td>@(tanksNames.get(0))</td> 
+												<td>@(tanksLevels.get(0))</td> 
+												<td>
+													<div class="box-spinner">
+														<input type="number" value=@(tanksTemps.get(0)) name="1" step="0.01">
+													</div>
+												</td>
+											</tr>
+	
+											<tr>
+												<td>@(tanksNames.get(1))</td> 
+												<td>@(tanksLevels.get(1))</td> 
+												<td>
+													<div class="box-spinner">
+														<input type="number" value=@(tanksTemps.get(1)) name="2" step="0.01">
+											   		</div>
+												</td>													
+											</tr>
+										
+											<tr>
+												<td>@(tanksNames.get(2))</td> 
+												<td>@(tanksLevels.get(2))</td> 
+												<td>
+													<div class="box-spinner">
+														<input type="number" value=@(tanksTemps.get(2)) name="3" step="0.01">
+											   		</div>
+												</td>													
+											</tr>
+	
+											<tr>
+												<td>@(tanksNames.get(3))</td> 
+												<td>@(tanksLevels.get(3))</td> 
+												<td>
+													<div class="box-spinner">
+														<input type="number" value=@(tanksTemps.get(3)) name="4" step="0.01">
+											   		</div>
+												</td>													
+											</tr>
+	
+											<tr>
+												<td>@(tanksNames.get(4))</td> 
+												<td>@(tanksLevels.get(4))</td> 
+												<td>
+													<div class="box-spinner">
+														<input type="number" value=@(tanksTemps.get(4)) name="5" step="0.01">
+											   		</div>
+												</td>													
+											</tr>											
+										</tbody>
+									</table>
+								</div>							
+							</div>
+							<button class="btn btn--radius-2 btn--blue" type="submit">Save</button>  
+						</form>
 						<br></br>
 						<div class="text-center">
-							<form method="GET" action="/d20/selection/vendings/report/?id=@(vending.getId())"> 
+							<form method="GET" action="/d20/selection/vendings/report?id=@(vending.getId())"> 
                    				<button class="btn btn--radius-2 btn--red" type="submit">Report a Problem</button>                   				
                    			</form>
+                   			<br></br>
+                   			<form method="GET" action="/d20/selection/vendings/"> 
+                   				<button class="btn btn--radius-2 btn--neutral" type="submit">Go back</button>                   				
+                   			</form>
                   		</div>
-               			<br></br>                    
-                        <div class="text-center">
-                        	<form method="GET" action="/d20/selection/vendings/">							
-								<button class="btn btn--radius-2 btn--neutral" type="submit">Done</button>
-							</form>
-                        </div>            		 	            		         		 		                    
+               			<br></br>                        		 	            		         		 		                    
       				</div>	
     			</div>
   			</div>
