@@ -15,15 +15,38 @@ import org.eclipse.jetty.servlet.ServletHolder;
  */
 public class ApplicationServer {
 
+	/**
+	 * Porta a cui il Server si mette in ascolto.
+	 *
+	 */
     private int port;
+    
+    /**
+     * Lista di Servlet per gestire le richieste fatte nell'applicazione web.
+     *
+     */
     private List<Servlet> servletList;
+    
+    /**
+     * Istanza di Server che gestisce l'applicazione web.
+     *
+     */
     private Server server;
 
+    /**
+   	 * Il costruttore imposta gli attributi della classe.
+   	 * @param port Porta su cui si avvia il Server
+   	 * @param servletList Lista di Servlet necessarie per gestire le richieste
+   	 */
     public ApplicationServer(int port, List<Servlet> servletList) {
         this.port = port;
         this.servletList = servletList;
     }
-
+    
+    /**
+	 * Crea un'istanza di Server e vi associa un ServletContextHandler, che presenta l'elenco delle Servlet utilizzate.
+	 * Avvia il Server che gestisce l'applicazione web.
+	 */
     public void start() throws Exception {
         server = new Server(port);
         ServletContextHandler handler = new ServletContextHandler();
@@ -40,11 +63,18 @@ public class ApplicationServer {
         server.setHandler(handler);
         server.start();
     }
-
+    
+    /**
+	 * Arresta il Server che gestisce l'applicazione web.
+	 */
     public void stop() throws Exception {
         server.stop();
     }
     
+    /**
+	 * Aggiunge al ServletContextHandler le Servlet per gestire lo stile grafico delle pagine.
+	 * @param handler ServletContextHandler che contiene l'elenco di Servlet
+	 */
     private void addStaticFileServing(ServletContextHandler handler) {
         ServletHolder holderPwd = new ServletHolder("default", new DefaultServlet());
         holderPwd.setInitParameter("resourceBase", "./res/webapp/style");

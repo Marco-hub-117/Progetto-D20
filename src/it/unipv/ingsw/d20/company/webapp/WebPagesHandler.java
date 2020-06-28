@@ -50,6 +50,7 @@ public class WebPagesHandler {
     }
    
     /**
+     * Permette di recuperare la pagnia HTML da visualizzare a partire da una stringa.
 	 * @param url parte finale dell'url di una richiesta HTTP
 	 * @return percorso relativo del file HTML da visualizzare
 	 */
@@ -63,6 +64,7 @@ public class WebPagesHandler {
 	}
     
     /**
+     * Taglia l'url passato come parametro per poterne gestire solo l'ultima parte.
 	 * @param url url relativo a una richiesta HTTP
 	 * @return parte finale dell'url di una richiesta HTTP
 	 */
