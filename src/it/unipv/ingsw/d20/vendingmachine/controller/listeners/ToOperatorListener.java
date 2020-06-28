@@ -36,7 +36,7 @@ public class ToOperatorListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		opLogin = new OperatorLoginFrame(); //apre il frame per l'inserimento della chiave
-		opLogin.getEnterButton().addActionListener(al -> {
+		opLogin.getEnterButton().addActionListener(al -> { //aggiunge il listener al bottone del frame appena aperto
 			if (vm.isCorrectId(opLogin.getInsertedKey())) { //controlla che la chiave inserita corrisponda all'id della macchina
 				opLogin.dispose();
 				openOperatorGui(); //se è vero entra in modalità operatore

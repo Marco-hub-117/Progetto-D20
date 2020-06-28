@@ -5,10 +5,16 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import it.unipv.ingsw.d20.util.Preferences;
+
+/**
+ * Pannello che contiene il catalogo della macchinetta e il bottone
+ * per poter entrare in modalità operatore.
+ *
+ */
 @SuppressWarnings("serial")
 public class CatalogPanel extends JPanel {
 	
@@ -17,22 +23,28 @@ public class CatalogPanel extends JPanel {
 	
 	public CatalogPanel() {
 		setLayout(new BorderLayout());
+		setBackground(Color.DARK_GRAY);
 		
 		catalogTextArea = new CustomTextArea();
 		catalogTextArea.setBackground(new Color(1, 1, 1, (float) 0.01));
 		catalogTextArea.setFont(catalogTextArea.getFont().deriveFont(Font.BOLD, 18));
+		catalogTextArea.setForeground(Color.WHITE);
 		catalogTextArea.setEditable(false);
 		
 		
 		JPanel operatorPanel = new JPanel();
-		operatorPanel.setLayout(new GridLayout(1, 9)); //i pannelli vuoti sono utili solo alla grafica
+		operatorPanel.setLayout(new GridLayout(1, 9));
+		operatorPanel.setBackground(Color.DARK_GRAY);
 		
-		operatorButton = new JButton(new ImageIcon("res/img/gearicon.png"));
+		operatorButton = new JButton(Preferences.getGearIcon());
 		operatorButton.setOpaque(false); operatorButton.setContentAreaFilled(false); operatorButton.setBorderPainted(false); operatorButton.setFocusPainted(false);
 		
 		operatorPanel.add(operatorButton); 
-		operatorPanel.add(new JPanel()); operatorPanel.add(new JPanel()); operatorPanel.add(new JPanel()); operatorPanel.add(new JPanel());
-		operatorPanel.add(new JPanel()); operatorPanel.add(new JPanel()); operatorPanel.add(new JPanel()); operatorPanel.add(new JPanel());
+		for (int i = 0; i < 8; i++) {  //creo 8 pannelli grigi vuoti, utili per la grafica
+			JPanel emptyPanel = new JPanel();
+			emptyPanel.setBackground(Color.DARK_GRAY);
+			operatorPanel.add(emptyPanel);
+		}
 		
 		
 		add(catalogTextArea, BorderLayout.CENTER); add(operatorPanel, BorderLayout.SOUTH);

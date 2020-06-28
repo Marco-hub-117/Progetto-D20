@@ -6,7 +6,13 @@ package it.unipv.ingsw.d20.util;
  */
 public class Paths {
 	
+	private Paths() {}
+	
 	public static final String ASSETS_FOLDER = "assets/";
+	
+	public static final String RES_FOLDER = "res/";
+	
+	public static final String IMG_FOLDER = "img/";
 	
 	
 	public static final String BEVERAGE_CATALOG = "beverageCatalog";
@@ -20,5 +26,8 @@ public class Paths {
 	public static final String VENDING_TYPE = "vendingType";
 
 	public static final String SALE_LIST = "saleList";
+	
+	
+	public static final String GEAR_ICON = "gearicon.png";
 	
 }

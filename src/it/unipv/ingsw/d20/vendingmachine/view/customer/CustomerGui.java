@@ -1,5 +1,6 @@
 package it.unipv.ingsw.d20.vendingmachine.view.customer;
 
+import java.awt.Color;
 import java.awt.Container;
 import java.awt.GridLayout;
 
