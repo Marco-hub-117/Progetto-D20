@@ -8,8 +8,8 @@ public class KeyRdbDao implements IKeyDao{
 	
 	private RdbOperations op;
 	
-	public KeyRdbDao () {
-		op = new RdbOperations();
+	public KeyRdbDao (RdbOperations op) {
+		this.op = op;
 	}
 
 	@Override

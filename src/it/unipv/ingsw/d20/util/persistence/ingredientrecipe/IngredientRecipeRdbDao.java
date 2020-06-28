@@ -8,8 +8,8 @@ public class IngredientRecipeRdbDao implements IIngredientRecipeDao{
 
 	private RdbOperations op;
 	
-	public IngredientRecipeRdbDao() {
-		op = new RdbOperations();
+	public IngredientRecipeRdbDao(RdbOperations op) {
+		this.op = op;
 	}
 	
 	@Override

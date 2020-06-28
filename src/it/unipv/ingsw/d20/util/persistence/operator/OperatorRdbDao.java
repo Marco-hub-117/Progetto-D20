@@ -13,8 +13,8 @@ public class OperatorRdbDao implements IOperatorDao{
 	
 	private RdbOperations op;
 	
-	public OperatorRdbDao() {
-		op = new RdbOperations();
+	public OperatorRdbDao(RdbOperations op) {
+		this.op = op;
 	}
 
 	@Override

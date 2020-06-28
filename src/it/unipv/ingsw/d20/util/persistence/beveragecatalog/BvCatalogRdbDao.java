@@ -12,8 +12,8 @@ public class BvCatalogRdbDao implements IBvCatalogDao {
 	
 	private RdbOperations op;
 	
-	public BvCatalogRdbDao() {
-		op = new RdbOperations();
+	public BvCatalogRdbDao(RdbOperations op) {
+		this.op = op;
 	}
 
 	@Override

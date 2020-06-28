@@ -18,7 +18,7 @@ import it.unipv.ingsw.d20.util.persistence.vending.VendingPOJO;
 /**
  * Questa classe si occupa della gestione delle macchinette nel loro insieme: ci riesce
  * tramite un server che accetta connessioni TCP dalle macchinette e tramite una webapp
- * che utilizzano gli operatori da remoto.
+ * utilizzata dagli operatori da remoto.
  *
  */
 public class Company {
@@ -57,7 +57,7 @@ public class Company {
         }
         
         Timer timer = new Timer();																   
-		timer.schedule(new RefreshVendingListStatus(), new Date(), TimeUnit.MINUTES.toMillis(10)); //ogni 10 minuti aggiorna lo status nel db di tutte le vending machine
+		timer.schedule(new RefreshVendingListStatus(), new Date(), TimeUnit.MINUTES.toMillis(10)); //ogni 10 minuti aggiorna lo status di tutte le vending machine
 	}
 	
 	/*public VendingMachine selectVendingMachine(String id) {

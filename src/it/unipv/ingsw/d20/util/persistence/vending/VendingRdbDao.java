@@ -13,8 +13,8 @@ public class VendingRdbDao implements IVendingDao{
 
 	private RdbOperations op;
 	
-	public VendingRdbDao() {
-		op = new RdbOperations();
+	public VendingRdbDao(RdbOperations op) {
+		this.op = op;
 	}
 	
 	@Override
