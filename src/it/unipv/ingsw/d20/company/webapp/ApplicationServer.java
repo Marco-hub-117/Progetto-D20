@@ -1,10 +1,8 @@
 package it.unipv.ingsw.d20.company.webapp;
 
-import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.Servlet;
-import javax.servlet.ServletException;
 
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.DefaultServlet;

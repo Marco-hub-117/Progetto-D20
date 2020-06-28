@@ -1,6 +1,5 @@
 package it.unipv.ingsw.d20.company;
 
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;

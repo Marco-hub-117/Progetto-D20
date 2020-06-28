@@ -42,7 +42,7 @@ public class KeyHandler {
 		PersistenceFacade pf = PersistenceFacade.getInstance();
 		IKeyDao kDao = pf.getKeyDao();
 		ArrayList<KeyPOJO> keyList = kDao.getAllKeys();
-		int maxIndex = (int) 4/3 * keyList.size();
+		int maxIndex = (int) 2 * keyList.size();
 		
 		Random rand = new Random();
 		int index;
