@@ -9,11 +9,21 @@ import it.unipv.ingsw.d20.vendingmachine.model.VendingMachineStatus;
 import it.unipv.ingsw.d20.vendingmachine.view.customer.CustomerGui;
 import it.unipv.ingsw.d20.vendingmachine.view.operator.OperatorGui;
 
+/**
+ * Listener del tasto che permette di passare dalla modalità operatore 
+ * alla modalità cliente.
+ *
+ */
 public class ToCustomerListener implements ActionListener{
 
 	private VendingMachine vm;
 	private OperatorGui gui;
 	
+	/**
+	 * Istanzia la vending machine e la gui.
+	 * @param vm istanza di vending machine
+	 * @param operatorGui gui dell'operatore
+	 */
 	public ToCustomerListener(VendingMachine vm, OperatorGui gui) {
 		this.vm = vm;
 		this.gui = gui;

@@ -66,7 +66,7 @@ public class Controller {
 	}
 
 	private void addCashListener() {
-		for (CustomerButton button : userGui.getCashButtons()) { //aggiunge i listener ai pulsanti dei soldi nell'interfaccia cliente
+		for (CustomerButton button : userGui.getCashButtons()) { //aggiunge i listener ai pulsanti per l'inserimento di monete nell'interfaccia cliente
 			button.addActionListener(new CoinListener(button.getValue(), vm, userGui));
 		}
 	}
@@ -86,7 +86,7 @@ public class Controller {
 	}
 
 	private void setTankInfo() { //imposta il nome dei tank e i livelli attuali
-		HashMap<Ingredients,Double> tankLevels=new HashMap<Ingredients, Double>();
+		HashMap<Ingredients, Double> tankLevels = new HashMap<Ingredients, Double>();
 		tankLevels=vm.getTanksLevels();
 		int k=0;
 		for(Map.Entry<Ingredients, Double> i : tankLevels.entrySet()) {
@@ -100,7 +100,7 @@ public class Controller {
 		tankButton = opGui.getButtons();
 
 		for(int i = 0; i < vm.getTankNumber(); i++) {
-			tankButton[i].addActionListener(new TankListener(tankButton[i].getPos(), vm, opGui));
+			tankButton[i].addActionListener(new TankListener(tankButton[i].getPosition(), vm, opGui));
 		}
 	}
 
