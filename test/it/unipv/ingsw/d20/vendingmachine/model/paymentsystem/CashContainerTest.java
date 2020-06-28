@@ -5,7 +5,10 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.InsufficientCashForRestException;
-
+/**
+ * Test JUnit 5 sulla classe CashCointainer
+ * 
+ * */
 class CashContainerTest {
 	int a=10;
 	int b=10;
