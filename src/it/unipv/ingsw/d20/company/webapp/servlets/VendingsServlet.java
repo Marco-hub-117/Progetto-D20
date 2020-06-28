@@ -50,16 +50,16 @@ public class VendingsServlet extends WebAppServlet {
 				resp.getWriter().write(Rythm.render(handler.getPage(url), controller.getAllVendingMachines()));
 			}
 			else if (url.equals("/settings")) {
-			VendingPOJO vending=controller.getVendingMachine((req.getParameter("id")));
-			String status=controller.getVendingStatus((req.getParameter("id")));
-			Double currentAmount= controller.getVendingCurrentAmount((req.getParameter("id")));
-			List<String> tanksNames=controller.getTanksNames((req.getParameter("id")));
-			List<Double> tanksLevels=controller.getTanksLevels((req.getParameter("id")));
-			List<Double> tanksTemps=controller.getTanksTemps((req.getParameter("id")));
-			resp.getWriter().write(Rythm.render(handler.getPage(url), vending, status, currentAmount, tanksNames, tanksLevels, tanksTemps));
+				VendingPOJO vending=controller.getVendingMachine((req.getParameter("id")));
+				String status=controller.getVendingStatus((req.getParameter("id")));
+				Double currentAmount= controller.getVendingCurrentAmount((req.getParameter("id")));
+				List<String> tanksNames=controller.getTanksNames((req.getParameter("id")));
+				List<Double> tanksLevels=controller.getTanksLevels((req.getParameter("id")));
+				List<Double> tanksTemps=controller.getTanksTemps((req.getParameter("id")));
+				resp.getWriter().write(Rythm.render(handler.getPage(url), vending, status, currentAmount, tanksNames, tanksLevels, tanksTemps));
 			}
 			else if (url.equals("/report")) {
-				System.out.println(req.getParameter("id"));
+				
 				resp.getWriter().write(Rythm.render(handler.getPage(url), controller.getAllOperators(), req.getParameter("id")));
 			}
 			else if (url.equals("/pending_reports")) {
@@ -94,11 +94,11 @@ public class VendingsServlet extends WebAppServlet {
 			List<Double> tanksTemps=new LinkedList<>();
 			int i;
 			for (i=1; i<6; i++) {
-					double temp=Double.parseDouble(req.getParameter(String.valueOf(i)));
-					System.out.println(temp);
-					if (temp!=controller.absenceTemp) {
-						tanksTemps.add(temp);
-					}
+				double temp=Double.parseDouble(req.getParameter(String.valueOf(i)));
+				System.out.println(temp);
+				if (temp!=controller.absenceTemp) {
+					tanksTemps.add(temp);
+				}
 			}
 			controller.updateTanks(req.getParameter("id"), tanksTemps);
 		}
