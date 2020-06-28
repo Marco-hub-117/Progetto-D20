@@ -5,14 +5,14 @@ import javax.swing.JButton;
 @SuppressWarnings("serial")
 public class OperatorButton extends JButton {
 
-	private int pos;
+	private int position;
 	private double value;
 	private String tankId;
 	
-	public OperatorButton(int pos, String text, String tankId) {
+	public OperatorButton(int position, String text, String tankId) {
 		super(text);
 
-		this.pos = pos; 
+		this.position = position; 
 		this.tankId = tankId;
 	}
 
@@ -20,16 +20,16 @@ public class OperatorButton extends JButton {
 		return value;
 	}
 
-	public int getPos() {
-		return pos;
+	public int getPosition() {
+		return position;
 	}
 
 	public String getTankId() {
 		return tankId;
 	}
 	
-	public void setIdTank(String idTank) {
-		this.tankId = idTank;
+	public void setIdTank(String tankId) {
+		this.tankId = tankId;
 	}
 	
 }

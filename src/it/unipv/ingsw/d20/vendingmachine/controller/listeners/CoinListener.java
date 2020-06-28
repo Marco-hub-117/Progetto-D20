@@ -48,6 +48,7 @@ public class CoinListener implements ActionListener {
 		} else { //altrimenti inserisce una moneta
 			vm.insertCoin(this.value);
 		}
+		
 		//aggiorna la grafica solo se non è stato inserito un codice
 		if (gui.getDisplay().startsWith("E")) {
 			double credit = vm.getCredit();

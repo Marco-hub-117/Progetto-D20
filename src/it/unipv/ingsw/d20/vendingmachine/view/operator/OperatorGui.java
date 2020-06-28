@@ -45,8 +45,8 @@ public class OperatorGui extends JFrame {
 		return operatorPanel.getRefillTankButtons();
 	}
 	
-	public void setElements(String name,String level, int pos) {
-		operatorPanel.setElements(name, level, pos);
+	public void setElements(String name, String level, int position) {
+		operatorPanel.setElements(name, level, position);
 	}
 	
 	public JButton getWithdrawCashButton() {
