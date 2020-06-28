@@ -30,18 +30,14 @@ public class CodeListener implements ActionListener {
 			gui.setEnabled(false);
 			try {
 				vm.insertCode(gui.getDisplay());
-			} catch (InsufficientCreditException e) {
-				JOptionPane.showMessageDialog(null, e.getMessage());
-			} catch (NonExistentCodeException e) {
-				JOptionPane.showMessageDialog(null, e.getMessage());
-			} catch (InsufficientIngredientsException e) {
+			} catch (InsufficientCreditException | NonExistentCodeException | InsufficientIngredientsException e) {
 				JOptionPane.showMessageDialog(null, e.getMessage());
 			} finally {
 				double credit = vm.getCredit();
 				String creditToString = String.format("%.2f", credit);
 				gui.setDisplay("E" + creditToString);
+				gui.setEnabled(true);
 			}
-			gui.setEnabled(true);
 		}
 		else if (intValue == -1) { //Canc button
 			StringBuilder sbDisp = new StringBuilder(gui.getDisplay());
