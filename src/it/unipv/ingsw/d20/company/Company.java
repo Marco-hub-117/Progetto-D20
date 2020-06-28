@@ -15,8 +15,6 @@ import it.unipv.ingsw.d20.company.net.CompanyServer;
 import it.unipv.ingsw.d20.util.persistence.PersistenceFacade;
 import it.unipv.ingsw.d20.util.persistence.vending.IVendingDao;
 import it.unipv.ingsw.d20.util.persistence.vending.VendingPOJO;
-import it.unipv.ingsw.d20.vendingmachine.model.VendingMachine;
-import it.unipv.ingsw.d20.vendingmachine.model.exceptions.AddingOperatorException;
 
 /**
  * Questa classe si occupa della gestione delle macchinette nel loro insieme: ci riesce
@@ -63,8 +61,8 @@ public class Company {
         	vendingMachineInfoList.put(vp.getId(), new VendingMachineInfo());
         }
         
-        Timer timer = new Timer();																   //ogni 10 minuti aggiorna lo status nel db di tutte le vending 
-		timer.schedule(new RefreshVendingListStatus(), new Date(), TimeUnit.MINUTES.toMillis(10)); //machine, se necessario (se non ha ricevuto update) setta OFF)
+        Timer timer = new Timer();																   
+		timer.schedule(new RefreshVendingListStatus(), new Date(), TimeUnit.MINUTES.toMillis(10)); //ogni 10 minuti aggiorna lo status nel db di tutte le vending machine
 	}
 	
 	/*public VendingMachine selectVendingMachine(String id) {
@@ -82,7 +80,7 @@ public class Company {
 	
 	/**
 	 * Associa un nuovo ID ad una macchinetta che è stata accesa per la prima
-	 * volta e la registra nel data base.
+	 * volta e la registra nel database.
 	 * @return ID della nuova macchinetta
 	 */
 	public static String registerNewVendingMachine(String type) {
@@ -115,13 +113,13 @@ public class Company {
 	 * @return stringa con la posizione generata
 	 */
 	private static String generateNewLocation() {
-		int i=(int)((Math.random())*10);
-		int j=(int)((Math.random())*10);
-		String city=(Cities.values())[i].toString();
-		String street=(Streets.values())[j].toString();
-		int number=(int)((Math.random())*100);
+		int i = (int) (Math.random() * 10);
+		int j = (int) (Math.random() * 10);
+		String city = Cities.values()[i].toString();
+		String street = Streets.values()[j].toString();
+		int number = (int) (Math.random() * 100);
 	
-		String location = city+ ", Via " + street+ " "+ number ;
+		String location = city + ", Via " + street + " " + number ;
 		return location; 
 	}
 	
