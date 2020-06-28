@@ -12,17 +12,19 @@ import it.unipv.ingsw.d20.util.persistence.PersistenceFacade;
 public class CompanyLauncher {
 	
 	public static void main(String[] args) throws DBConnectionFailedException {
-		new Company("D20 Project");
+		try {
+			new Company("D20 Project");
 		
-		//controllo se la connessione al DB è attiva
+		/*//controllo se la connessione al DB è attiva
 		if (!PersistenceFacade.getInstance().testConnection()) {
 			throw new DBConnectionFailedException();
-		} //NON FUNZIONANTE
+		} //NON FUNZIONANTE*/
 		
-		try {
+		
 			WebAppLauncher.start();
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println("Connection error.");
+			System.exit(-1);
 		}
 	}
 
