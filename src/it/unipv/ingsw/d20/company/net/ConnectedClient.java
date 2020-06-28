@@ -27,9 +27,9 @@ public class ConnectedClient extends Thread {
 	}
 	
 	/**
-	 * Riceve una stringa dalla macchinetta e la gestisce. Se il messaggio è vuoto
-	 * significa che la macchinetta è stata accesa per la prima volta, altrimenti
-	 * è solo una notifica del suo status.
+	 * Riceve una stringa dalla macchinetta e la gestisce. Se il messaggio coontiene solo una cifra
+	 * significa che la macchinetta è stata accesa per la prima volta e invia il suo tipo per essere registrata, 
+	 * altrimenti notifica il suo status alla company.
 	 */
 	@Override
 	public void run() {
@@ -37,20 +37,15 @@ public class ConnectedClient extends Thread {
 			BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
 			
-			/*
-			 * Se la stringa ricevuta dalla vending machine (client) è vuota, significa
-			 * che è la prima volta che si connette e bisogna aggiungerla al data base,
-			 * facendole poi sapere l'ID che le è stato assegnato.
-			 * Se la stringa ricevuta contiene l'ID della vending machine e altre informazioni, verrà utilizzata
-			 * come notifica per settarne lo status sul database.
-			 */
 			String vmMessage = in.readLine();
-			String[] msgParts = vmMessage.split("/");
+			if (vmMessage != null) {
+				String[] msgParts = vmMessage.split("/");
 			
-			if (vmMessage.length() == 1) {
-				out.println(Company.registerNewVendingMachine(vmMessage)); //registra la nuova vending e le restituisce il suo ID
-			} else if (msgParts.length == 4) {
-				Company.vendingMachineInfoList.replace(msgParts[0], new VendingMachineInfo(msgParts[1], msgParts[2], msgParts[3])); //aggiorna l'ora dell'ultimo update della vm che ha mandato il messaggio
+				if (vmMessage.length() == 1) {
+					out.println(Company.registerNewVendingMachine(vmMessage)); //registra la nuova vending e le restituisce il suo ID
+				} else if (msgParts.length == 4) {
+					Company.vendingMachineInfoList.replace(msgParts[0], new VendingMachineInfo(msgParts[1], msgParts[2], msgParts[3])); //aggiorna l'ora dell'ultimo update della vm che ha mandato il messaggio
+				}
 			}
         
 			socket.close();
