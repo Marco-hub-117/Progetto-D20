@@ -10,8 +10,8 @@ import it.unipv.ingsw.d20.vendingmachine.view.customer.CustomerGui;
 import it.unipv.ingsw.d20.vendingmachine.view.operator.OperatorGui;
 
 /**
- * Listener del tasto che permette di passare dalla modalità operatore 
- * alla modalità cliente.
+ * Listener del tasto che permette di passare dalla modalita' operatore 
+ * alla modalita' cliente.
  *
  */
 public class ToCustomerListener implements ActionListener{

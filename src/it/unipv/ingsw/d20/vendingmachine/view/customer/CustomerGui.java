@@ -8,8 +8,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 /**
- * GUI dedicata al cliente. Nella parte sinistra c'è un pannello contenente il
- * catalogo (e un tasto per l'accesso alla modalità operatore), nella parte destra
+ * GUI dedicata al cliente. Nella parte sinistra c'e' un pannello contenente il
+ * catalogo (e un tasto per l'accesso alla modalita' operatore), nella parte destra
  * tutti i possibili pulsanti che interessano il cliente (tastierino numerico e
  * controllo del credito).
  *

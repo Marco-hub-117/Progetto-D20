@@ -60,37 +60,44 @@ public class Controller {
 		opGui.addWindowListener(new WindowClosingListener(vm));
 	}
 
-	private void setCatalog() { //imposta la TextArea per visualizzare il catalogo della vending machine
+	private void setCatalog() { 
+		//imposta la TextArea per visualizzare il catalogo della vending machine
 		userGui.setCatalog(vm.getCatalog().toStringGui());
 	}
 
 	private void addCodeListener() {
-		for (CustomerButton button : userGui.getCodeButtons()) { //aggiunge i listener ai pulsanti per selezionare la bevanda nell'interfaccia cliente
+		//aggiunge i listener ai pulsanti per selezionare la bevanda nell'interfaccia cliente
+		for (CustomerButton button : userGui.getCodeButtons()) { 
 			button.addActionListener(new CodeListener(button.getValue(), vm, userGui)); 
 		}
 	}
 
 	private void addCashListener() {
-		for (CustomerButton button : userGui.getCashButtons()) { //aggiunge i listener ai pulsanti per l'inserimento di monete nell'interfaccia cliente
+		//aggiunge i listener ai pulsanti per l'inserimento di monete nell'interfaccia cliente
+		for (CustomerButton button : userGui.getCashButtons()) { 
 			button.addActionListener(new CoinListener(button.getValue(), vm, userGui));
 		}
 	}
 
-	private void addKeyListener() { //aggiunge i listener ai pulsanti per la chiavetta nell'interfaccia cliente
+	private void addKeyListener() { 
+		//aggiunge i listener ai pulsanti per la chiavetta nell'interfaccia cliente
 		userGui.getInsertKeyButton().addActionListener(new KeyListener(true, vm, userGui));
 		userGui.getEjectKeyButton().addActionListener(new KeyListener(false, vm, userGui));
 		userGui.getEjectKeyButton().setEnabled(false); //disabilito preventivamente il pulsante per estrarre una chiavetta
 	}
 
-	private void addToOperatorListener() { //aggiunge il listener al pulsante per entrare nella modalità operatore
+	private void addToOperatorListener() { 
+		//aggiunge il listener al pulsante per entrare nella modalità operatore
 		userGui.getOperatorButton().addActionListener(new ToOperatorListener(vm, userGui));
 	}
 
-	private void addToCustomerListener() { //aggiunge il listener al pulsante per entrare nella modalità cliente
+	private void addToCustomerListener() { 
+		//aggiunge il listener al pulsante per entrare nella modalità cliente
 		opGui.getExitButton().addActionListener(new ToCustomerListener(vm, opGui));
 	}
 
-	private void setTankInfo() { //imposta il nome dei tank e i livelli attuali
+	private void setTankInfo() { 
+		//imposta il nome dei tank e i livelli attuali
 		HashMap<Ingredients,Double> tankLevels = new HashMap<Ingredients, Double>();
 		tankLevels = vm.getTanksLevels();
 		int count = 0;
@@ -104,7 +111,8 @@ public class Controller {
 		}
 	}
 
-	private void addTankListener() { //aggiunge i listener ai pulsanti dell'interfaccia Operatore
+	private void addTankListener() { 
+		//aggiunge i listener ai pulsanti dell'interfaccia Operatore
 		OperatorButton[] tankButton = new OperatorButton[vm.getTankNumber()];
 		tankButton = opGui.getButtons();
 
@@ -113,7 +121,7 @@ public class Controller {
 		}
 	}
 
-	private void addWithdrawCashListener() { //c'è un bug, i soldi non vengono effettivamente prelevati
+	private void addWithdrawCashListener() {
 		opGui.getWithdrawCashButton().addActionListener(al -> {
 			try {
 				double buffAmount = vm.withdrawAmount();

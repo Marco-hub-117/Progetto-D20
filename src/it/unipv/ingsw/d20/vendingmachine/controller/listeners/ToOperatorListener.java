@@ -11,9 +11,9 @@ import it.unipv.ingsw.d20.vendingmachine.view.operator.OperatorGui;
 import it.unipv.ingsw.d20.vendingmachine.view.operator.OperatorLoginFrame;
 
 /**
- * Listener del tasto che permette di passare alla modalità operatore: alla pressione,
- * prima viene richiesta la chiave della macchinetta, dopodiché, se giusta, si passa
- * alla modalità operatore vera e propria.
+ * Listener del tasto che permette di passare alla modalita' operatore: alla pressione,
+ * prima viene richiesta la chiave della macchinetta, dopodiche', se giusta, si passa
+ * alla modalita' operatore vera e propria.
  *
  */
 public class ToOperatorListener implements ActionListener {
@@ -46,10 +46,6 @@ public class ToOperatorListener implements ActionListener {
 		});		
 	}
 	
-	/**
-	 * Metodo che esegue effettivamente il passaggio alla modalità operatore, dopo che è
-	 * stata controllata la correttezza della chiave inserita.
-	 */
 	private void openOperatorGui() {
 		gui.dispose(); //chiudo l'interfaccia del cliente
 		OperatorGui gui = new OperatorGui(vm.getTankNumber()); //istanzio una nuova interfaccia dell'operatore

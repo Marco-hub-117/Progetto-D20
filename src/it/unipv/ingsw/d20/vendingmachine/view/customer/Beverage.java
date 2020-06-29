@@ -26,7 +26,11 @@ public class Beverage extends Thread {
     private JButton pickUpBeverageButton;
     
     private String beverageName;
-    
+    /**
+     * Costruttore di Beverage
+     * @param bevName nome della bevanda
+     * 
+     */
     public Beverage(String bevName) {
     	beverageName = bevName;
     }

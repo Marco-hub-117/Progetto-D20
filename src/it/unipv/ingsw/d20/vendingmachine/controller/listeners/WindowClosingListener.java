@@ -27,7 +27,7 @@ public class WindowClosingListener extends WindowAdapter {
 	
 	/**
 	 * Imposta lo status della macchinetta su OFF e notifica la company
-	 * che è stato uno spegnimento regolare.
+	 * che e' stato uno spegnimento regolare.
 	 */
 	public void windowClosing(WindowEvent e) {
 		vm.setStatus(VendingMachineStatus.OFF);
