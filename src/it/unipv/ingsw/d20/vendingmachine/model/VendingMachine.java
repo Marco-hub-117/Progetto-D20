@@ -137,9 +137,6 @@ public class VendingMachine {
 		saveTankIntoLocal();
 		rebuildInfo();
 		
-		Beverage bev = new Beverage(); bev.start(); //eroga la bevanda
-		System.out.println("Erogato " + bvDesc.getName() + " correttamente");
-		
 		credit = sale.getRest();
 		
 		saveSaleIntoLocal(sale);

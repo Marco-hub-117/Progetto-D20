@@ -9,6 +9,7 @@ import it.unipv.ingsw.d20.vendingmachine.model.VendingMachine;
 import it.unipv.ingsw.d20.vendingmachine.model.exceptions.InsufficientIngredientsException;
 import it.unipv.ingsw.d20.vendingmachine.model.exceptions.NonExistentCodeException;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.InsufficientCreditException;
+import it.unipv.ingsw.d20.vendingmachine.view.customer.Beverage;
 import it.unipv.ingsw.d20.vendingmachine.view.customer.CustomerGui;
 
 /**
@@ -41,6 +42,9 @@ public class CodeListener implements ActionListener {
 			gui.setEnabled(false); //disabilita la gui durante l'erogazione
 			try {
 				vm.insertCode(gui.getDisplay()); 
+				
+				Beverage bev = new Beverage(); bev.start(); //eroga la bevanda
+				System.out.println("Erogazione avvenuta con successo.");
 			} catch (InsufficientCreditException | NonExistentCodeException | InsufficientIngredientsException e) {
 				JOptionPane.showMessageDialog(null, e.getMessage());
 			} finally {
