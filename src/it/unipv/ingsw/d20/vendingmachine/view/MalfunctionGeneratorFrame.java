@@ -1,4 +1,4 @@
-package it.unipv.ingsw.d20.vendingmachine;
+package it.unipv.ingsw.d20.vendingmachine.view;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
@@ -24,7 +24,7 @@ public class MalfunctionGeneratorFrame extends JFrame {
 		
 		JButton abortBtn = new JButton("Abort");
 		abortBtn.setFont(abortBtn.getFont().deriveFont(Font.BOLD, 42));
-		abortBtn.addActionListener(al -> { System.exit(-1); });
+		abortBtn.addActionListener(al -> System.exit(-1));
 		panel.add(abortBtn, BorderLayout.CENTER);
 		
 		setVisible(true);
