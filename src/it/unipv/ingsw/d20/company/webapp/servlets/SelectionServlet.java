@@ -43,7 +43,7 @@ public class SelectionServlet extends WebAppServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String url=handler.trimUrl(req.getRequestURI());
 		
-		if (controller.getLoggedOperator()!=null && controller.isLimited()){
+		if (controller.getLoggedOperator()!=null && controller.operatorIsLimited()){
 			url=alternativeUrl;
 		}
 		
