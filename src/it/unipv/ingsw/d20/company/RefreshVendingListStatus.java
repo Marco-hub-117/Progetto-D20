@@ -10,15 +10,15 @@ import java.util.TimerTask;
 
 /**
  * Classe che contiene un task da eseguire periodicamente che si occupa
- * di controllare che tutte le macchinette siano correttamente funzionanti.
+ * di controllare che tutti i distributori siano correttamente funzionanti.
  *
  */
 public class RefreshVendingListStatus extends TimerTask {
 
 	/**
 	 * Questo metodo si occupa di controllare la quantità di tempo passata dall'ultimo
-	 * update di ciascuna macchinetta: se è superiore a 2 minuti ne imposta lo status
-	 * su DISCONNECTED. Però, se lo status era OFF, non succede nulla.
+	 * update di ciascun distributore. Se è superiore a 2 minuti e il distributore non era spento 
+	 * volontariamente ne imposta lo status su DISCONNECTED.
 	 */
 	@Override
 	public void run() {
@@ -29,7 +29,7 @@ public class RefreshVendingListStatus extends TimerTask {
 			Date lastUpdate = info.getLastUpdate();
 			VendingMachineStatus currentStatus = info.getStatus();
 			
-			if ((currentStatus != VendingMachineStatus.OFF) && //se lo status � diverso da OFF
+			if ((currentStatus != VendingMachineStatus.OFF) && //se lo status � diverso da OFF
 					(now.getTime() - lastUpdate.getTime()) > TimeUnit.MINUTES.toMillis(2)) { //e sono passati più di 2 minuti dall'ultimo update
 						info.setStatus(VendingMachineStatus.DISCONNECTED); //imposta lo status della relativa macchinetta nel database su DISCONNECTED
 			}

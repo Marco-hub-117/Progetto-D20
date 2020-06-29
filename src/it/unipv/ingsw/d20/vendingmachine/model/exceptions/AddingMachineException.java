@@ -1,5 +1,5 @@
 package it.unipv.ingsw.d20.vendingmachine.model.exceptions;
-
+/*
 @SuppressWarnings("serial")
 public class AddingMachineException extends Exception{
 	
@@ -16,3 +16,4 @@ public class AddingMachineException extends Exception{
 	
 
 }
+*/

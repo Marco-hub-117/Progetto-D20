@@ -9,8 +9,8 @@ import it.unipv.ingsw.d20.vendingmachine.model.beverage.Ingredients;
 import it.unipv.ingsw.d20.vendingmachine.model.tanks.Tank;
 
 /**
- * Classe che raccoglie tutte le informazioni (temporanee) relative ad una
- * determinata macchinetta.
+ * Classe che raccoglie tutte le informazioni (temporanee) relative ad un
+ * determinato distributore.
  *
  */
 public class VendingMachineInfo {
@@ -62,7 +62,7 @@ public class VendingMachineInfo {
 	}
 	
 	/**
-	 * Si occupa di dividere la stringa passatagli come parametro e utilizzarla
+	 * Si occupa di dividere la stringa e utilizzarla
 	 * per inizializzare la lista dei tank.
 	 * @param tankInfo stringa che contiene le informazioni sui tank
 	 */
