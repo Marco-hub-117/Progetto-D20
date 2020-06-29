@@ -12,8 +12,6 @@ import it.unipv.ingsw.d20.vendingmachine.controller.listeners.ToOperatorListener
 import it.unipv.ingsw.d20.vendingmachine.controller.listeners.WindowClosingListener;
 import it.unipv.ingsw.d20.vendingmachine.model.VendingMachine;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.Ingredients;
-//import it.unipv.ingsw.d20.vendingmachine.model.exceptions.RefillMachineException;
-//import it.unipv.ingsw.d20.vendingmachine.model.exceptions.WithdrawAmountException;
 import it.unipv.ingsw.d20.vendingmachine.view.customer.CustomerButton;
 import it.unipv.ingsw.d20.vendingmachine.view.customer.CustomerGui;
 import it.unipv.ingsw.d20.vendingmachine.view.operator.OperatorButton;

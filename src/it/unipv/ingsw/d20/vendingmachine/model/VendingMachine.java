@@ -9,9 +9,7 @@ import it.unipv.ingsw.d20.vendingmachine.model.beverage.Ingredients;
 import it.unipv.ingsw.d20.vendingmachine.model.exceptions.InsufficientIngredientsException;
 import it.unipv.ingsw.d20.vendingmachine.model.exceptions.KeyRestException;
 import it.unipv.ingsw.d20.vendingmachine.model.exceptions.NonExistentCodeException;
-//import it.unipv.ingsw.d20.vendingmachine.model.exceptions.RefillMachineException;
 import it.unipv.ingsw.d20.vendingmachine.model.exceptions.TankAbsentException;
-//import it.unipv.ingsw.d20.vendingmachine.model.exceptions.WithdrawAmountException;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.CashContainer;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.KeyHandler;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.Sale;
@@ -159,12 +157,9 @@ public class VendingMachine {
 	
 	/**
 	 * Metodo che gestisce il ritiro del credito dalla VendingMachine.
-	 * @throws WithdrawAmountException
-	 * @throws RefillMachineException
+	 *
 	 */
-	public double withdrawAmount() 
-			//throws WithdrawAmountException, RefillMachineException 
-	{ 
+	public double withdrawAmount() { 
 		double withdrawnAmount = cashContainer.withdrawAmount();
 		saveCashContainerIntoLocal();
 		rebuildInfo();
@@ -244,7 +239,7 @@ public class VendingMachine {
 	
 	/**
 	 * Verifica che la stringa ricevuta come parametro corrisponda all'ID.
-	 * @param insertedId
+	 * @param insertedId Id inserito
 	 */
 	public boolean isCorrectId(String insertedId) {
 		if (id.equals(insertedId)) 
