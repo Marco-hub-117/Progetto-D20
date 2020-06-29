@@ -13,7 +13,10 @@ import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.Insuffic
 class SaleTest {
 	
 	private String vendingMachineID = "TEST_ID";
-	
+	/**
+	 * Il test controlla il funzionamento della classe Sale con valori specificati
+	 * @throws InsufficientCreditException
+	 * */
 	@Test
 	void test1() throws InsufficientCreditException {
 		BeverageDescription b = new BeverageDescription("001","caffe", 1.0);
@@ -23,6 +26,10 @@ class SaleTest {
 		double expected=0;
 		assertEquals(expected, real);
 	}
+	/**
+	 * Il test controlla il funzionamento della classe Sale con valori specificati
+	 * @throws InsufficientCreditException
+	 * */
 	@Test
 	void test2() throws InsufficientCreditException {
 		BeverageDescription b = new BeverageDescription("001","caffe", 2.1);

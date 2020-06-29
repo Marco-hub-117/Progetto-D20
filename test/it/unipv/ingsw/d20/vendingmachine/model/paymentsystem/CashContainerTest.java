@@ -18,12 +18,20 @@ class CashContainerTest {
 	int f=10;
 	private int[] coinValue = {a, b, c, d, e, f};
 	private final CashContainer cc=new CashContainer(coinValue);
+	/**
+	 * Il test controlla il calcolo del totale delle monete presenti nel distributore
+	 * 
+	 * */
 	@Test
 	void testTotalAmount() {
 		double real=cc.getTotalAmount();
 		double expected=a*0.05 + b*0.1 + c*0.2 + d*0.5 + e + f*2;
 		assertEquals(expected, real);
 	}
+	/**
+	 * Il test controlla il conteggio del resto
+	 * @throws InsufficientCashForRestException
+	 * */
 	@Test
 	void testRest() throws InsufficientCashForRestException {
 		double credit=10.35;

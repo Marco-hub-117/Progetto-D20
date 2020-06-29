@@ -24,7 +24,10 @@ class TankHandlerTest {
 	private Tank t4=new Tank(i4,20.0, 20, 40);
 	private BeverageDescription b1=new BeverageDescription("a1","caffe macchiato",0.5);
 	private TankHandler q;
-
+	/**
+	 * Metodo di supporto per inizializzare il test
+	 * 
+	 * */
 	private void init () {
 		tankList.put(i1, t1);
 		tankList.put(i2, t2);
@@ -35,6 +38,10 @@ class TankHandlerTest {
 		b1.addIngredient(i3,0.5);
 		b1.addIngredient(i4, 5.0);
 	}
+	/**
+	 * Il test prova il funzionamento del controllo sulla quantita' di ingredienti per erogare una bevanda
+	 * 
+	 * */
 	@Test
 	void testisAvailable() {
 		init();
