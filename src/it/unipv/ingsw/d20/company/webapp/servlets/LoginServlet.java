@@ -43,7 +43,8 @@ public class LoginServlet extends WebAppServlet {
 		if (controller.getLoggedOperator()==null) {
 			resp.getWriter().write(Rythm.render(handler.getPage(url)));
 		}
-		else { //Se l'utente è già loggato, viene rimandato alla pagina di selezione
+		else { 
+			//se l'utente è già loggato, viene rimandato alla pagina di selezione
 			resp.sendRedirect(WebPagesHandler.loggedHome);
 		}
 	}
@@ -58,11 +59,13 @@ public class LoginServlet extends WebAppServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		if (req.getPathInfo().equals(WebPagesHandler.logoutReq)) {
+		if (req.getPathInfo().equals(WebPagesHandler.logoutReq)) { 
+			//esegue il logout
 			controller.setNotLogged();
 			resp.sendRedirect(WebPagesHandler.logoutUrl);
 		}
-		else {
+		else { 
+			//prova ad eseguire il login
 			try {   	
 			  controller.checkOperatorLogIn(req.getParameter("username"), req.getParameter("inputPassword"));	
 			} catch (InvalidUserException eu) {

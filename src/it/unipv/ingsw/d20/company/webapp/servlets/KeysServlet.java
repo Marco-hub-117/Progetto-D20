@@ -42,7 +42,8 @@ public class KeysServlet extends WebAppServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String url=handler.trimUrl(req.getRequestURI());
 				
-		if (controller.getLoggedOperator()!=null && controller.operatorIsLimited()==false) {
+		if (controller.getLoggedOperator()!=null && controller.operatorIsLimited()==false) { 
+			//visualizza la tabella di tutte le chiavette
 			resp.getWriter().write(Rythm.render(handler.getPage(url), controller.getAllKeys()));
 		}
 		else {
@@ -61,6 +62,7 @@ public class KeysServlet extends WebAppServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		if (req.getPathInfo().equals(WebPagesHandler.keysServletSaveKey)) {
+			//registra una nuova chiavetta
 			String serialCode=req.getParameter("code");
 			int codeNum=Integer.parseInt(serialCode);
 			String credit=req.getParameter("credit");
@@ -70,6 +72,7 @@ public class KeysServlet extends WebAppServlet {
 			resp.sendRedirect(getBasicUrl());
 		}
 		else if (req.getPathInfo().equals(WebPagesHandler.keysServletDeactivateKey)) {
+			//disattiva una chiavetta
 			controller.deactivateKey(req.getParameter("id"));
 			resp.sendRedirect(getBasicUrl());
 		}

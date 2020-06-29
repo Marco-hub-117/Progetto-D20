@@ -44,10 +44,12 @@ public class SelectionServlet extends WebAppServlet {
 		String url=handler.trimUrl(req.getRequestURI());
 		
 		if (controller.getLoggedOperator()!=null && controller.operatorIsLimited()){
+			//visualizza la pagina di selezione limitata
 			url=alternativeUrl;
 		}
 		
 		if (controller.getLoggedOperator()!=null) {
+			//visualizza la pagina di selezione
 			resp.getWriter().write(Rythm.render(handler.getPage(url), controller.getLoggedOperator()));
 		}
 		else {

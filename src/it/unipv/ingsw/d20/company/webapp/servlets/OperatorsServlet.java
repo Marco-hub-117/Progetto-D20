@@ -43,6 +43,7 @@ public class OperatorsServlet extends WebAppServlet {
 		String url=handler.trimUrl(req.getRequestURI());
 				
 		if (controller.getLoggedOperator()!=null && controller.operatorIsLimited()==false) {
+			//visualizza la tabella di tutti gli operatori
 			resp.getWriter().write(Rythm.render(handler.getPage(url), controller.getAllOperators()));
 		}
 		else {
@@ -61,8 +62,9 @@ public class OperatorsServlet extends WebAppServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		if (req.getPathInfo().equals(WebPagesHandler.operatorsServletSaveOperator)) {
-		controller.addOperator(req.getParameter("username"), req.getParameter("first_name")+" "+req.getParameter("last_name"), req.getParameter("password"), req.getParameter("type"));
-		resp.sendRedirect(getBasicUrl());
+			//registra un nuovo operatore
+			controller.addOperator(req.getParameter("username"), req.getParameter("first_name")+" "+req.getParameter("last_name"), req.getParameter("password"), req.getParameter("type"));
+			resp.sendRedirect(getBasicUrl());
 		}
 	}
 	

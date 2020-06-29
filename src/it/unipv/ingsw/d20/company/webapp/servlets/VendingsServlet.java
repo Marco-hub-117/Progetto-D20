@@ -48,9 +48,11 @@ public class VendingsServlet extends WebAppServlet {
 		
 		if (controller.getLoggedOperator()!=null) {
 			if (url.equals(handler.trimUrl(getBasicUrl()))) {
+				//visualizza la tabella di tutte le macchinette
 				resp.getWriter().write(Rythm.render(handler.getPage(url), controller.getAllVendingMachines()));
 			}
 			else if (url.equals(WebPagesHandler.vendingsServletSettings)) {
+				//visualizza la pagina descrittiva di una macchinetta
 				VendingPOJO vending=controller.getVendingMachine((req.getParameter("id")));
 				String status=controller.getVendingStatus((req.getParameter("id")));
 				Double currentAmount= controller.getVendingCurrentAmount((req.getParameter("id")));
@@ -60,14 +62,15 @@ public class VendingsServlet extends WebAppServlet {
 				resp.getWriter().write(Rythm.render(handler.getPage(url), vending, status, currentAmount, tanksNames, tanksLevels, tanksTemps));
 			}
 			else if (url.equals(WebPagesHandler.vendingsServletReport)) {
-				
+				//visualizza la pagina del report
 				resp.getWriter().write(Rythm.render(handler.getPage(url), controller.getAllOperators(), req.getParameter("id")));
 			}
 			else if (url.equals(WebPagesHandler.vendingsServletReportConfirmed)) {
-				
+				//visualizza la pagina del report confermato
 				resp.getWriter().write(Rythm.render(handler.getPage(url)));
 			}
 			else if (url.equals(WebPagesHandler.vendingsServletPendingReports)) {
+				//visualizza la tabella dei report pendenti
 				resp.getWriter().write(Rythm.render(handler.getPage(url), controller.getReportList()));
 			}
 		}
@@ -87,6 +90,7 @@ public class VendingsServlet extends WebAppServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		if (req.getPathInfo().equals(WebPagesHandler.vendingsServletSendReport)) {
+			//registra un nuovo report
 			String vendingID=req.getParameter("id");
 			String problem=req.getParameter("problem");
 			String details=req.getParameter("details");
@@ -95,10 +99,12 @@ public class VendingsServlet extends WebAppServlet {
 			resp.sendRedirect(getBasicUrl()+WebPagesHandler.vendingsServletReportConfirmed);
 		}
 		else if (req.getPathInfo().equals(WebPagesHandler.vendingsServletRemoveReport)) {
+			//elimina un report
 			controller.removeReport(req.getParameter("vendingId"), req.getParameter("problem"));
 			resp.sendRedirect(getBasicUrl()+WebPagesHandler.vendingsServletPendingReports);
 		}
 		else if (req.getPathInfo().equals(WebPagesHandler.vendingsServletSaveSettings)) {
+			//salva le nuove impostazioni della macchinetta
 			List<Double> tanksTemps=new LinkedList<>();
 			
 			for (int i=1; i<IngredientRecipePOJO.maxIngredientsPerVending+1; i++) {

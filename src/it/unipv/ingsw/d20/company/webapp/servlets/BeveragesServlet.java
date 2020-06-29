@@ -44,16 +44,19 @@ public class BeveragesServlet extends WebAppServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String url=handler.trimUrl(req.getRequestURI());
 		
-		if (controller.getLoggedOperator()!=null && controller.operatorIsLimited()==false) {
+		if (controller.getLoggedOperator()!=null && controller.operatorIsLimited()==false) { 
+			
 			if (url.equals(handler.trimUrl(getBasicUrl()))) {
+				//visualizza l'elenco delle bevande
 				resp.getWriter().write(Rythm.render(handler.getPage(url), controller.getAllBeverageDescriptions()));
 			}
-			else {
-			BeverageDescriptionPOJO beverage=controller.getBeverageDescription(req.getParameter("bevname"));
-			List<String> ingredientsNames=controller.getIngredientsNames(beverage.getIdRecipe());
-			List<Double> ingredientsQuantities=controller.getIngredientsQuantities(beverage.getIdRecipe());
-			
-			resp.getWriter().write(Rythm.render(handler.getPage(url), beverage, ingredientsNames, ingredientsQuantities));
+			else { 
+				//visualizza la pagina descrittiva di una bevanda
+				BeverageDescriptionPOJO beverage=controller.getBeverageDescription(req.getParameter("bevname"));
+				List<String> ingredientsNames=controller.getIngredientsNames(beverage.getIdRecipe());
+				List<Double> ingredientsQuantities=controller.getIngredientsQuantities(beverage.getIdRecipe());
+				
+				resp.getWriter().write(Rythm.render(handler.getPage(url), beverage, ingredientsNames, ingredientsQuantities));
 			}
 		}
 		else {
@@ -71,7 +74,8 @@ public class BeveragesServlet extends WebAppServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	
-		if (req.getPathInfo().equals(WebPagesHandler.beveragesServletSaveBeverage)) {
+		if (req.getPathInfo().equals(WebPagesHandler.beveragesServletSaveBeverage)) { 
+			//salva le nuove impostazioni della bevanda
 			String bevname=req.getParameter("bevname");
 			BeverageDescriptionPOJO desc=controller.getBeverageDescription(bevname);
 			String idRecipe=desc.getIdRecipe();
