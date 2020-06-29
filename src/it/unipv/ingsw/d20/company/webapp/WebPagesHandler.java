@@ -20,7 +20,10 @@ public class WebPagesHandler {
 	 *
 	 */
 	private final Map<String, String> urlToPage;
-
+/**
+ * Costruttore della classe WebPagesHandler
+ * 
+ * */
     public WebPagesHandler(){	
     	urlToPage = new HashMap<>();
     	//navigation pages

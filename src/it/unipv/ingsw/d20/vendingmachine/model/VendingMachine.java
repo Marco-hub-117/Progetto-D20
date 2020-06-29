@@ -21,8 +21,6 @@ import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.InvalidC
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.UnrecognisedKeyException;
 import it.unipv.ingsw.d20.vendingmachine.model.tanks.Tank;
 import it.unipv.ingsw.d20.vendingmachine.model.tanks.TankHandler;
-import it.unipv.ingsw.d20.vendingmachine.view.customer.Beverage;
-
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Timer;

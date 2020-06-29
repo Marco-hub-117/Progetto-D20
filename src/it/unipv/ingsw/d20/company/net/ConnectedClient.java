@@ -10,7 +10,7 @@ import it.unipv.ingsw.d20.company.Company;
 import it.unipv.ingsw.d20.company.VendingMachineInfo;
 
 /**
- * Questa classe gestisce la connessione con una macchinetta,
+ * Questa classe gestisce la connessione con un distributore,
  * nuova o esistente che sia.
  *
  */
@@ -27,7 +27,7 @@ public class ConnectedClient extends Thread {
 	}
 	
 	/**
-	 * Riceve una stringa dalla macchinetta e la gestisce. Se il messaggio contiene solo una cifra
+	 * Riceve una stringa dal distributore e la gestisce. Se il messaggio contiene solo una cifra
 	 * significa che la macchinetta è stata accesa per la prima volta e sta inviando il suo tipo per essere registrata, 
 	 * altrimenti sta notificando le sue informazioni alla company.
 	 */
