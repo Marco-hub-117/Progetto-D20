@@ -44,7 +44,7 @@ public class BeveragesServlet extends WebAppServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String url=handler.trimUrl(req.getRequestURI());
 		
-		if (controller.getLoggedOperator()!=null && controller.isLimited()==false) {
+		if (controller.getLoggedOperator()!=null && controller.operatorIsLimited()==false) {
 			if (url.equals(handler.trimUrl(getBasicUrl()))) {
 				resp.getWriter().write(Rythm.render(handler.getPage(url), controller.getAllBeverageDescriptions()));
 			}

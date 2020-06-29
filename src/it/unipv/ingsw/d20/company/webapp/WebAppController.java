@@ -33,7 +33,7 @@ public class WebAppController {
 	private IBeverageDescriptionDao beveragesManager;
 	private IIngredientRecipeDao ingredientsManager;
 	private OperatorPOJO loggedOperator;
-	private boolean limited; //E' true quando l'operatore loggato è un operatore e non un operatore remoto
+	private boolean operatorLimited; //E' true quando l'operatore loggato è un operatore e non un operatore remoto
 	public static String absenceString="None";
 	private List<ReportPOJO> reportList;
 	
@@ -94,11 +94,11 @@ public class WebAppController {
 		}
 	}
 	private void setLimited(boolean bool) {
-		this.limited=bool;
+		this.operatorLimited=bool;
 	}
 	
-	public boolean isLimited() {
-		return limited;
+	public boolean operatorIsLimited() {
+		return operatorLimited;
 	}
 
 	//VENDING MACHINES
