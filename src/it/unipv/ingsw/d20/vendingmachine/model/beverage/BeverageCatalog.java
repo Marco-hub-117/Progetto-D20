@@ -10,7 +10,10 @@ import java.util.Map;
 public class BeverageCatalog {
 	
 	private Map<String, BeverageDescription> catalog;
-	
+	/**
+	 * Costruttore della classe BeverageCatalog
+	 * 
+	 */
 	public BeverageCatalog() {
 		catalog = new HashMap<String, BeverageDescription>();
 	}
@@ -28,7 +31,7 @@ public class BeverageCatalog {
 	}
 	
 	/**
-	 * Dato il codice di una bevanda ne imposta un ingrediente e la relativa quantità.
+	 * Dato il codice di una bevanda ne imposta un ingrediente e la relativa quantitï¿½.
 	 * @param code codice della bevanda
 	 * @param i ingrediente
 	 * @param q quantita'
@@ -62,7 +65,10 @@ public class BeverageCatalog {
 
 		return beverageList;
 	}
-	
+	/**
+	 * Un metodo toString per la visualizzazione nella GUI
+	 * 
+	 */
 	public String toStringGui() {
 		String beverageList = "";		
 		

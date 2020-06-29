@@ -10,7 +10,7 @@ import javax.swing.SwingConstants;
 import it.unipv.ingsw.d20.util.Preferences;
 
 /**
- * Pannello che contiene il display della macchinetta e il tastierino numerico.
+ * Pannello che contiene il display del distributore automatico e il tastierino numerico per la selezione della bevanda.
  *
  */
 @SuppressWarnings("serial")

@@ -14,8 +14,9 @@ import it.unipv.ingsw.d20.util.persistence.sale.*;
 import it.unipv.ingsw.d20.util.persistence.vending.*;
 
 /**
- * Classe facade verso persistenza implementata con singleton. 
- * Con questa classe ï¿½ possibile ottenere tutti i DAO.
+ * Classe utile per ottenere tutti le possibili istanze di classi che implementano metodi per la persistenza dei dati. 
+ * Con questa classe è possibile ottenere tutti i DAO.
+ * Implementata come un singleton, utilizzando il pattern "Factory".
  */
 public class PersistenceDAOFactory {
 	

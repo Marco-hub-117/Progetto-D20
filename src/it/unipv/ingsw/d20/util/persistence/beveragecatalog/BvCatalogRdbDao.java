@@ -8,6 +8,10 @@ import it.unipv.ingsw.d20.vendingmachine.model.beverage.BeverageCatalog;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.BeverageDescription;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.Ingredients;
 
+/**
+ * Implementazione di IBvCatalogDao. Accede ai dati del DB.
+ * 
+ */
 public class BvCatalogRdbDao implements IBvCatalogDao {
 	
 	private RdbOperations op;

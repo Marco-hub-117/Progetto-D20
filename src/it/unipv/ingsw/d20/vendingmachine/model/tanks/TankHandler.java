@@ -9,7 +9,7 @@ import it.unipv.ingsw.d20.vendingmachine.model.beverage.Ingredients;
 import it.unipv.ingsw.d20.vendingmachine.model.exceptions.TankAbsentException;
 
 /**
- * La classe gestisce i serbatoi degli ingredienti del distributore.
+ * La classe ha il compito di gestire i serbatoi del distributore automatico.
  * 
  */
 public class TankHandler {
@@ -18,15 +18,16 @@ public class TankHandler {
 	
 	/**
 	 * Costruttore di TankHandler.
-	 * @param tankList
+	 * @param tankList lista dei Tank oresenti
 	 */
 	public TankHandler(HashMap<Ingredients,Tank> tankList) {
 		this.tankList = tankList;
 	}
 	
 	/**
-	 * Metodo che controlla se la quantitànei serbatoi è sufficiente per erogare la bevanda.
+	 * Metodo che controlla se la quantità nei serbatoi è sufficiente per erogare la bevanda.
 	 * @param bvDesc Descrizione delle bevanda da erogare
+	 * @return true se è possibile procedere con l'erogazione, false altrimenti.
 	 */
 	public boolean isAvailable(BeverageDescription bvDesc) {
 		Map<Ingredients, Double> recipe = bvDesc.getIngredients();
@@ -41,7 +42,7 @@ public class TankHandler {
 	}
 	
 	/**
-	 * Metodo che serve per ridurre la quantitànei serbatoi dopo l'erogazione della bevanda.
+	 * Metodo che serve per ridurre la quantità nei serbatoi dopo l'erogazione della bevanda.
 	 * @param bvDesc Descrizione delle bevanda da erogare
 	 */
 	public void scaleTanksLevel(BeverageDescription bvDesc) {

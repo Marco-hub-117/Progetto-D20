@@ -2,7 +2,7 @@ package it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions;
 
 /**
  * Eccezione che viene lanciata quando la moneta inserita non 
- * è riconosciuta dalla macchinetta.
+ * Ã¨ riconosciuta dalla macchinetta.
  *
  */
 @SuppressWarnings("serial")

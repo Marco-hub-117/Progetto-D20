@@ -18,7 +18,10 @@ import it.unipv.ingsw.d20.util.Paths;
 public class CustomTextArea extends JTextArea {
 	
 	private Image javaImg;
-	
+	/**
+	 *Costruttore della classe CustomTextArea
+	 *
+	 */
 	public CustomTextArea() {
 		super(30, 35);
 		

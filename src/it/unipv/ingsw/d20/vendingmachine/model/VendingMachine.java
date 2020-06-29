@@ -9,9 +9,7 @@ import it.unipv.ingsw.d20.vendingmachine.model.beverage.Ingredients;
 import it.unipv.ingsw.d20.vendingmachine.model.exceptions.InsufficientIngredientsException;
 import it.unipv.ingsw.d20.vendingmachine.model.exceptions.KeyRestException;
 import it.unipv.ingsw.d20.vendingmachine.model.exceptions.NonExistentCodeException;
-import it.unipv.ingsw.d20.vendingmachine.model.exceptions.RefillMachineException;
 import it.unipv.ingsw.d20.vendingmachine.model.exceptions.TankAbsentException;
-import it.unipv.ingsw.d20.vendingmachine.model.exceptions.WithdrawAmountException;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.CashContainer;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.KeyHandler;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.Sale;
@@ -21,8 +19,6 @@ import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.InvalidC
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.UnrecognisedKeyException;
 import it.unipv.ingsw.d20.vendingmachine.model.tanks.Tank;
 import it.unipv.ingsw.d20.vendingmachine.model.tanks.TankHandler;
-import it.unipv.ingsw.d20.vendingmachine.view.customer.Beverage;
-
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Timer;
@@ -45,8 +41,9 @@ public class VendingMachine {
 	private String info = "";
 	
 	/**
-	 * Costruttore della classe VendingMachine
+	 * Costruttore della classe VendingMachine. Istanzia tutte le componenti che servono per far funzionare un distributore.
 	 * @param id Stringa che rappresenta l'ID univoco della macchinetta
+	 * 
 	 */
 	public VendingMachine(String id) {	
 		this.id = id;
@@ -75,7 +72,7 @@ public class VendingMachine {
 	}
 	
 	/**
-	 * Inserisce una chiavetta.
+	 * Metodo per inserire una chiavetta.
 	 * @throws UnrecognisedKeyException 
 	 */
 	public void insertKey() throws UnrecognisedKeyException { 
@@ -84,7 +81,7 @@ public class VendingMachine {
 	}
 	
 	/**
-	 * Espelle la chiavetta.
+	 * Metodo per espellere una chiavetta.
 	 */
 	public void ejectKey() { 
 		keyHandler.ejectKey(credit);
@@ -107,7 +104,7 @@ public class VendingMachine {
 	}
 	
 	/**
-	 * Metodo che permette al cliente di inserire il codice della bevanda, inizializza la vendita dopo aver fatto i controlli
+	 * Metodo che permette al cliente di inserire il codice della bevanda e dopo gli oppurtuni controlli fa partire la transazione economica
 	 * @param code Codice della bevanda inserita
 	 * @throws InsufficientCreditException
 	 * @throws NonExistentCodeException
@@ -128,7 +125,7 @@ public class VendingMachine {
 	}
 	
 	/**
-	 * Metodo che esegue la transazione e l'erogazione effettiva della bevanda.
+	 * Metodo che esegue la transazione economica.
 	 * @param bvDesc Descrizione delle bevanda
 	 * @throws InsufficientCreditException 
 	 */
@@ -150,7 +147,7 @@ public class VendingMachine {
 	
 	/**
 	 * Riempie il tank indicato dal parametro.
-	 * @param id id del Tank da riempire 
+	 * @param id Id del Tank da riempire 
 	 */
 	public void refillTank(String id){
 		tankHandler.refillTank(id); 
@@ -160,10 +157,9 @@ public class VendingMachine {
 	
 	/**
 	 * Metodo che gestisce il ritiro del credito dalla VendingMachine.
-	 * @throws WithdrawAmountException
-	 * @throws RefillMachineException
+	 *
 	 */
-	public double withdrawAmount() throws WithdrawAmountException, RefillMachineException { 
+	public double withdrawAmount() { 
 		double withdrawnAmount = cashContainer.withdrawAmount();
 		saveCashContainerIntoLocal();
 		rebuildInfo();
@@ -171,9 +167,9 @@ public class VendingMachine {
 	}
 
 	/**
-	 * Modifica la temperatura del tank passato come parametro.
+	 * Modifica la temperatura di un Tank
 	 * @param id Id del tank
-	 * @param temp Temperatura da impostare
+	 * @param temp Nuova temperatura 
 	 */
 	public void modifyTankSettings(String id, Double temp) { 
 		try {
@@ -243,6 +239,7 @@ public class VendingMachine {
 	
 	/**
 	 * Verifica che la stringa ricevuta come parametro corrisponda all'ID.
+	 * @param insertedId Id inserito
 	 */
 	public boolean isCorrectId(String insertedId) {
 		if (id.equals(insertedId)) 

@@ -7,9 +7,11 @@ import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.rythmengine.Rythm;
+<<<<<<< HEAD
 
+=======
+>>>>>>> f66ea4bde5460caeaf35f55c51fe0f8aeda97ed8
 import it.unipv.ingsw.d20.company.webapp.ReportPOJO;
 import it.unipv.ingsw.d20.company.webapp.WebAppController;
 import it.unipv.ingsw.d20.company.webapp.WebPagesHandler;

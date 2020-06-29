@@ -16,7 +16,7 @@ public class CashContainer {
 	
 	/**
 	 * Costruttore della classe CashContainer.
-	 * @param cashQuantity numero di monete per ogni valore presenti nel distributore
+	 * @param cashQuantity numero di monete, presenti nel distributore, per ogni valore
 	 */
 	public CashContainer(int[] cashQuantity) {
 		for (int i = 0; i < coinNumber.length; i++) { //inizializzazione del vettore coinNumber
@@ -32,8 +32,8 @@ public class CashContainer {
 	 * @throws InvalidCoinException 
 	 */
 	public void addCoin(double coin) throws InvalidCoinException {
-		if (Math.random() < 0.05) //5% di probabilità che la moneta non sia valida
-			throw new InvalidCoinException("La moneta inserita non è valida.");
+		if (Math.random() < 0.05) //5% di probabilitï¿½ che la moneta non sia valida
+			throw new InvalidCoinException("La moneta inserita non ï¿½ valida.");
 		
 		int index;
 		for (index = 0; index < coinValue.length; index++) {
@@ -56,7 +56,7 @@ public class CashContainer {
 	}
 	
 	/**
-	 * Questo metodo eroga in monete la quantità passata come parametro.
+	 * Questo metodo eroga in monete la quantita' passata come parametro.
 	 * @param credit credito attualmente inserito 
 	 * @throws InsufficientCashForRestException
 	 */
@@ -67,7 +67,7 @@ public class CashContainer {
 			throw new InsufficientCashForRestException();
 		}
 		
-		for (int i = coinValue.length - 1; i >= 0; i--) { //dispensa le monete partendo da quelle più grandi
+		for (int i = coinValue.length - 1; i >= 0; i--) { //dispensa le monete partendo da quelle piï¿½ grandi
 			while (creditX100 >= (int) (coinValue[i] * 100)) {
 				if (coinNumber[i] == 0) {
 					break;

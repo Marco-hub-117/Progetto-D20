@@ -16,9 +16,9 @@ import it.unipv.ingsw.d20.util.persistence.vending.IVendingDao;
 import it.unipv.ingsw.d20.util.persistence.vending.VendingPOJO;
 
 /**
- * Questa classe si occupa della gestione delle macchinette nel loro insieme: ci riesce
- * tramite un server che accetta connessioni TCP dalle macchinette e tramite una webapp
- * utilizzata dagli operatori da remoto.
+ * Questa classe si occupa della gestione dei distributori automatici nel loro insieme: la comunicazione avviene
+ * tramite un server che accetta connessioni TCP dai distributori e tramite una webapp
+ * utilizzata dagli operatori remoti.
  *
  */
 public class Company {
@@ -35,8 +35,8 @@ public class Company {
 	
 	/**
 	 * Il costruttore si occupa di assegnare il nome alla compagnia, inizializzare la lista 
-	 * delle macchinette rivolgendosi al database e "accendere" il server. Inoltre fa partire
-	 * un timer che si occupa di controllare lo status delle macchinette nella lista.
+	 * dei distributori rivolgendosi al database e "accendere" il server. Inoltre fa partire
+	 * un timer che si occupa di controllare lo status dei distributori nella lista.
 	 * @param name nome della compagnia
 	 */
 	public Company(String name) {
@@ -61,9 +61,9 @@ public class Company {
 	}
 	
 	/**
-	 * Associa un nuovo ID ad una macchinetta che è stata accesa per la prima
-	 * volta e la registra nel database.
-	 * @return ID della nuova macchinetta
+	 * Associa un nuovo ID ad un distributore che è stato acceso per la prima
+	 * volta e lo registra nel database.
+	 * @return ID del nuovo distributore
 	 */
 	public static String registerNewVendingMachine(String type) {
 		String IDNumber = generateNewID();
@@ -79,7 +79,7 @@ public class Company {
 	}
 	
 	/**
-	 * Genera un ID univoco per una macchinetta che è stata accesa per la prima volta.
+	 * Genera un ID univoco per un distributore che è stato acceso per la prima volta.
 	 * @return ID generato
 	 */
 	private static String generateNewID() {
@@ -91,7 +91,7 @@ public class Company {
 	}
 	
 	/**
-	 * Genera la posizone per una macchinetta che è stata accesa per la prima volta.
+	 * Genera la posizone per un distributore che è stato acceso per la prima volta.
 	 * @return stringa con la posizione generata
 	 */
 	private static String generateNewLocation() {

@@ -7,7 +7,10 @@ import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-
+/**
+ * Simula un malfunzionamento del distributore automatico
+ *
+ */
 @SuppressWarnings("serial")
 public class MalfunctionGeneratorFrame extends JFrame {
 	

@@ -20,7 +20,7 @@ public class Sale {
 	
 	/**
 	 * Costruttore della classe Sale
-	 * @param vmId Id del distributore
+	 * @param vmId Id del distributore automatico
 	 * @param beverageDescription Descrizione delle bevanda da erogare
 	 * @param credit Credito inserito
 	 * @throws InsufficientCreditException
@@ -35,10 +35,11 @@ public class Sale {
 	
 	/**
 	 * Il metodo controlla che il credito sia sufficiente per la bevanda selezionata e,
-	 * se possibile, ritorna il resto.
+	 * se possibile, restituisce il resto.
 	 * @param credit Credito inserito
 	 * @param price Costo della bevanda
 	 * @throws InsufficientCreditException
+	 * @return resto dell'acquisto
 	 */
 	private double checkCredit(double credit, double price) throws InsufficientCreditException {
 		if (credit >= price) {

@@ -5,8 +5,8 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 /**
- * Questa classe si occupa di accettare nuove connessioni da parte delle 
- * macchinette. Quando una macchinetta tenta di connettersi viene fatto
+ * Questa classe si occupa di accettare nuove connessioni dai
+ * distributori automatici. Quando un distributore tenta di connettersi viene fatto
  * partire un nuovo thread per la sua gestione.
  *
  */

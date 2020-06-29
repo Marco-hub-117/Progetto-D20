@@ -4,6 +4,10 @@ import java.util.ArrayList;
 
 import it.unipv.ingsw.d20.util.persistence.RdbOperations;
 
+/**
+ * Implementazione dell'interfaccia IKeyDao. Recupera i dati dal DB.
+ *
+ */
 public class KeyRdbDao implements IKeyDao{
 	
 	private RdbOperations op;

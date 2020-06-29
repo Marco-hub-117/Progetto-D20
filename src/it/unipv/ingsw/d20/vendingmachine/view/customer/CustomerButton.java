@@ -6,18 +6,23 @@ import javax.swing.JButton;
 
 /**
  * Pulsante personalizzato che viene premuto dal cliente.
- * Gli viene associato un valore in modo da riconoscerne il ruolo.
+ *
  *
  */
 @SuppressWarnings("serial")
 public class CustomerButton extends JButton {
 	
 	private double coinValue;
-	
+	/**
+	 * Costruttore della classe CustomerButton
+	 * Al pulsante e' associato un valore in modo da riconoscerne il ruolo.
+	 * @param text scritta sul pulsante
+	 * @param value valore del pulsante
+	 *
+	 */
 	public CustomerButton(String text, double value) {
 		super(text);
 		coinValue = value;
-		
 		setFont(getFont().deriveFont(Font.PLAIN, 22));
 	}
 	
