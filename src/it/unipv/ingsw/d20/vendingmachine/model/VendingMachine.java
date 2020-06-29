@@ -113,7 +113,7 @@ public class VendingMachine {
 	 * @throws NonExistentCodeException
 	 * @throws InsufficientIngredientsException 
 	 */
-	public void insertCode(String code) throws InsufficientCreditException, NonExistentCodeException, InsufficientIngredientsException { 
+	public String insertCode(String code) throws InsufficientCreditException, NonExistentCodeException, InsufficientIngredientsException { 
 		BeverageDescription bvDesc = bvCatalog.getBeverageDesc(code);
 		
 		if (bvDesc == null) {
@@ -123,6 +123,8 @@ public class VendingMachine {
 		} else {
 			throw new InsufficientIngredientsException("Spiacente, bevanda terminata");
 		}
+		
+		return bvDesc.getName();
 	}
 	
 	/**
