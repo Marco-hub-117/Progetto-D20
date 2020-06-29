@@ -34,7 +34,7 @@ public class WindowClosingListener extends WindowAdapter {
 		
 		try {
 			VendingMachineClient vmc = new VendingMachineClient();
-			vmc.connectToServer(VendingMachine.info);
+			vmc.connectToServer(vm.getInfo());
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}

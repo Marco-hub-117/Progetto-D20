@@ -42,7 +42,7 @@ public class VendingMachine {
 	private CashContainer cashContainer;
 	private KeyHandler keyHandler;
 	
-	public static String info = "";
+	private String info = "";
 	
 	/**
 	 * Costruttore della classe VendingMachine
@@ -56,10 +56,10 @@ public class VendingMachine {
 		bvCatalog = getCatalogFromLocal();//la vending istanzia il catalogo delle bevande prendedolo dal file locale
 		tankHandler = new TankHandler(getTanksFromLocal());
 		cashContainer = getCashContainerFromLocal(); 
-		
+
 		rebuildInfo();
 		Timer timer = new Timer();
-		timer.schedule(new UpdateInfoTimerTask(), new Date(), TimeUnit.MINUTES.toMillis(1)); //ogni minuto viene notificata la company
+		timer.schedule(new UpdateInfoTimerTask(this), new Date(), TimeUnit.MINUTES.toMillis(1)); //ogni minuto viene notificata la company
 	}
 	
 	/**
@@ -309,6 +309,14 @@ public class VendingMachine {
 		infoBuilder.append("/"); infoBuilder.append(status);
 		
 		info = infoBuilder.toString();
+	}
+	
+	public String getInfo() {
+		return info;
+	}
+	
+	public void updateCatalog() {
+		bvCatalog = getCatalogFromLocal();
 	}
 	
 }

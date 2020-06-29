@@ -18,6 +18,12 @@ import it.unipv.ingsw.d20.vendingmachine.model.net.VendingMachineClient;
  *
  */
 public class UpdateInfoTimerTask extends TimerTask {
+	
+	private VendingMachine vendingMachine;
+	
+	public UpdateInfoTimerTask(VendingMachine vm) {
+		vendingMachine = vm;
+	}
 
 	@Override
 	public synchronized void run() {
@@ -26,15 +32,16 @@ public class UpdateInfoTimerTask extends TimerTask {
 		
 		try {
 			VendingMachineClient vmc = new VendingMachineClient();
-			vmc.connectToServer(VendingMachine.info); //invia le informazioni al server della company
+			vmc.connectToServer(vendingMachine.getInfo()); //invia le informazioni al server della company
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
-		//renizializzazione del catalogo
+		//aggiornamento del catalogo
 		int vmType = Integer.parseInt(v.getVendingTypeFromLocal());
 		IBvCatalogDao bv = pf.getBvCatalogDao(); 
 		v.saveCatalogIntoLocal(bv.getBeverageCatalog(vmType));
+		vendingMachine.updateCatalog();
 		
 		List<String> saleList = v.getSaleListFromLocal();
 		ISaleDao saleDao = pf.getSaleDao();
