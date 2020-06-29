@@ -60,19 +60,6 @@ public class Company {
 		timer.schedule(new RefreshVendingListStatus(), new Date(), TimeUnit.MINUTES.toMillis(2)); //ogni 2 minuti aggiorna lo status di tutte le vending machine
 	}
 	
-	/*public VendingMachine selectVendingMachine(String id) {
-		return null;
-		
-	}
-	
-	public void addOperator(String id) throws AddingOperatorException {
-		//da usare per il database
-	}
-	
-	public void addRemoteOperator (String id) throws AddingOperatorException {
-		//da usare per il database
-	}*/
-	
 	/**
 	 * Associa un nuovo ID ad una macchinetta che è stata accesa per la prima
 	 * volta e la registra nel database.

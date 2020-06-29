@@ -2,6 +2,11 @@ package it.unipv.ingsw.d20.util.persistence;
 
 import java.util.ArrayList;
 
+/**
+ * Classe utilizzata per generare le stringhe relative alle query.
+ * 
+ *
+ */
 public class QueryGenerator {
 	
 	public QueryGenerator() {
@@ -70,13 +75,25 @@ public class QueryGenerator {
 		
 		return query.toString();
 	}
-
+	
+	/**
+	 * Crea una query Update Set e la restituisce sottoforma di stringa
+	 * @param tableName
+	 * @param set
+	 * @param whereStatement
+	 * @return
+	 */
 	public static String getUpdateSetQuery(String tableName,String set,String whereStatement) {
 		String query = null;
 		query = "UPDATE "+tableName+" SET "+set+ " WHERE "+whereStatement;
 		return query;
 	}
-	
+	/**
+	 * Crea una query Delete from e la restituisce sottoforma di stringa.
+	 * @param tableName
+	 * @param whereStatement
+	 * @return
+	 */
 	public static String getDeleteWhereQuery(String tableName, String whereStatement) {
 		return "DELETE FROM "+tableName+" WHERE "+whereStatement;
 	}

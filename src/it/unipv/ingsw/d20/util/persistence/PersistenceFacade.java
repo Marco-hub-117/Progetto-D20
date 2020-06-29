@@ -14,7 +14,8 @@ import it.unipv.ingsw.d20.util.persistence.sale.*;
 import it.unipv.ingsw.d20.util.persistence.vending.*;
 
 /**
- * Classe facade verso DBMS implementata con singleton. 
+ * Classe facade verso persistenza implementata con singleton. 
+ * Con questa classe è possibile ottenere tutti i DAO.
  */
 public class PersistenceFacade {
 	
