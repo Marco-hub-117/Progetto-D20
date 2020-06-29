@@ -4,6 +4,11 @@ import java.util.ArrayList;
 
 import it.unipv.ingsw.d20.util.persistence.RdbOperations;
 
+/**
+ * Implementazione dell'interfaccia IIngredientRecipeDao. prende i dati dal DB.
+ *
+ *
+ */
 public class IngredientRecipeRdbDao implements IIngredientRecipeDao{
 
 	private RdbOperations op;

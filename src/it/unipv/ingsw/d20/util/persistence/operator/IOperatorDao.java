@@ -8,10 +8,26 @@ import java.util.ArrayList;
  */
 public interface IOperatorDao {
 	
+	/**
+	 * Ottiene tutti gli operatori salvati.
+	 * @return
+	 */
 	public ArrayList<OperatorPOJO> getAllOperators();
 	
+	/**
+	 * Ottiene un operatore specifico.
+	 * @param code
+	 * @return
+	 */
 	public OperatorPOJO getOperator(String code);
 	
+	/**
+	 * Salva un nuovo operatore.
+	 * @param code
+	 * @param name
+	 * @param password
+	 * @param type
+	 */
 	public void addOperator(String code, String name, String password, String type);
 
 }
