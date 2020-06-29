@@ -7,8 +7,10 @@ import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
 /**
- * Simula un malfunzionamento del distributore automatico
+ * Simula un malfunzionamento del distributore automatico tramite un pulsante
+ * che termina il programma inaspettatamente.
  *
  */
 @SuppressWarnings("serial")

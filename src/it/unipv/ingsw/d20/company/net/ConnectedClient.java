@@ -37,8 +37,6 @@ public class ConnectedClient extends Thread {
 			BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
 			
-			//DA FARE: SALVARE ARRAY TEMP MODIFICATE E RIMANDARLO INDIETRO E RISETTARLO
-			
 			String vmMessage = in.readLine();
 			if (vmMessage != null) { //se il messaggio ricevuto � nullo non fa niente e chiude la socket
 				String[] msgParts = vmMessage.split("/"); //divide il messagio in pi� parti
