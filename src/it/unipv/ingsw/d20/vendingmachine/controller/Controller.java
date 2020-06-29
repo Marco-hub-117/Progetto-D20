@@ -91,12 +91,16 @@ public class Controller {
 	}
 
 	private void setTankInfo() { //imposta il nome dei tank e i livelli attuali
-		HashMap<Ingredients, Double> tankLevels = new HashMap<Ingredients, Double>();
-		tankLevels=vm.getTanksLevels();
-		int k=0;
-		for(Map.Entry<Ingredients, Double> i : tankLevels.entrySet()) {
-			opGui.setElements(String.valueOf(i.getKey()),String.format("%.2f", i.getValue())+"",k);
-			k++;
+		HashMap<Ingredients,Double> tankLevels = new HashMap<Ingredients, Double>();
+		tankLevels = vm.getTanksLevels();
+		int count = 0;
+		String key = "";
+		String value = "";
+		for(Map.Entry<Ingredients, Double> entry : tankLevels.entrySet()) {
+			key = String.valueOf(entry.getKey());
+			value = String.valueOf(entry.getValue());
+			opGui.setElement(key, value, count);
+			count++;
 		}
 	}
 

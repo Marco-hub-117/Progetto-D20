@@ -12,13 +12,13 @@ import javax.swing.JPanel;
  *
  */
 @SuppressWarnings("serial")
-public class OperatorPanel extends JPanel {
+public class TankPanel extends JPanel {
 	
 	private JLabel[] tankIngredient;
 	private JLabel[] tankLevel;
 	private OperatorButton[] refillTankButtons;
 	
-	public OperatorPanel(int tankNumber) {
+	public TankPanel(int tankNumber) {
 		tankIngredient = new JLabel[tankNumber];
 		tankLevel = new JLabel[tankNumber];
 		refillTankButtons = new OperatorButton[tankNumber];
@@ -35,15 +35,15 @@ public class OperatorPanel extends JPanel {
 			refillTankButtons[i] = new OperatorButton(i, "Riempi", "");
 			refillTankButtons[i].setFont(refillTankButtons[i].getFont().deriveFont(Font.PLAIN, 20));
 			
-			this.add(tankIngredient[i]);
-			this.add(tankLevel[i]);
-			this.add(refillTankButtons[i]);
+			add(tankIngredient[i]);
+			add(tankLevel[i]);
+			add(refillTankButtons[i]);
 		}
 	}
 	
 	public void setElement(String name, String level, int pos) {
 		tankIngredient[pos].setText(name);
-		tankLevel[pos].setText(level);
+		tankLevel[pos].setText(level + "%");
 		refillTankButtons[pos].setIdTank(name);
 	}
 	

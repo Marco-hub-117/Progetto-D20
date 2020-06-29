@@ -18,7 +18,7 @@ public class OperatorGui extends JFrame {
 	
 	private static final int WIDTH = 600, HEIGHT = 400;
 	
-	private OperatorPanel operatorPanel;
+	private TankPanel operatorPanel;
 	private JButton withdrawCashButton;
 	private JButton exitButton;
 		
@@ -28,7 +28,7 @@ public class OperatorGui extends JFrame {
 		
 		setLayout(new BorderLayout());
 		
-		operatorPanel = new OperatorPanel(tankNumber);
+		operatorPanel = new TankPanel(tankNumber);
 		
 		exitButton = new JButton("Esci");
 		exitButton.setFont(exitButton.getFont().deriveFont(Font.PLAIN, 20));
@@ -51,7 +51,7 @@ public class OperatorGui extends JFrame {
 		return operatorPanel.getRefillTankButtons();
 	}
 	
-	public void setElements(String name, String level, int position) {
+	public void setElement(String name, String level, int position) {
 		operatorPanel.setElement(name, level, position);
 	}
 	
