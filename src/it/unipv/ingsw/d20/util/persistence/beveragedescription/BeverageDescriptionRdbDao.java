@@ -5,6 +5,11 @@ import java.util.ArrayList;
 import it.unipv.ingsw.d20.util.persistence.RdbOperations;
 import it.unipv.ingsw.d20.util.persistence.ingredientrecipe.IngredientRecipePOJO;
 
+/**
+ * Implementazione dell'interfaccia IBeverageDescriptionDao. Prende i dati dal DB.
+ * 
+ *
+ */
 public class BeverageDescriptionRdbDao implements IBeverageDescriptionDao {
 	
 	private RdbOperations op;

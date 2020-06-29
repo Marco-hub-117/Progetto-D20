@@ -7,7 +7,7 @@ import java.util.Date;
 /**
  * Classe che replica la Table "Sale" del database.
  * La chiave primaria � composta dagli attributi idVending e Date.
- * L'alttributo date � nel formato java.sql.Timestamp
+ * Data nel formato yyyy/MM/dd hh:mm:ss
  * Gli attributi sono nel seguente ordine: idVending, idBeverage, Date.
  */
 

@@ -4,6 +4,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import it.unipv.ingsw.d20.util.persistence.RdbOperations;
 
+/**
+ * Implementazione dell'interfaccia ISaleDao. Recupera i dati dal DB.
+ *
+ */
 public class SaleRdbDao implements ISaleDao{
 	
 	private RdbOperations op;

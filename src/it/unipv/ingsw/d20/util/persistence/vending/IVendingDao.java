@@ -8,12 +8,6 @@ import java.util.ArrayList;
  */
 public interface IVendingDao {
 	
-	/*
-	 * Questa interfaccia serve poiche potremmo voler implementare diversi metodi per accedere alla persistenza. 
-	 * Per esempio attraverso un database o un file di testo.
-	 */
-	
-	
 	/**
 	 * Aggiunge una VendingMachine al database
 	 * @param Id id della vending machine.
