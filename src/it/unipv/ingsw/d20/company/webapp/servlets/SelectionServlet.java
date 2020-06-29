@@ -29,7 +29,7 @@ public class SelectionServlet extends WebAppServlet {
 	 */
 	public SelectionServlet(WebAppController controller, WebPagesHandler handler){
 		super(controller, handler);
-		alternativeUrl="/selection_limited";
+		alternativeUrl=WebPagesHandler.selectionServletAlternativeUrl;
 	}
 
 	/**

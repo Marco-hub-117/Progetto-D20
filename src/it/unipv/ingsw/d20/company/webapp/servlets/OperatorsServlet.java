@@ -28,7 +28,7 @@ public class OperatorsServlet extends WebAppServlet {
 	 */
 	public OperatorsServlet(WebAppController controller, WebPagesHandler handler){
 		super(controller, handler);
-		setBasicUrl("/d20/selection/operators/");
+		setBasicUrl(WebPagesHandler.operatorsServletBasicUrl);
 	}
 	
 	/**
@@ -60,7 +60,7 @@ public class OperatorsServlet extends WebAppServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		if (req.getPathInfo().equals("/save_operator")) {
+		if (req.getPathInfo().equals(WebPagesHandler.operatorsServletSaveOperator)) {
 		controller.addOperator(req.getParameter("username"), req.getParameter("first_name")+" "+req.getParameter("last_name"), req.getParameter("password"), req.getParameter("type"));
 		resp.sendRedirect(getBasicUrl());
 		}

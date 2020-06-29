@@ -44,7 +44,7 @@ public abstract class WebAppServlet extends HttpServlet{
 	public WebAppServlet(WebAppController controller, WebPagesHandler handler){
 		this.controller=controller;
 		this.handler=handler;
-		home="/d20/";
+		home=WebPagesHandler.homeUrl;
 	}
 
 	public String getBasicUrl() {

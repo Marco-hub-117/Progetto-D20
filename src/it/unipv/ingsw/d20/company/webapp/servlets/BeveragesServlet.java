@@ -30,7 +30,7 @@ public class BeveragesServlet extends WebAppServlet {
 	 */
 	public BeveragesServlet(WebAppController controller, WebPagesHandler handler) {
 		super(controller, handler);
-		setBasicUrl("/d20/selection/beverages/");
+		setBasicUrl(WebPagesHandler.beveragesServletBasicUrl);
 	}
 	
 	/**
@@ -71,7 +71,7 @@ public class BeveragesServlet extends WebAppServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	
-		if (req.getPathInfo().equals("/save_beverage")) {
+		if (req.getPathInfo().equals(WebPagesHandler.beveragesServletSaveBeverage)) {
 			String bevname=req.getParameter("bevname");
 			BeverageDescriptionPOJO desc=controller.getBeverageDescription(bevname);
 			String idRecipe=desc.getIdRecipe();

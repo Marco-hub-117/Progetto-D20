@@ -28,7 +28,7 @@ public class KeysServlet extends WebAppServlet {
 	 */
 	public KeysServlet(WebAppController controller, WebPagesHandler handler){
 		super(controller, handler);
-		setBasicUrl("/d20/selection/keys/");
+		setBasicUrl(WebPagesHandler.keysServletBasicUrl);
 	}
 	
 	/**
@@ -60,7 +60,7 @@ public class KeysServlet extends WebAppServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		if (req.getPathInfo().equals("/save_key")) {
+		if (req.getPathInfo().equals(WebPagesHandler.keysServletSaveKey)) {
 			String serialCode=req.getParameter("code");
 			int codeNum=Integer.parseInt(serialCode);
 			String credit=req.getParameter("credit");
@@ -69,7 +69,7 @@ public class KeysServlet extends WebAppServlet {
 			controller.addKey(codeNum, creditNum);
 			resp.sendRedirect(getBasicUrl());
 		}
-		else if (req.getPathInfo().equals("/deactivate")) {
+		else if (req.getPathInfo().equals(WebPagesHandler.keysServletDeactivateKey)) {
 			controller.deactivateKey(req.getParameter("id"));
 			resp.sendRedirect(getBasicUrl());
 		}

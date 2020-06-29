@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.rythmengine.Rythm;
 
-import it.unipv.ingsw.d20.company.VendingMachineInfo;
 import it.unipv.ingsw.d20.company.webapp.ReportPOJO;
 import it.unipv.ingsw.d20.company.webapp.WebAppController;
 import it.unipv.ingsw.d20.company.webapp.WebPagesHandler;
@@ -34,7 +33,7 @@ public class VendingsServlet extends WebAppServlet {
 	 */
 	public VendingsServlet(WebAppController controller, WebPagesHandler handler) {
 		super(controller, handler);
-		setBasicUrl("/d20/selection/vendings/");
+		setBasicUrl(WebPagesHandler.vendigsServletBasicUrl);
 	}
 	
 	/**
@@ -52,7 +51,7 @@ public class VendingsServlet extends WebAppServlet {
 			if (url.equals(handler.trimUrl(getBasicUrl()))) {
 				resp.getWriter().write(Rythm.render(handler.getPage(url), controller.getAllVendingMachines()));
 			}
-			else if (url.equals("/settings")) {
+			else if (url.equals(WebPagesHandler.vendingsServletSettings)) {
 				VendingPOJO vending=controller.getVendingMachine((req.getParameter("id")));
 				String status=controller.getVendingStatus((req.getParameter("id")));
 				Double currentAmount= controller.getVendingCurrentAmount((req.getParameter("id")));
@@ -61,15 +60,15 @@ public class VendingsServlet extends WebAppServlet {
 				List<Double> tanksTemps=controller.getTanksTemps((req.getParameter("id")));
 				resp.getWriter().write(Rythm.render(handler.getPage(url), vending, status, currentAmount, tanksNames, tanksLevels, tanksTemps));
 			}
-			else if (url.equals("/report")) {
+			else if (url.equals(WebPagesHandler.vendingsServletReport)) {
 				
 				resp.getWriter().write(Rythm.render(handler.getPage(url), controller.getAllOperators(), req.getParameter("id")));
 			}
-			else if (url.equals("/report_confirmed")) {
+			else if (url.equals(WebPagesHandler.vendingsServletReportConfirmed)) {
 				
 				resp.getWriter().write(Rythm.render(handler.getPage(url)));
 			}
-			else if (url.equals("/pending_reports")) {
+			else if (url.equals(WebPagesHandler.vendingsServletPendingReports)) {
 				resp.getWriter().write(Rythm.render(handler.getPage(url), controller.getReportList()));
 			}
 		}
@@ -88,19 +87,19 @@ public class VendingsServlet extends WebAppServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		if (req.getPathInfo().equals("/send_report")) {
+		if (req.getPathInfo().equals(WebPagesHandler.vendingsServletSendReport)) {
 			String vendingID=req.getParameter("id");
 			String problem=req.getParameter("problem");
 			String details=req.getParameter("details");
 			String operatorName=req.getParameter("operator");
 			controller.addReport(new ReportPOJO(vendingID, problem, details, operatorName));
-			resp.sendRedirect(getBasicUrl()+"report_confirmed");
+			resp.sendRedirect(getBasicUrl()+WebPagesHandler.vendingsServletReportConfirmed);
 		}
-		else if (req.getPathInfo().equals("/remove_report")) {
+		else if (req.getPathInfo().equals(WebPagesHandler.vendingsServletRemoveReport)) {
 			controller.removeReport(req.getParameter("vendingId"), req.getParameter("problem"));
-			resp.sendRedirect(getBasicUrl()+"pending_reports");
+			resp.sendRedirect(getBasicUrl()+WebPagesHandler.vendingsServletPendingReports);
 		}
-		else if (req.getPathInfo().equals("/save_settings")) {
+		else if (req.getPathInfo().equals(WebPagesHandler.vendingsServletSaveSettings)) {
 			List<Double> tanksTemps=new LinkedList<>();
 			
 			for (int i=1; i<IngredientRecipePOJO.maxIngredientsPerVending+1; i++) {

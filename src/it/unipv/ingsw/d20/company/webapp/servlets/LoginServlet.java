@@ -44,7 +44,7 @@ public class LoginServlet extends WebAppServlet {
 			resp.getWriter().write(Rythm.render(handler.getPage(url)));
 		}
 		else { //Se l'utente è già loggato, viene rimandato alla pagina di selezione
-			resp.sendRedirect("/d20/selection/");
+			resp.sendRedirect(WebPagesHandler.loggedHome);
 		}
 	}
 	
@@ -58,21 +58,21 @@ public class LoginServlet extends WebAppServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		if (req.getPathInfo().equals("/logout")) {
+		if (req.getPathInfo().equals(WebPagesHandler.logoutReq)) {
 			controller.setNotLogged();
-			resp.sendRedirect("/d20/goodbye");
+			resp.sendRedirect(WebPagesHandler.logoutUrl);
 		}
 		else {
 			try {   	
 			  controller.checkOperatorLogIn(req.getParameter("username"), req.getParameter("inputPassword"));	
 			} catch (InvalidUserException eu) {
 			   System.out.println("Invalid Operator Username");
-			   resp.sendRedirect("/d20/wrong_user");
+			   resp.sendRedirect(WebPagesHandler.wrongUserUrl);
 			} catch (InvalidPasswordException ep) {
 			   System.out.println("Invalid Password");
-			   resp.sendRedirect("/d20/wrong_password");
+			   resp.sendRedirect(WebPagesHandler.wrongPasswordUrl);
 			}
-			resp.sendRedirect("/d20/selection/");
+			resp.sendRedirect(WebPagesHandler.loggedHome);
 		}
 	}
 	
