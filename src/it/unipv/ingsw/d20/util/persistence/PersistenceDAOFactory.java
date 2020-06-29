@@ -15,11 +15,11 @@ import it.unipv.ingsw.d20.util.persistence.vending.*;
 
 /**
  * Classe facade verso persistenza implementata con singleton. 
- * Con questa classe è possibile ottenere tutti i DAO.
+ * Con questa classe ï¿½ possibile ottenere tutti i DAO.
  */
-public class PersistenceFacade {
+public class PersistenceDAOFactory {
 	
-	private static PersistenceFacade instance;
+	private static PersistenceDAOFactory instance;
 	
 	private final RdbOperations operations;
 	private final IVendingDao vendingMachine;
@@ -31,7 +31,7 @@ public class PersistenceFacade {
 	private final IOperatorDao operator;
 	private final VendingLocalIO localMachine;
 	
-	private PersistenceFacade() {
+	private PersistenceDAOFactory() {
 		operations=new RdbOperations();
 		vendingMachine = new VendingRdbDao(operations);
 		sale = new SaleRdbDao(operations);
@@ -43,10 +43,10 @@ public class PersistenceFacade {
 		localMachine = new VendingLocalIO();
 	}
 	
-	public static synchronized PersistenceFacade getInstance() {
+	public static synchronized PersistenceDAOFactory getInstance() {
 		
 		if(instance == null) {
-			instance = new PersistenceFacade();
+			instance = new PersistenceDAOFactory();
 		}
 		return instance;
 	}

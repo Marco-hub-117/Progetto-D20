@@ -2,7 +2,7 @@ package it.unipv.ingsw.d20.company;
 
 import it.unipv.ingsw.d20.company.net.DBConnectionFailedException;
 import it.unipv.ingsw.d20.company.webapp.WebAppLauncher;
-import it.unipv.ingsw.d20.util.persistence.PersistenceFacade;
+import it.unipv.ingsw.d20.util.persistence.PersistenceDAOFactory;
 
 /**
  * Classe che si occupa di fare partire la Company

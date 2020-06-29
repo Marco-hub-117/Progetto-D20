@@ -8,7 +8,7 @@ import it.unipv.ingsw.d20.company.Company;
 import it.unipv.ingsw.d20.company.VendingMachineInfo;
 import it.unipv.ingsw.d20.company.webapp.exceptions.InvalidPasswordException;
 import it.unipv.ingsw.d20.company.webapp.exceptions.InvalidUserException;
-import it.unipv.ingsw.d20.util.persistence.PersistenceFacade;
+import it.unipv.ingsw.d20.util.persistence.PersistenceDAOFactory;
 import it.unipv.ingsw.d20.util.persistence.beveragedescription.BeverageDescriptionPOJO;
 import it.unipv.ingsw.d20.util.persistence.beveragedescription.IBeverageDescriptionDao;
 import it.unipv.ingsw.d20.util.persistence.ingredientrecipe.IIngredientRecipeDao;
@@ -26,7 +26,7 @@ import it.unipv.ingsw.d20.vendingmachine.model.tanks.Tank;
  *
  */
 public class WebAppController {
-	private PersistenceFacade facade;
+	private PersistenceDAOFactory facade;
 	private IVendingDao vendingsManager;
 	private IOperatorDao operatorsManager;
 	private IKeyDao keysManager;
@@ -44,7 +44,7 @@ public class WebAppController {
 	}
 	
 	public WebAppController() {
-		facade= PersistenceFacade.getInstance();
+		facade= PersistenceDAOFactory.getInstance();
 		vendingsManager=facade.getVendingDao();
 		operatorsManager=facade.getOperatorDao();
 		keysManager=facade.getKeyDao();

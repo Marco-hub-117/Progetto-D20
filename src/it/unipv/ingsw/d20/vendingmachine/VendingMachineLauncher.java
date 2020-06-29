@@ -4,7 +4,7 @@ import java.io.IOException;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-import it.unipv.ingsw.d20.util.persistence.PersistenceFacade;
+import it.unipv.ingsw.d20.util.persistence.PersistenceDAOFactory;
 import it.unipv.ingsw.d20.util.persistence.beveragecatalog.IBvCatalogDao;
 import it.unipv.ingsw.d20.util.persistence.local.VendingLocalIO;
 import it.unipv.ingsw.d20.vendingmachine.controller.Controller;
@@ -23,7 +23,7 @@ public class VendingMachineLauncher {
 			e1.printStackTrace();
 		}
 		
-		PersistenceFacade pf = PersistenceFacade.getInstance();
+		PersistenceDAOFactory pf = PersistenceDAOFactory.getInstance();
 		VendingLocalIO v = pf.getVendingLocalIO();
 		
 		String IDNumber = v.getVendingIDFromLocal();

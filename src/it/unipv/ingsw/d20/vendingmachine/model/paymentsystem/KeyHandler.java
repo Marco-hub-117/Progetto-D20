@@ -3,7 +3,7 @@ package it.unipv.ingsw.d20.vendingmachine.model.paymentsystem;
 import java.util.ArrayList;
 import java.util.Random;
 
-import it.unipv.ingsw.d20.util.persistence.PersistenceFacade;
+import it.unipv.ingsw.d20.util.persistence.PersistenceDAOFactory;
 import it.unipv.ingsw.d20.util.persistence.paymentKey.IKeyDao;
 import it.unipv.ingsw.d20.util.persistence.paymentKey.KeyPOJO;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.UnrecognisedKeyException;
@@ -33,7 +33,7 @@ public class KeyHandler {
 	 * @throws UnrecognisedKeyException
 	 */
 	public void insertKey(double credit) throws UnrecognisedKeyException {
-		PersistenceFacade pf = PersistenceFacade.getInstance();
+		PersistenceDAOFactory pf = PersistenceDAOFactory.getInstance();
 		IKeyDao kDao = pf.getKeyDao();
 		ArrayList<KeyPOJO> keyList = kDao.getAllKeys();
 		int maxIndex = (int) 2 * keyList.size();
@@ -55,7 +55,7 @@ public class KeyHandler {
 	 * 
 	 */
 	public void ejectKey(double residualCredit) {
-		PersistenceFacade pf = PersistenceFacade.getInstance();
+		PersistenceDAOFactory pf = PersistenceDAOFactory.getInstance();
 		IKeyDao kDao = pf.getKeyDao();
 		kDao.updateCredit(String.valueOf(keySerialCode), residualCredit); //aggiorna il credito sul DB
 		

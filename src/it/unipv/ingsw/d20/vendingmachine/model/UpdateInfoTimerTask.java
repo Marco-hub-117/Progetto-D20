@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.TimerTask;
 
-import it.unipv.ingsw.d20.util.persistence.PersistenceFacade;
+import it.unipv.ingsw.d20.util.persistence.PersistenceDAOFactory;
 import it.unipv.ingsw.d20.util.persistence.beveragecatalog.IBvCatalogDao;
 import it.unipv.ingsw.d20.util.persistence.local.VendingLocalIO;
 import it.unipv.ingsw.d20.util.persistence.sale.ISaleDao;
@@ -21,7 +21,7 @@ public class UpdateInfoTimerTask extends TimerTask {
 
 	@Override
 	public synchronized void run() {
-		PersistenceFacade pf = PersistenceFacade.getInstance();
+		PersistenceDAOFactory pf = PersistenceDAOFactory.getInstance();
 		VendingLocalIO v = pf.getVendingLocalIO();
 		
 		try {
