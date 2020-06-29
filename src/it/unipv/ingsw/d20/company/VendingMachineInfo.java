@@ -33,7 +33,7 @@ public class VendingMachineInfo {
 	 * Costruttore completo che inizializza tutti gli attributi della classe.
 	 * @param cashInfo ammontare corrente contenuto nella macchinetta
 	 * @param tankInfo informazioni riguardanti i tank
-	 * @param statusInfo status della macchinetta
+	 * @param statusInfo status del distributore
 	 */
 	public VendingMachineInfo(String cashInfo, String tankInfo, String statusInfo) {
 		currentAmount = Double.parseDouble(cashInfo);

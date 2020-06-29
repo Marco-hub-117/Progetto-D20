@@ -37,6 +37,7 @@ public class RdbOperations {
 	 * @param conn Connessione
 	 * @return la connessione aperta
 	 */
+	@SuppressWarnings("unused")
 	public Connection startConnection(Connection conn) { 
 		
 		String DbDriver = null;

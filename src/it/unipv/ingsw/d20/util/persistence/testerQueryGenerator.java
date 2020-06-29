@@ -3,8 +3,6 @@ package it.unipv.ingsw.d20.util.persistence;
 
 import java.util.ArrayList;
 
-import it.unipv.ingsw.d20.util.persistence.sale.SalePOJO;
-
 public class testerQueryGenerator {
 
 	public static void main(String[] args) {
