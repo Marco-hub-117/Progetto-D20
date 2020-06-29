@@ -82,7 +82,7 @@ public class VendingMachineInfo {
 	}
 	
 	public void updateTanksTemp(List<Double> updatedTanksTemps) {
-		for (int i = 0; i < updatedTanksTemps.size(); i++) {
+		for (int i = 0; i < tankList.size(); i++) {
 			tankList.get(i).setTemperature(updatedTanksTemps.get(i));
 		}
 	}

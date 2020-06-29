@@ -5,6 +5,7 @@ public class BeverageDescriptionPOJO {
 	private String bvName;
 	private double price;
 	private String idRecipe;
+	public static int maxIngredientsPerRecipe=5;
 	
 	public BeverageDescriptionPOJO(String bvName, double price,String idRecipe) {
 		this.bvName = bvName;

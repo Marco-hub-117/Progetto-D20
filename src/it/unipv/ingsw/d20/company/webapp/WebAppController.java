@@ -35,7 +35,6 @@ public class WebAppController {
 	private OperatorPOJO loggedOperator;
 	private boolean limited; //E' true quando l'operatore loggato è un operatore e non un operatore remoto
 	public static String absenceString="None";
-	public Double absenceTemp=-100.0;
 	private List<ReportPOJO> reportList;
 	
 	private enum OperatorType{
@@ -166,7 +165,7 @@ public class WebAppController {
 			ingredientsNames.add(entry.getIngredientName());
 		}
 		
-		ingredientsNames=fillWithNone(ingredientsNames);
+		ingredientsNames=fillWithNone(ingredientsNames, BeverageDescriptionPOJO.maxIngredientsPerRecipe);
 		
 		return ingredientsNames;
 	}
@@ -179,30 +178,30 @@ public class WebAppController {
 			ingredientsQuantities.add(entry.getQuantity());
 		}
 		
-		ingredientsQuantities=fillWithZeroes(ingredientsQuantities);
+		ingredientsQuantities=fillWithZeroes(ingredientsQuantities, BeverageDescriptionPOJO.maxIngredientsPerRecipe);
 		
 		return ingredientsQuantities;
 	}
 	
 	//METODI UTILI PER GESTIRE MANCANZE DI VALORI
-	public List<String> fillWithNone(List<String> list) {
+	public List<String> fillWithNone(List<String> list, int max) {
 		List<String> OutList=list;
-		if (OutList.size()<IngredientRecipePOJO.maxIngredients) {
+		if (OutList.size()<max) {
 			int ingredientNumber= OutList.size();
 			int i;
-			for (i=0; i<(IngredientRecipePOJO.maxIngredients-ingredientNumber); i++) {
+			for (i=0; i<(max-ingredientNumber); i++) {
 				OutList.add(absenceString);
 			}
 		}
 		return OutList;
 	}
 	
-	public List<Double> fillWithZeroes(List<Double> list) {
+	public List<Double> fillWithZeroes(List<Double> list, int max) {
 		List<Double> OutList=list;
-		if (OutList.size()<IngredientRecipePOJO.maxIngredients) {
+		if (OutList.size()<max) {
 			int ingredientNumber= OutList.size();
 			int i;
-			for (i=0; i<(IngredientRecipePOJO.maxIngredients-ingredientNumber); i++) {
+			for (i=0; i<(max-ingredientNumber); i++) {
 				OutList.add(0.0);
 			}
 		}
@@ -229,12 +228,11 @@ public class WebAppController {
 	public List<String> getTanksNames(String id) {
 		List<Tank> tanks=getTanks(id);
 		List<String> tanksNames=new LinkedList<>();
-		
 		for (Tank entry: tanks) {
 			tanksNames.add(entry.getId().toString());
 		}
 		
-		tanksNames=fillWithNone(tanksNames);
+		tanksNames=fillWithNone(tanksNames, IngredientRecipePOJO.maxIngredientsPerVending);
 		
 		return tanksNames;
 	}
@@ -247,7 +245,7 @@ public class WebAppController {
 			tanksLevels.add(entry.getLevel());
 		}
 		
-		tanksLevels= fillWithZeroes(tanksLevels);
+		tanksLevels= fillWithZeroes(tanksLevels, IngredientRecipePOJO.maxIngredientsPerVending);
 		return tanksLevels;
 	}
 	
@@ -259,7 +257,7 @@ public class WebAppController {
 			tanksTemps.add(entry.getTemperature());
 		}
 		
-		tanksTemps= fillWithZeroes(tanksTemps);
+		tanksTemps= fillWithZeroes(tanksTemps, IngredientRecipePOJO.maxIngredientsPerVending);
 		return tanksTemps;
 	}
 	

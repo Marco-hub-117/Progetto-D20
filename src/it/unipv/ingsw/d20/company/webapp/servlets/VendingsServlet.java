@@ -14,6 +14,7 @@ import it.unipv.ingsw.d20.company.VendingMachineInfo;
 import it.unipv.ingsw.d20.company.webapp.ReportPOJO;
 import it.unipv.ingsw.d20.company.webapp.WebAppController;
 import it.unipv.ingsw.d20.company.webapp.WebPagesHandler;
+import it.unipv.ingsw.d20.util.persistence.ingredientrecipe.IngredientRecipePOJO;
 import it.unipv.ingsw.d20.util.persistence.vending.VendingPOJO;
 
 /**
@@ -64,6 +65,10 @@ public class VendingsServlet extends WebAppServlet {
 				
 				resp.getWriter().write(Rythm.render(handler.getPage(url), controller.getAllOperators(), req.getParameter("id")));
 			}
+			else if (url.equals("/report_confirmed")) {
+				
+				resp.getWriter().write(Rythm.render(handler.getPage(url)));
+			}
 			else if (url.equals("/pending_reports")) {
 				resp.getWriter().write(Rythm.render(handler.getPage(url), controller.getReportList()));
 			}
@@ -89,20 +94,18 @@ public class VendingsServlet extends WebAppServlet {
 			String details=req.getParameter("details");
 			String operatorName=req.getParameter("operator");
 			controller.addReport(new ReportPOJO(vendingID, problem, details, operatorName));
+			resp.sendRedirect(getBasicUrl()+"report_confirmed");
 		}
 		else if (req.getPathInfo().equals("/remove_report")) {
 			controller.removeReport(req.getParameter("vendingId"), req.getParameter("problem"));
-			resp.sendRedirect(getBasicUrl()+"/reports");
+			resp.sendRedirect(getBasicUrl()+"pending_reports");
 		}
 		else if (req.getPathInfo().equals("/save_settings")) {
 			List<Double> tanksTemps=new LinkedList<>();
-			int i;
-			for (i=1; i<6; i++) {
+			
+			for (int i=1; i<IngredientRecipePOJO.maxIngredientsPerVending+1; i++) {
 				double temp=Double.parseDouble(req.getParameter(String.valueOf(i)));
-				System.out.println(temp);
-				if (temp!=controller.absenceTemp) {
-					tanksTemps.add(temp);
-				}
+				tanksTemps.add(temp);
 			}
 			controller.updateTanks(req.getParameter("id"), tanksTemps);
 		}
