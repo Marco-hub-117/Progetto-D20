@@ -11,8 +11,8 @@ import javax.swing.JPanel;
 import it.unipv.ingsw.d20.util.Preferences;
 
 /**
- * Pannello che contiene il catalogo della macchinetta e il bottone
- * per poter entrare in modalità operatore.
+ * Pannello che contiene il catalogo del distributore automatico e il pulsante
+ * per poter entrare in modalita' operatore.
  *
  */
 @SuppressWarnings("serial")

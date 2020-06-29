@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 
 /**
- * Frame che permette di verificare l'identità di un operatore
+ * Frame che permette di verificare l'identita' di un operatore
  * tramite una chiave da inserire.
  *
  */

@@ -12,7 +12,10 @@ import it.unipv.ingsw.d20.vendingmachine.model.VendingMachine;
 import it.unipv.ingsw.d20.vendingmachine.model.net.VendingMachineClient;
 import it.unipv.ingsw.d20.vendingmachine.view.MalfunctionGeneratorFrame;
 import it.unipv.ingsw.d20.vendingmachine.view.customer.CustomerGui;
-
+/**
+ * Classe di inizializzazione di un distributore automatico
+ *
+ */
 public class VendingMachineLauncher {
 
 	public static void main(String[] args) {
