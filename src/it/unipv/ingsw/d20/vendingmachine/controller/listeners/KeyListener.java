@@ -21,9 +21,9 @@ public class KeyListener implements ActionListener {
 	
 	/**
 	 * Istanzia il valore del tasto annesso, la vending machine e la gui.
-	 * @param valore del tasto
+	 * @param value valore del tasto
 	 * @param vm istanza di vending machine
-	 * @param userGui gui dell'utente
+	 * @param gui gui dell'utente
 	 */
 	public KeyListener(boolean value, VendingMachine vm, CustomerGui gui) {
 		this.vm = vm;

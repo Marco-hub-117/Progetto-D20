@@ -55,7 +55,7 @@ public class TankHandler {
 	 * Metodo che permette di modificare la temperatura di un serbatoio.
 	 * @param id Id del serbatoio
 	 * @param temp nuova temperatura
-	 * @throws TankAbsentException
+	 * @throws TankAbsentException eccezione lanciata se il tank non esiste
 	 */	
 	public void modifyTankSettings(String id, double temp) throws TankAbsentException {
 		Ingredients ingredient = Ingredients.valueOf(id);

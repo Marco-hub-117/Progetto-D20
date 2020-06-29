@@ -10,14 +10,14 @@ public interface IOperatorDao {
 	
 	/**
 	 * Ottiene tutti gli operatori salvati.
-	 * @return
+	 * @return operatorList lista di tutti gli operatori
 	 */
 	public ArrayList<OperatorPOJO> getAllOperators();
 	
 	/**
 	 * Ottiene un operatore specifico.
 	 * @param code codice dell'operatore
-	 * @return
+	 * @return operator operatore
 	 */
 	public OperatorPOJO getOperator(String code);
 	

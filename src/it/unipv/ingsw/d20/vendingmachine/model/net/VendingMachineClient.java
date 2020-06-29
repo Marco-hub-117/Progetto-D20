@@ -19,7 +19,7 @@ public class VendingMachineClient {
 	/**
 	 * Costruttore della classe VendingMachineClient. 
 	 * Istanzia la socket, il BufferedReader e il PrintWriter.
-	 * @throws IOException
+	 * @throws IOException eccezione di IO
 	 */
 	public VendingMachineClient() throws IOException {
 		socket = new Socket("localhost", 8888);
@@ -29,8 +29,8 @@ public class VendingMachineClient {
 	
 	/**
 	 * Invia al server le informazioni attuali della macchinetta.
-	 * @param info
-	 * @throws IOException
+	 * @param info informazioni sullo stato della vending machine
+	 * @throws IOException eccezione di IO
 	 */
 	public void connectToServer(String info) throws IOException {
 		out.println(info);
@@ -39,9 +39,9 @@ public class VendingMachineClient {
 	/**
 	 * Alla prima connessione, la macchinetta invia il suo tipo alla company
 	 * e viene registrata, ricevendo il suo ID.
-	 * @param type
-	 * @return ID
-	 * @throws IOException
+	 * @param type tipo della vending machine
+	 * @return ID id della vending machine
+	 * @throws IOException eccezione di IO
 	 */
 	public String firstConnectionToServer(String type) throws IOException {
 		out.println(type);

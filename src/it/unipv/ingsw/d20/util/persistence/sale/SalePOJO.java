@@ -19,8 +19,8 @@ public class SalePOJO {
 	
 	/**
 	 * Costruttore con la date nel formato String
-	 * @param idVending
-	 * @param idBeverage
+	 * @param idVending id della vending machine
+	 * @param idBeverage id della bevanda
 	 * @param date passata nel formato di Stringa
 	 */
 	public SalePOJO(String idVending, String idBeverage, String date) {
@@ -31,8 +31,8 @@ public class SalePOJO {
 	
 	/**
 	 * Costruttore con la date nel formato java.util.Date
-	 * @param idVending
-	 * @param idBeverage
+	 * @param idVending id della vending machine
+	 * @param idBeverage id della bevanda
 	 * @param date formato java.util.Date
 	 */
 	public SalePOJO(String idVending, String idBeverage, Date date) {

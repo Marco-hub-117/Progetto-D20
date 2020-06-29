@@ -8,34 +8,34 @@ public interface IBeverageDescriptionDao {
 	
 	/**
 	 * Ottiene il prezzo della bevanda specificata nel parametro BevName
-	 * @param bevName
-	 * @return
+	 * @param bevName nome della bevanda
+	 * @return price prezzo
 	 */
 	public double getPriceByBevName(String bevName);
 	
 	/**
 	 * Salva una BeverageDescription, non specificando gli ingredienti.
-	 * @param bv
+	 * @param bv POJO di BeverageDescription
 	 */
 	public void addBeverageDescription(BeverageDescriptionPOJO bv);
 	
 	/**
 	 * Salva una BeverageDescription, specificando anche tutti i suoi ingredienti.
-	 * @param bv
-	 * @param ingr
+	 * @param bv POJO di BeverageDescription
+	 * @param ingr ingrediente
 	 */
 	public void addBeverageDescription(BeverageDescriptionPOJO bv,ArrayList<IngredientRecipePOJO> ingr);
 	
 	/**
 	 * Ottiene una BeverageDescription, passando come parametro il nome della Bevanda.
-	 * @param BevName
-	 * @return
+	 * @param BevName nome della bevanda
+	 * @return bvDesc BeverageDescription
 	 */
 	public BeverageDescriptionPOJO getBeverageDescriptionByBevName(String BevName);
 	
 	/**
 	 * Ottiene tutte le BeverageDescription salvate.
-	 * @return
+	 * @return bvDescList lista delle BeverageDescription
 	 */
 	public ArrayList<BeverageDescriptionPOJO> getAllBeverageDescriptions ();
 

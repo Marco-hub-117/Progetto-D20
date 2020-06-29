@@ -7,14 +7,14 @@ public interface IKeyDao {
 	
 	/**
 	 * Ottiene tutte le chiavette salvate.
-	 * @return
+	 * @return keyList POJO di tutte le chiavette
 	 */
-	public ArrayList <KeyPOJO> getAllKeys();
+	public ArrayList<KeyPOJO> getAllKeys();
 	
 	/**
 	 * Ottiene una specifica chiave, con il codice seriale specificato come parametro.
-	 * @param serialCode
-	 * @return
+	 * @param serialCode id della chiavetta
+	 * @return key POJO della chiavetta
 	 */
 	public KeyPOJO getKey(String serialCode);
 	
@@ -29,14 +29,14 @@ public interface IKeyDao {
 	 * Aggiorna il credito di una chiavetta.
 	 * @param serialCode Codice della chiavetta
 	 * @param credit nuovo credito
-	 * @return
+	 * @return boolean esito dell'operazione
 	 */
 	public boolean updateCredit(String serialCode, double credit);
 
 	/**
 	 * Ottiene il credito di una specifica chiavetta.
 	 * @param serialCode Codice della chiavetta
-	 * @return
+	 * @return credit credito della chiavetta
 	 */
 	public double getCredit(String serialCode);
 	

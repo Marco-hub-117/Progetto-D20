@@ -21,6 +21,7 @@ public class BeverageCatalog {
 	/**
 	 * Restituisce la BeverageDescription della bevanda dato il suo codice.
 	 * @param code codice della bevanda
+	 * @return catalog catalogo delle bevande
 	 */
 	public BeverageDescription getBeverageDesc(String code) {
 		if(catalog.containsKey(code)) {	
@@ -65,9 +66,10 @@ public class BeverageCatalog {
 
 		return beverageList;
 	}
+	
 	/**
 	 * Un metodo toString per la visualizzazione nella GUI
-	 * 
+	 * @return beverageList lista delle bevande
 	 */
 	public String toStringGui() {
 		String beverageList = "";		

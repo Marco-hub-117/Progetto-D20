@@ -30,7 +30,7 @@ public class VendingLocalIO {
 	
 	/**
 	 * Crea un'istanza di BeverageCatalog, prendendo tutte le informazioni dal file locale.
-	 * @return
+	 * @return bvCatalog catalogo da locale
 	 */
 	public BeverageCatalog getCatalogFromLocal() {
 		BeverageCatalog bvCatalog = new BeverageCatalog();
@@ -90,7 +90,7 @@ public class VendingLocalIO {
 
 	/**
 	 * Ottiene tutti i tank che sono salvati nel file locale.
-	 * @return
+	 * @return tankList lista dei tank da locale
 	 */
 	public HashMap<Ingredients,Tank> getTanksFromLocal() {
 		HashMap<Ingredients,Tank> tankList = new HashMap<>();
@@ -143,7 +143,7 @@ public class VendingLocalIO {
 	
 	/**
 	 * Recupera l'id della vending machine leggendolo dal file locale.
-	 * @return
+	 * @return IDNumber id della vending machine da locale
 	 */
 	public String getVendingIDFromLocal() {
 		String fileName = Paths.ASSETS_FOLDER + Paths.VENDING_ID;
@@ -172,7 +172,7 @@ public class VendingLocalIO {
 	
 	/**
 	 * Salva l'id della VendingMachine nel file locale.
-	 * @param IDNumber 
+	 * @param IDNumber id della vending machine
 	 */
 	public void saveVendingIDIntoLocal(String IDNumber) {
 		String fileName = Paths.ASSETS_FOLDER + Paths.VENDING_ID;
@@ -191,7 +191,7 @@ public class VendingLocalIO {
 	
 	/**
 	 * Ottiene il tipo di VendingMachine leggendolo dal file locale.
-	 * @return
+	 * @return type tipo della vending machine
 	 */
 	public String getVendingTypeFromLocal() {
 		String fileName = Paths.ASSETS_FOLDER + Paths.VENDING_TYPE;
@@ -216,7 +216,7 @@ public class VendingLocalIO {
 	
 	/**
 	 * Ottiene un'istanza di CashContainer leggendo i dati dal file locale.
-	 * @return
+	 * @return cashContainer cash container da locale
 	 */
 	public CashContainer getCashContainerFromLocal() {
 		int[] cashQuantity = new int[6];
@@ -244,8 +244,7 @@ public class VendingLocalIO {
 	/**
 	 * Salva un CashContainer nel file locale. 
 	 * Il cashContainer contiene il numero di monete per ogni taglio, partendo dal piu' piccolo (E0,05)
-	 * 
-	 * @param cashContainer
+	 * @param cashContainer oggetto caashcontainer
 	 */
 	public void saveCashContainerIntoLocal(CashContainer cashContainer) {
 		String nomeFile = Paths.ASSETS_FOLDER + Paths.CASH_CONTAINER_STATUS;
@@ -267,7 +266,7 @@ public class VendingLocalIO {
 
 	/**
 	 * Salva una Sale nel file locale.
-	 * @param sale
+	 * @param sale oggetto sale
 	 */
 	public void saveSaleIntoLocal(Sale sale) {
 		String nomeFile = Paths.ASSETS_FOLDER + Paths.SALE_LIST;
@@ -288,7 +287,7 @@ public class VendingLocalIO {
 
 	/**
 	 * Ottiene una lista di stringhe, contenente tutte le informazioni relative alle Sale registrate fino a quel momento nel file locale.
-	 * @return
+	 * @return saleList listadi tutte le sale
 	 */
 	public List<String> getSaleListFromLocal() {
 		ArrayList<String> saleList = new ArrayList<>();

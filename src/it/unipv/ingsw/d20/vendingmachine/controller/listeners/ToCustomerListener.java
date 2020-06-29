@@ -22,7 +22,7 @@ public class ToCustomerListener implements ActionListener{
 	/**
 	 * Istanzia la vending machine e la gui.
 	 * @param vm istanza di vending machine
-	 * @param operatorGui gui dell'operatore
+	 * @param gui gui dell'operatore
 	 */
 	public ToCustomerListener(VendingMachine vm, OperatorGui gui) {
 		this.vm = vm;

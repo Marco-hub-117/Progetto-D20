@@ -29,7 +29,7 @@ public class CashContainer {
 	/**
 	 * Questo metodo aggiunge una moneta alla cassa del distributore.
 	 * @param coin valore della moneta
-	 * @throws InvalidCoinException 
+	 * @throws InvalidCoinException eccezione che viene lanciata se la moneta non è valida
 	 */
 	public void addCoin(double coin) throws InvalidCoinException {
 		if (Math.random() < 0.05) //5% di probabilitï¿½ che la moneta non sia valida
@@ -58,7 +58,7 @@ public class CashContainer {
 	/**
 	 * Questo metodo eroga in monete la quantita' passata come parametro.
 	 * @param credit credito attualmente inserito 
-	 * @throws InsufficientCashForRestException
+	 * @throws InsufficientCashForRestException eccezione che viene lanciata se non ci sono abbastanza monete per restituire il resto
 	 */
 	public void dispenseRest(double credit) throws InsufficientCashForRestException {	
 		int creditX100 = (int) (credit * 100); //opero sul credito moltiplicato per 100 a causa dell'approssimazione della virgola mobile
@@ -84,7 +84,7 @@ public class CashContainer {
 	
 	/**
 	 * Questo metodo gestisce il ritiro delle monete da parte dell'operatore.
-	 *
+	 * @return total ammontare del denaro ritirato
 	 */
 	public double withdrawAmount() {
 		double total = 0;

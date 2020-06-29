@@ -40,9 +40,12 @@ public class TankPanel extends JPanel {
 			add(refillTankButtons[i]);
 		}
 	}
+
 	/**
-	 * Permette di settare il nome e il livello dei tank
-	 * 
+	 * Permette di settare il nome e il livello dei tank.
+	 * @param name nome
+	 * @param level livello
+	 * @param pos posizione
 	 */
 	public void setElement(String name, String level, int pos) {
 		tankIngredient[pos].setText(name);

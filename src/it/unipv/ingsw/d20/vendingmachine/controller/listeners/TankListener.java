@@ -22,9 +22,9 @@ public class TankListener implements ActionListener {
 	
 	/**
 	 * Istanzia il valore del tasto annesso, la vending machine e la gui.
-	 * @param posizione del tasto nell'array dei tasti
+	 * @param position posizione del tasto nell'array dei tasti
 	 * @param vm istanza di vending machine
-	 * @param operatorGui gui dell'operatore
+	 * @param gui gui dell'operatore
 	 */
 	public TankListener(int position, VendingMachine vm, OperatorGui gui) {
 		this.position = position;

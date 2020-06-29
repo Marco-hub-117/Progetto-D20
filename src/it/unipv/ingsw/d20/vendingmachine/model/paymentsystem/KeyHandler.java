@@ -30,7 +30,7 @@ public class KeyHandler {
 	/**
 	 * Il metodo gestisce l'inserimento di una chiavetta.
 	 * @param credit credito gi√† presente prima dell'inserimento della chiavetta
-	 * @throws UnrecognisedKeyException
+	 * @throws UnrecognisedKeyException eccezione che viene lanciata se la chiavetta non Ë riconosciuta
 	 */
 	public void insertKey(double credit) throws UnrecognisedKeyException {
 		PersistenceDAOFactory pf = PersistenceDAOFactory.getInstance();

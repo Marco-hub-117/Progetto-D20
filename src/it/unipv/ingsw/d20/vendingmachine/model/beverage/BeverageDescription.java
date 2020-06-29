@@ -80,9 +80,10 @@ public class BeverageDescription {
 		description = "Code: " + code +" | Nome: " + name +  " | Price: " + price + " | Ingredients:\n" + ingredientList + "\n";
 		return description;
 	}
+	
 	/**
 	 * Un metodo toString per la visualizzazione nella GUI
-	 * 
+	 * @return description descrizione della bevanda
 	 */
 	public String toStringGui() {
 		String description = "Codice " + code +"		" + name +  "		�" + String.format("%.2f", price) + "\n\n";

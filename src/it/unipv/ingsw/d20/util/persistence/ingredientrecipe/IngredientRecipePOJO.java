@@ -9,10 +9,10 @@ public class IngredientRecipePOJO {
 	
 	
 	/**
-	 * 
-	 * @param idRecipe
-	 * @param ingredientName
-	 * @param quantity
+	 * POJO di IngredientRecipe.
+	 * @param idRecipe id della ricetta
+	 * @param ingredientName nome dell'ingrediente
+	 * @param quantity quantita dell'ingrediente
 	 */
 	public IngredientRecipePOJO(String idRecipe, String ingredientName, double quantity) {
 		this.idRecipe = idRecipe;

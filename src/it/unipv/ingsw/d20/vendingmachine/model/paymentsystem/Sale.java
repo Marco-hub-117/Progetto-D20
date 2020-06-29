@@ -23,7 +23,7 @@ public class Sale {
 	 * @param vmId Id del distributore automatico
 	 * @param beverageDescription Descrizione delle bevanda da erogare
 	 * @param credit Credito inserito
-	 * @throws InsufficientCreditException
+	 * @throws InsufficientCreditException eccezione che viene lanciata se il credito non è sufficiente
 	 */
 	public Sale(String vmId, BeverageDescription beverageDescription, double credit) throws InsufficientCreditException {
 		this.vmId = vmId;

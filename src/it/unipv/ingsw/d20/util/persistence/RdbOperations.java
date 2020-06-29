@@ -582,9 +582,9 @@ public class RdbOperations {
 	
 	/**
 	 * Aggiorna la composizione di un ingrediente, modificando la quantita'.
-	 * @param idRecipe 
-	 * @param ingredientName
-	 * @param newQuantity
+	 * @param idRecipe id ricetta
+	 * @param ingredientName nome ingrediente
+	 * @param newQuantity nuova quantità
 	 */
 	public void updateIngredientRecipe(String idRecipe, String ingredientName, double newQuantity) {
 		String query = QueryGenerator.getUpdateSetQuery("IngredientRecipe", "Quantity = '"+newQuantity+"'", "idRecipe = '"+idRecipe+"'"+ "and "+ "IngredientName = '"+ingredientName+"'");
@@ -606,7 +606,7 @@ public class RdbOperations {
 	
 	/**
 	 * Ottiene tutti gli operatori registrati sul DB.
-	 * 
+	 * @return operatorList lista di tutti gli operatori
 	 */
 	public ArrayList<OperatorPOJO> getAllOperators () {
 		ArrayList<OperatorPOJO> result = new ArrayList<>();
@@ -633,7 +633,7 @@ public class RdbOperations {
 	/**
 	 * Ottiene uno specifico operatore.
 	 * @param code codice dell'operatore
-	 * 
+	 * @return operator operatore
 	 */
 	public OperatorPOJO getOperator (String code) {
 		OperatorPOJO result=null;
@@ -659,7 +659,7 @@ public class RdbOperations {
 	
 	/**
 	 * Aggiunge un operatore sul DB.
-	 * @param operator
+	 * @param operator operatore
 	 */
 	public void addOperator(OperatorPOJO operator) {
 		
@@ -686,8 +686,8 @@ public class RdbOperations {
 	// DI SEGUITO LE QUERY RELATIVE ALLA TABLE Key
 	
 	/**
-	 * Ottiene tutte le chiavi salvate sul DB.
-	 * 
+	 * Ottiene tutte le chiavette salvate sul DB.
+	 * @return keyList lista di tutte le chiavette
 	 */
 	public ArrayList<KeyPOJO> getAllKeys() {
 		
@@ -715,7 +715,7 @@ public class RdbOperations {
 	/**
 	 * Ottiene una specifica chiave dal DB
 	 * @param serialCode Codice della chiave
-	 * @return
+	 * @return key chiavetta
 	 */
 	public KeyPOJO getKey (String serialCode) {
 		KeyPOJO result=null;
@@ -783,7 +783,7 @@ public class RdbOperations {
 	/**
 	 * Ottiene il credito di una chiave.
 	 * @param serialCode Codice della chiavetta
-	 * @return
+	 * @return keyCredit credito sulla chiavetta
 	 */
 	public double getKeyCredit(String serialCode) {
 		double result = 0; 
