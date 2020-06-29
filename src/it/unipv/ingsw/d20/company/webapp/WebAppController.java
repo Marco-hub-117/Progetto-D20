@@ -34,7 +34,6 @@ public class WebAppController {
 	private IIngredientRecipeDao ingredientsManager;
 	private OperatorPOJO loggedOperator;
 	private boolean limited; //E' true quando l'operatore loggato è un operatore e non un operatore remoto
-	private Map<String, VendingMachineInfo> infoList;
 	public static String absenceString="None";
 	public Double absenceTemp=-100.0;
 	private List<ReportPOJO> reportList;
@@ -50,7 +49,6 @@ public class WebAppController {
 		keysManager=facade.getKeyDao();
 		beveragesManager=facade.getBeverageDescriptionDao();	
 		ingredientsManager=facade.getIngredientRecipeDao();
-		infoList =Company.vendingMachineInfoList;
 		reportList=new LinkedList<>();
 		reportList.add(new ReportPOJO("VEND1", "Connection Lost", "testing report", "Mr.Tester"));
 	}
@@ -114,11 +112,11 @@ public class WebAppController {
 	}
 	
 	public VendingMachineInfo getVendingMachineInfo(String id) {
-		return infoList.get(id);	
+		return Company.vendingMachineInfoList.get(id);	
 	}
 	
 	public Map<String, VendingMachineInfo> getAllVendingMachineInfo() {
-		return infoList;	
+		return Company.vendingMachineInfoList;	
 	}
 	
 	//OPERATORS
