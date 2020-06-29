@@ -17,6 +17,7 @@ public class VendingMachineClient {
 	private PrintWriter out;
 	
 	/**
+	 * Costruttore della classe VendingMachineClient. 
 	 * Istanzia la socket, il BufferedReader e il PrintWriter.
 	 * @throws IOException
 	 */

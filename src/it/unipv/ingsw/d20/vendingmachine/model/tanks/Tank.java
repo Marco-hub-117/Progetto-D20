@@ -28,7 +28,7 @@ public class Tank {
 	/**
 	 * Costruttore del Tank permette di specificare sia la temperatura sia il livello
 	 * @param ingredient ingrediente contenuto nel Tank
-	 * @param level livello di riempimento del Tank
+	 * @param level livello di riempimento del Tank in percentuale
 	 * @param temperature temperatura del Tank
 	 * @param volume capacità nominale del serbatoio
 	 */
@@ -42,7 +42,7 @@ public class Tank {
 	}
 	
 	/**
-	 * Abbassa il livello di riempimento del tank della quantitàspecificata.
+	 * Abbassa il livello di riempimento del tank della quantità specificata.
 	 * @param quantity quantità da diminuire
 	 */
 	public void lowerLevelBy(double quantity) {

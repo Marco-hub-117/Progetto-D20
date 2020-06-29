@@ -1,7 +1,8 @@
 package it.unipv.ingsw.d20.vendingmachine.model.beverage;
 
 /**
- * Enumeration che contiene tutti gli ingredienti messi a disposizione dalla macchinetta.
+ * Enumeration che contiene tutti gli ingredienti messi a disposizione dalla macchinetta. 
+ * Esistono 2 "categorie" di ingredienti: una prettamente invernale e l'altra piu' estiva
  *
  */
 public enum Ingredients {

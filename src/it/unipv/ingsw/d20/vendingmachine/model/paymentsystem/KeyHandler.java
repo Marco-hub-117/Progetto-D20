@@ -52,6 +52,7 @@ public class KeyHandler {
 	/**
 	 * Aggiorna il credito residuo della chiavetta sul database
 	 * e la espelle dalla macchinetta.
+	 * @param residualCredit credito residuo sulla chiavetta
 	 * 
 	 */
 	public void ejectKey(double residualCredit) {

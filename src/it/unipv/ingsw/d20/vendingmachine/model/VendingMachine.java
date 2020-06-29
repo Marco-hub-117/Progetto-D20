@@ -45,8 +45,9 @@ public class VendingMachine {
 	private String info = "";
 	
 	/**
-	 * Costruttore della classe VendingMachine
+	 * Costruttore della classe VendingMachine. Istanzia tutte le componenti che servono per far funzionare un distributore.
 	 * @param id Stringa che rappresenta l'ID univoco della macchinetta
+	 * 
 	 */
 	public VendingMachine(String id) {	
 		this.id = id;
@@ -75,7 +76,7 @@ public class VendingMachine {
 	}
 	
 	/**
-	 * Inserisce una chiavetta.
+	 * Metodo per inserire una chiavetta.
 	 * @throws UnrecognisedKeyException 
 	 */
 	public void insertKey() throws UnrecognisedKeyException { 
@@ -84,7 +85,7 @@ public class VendingMachine {
 	}
 	
 	/**
-	 * Espelle la chiavetta.
+	 * Metodo per espellere una chiavetta.
 	 */
 	public void ejectKey() { 
 		keyHandler.ejectKey(credit);
@@ -107,7 +108,7 @@ public class VendingMachine {
 	}
 	
 	/**
-	 * Metodo che permette al cliente di inserire il codice della bevanda, inizializza la vendita dopo aver fatto i controlli
+	 * Metodo che permette al cliente di inserire il codice della bevanda e dopo gli oppurtuni controlli fa partire la transazione economica
 	 * @param code Codice della bevanda inserita
 	 * @throws InsufficientCreditException
 	 * @throws NonExistentCodeException
@@ -128,7 +129,7 @@ public class VendingMachine {
 	}
 	
 	/**
-	 * Metodo che esegue la transazione e l'erogazione effettiva della bevanda.
+	 * Metodo che esegue la transazione economica.
 	 * @param bvDesc Descrizione delle bevanda
 	 * @throws InsufficientCreditException 
 	 */
@@ -150,7 +151,7 @@ public class VendingMachine {
 	
 	/**
 	 * Riempie il tank indicato dal parametro.
-	 * @param id id del Tank da riempire 
+	 * @param id Id del Tank da riempire 
 	 */
 	public void refillTank(String id){
 		tankHandler.refillTank(id); 
@@ -171,9 +172,9 @@ public class VendingMachine {
 	}
 
 	/**
-	 * Modifica la temperatura del tank passato come parametro.
+	 * Modifica la temperatura di un Tank
 	 * @param id Id del tank
-	 * @param temp Temperatura da impostare
+	 * @param temp Nuova temperatura 
 	 */
 	public void modifyTankSettings(String id, Double temp) { 
 		try {
@@ -243,6 +244,7 @@ public class VendingMachine {
 	
 	/**
 	 * Verifica che la stringa ricevuta come parametro corrisponda all'ID.
+	 * @param insertedId
 	 */
 	public boolean isCorrectId(String insertedId) {
 		if (id.equals(insertedId)) 

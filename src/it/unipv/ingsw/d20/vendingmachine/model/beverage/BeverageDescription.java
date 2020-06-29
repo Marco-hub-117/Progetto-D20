@@ -13,7 +13,13 @@ public class BeverageDescription {
 	private String name;
 	private double price;
 	private Map<Ingredients, Double> ingredients;  
-	
+	/**
+	 * Costruttore della classe BeverageDescription
+	 * @param code codice della bevanda
+	 * @param name nome della bevanda
+	 * @param price costo della bevanda
+	 * 
+	 */
 	public BeverageDescription(String code,String name, double price) {
 		this.code = code;
 		this.name=name;
@@ -74,7 +80,10 @@ public class BeverageDescription {
 		description = "Code: " + code +" | Nome: " + name +  " | Price: " + price + " | Ingredients:\n" + ingredientList + "\n";
 		return description;
 	}
-	
+	/**
+	 * Un metodo toString per la visualizzazione nella GUI
+	 * 
+	 */
 	public String toStringGui() {
 		String description = "Codice " + code +"		" + name +  "		�" + String.format("%.2f", price) + "\n\n";
 		return description;

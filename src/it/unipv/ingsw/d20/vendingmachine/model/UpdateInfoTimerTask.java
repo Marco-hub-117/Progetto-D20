@@ -20,7 +20,11 @@ import it.unipv.ingsw.d20.vendingmachine.model.net.VendingMachineClient;
 public class UpdateInfoTimerTask extends TimerTask {
 	
 	private VendingMachine vendingMachine;
-	
+	/**
+	 * Costruttore della classe UpdateInfoTimerTask
+	 * @param vm VendingMachine
+	 *
+	 */
 	public UpdateInfoTimerTask(VendingMachine vm) {
 		vendingMachine = vm;
 	}
