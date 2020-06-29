@@ -17,7 +17,7 @@ public class Preferences {
 	private Preferences() {}
 	
 	/**
-	 * Ritorna l'icona per il bottone che porta alla modalità operatore.
+	 * Ritorna l'icona per il bottone che porta alla modalita' operatore.
 	 * @return icona operatore
 	 */
 	public static ImageIcon getGearIcon() {

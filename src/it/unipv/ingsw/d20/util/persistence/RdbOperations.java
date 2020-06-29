@@ -23,7 +23,10 @@ import it.unipv.ingsw.d20.vendingmachine.model.VendingMachineStatus;
 public class RdbOperations {
 	
 	private Connection con;
-	
+	/**
+	 * Costruttore della classe RdbOperations
+	 *
+	 */
 	public RdbOperations () {
 		this.con = null;
 	}
@@ -31,8 +34,8 @@ public class RdbOperations {
 	
 	/**
 	 * Apre la connessione con il DB
-	 * @param conn
-	 * @return
+	 * @param conn Connessione
+	 * @return la connessione aperta
 	 */
 	public Connection startConnection(Connection conn) { 
 		
@@ -62,8 +65,8 @@ public class RdbOperations {
 	
 	/**
 	 * Verifica che la connessione sia aperta
-	 * @param conn
-	 * @return
+	 * @param conn Connessione
+	 * 
 	 */
 	public boolean isOpen(Connection conn) {
 		if (conn == null) 
@@ -74,8 +77,8 @@ public class RdbOperations {
 	
 	/**
 	 * Chiude La connessione con il DB
-	 * @param conn
-	 * @return
+	 * @param conn Connessione
+	 * 
 	 */
 	public Connection closeConnection (Connection conn) {
 		if ( !isOpen(conn) ) // se la connessione ï¿½ giï¿½ chiusa.
@@ -147,8 +150,8 @@ public class RdbOperations {
 	
 	/**
 	 * Ottine una VendingMachine prendendola dal DB
-	 * @param idVending della Vending da recuperare
-	 * @return
+	 * @param idVending Id della Vending da recuperare
+	 *
 	 */
 	public VendingPOJO getVending (String idVending) {
 		VendingPOJO result=null;
@@ -172,7 +175,7 @@ public class RdbOperations {
 	
 	/**
 	 * Aggiunge una VendingMachine sul DB
-	 * @param vending
+	 * @param vending 
 	 */
 	public void addVending(VendingPOJO vending) {	
 		ArrayList<String> values = new ArrayList<>();
@@ -218,8 +221,8 @@ public class RdbOperations {
 	
 	/**
 	 * Aggiorna il saldo della VendingMachine sul DB
-	 * @param idVending 
-	 * @param amount
+	 * @param idVending Id della vending da aggiornare
+	 * @param amount saldo aggiornato
 	 */
 	public void updateVendingAmount(String idVending,double amount) {
 		String set = "Amount = '"+String.valueOf(amount)+"'";
@@ -283,7 +286,7 @@ public class RdbOperations {
 	
 	/**
 	 * Aggiunge una nuova Sale sul DB
-	 * @param sale
+	 * @param sale Sale da aggiungere
 	 * @throws SQLException
 	 */
 	public void addSale(SalePOJO sale) throws SQLException {
@@ -309,9 +312,9 @@ public class RdbOperations {
 	
 	/**
 	 * Ottiene una sale recuperandola dal DB
-	 * @param idVending
+	 * @param idVending Id della Vending
 	 * @param date Data nel formato yyyy/MM/dd hh:mm:ss
-	 * @return
+	 * 
 	 */
 	public SalePOJO getSaleByKey (String idVending,String date) {
 		SalePOJO result = null;
@@ -338,8 +341,8 @@ public class RdbOperations {
 	
 	/**
 	 * Ottiene tutte le sale di una VendingMachine
-	 * @param idVending
-	 * @return
+	 * @param idVending Id della vending di interesse
+	 * 
 	 */
 	public ArrayList<SalePOJO> getAllSalesByIdVending (String idVending) {
 		ArrayList<SalePOJO> result = new ArrayList<>();
@@ -369,8 +372,8 @@ public class RdbOperations {
 	
 	/**
 	 * Ottiene il catalogo dato il tipo.
-	 * @param type
-	 * @return
+	 * @param type tipo del catalogo (INVERNALE O ESTIVO)
+	 * 
 	 */
 	public ArrayList<BvCatalogPOJO> getBeverageCatalogByType(int type) {
 		ArrayList<BvCatalogPOJO> result = new ArrayList<>();
@@ -398,7 +401,7 @@ public class RdbOperations {
 	
 	/**
 	 * Ottiene il prezzo di una bevanda
-	 * @param bevName
+	 * @param bevName nome della bevanda
 	 * @return
 	 */
 	public double getPriceByBevName(String bevName) {
@@ -424,7 +427,7 @@ public class RdbOperations {
 	
 	/**
 	 * Aggiunge una nuova bevanda.
-	 * @param bv
+	 * @param bv Bevanda da aggiungere
 	 */
 	public void addBeverageDescription(BeverageDescriptionPOJO bv) {
 		ArrayList<String> values = new ArrayList<>();
@@ -448,10 +451,10 @@ public class RdbOperations {
 	}
 	
 	/**
-	 * Aggiunge una nuova bevanda con anche i suoi ingredienti
-	 * L'idRecipe della beverage descriptione deve essere uguale ad almeno un idRecipe dell'arraylist ingredient recipe.
-	 * @param bv
-	 * @param ingr
+	 * Aggiunge una nuova bevanda anche con i suoi ingredienti
+	 * L'idRecipe della beverage description deve essere uguale ad almeno un idRecipe dell'arraylist ingredient recipe.
+	 * @param bv Bevanda da aggiungere
+	 * @param ingr Lista di ingredienti
 	 */
 	public void addBeverageDescription(BeverageDescriptionPOJO bv,ArrayList<IngredientRecipePOJO> ingr) {
 		addIngredientRecipe(ingr);
@@ -460,7 +463,7 @@ public class RdbOperations {
 	
 	/**
 	 * Ottiene tutte le BeverageDescription
-	 * @return
+	 * 
 	 */
 	public ArrayList<BeverageDescriptionPOJO> getAllBeverageDescriptions () {
 		ArrayList<BeverageDescriptionPOJO> result = new ArrayList<>();
@@ -486,8 +489,8 @@ public class RdbOperations {
 	
 	/**
 	 * Ottiene la descrizione di una bevanda dato il suo nome.
-	 * @param bevName
-	 * @return
+	 * @param bevName Nome della bevanda
+	 * 
 	 */
 	public BeverageDescriptionPOJO getBeverageDescriptionByBevName(String bevName) {
 		BeverageDescriptionPOJO result = null;
@@ -514,9 +517,9 @@ public class RdbOperations {
 	// DI SEGUITO CI SRANNO LE QUERY RELATIVE ALLA TABLE IngredientRecipe
 	
 	/**
-	 * Aggiunge un nuovo ingrediente sul DB.
+	 * Aggiunge un nuovo ingrediente nel DB.
 	 * Gli ingredienti possono essere aggiunti senza aggiungere subito una BeverageDescription.
-	 * @param ingr
+	 * @param ingr ingrediente da aggiungere
 	 */
 	public void addIngredientRecipe(IngredientRecipePOJO ingr) {
 		
@@ -542,7 +545,7 @@ public class RdbOperations {
 	
 	/**
 	 * Aggiunge una serie di nuovi ingredienti sul DB.
-	 * @param ingr
+	 * @param ingr lista di ingredienti da aggiungere
 	 */
 	public void addIngredientRecipe(ArrayList<IngredientRecipePOJO> ingr) {
 		for (IngredientRecipePOJO ir : ingr) {
@@ -553,7 +556,7 @@ public class RdbOperations {
 	/**
 	 * Ottiene tutti gli ingredienti con campo IdRecipe uguale a quello passato come parametro.
 	 * @param idRecipe
-	 * @return
+	 * 
 	 */
 	public ArrayList<IngredientRecipePOJO> getAllIngredientRecipeByIdRecipe(String idRecipe) {
 		ArrayList<IngredientRecipePOJO> result = new ArrayList<>();
@@ -577,8 +580,8 @@ public class RdbOperations {
 	}
 	
 	/**
-	 * Aggiorna la composizione di un ingrediente, modificato la quantità.
-	 * @param idRecipe
+	 * Aggiorna la composizione di un ingrediente, modificando la quantita'.
+	 * @param idRecipe 
 	 * @param ingredientName
 	 * @param newQuantity
 	 */
@@ -602,7 +605,7 @@ public class RdbOperations {
 	
 	/**
 	 * Ottiene tutti gli operatori registrati sul DB.
-	 * @return
+	 * 
 	 */
 	public ArrayList<OperatorPOJO> getAllOperators () {
 		ArrayList<OperatorPOJO> result = new ArrayList<>();
@@ -628,8 +631,8 @@ public class RdbOperations {
 	
 	/**
 	 * Ottiene uno specifico operatore.
-	 * @param code
-	 * @return
+	 * @param code codice dell'operatore
+	 * 
 	 */
 	public OperatorPOJO getOperator (String code) {
 		OperatorPOJO result=null;
@@ -683,7 +686,7 @@ public class RdbOperations {
 	
 	/**
 	 * Ottiene tutte le chiavi salvate sul DB.
-	 * @return
+	 * 
 	 */
 	public ArrayList<KeyPOJO> getAllKeys() {
 		
@@ -710,7 +713,7 @@ public class RdbOperations {
 	
 	/**
 	 * Ottiene una specifica chiave dal DB
-	 * @param serialCode
+	 * @param serialCode Codice della chiave
 	 * @return
 	 */
 	public KeyPOJO getKey (String serialCode) {
@@ -736,7 +739,7 @@ public class RdbOperations {
 	
 	/**
 	 * Salva una chiave sul DB.
-	 * @param key
+	 * @param key Chiave da salvare
 	 */
 	public void addKey(KeyPOJO key) {
 		ArrayList<String> values = new ArrayList<>();
@@ -759,8 +762,8 @@ public class RdbOperations {
 	
 	/**
 	 * Aggiorna il credito di una chiave salvata sul DB.
-	 * @param serialCode
-	 * @param newCredit
+	 * @param serialCode Codice della chiavetta
+	 * @param newCredit nuovo credito
 	 */
 	public void updateKeyCredit(String serialCode, double newCredit) {
 		String query = QueryGenerator.getUpdateSetQuery("PaymentKey", "Credit = '"+newCredit+"'", "Code = '"+serialCode+"'");
@@ -777,8 +780,8 @@ public class RdbOperations {
 	}
 	
 	/**
-	 * Ottiene il credito di una chiave, passando come argomento il codice della chiave.
-	 * @param serialCode
+	 * Ottiene il credito di una chiave.
+	 * @param serialCode Codice della chiavetta
 	 * @return
 	 */
 	public double getKeyCredit(String serialCode) {
@@ -803,7 +806,7 @@ public class RdbOperations {
 	
 	/**
 	 * Disattiva una chiave sul DB.
-	 * @param serialCode
+	 * @param serialCode codice della chiave
 	 */
 	public void deactivateKey(String serialCode) {
 		String query = QueryGenerator.getDeleteWhereQuery("PaymentKey", "Code = '"+serialCode+"'");

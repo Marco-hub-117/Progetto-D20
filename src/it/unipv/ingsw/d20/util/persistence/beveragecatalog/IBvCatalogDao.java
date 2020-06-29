@@ -8,14 +8,14 @@ public interface IBvCatalogDao {
 	
 	/**
 	 * Ottiene una ArrayList<BeveragePOJO> contenente il catalogo del tipo passato come parametro.
-	 * @param type
+	 * @param type tipo di catalogo
 	 * @return
 	 */
 	public ArrayList<BvCatalogPOJO> getBeverageCatalogByType(int type);
 	
 	/**
 	 * Ottiene un'istanza di BeverageCatalog, contenente tutte le bevande appartenenti alla tipologia di catalogo specificata nel parametro type.
-	 * @param type
+	 * @param type tipo di catalogo
 	 * @return
 	 */
 	public BeverageCatalog getBeverageCatalog(int type);

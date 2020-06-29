@@ -13,8 +13,9 @@ public interface ISaleDao {
 	public void addSale(SalePOJO sale) throws SQLException;
 	
 	/**
-	 * Ottiene una sale data la sua key ( composta dagli attributi idVending e date)
-	 * @param id della sale.
+	 * Ottiene una sale data la sua key (composta dagli attributi idVending e date)
+	 * @param id Id della sale.
+	 * @param date 
 	 * @return SalePOJO
 	 */
 	public SalePOJO getSaleByKey(String idVending,String date);

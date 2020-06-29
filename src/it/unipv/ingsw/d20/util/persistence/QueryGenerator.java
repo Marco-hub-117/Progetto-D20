@@ -17,7 +17,7 @@ public class QueryGenerator {
 	 * SELECT attributes
 	 * FROM tableName
 	 * @param attributes attributes attributi della "tabelName" desiderati.
-	 * @param tableName tabbella da cui estrapolare le informazioni
+	 * @param tableName tabella da cui estrapolare le informazioni
 	 * @return Stringa formattata per generare una query di questo tipo.
 	 */
 	public static String getSelectFromQuery(String attributes,String tableName) {
@@ -34,7 +34,7 @@ public class QueryGenerator {
 	 * FROM tableName
 	 * WHERE whereStatement
 	 * @param attributes attributi della "tabelName" desiderati.
-	 * @param tableName tabbella da cui estrapolare le informazioni
+	 * @param tableName tabella da cui estrapolare le informazioni
 	 * @param whereStatement clausola da inserire nel where
 	 * @return
 	 */
@@ -49,7 +49,7 @@ public class QueryGenerator {
 	 * Crea una query "Insert into table values" sottoforma di stringa.
 	 * @param tableName Stringa che contiene il nome della table in cui inserire le informazioni
 	 * @param values arraylist di stringhe che contiene gli attributi del record da inserire.
-	 * @return
+	 * 
 	 */
 	public static String getInsertIntoValuesQuery(String tableName, ArrayList<String> values) {
 		StringBuilder query = new StringBuilder();
@@ -78,9 +78,9 @@ public class QueryGenerator {
 	
 	/**
 	 * Crea una query Update Set e la restituisce sottoforma di stringa
-	 * @param tableName
-	 * @param set
-	 * @param whereStatement
+	 * @param tableName nome tabella
+	 * @param set nuova stringa
+	 * @param whereStatement condizione
 	 * @return
 	 */
 	public static String getUpdateSetQuery(String tableName,String set,String whereStatement) {
@@ -90,8 +90,8 @@ public class QueryGenerator {
 	}
 	/**
 	 * Crea una query Delete from e la restituisce sottoforma di stringa.
-	 * @param tableName
-	 * @param whereStatement
+	 * @param tableName Nome della tabella
+	 * @param whereStatement condizione
 	 * @return
 	 */
 	public static String getDeleteWhereQuery(String tableName, String whereStatement) {

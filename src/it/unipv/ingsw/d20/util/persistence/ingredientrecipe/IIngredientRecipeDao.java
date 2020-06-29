@@ -24,7 +24,7 @@ public interface IIngredientRecipeDao {
 	public ArrayList<IngredientRecipePOJO> getAllIngredientRecipeByIdRecipe(String idRecipe);
 	
 	/**
-	 * Aggiorna l'ingrediente specificato come parametro, aggiornando la quantità.
+	 * Aggiorna l'ingrediente specificato come parametro, aggiornando la quantita'.
 	 * @param idRecipe
 	 * @param ingredientName
 	 * @param quantity

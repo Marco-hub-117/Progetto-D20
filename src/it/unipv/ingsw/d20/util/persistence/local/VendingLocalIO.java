@@ -49,7 +49,7 @@ public class VendingLocalIO {
 				for (int i = 3;i<result.length;i= i+2) {
 					bvdesc.addIngredient(Ingredients.valueOf(result[i]),Double.valueOf(result[i+1])); //Aggiunge glie ingredienti nella BeverageDescription. Gli ingredienti sono coppie di "ingrediente-quantita"
 				}
-				bvCatalog.addBeverageDescription(bvdesc); // Aggiunge la BeverageDescription sopra creata al catalogo che verrà restituito come risultato.
+				bvCatalog.addBeverageDescription(bvdesc); // Aggiunge la BeverageDescription sopra creata al catalogo che verrï¿½ restituito come risultato.
 				result = null;
 			}
 			
@@ -64,8 +64,8 @@ public class VendingLocalIO {
 	}
 
 	/**
-	 * Salva il catalogo (di tipo BeverageCatalog, passato come argomento) nel file locale.
-	 * @param bvCatalog
+	 * Salva il catalogo nel file locale.
+	 * @param bvCatalog catalogo da salvare
 	 */
 	public void saveCatalogIntoLocal (BeverageCatalog bvCatalog) {
 		String nomeFile = Paths.ASSETS_FOLDER + Paths.BEVERAGE_CATALOG;
@@ -122,7 +122,7 @@ public class VendingLocalIO {
 	
 	/**
 	 * Salva i tank nel file locali
-	 * @param tankList HashMap<Ingredients,Tank>
+	 * @param tankList Lista dei tank da salvare
 	 */
 	public void saveTankIntoLocal(HashMap<Ingredients,Tank> tankList) {
 		String nomeFile = Paths.ASSETS_FOLDER + Paths.TANKS;
@@ -172,7 +172,7 @@ public class VendingLocalIO {
 	
 	/**
 	 * Salva l'id della VendingMachine nel file locale.
-	 * @param IDNumber
+	 * @param IDNumber 
 	 */
 	public void saveVendingIDIntoLocal(String IDNumber) {
 		String fileName = Paths.ASSETS_FOLDER + Paths.VENDING_ID;
@@ -242,8 +242,9 @@ public class VendingLocalIO {
 	}
 	
 	/**
-	 * Salva i dati di un CashContainer nel file locale. I dati sono i numeri di monete per ogni tipologia. 
-	 * Per ogni riga ci sarà la quantità di quella moneta, partendo dal taglio più piccolo.
+	 * Salva un CashContainer nel file locale. 
+	 * Il cashContainer contiene il numero di monete per ogni taglio, partendo dal piu' piccolo (E0,05)
+	 * 
 	 * @param cashContainer
 	 */
 	public void saveCashContainerIntoLocal(CashContainer cashContainer) {

@@ -15,7 +15,7 @@ import it.unipv.ingsw.d20.util.persistence.vending.*;
 
 /**
  * Classe utile per ottenere tutti le possibili istanze di classi che implementano metodi per la persistenza dei dati. 
- * Con questa classe è possibile ottenere tutti i DAO.
+ * Con questa classe e' possibile ottenere tutti i DAO.
  * Implementata come un singleton, utilizzando il pattern "Factory".
  */
 public class PersistenceDAOFactory {
@@ -87,7 +87,9 @@ public class PersistenceDAOFactory {
 	public RdbOperations getOperations() {
 		return operations;
 	}
-	
+	/**
+	 * Metodo che testa la connessione al database
+	 * */
 	public boolean testConnection() {
 		Connection connection=null;
 		if (operations.isOpen(operations.startConnection(connection))) {

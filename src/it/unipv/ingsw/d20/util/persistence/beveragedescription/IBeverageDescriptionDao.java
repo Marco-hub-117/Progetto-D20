@@ -27,7 +27,7 @@ public interface IBeverageDescriptionDao {
 	public void addBeverageDescription(BeverageDescriptionPOJO bv,ArrayList<IngredientRecipePOJO> ingr);
 	
 	/**
-	 * Ottiene una BeverageDescription, passando coem parametro il nome della Bevanda.
+	 * Ottiene una BeverageDescription, passando come parametro il nome della Bevanda.
 	 * @param BevName
 	 * @return
 	 */
