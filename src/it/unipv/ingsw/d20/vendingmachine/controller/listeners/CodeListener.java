@@ -41,9 +41,9 @@ public class CodeListener implements ActionListener {
 		if (intValue == 10) { //tasto Ok
 			gui.setEnabled(false); //disabilita la gui durante l'erogazione
 			try {
-				vm.insertCode(gui.getDisplay()); 
+				String bevName = vm.insertCode(gui.getDisplay()); 
 				
-				Beverage bev = new Beverage(); bev.start(); //eroga la bevanda
+				Beverage bev = new Beverage(bevName); bev.start(); //eroga la bevanda
 				System.out.println("Erogazione avvenuta con successo.");
 			} catch (InsufficientCreditException | NonExistentCodeException | InsufficientIngredientsException e) {
 				JOptionPane.showMessageDialog(null, e.getMessage());

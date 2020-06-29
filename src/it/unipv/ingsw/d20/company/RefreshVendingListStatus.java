@@ -17,7 +17,7 @@ public class RefreshVendingListStatus extends TimerTask {
 
 	/**
 	 * Questo metodo si occupa di controllare la quantità di tempo passata dall'ultimo
-	 * update di ciascuna macchinetta: se è superiore a 11 minuti ne imposta lo status
+	 * update di ciascuna macchinetta: se è superiore a 2 minuti ne imposta lo status
 	 * su DISCONNECTED. Però, se lo status era OFF, non succede nulla.
 	 */
 	@Override

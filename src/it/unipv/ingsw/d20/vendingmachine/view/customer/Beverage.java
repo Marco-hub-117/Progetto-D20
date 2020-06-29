@@ -24,10 +24,16 @@ public class Beverage extends Thread {
     private JProgressBar progressBar;
     private int progress = 0;
     private JButton pickUpBeverageButton;
+    
+    private String beverageName;
+    
+    public Beverage(String bevName) {
+    	beverageName = bevName;
+    }
 	
 	@Override
 	public void run() {
-		window = new JFrame("Erogazione in corso..."); 
+		window = new JFrame("Erogazione di " + beverageName.toLowerCase() + " in corso..."); 
         window.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
         window.setResizable(false);
 
@@ -47,7 +53,7 @@ public class Beverage extends Thread {
         		+ "                                                                                   ");
         emptyLabel.setFont(emptyLabel.getFont().deriveFont(Font.PLAIN, 10));
         
-        pickUpBeverageButton = new JButton("Ritira bevanda");
+        pickUpBeverageButton = new JButton("Ritira " + beverageName.toLowerCase());
         pickUpBeverageButton.setFont(pickUpBeverageButton.getFont().deriveFont(Font.PLAIN, 20));
         pickUpBeverageButton.setFocusable(false); pickUpBeverageButton.setEnabled(false);
         
@@ -67,7 +73,7 @@ public class Beverage extends Thread {
         try { 
             while (progress <= 100) { 
             	if (progress == 100) {
-            		window.setTitle("Erogazione completata!");
+            		window.setTitle("Erogazione di " + beverageName.toLowerCase() +  " completata!");
             		
             		pickUpBeverageButton.setEnabled(true);
             		pickUpBeverageButton.addActionListener(al -> window.dispose());

@@ -87,6 +87,14 @@ public class VendingMachineInfo {
 		}
 	}
 	
+	public double[] getUpdatedTemps() {
+		double[] updatedTemps = new double[tankList.size()];
+		for (int i = 0; i < tankList.size(); i++) {
+			updatedTemps[i] = tankList.get(i).getTemperature();
+		}
+		return updatedTemps;
+	}
+	
 	public VendingMachineStatus getStatus() {
 		return status;
 	}

@@ -46,7 +46,7 @@ public class TankListener implements ActionListener {
 		for(Map.Entry<Ingredients, Double> entry : tankLevels.entrySet()) {
 			key = String.valueOf(entry.getKey());
 			value = String.valueOf(entry.getValue());
-			gui.setElements(key, value, count);
+			gui.setElement(key, value, count);
 			count++;
 		}
 	}
