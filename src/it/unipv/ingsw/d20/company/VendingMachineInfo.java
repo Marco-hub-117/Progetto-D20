@@ -81,6 +81,10 @@ public class VendingMachineInfo {
 		
 	}
 	
+	/**
+	 * Aggiorna le temperature dei tank.
+	 * @param updatedTanksTemps lista di nuove temperature
+	 */
 	public void updateTanksTemp(List<Double> updatedTanksTemps) {
 		for (int i = 0; i < tankList.size(); i++) {
 			tankList.get(i).setTemperature(updatedTanksTemps.get(i));
