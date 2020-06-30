@@ -86,8 +86,17 @@ public class BeverageDescription {
 	 * @return description descrizione della bevanda
 	 */
 	public String toStringGui() {
-		String description = "Codice " + code +"		" + name +  "		�" + String.format("%.2f", price) + "\n\n";
+		String description;
+		if (name.length() > 10)
+			description = "Cod. " + code +"		" + name +  "	€" + String.format("%.2f", price) + "\n\n";
+		else 
+			description = "Cod. " + code +"		" + name +  "		€" + String.format("%.2f", price) + "\n\n";
 		return description;
 	}
 
 }
+
+
+
+
+
