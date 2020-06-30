@@ -17,5 +17,7 @@ Per poter utilizzare correttamente il programma bisogna seguire i seguenti passi
  - Infine fare partire la classe it.unipv.ingsw.d20.vendingmachine.VendingMachineLauncher che permetterà di utilizzare il distributore vero e proprio.
  
  - Per la parte di web app, accedere da un browser a http://localhost:8080/d20/. Credenziali valide per l'accesso sono:
+ 
  username: adm
+ 
  password: adm
