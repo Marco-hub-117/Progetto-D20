@@ -14,7 +14,6 @@ import it.unipv.ingsw.d20.util.persistence.operator.OperatorPOJO;
 import it.unipv.ingsw.d20.util.persistence.paymentKey.KeyPOJO;
 import it.unipv.ingsw.d20.util.persistence.sale.SalePOJO;
 import it.unipv.ingsw.d20.util.persistence.vending.VendingPOJO;
-import it.unipv.ingsw.d20.vendingmachine.model.VendingMachineStatus;
 
 /**
  * Classe che implementa la connessione con il database. Implementa tutte le possibili operazioni con esso.
@@ -31,7 +30,6 @@ public class RdbOperations {
 		this.con = null;
 	}
 	
-	
 	/**
 	 * Apre la connessione con il DB
 	 * @param conn Connessione
@@ -46,12 +44,17 @@ public class RdbOperations {
 		String password = null;
 		
 		DbDriver = "com.mysql.cj.jdbc.Driver";
-		DbUrl = "jdbc:mysql://34.65.222.216:3306/prova"; // � possibile implementare una connessione a uno schema particolare, in questo caso usiamo di default lo schema "prova"
-		//DbUrl = "jdbc:mysql://db4free.net:3306/d20database";
+		
+		//connessione con DB su GCP
+		/*DbUrl = "jdbc:mysql://34.65.222.216:3306/prova"; // � possibile implementare una connessione a uno schema particolare, in questo caso usiamo di default lo schema "prova"
 		username = "root";
-		//username = "ingswd20";
-		password = "";
-		//password = "ingswd2020";
+		password = "";*/
+		
+		//connessione con DB su freemysqlhosting.net
+		DbUrl = "jdbc:mysql://sql7.freemysqlhosting.net:3306/sql7351837";
+		username = "sql7351837";
+		password = "8nEuLTKJNk";
+		
 		if (isOpen (conn)) // se la connessione al database � gi� aperta viene chiusa, per poi riaprirne una nuova
 			closeConnection(conn); // conn viene chiusa.
 		
@@ -100,31 +103,6 @@ public class RdbOperations {
 	
 	// DI SEGUITO CI SARANNO LE QUERY RELATIVA ALLA TABLE VENDING
 	
-	/*
-	 * Forse da rimuovere.
-	 */
-	public VendingMachineStatus getVendingStatusById(String Id) {
-		
-		VendingMachineStatus result = null;
-		String query = QueryGenerator.getSelectFromQuery("Status", "Vending");
-		
-		con = this.startConnection(con);
-		Statement st;
-		ResultSet rs;
-		
-		try {
-			st = con.createStatement();
-			rs = st.executeQuery(query);
-			while(rs.next()) {
-				result = VendingMachineStatus.valueOf(rs.getString(1));
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		this.closeConnection(con);
-		return result;
-
-	}
 	
 	/**
 	 * Recupera tutte le VendingMachine dal DB
@@ -141,7 +119,7 @@ public class RdbOperations {
 			st = con.createStatement();
 			rs = st.executeQuery(query);
 			while(rs.next()) {
-				VendingPOJO res = new VendingPOJO(rs.getString("idVending"),rs.getString("Location"),rs.getString("Type"));
+				VendingPOJO res = new VendingPOJO(rs.getString("idVending"),rs.getString("location"),rs.getString("type"));
 				result.add(res);
 			}
 		} catch (SQLException e) {
@@ -167,7 +145,7 @@ public class RdbOperations {
 			st = con.createStatement();
 			rs = st.executeQuery(query);
 			while(rs.next()) {
-				result = new VendingPOJO(rs.getString("idVending"),rs.getString("Location"),rs.getString("Type"));
+				result = new VendingPOJO(rs.getString("idVending"),rs.getString("location"),rs.getString("type"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -202,28 +180,9 @@ public class RdbOperations {
 		
 	}
 	
-	/*
-	 * Da rimuovere?
-	 */
-	public void updateVendingStatus(String idVending,VendingMachineStatus newStatus) {
-		
-		String set = "Status = '"+newStatus+"'";
-		String whereStatement = "idVending = '"+idVending+"'";
-		String query = QueryGenerator.getUpdateSetQuery("Vending", set, whereStatement);
-		con = this.startConnection(con);
-		Statement st;	
-		try {
-			st = con.createStatement();
-			st.executeUpdate(query); // usato per eseguire una query di inserimento.
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		this.closeConnection(con);
-	}
 	
 	/**
+	 * OBSOLETO.
 	 * Aggiorna il saldo della VendingMachine sul DB
 	 * @param idVending Id della vending da aggiornare
 	 * @param amount saldo aggiornato
@@ -243,47 +202,6 @@ public class RdbOperations {
 			e.printStackTrace();
 		}
 		this.closeConnection(con);
-	}
-	
-	/*
-	 * Da rimuovere?
-	 */
-	public void updateVendingTankLevel(String idVending,String tankLevel) {
-		String set = "TankLevel = '"+tankLevel+"'";
-		String whereStatement = "idVending = '"+idVending+"'";
-		String query = QueryGenerator.getUpdateSetQuery("Vending", set, whereStatement);
-		con = this.startConnection(con);
-		Statement st;	
-		try {
-			st = con.createStatement();
-			st.executeUpdate(query); // usato per eseguire una query di inserimento.
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		this.closeConnection(con);
-	}
-	
-	/*
-	 * Da rimuovere?
-	 */
-	public void updateVendingTankTemp(String idVending,String tankTemp) {
-		String set = "TankTemp = '"+tankTemp+"'";
-		String whereStatement = "idVending = '"+idVending+"'";
-		String query = QueryGenerator.getUpdateSetQuery("Vending", set, whereStatement);
-		con = this.startConnection(con);
-		Statement st;	
-		try {
-			st = con.createStatement();
-			st.executeUpdate(query); // usato per eseguire una query di inserimento.
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		this.closeConnection(con);
-	
 	}
 	
 	// DI SEGUITO CI SARANNO LE QUERY RELATIVE ALLA SALE
@@ -322,7 +240,7 @@ public class RdbOperations {
 	 */
 	public SalePOJO getSaleByKey (String idVending,String date) {
 		SalePOJO result = null;
-		String whereStatement = "idVending = '"+idVending+"' and Date = '"+date+"'";
+		String whereStatement = "idVending = '"+idVending+"' and date = '"+date+"'";
 		String query = QueryGenerator.getSelectFromWhereQuery("*", "Sale", whereStatement);
 		con = this.startConnection(con);
 		Statement st;
@@ -410,8 +328,8 @@ public class RdbOperations {
 	 */
 	public double getPriceByBevName(String bevName) {
 		double result = 0;
-		String whereStatement = "BevName = '"+bevName+"'";
-		String query = QueryGenerator.getSelectFromWhereQuery("price", "BeverageDescriptions", whereStatement);
+		String whereStatement = "bevName = '"+bevName+"'";
+		String query = QueryGenerator.getSelectFromWhereQuery("price", "BeverageDescription", whereStatement);
 		
 		con = this.startConnection(con);
 		Statement st;
@@ -439,7 +357,7 @@ public class RdbOperations {
 		values.add(String.valueOf(bv.getPrice())); // secondo attributo nella table
 		values.add(bv.getIdRecipe()); // terzo attributo nella table
 
-		String query = QueryGenerator.getInsertIntoValuesQuery("BeverageDescriptions", values);	
+		String query = QueryGenerator.getInsertIntoValuesQuery("BeverageDescription", values);	
 
 		con = this.startConnection(con);
 		Statement st;	
@@ -480,7 +398,7 @@ public class RdbOperations {
 			st = con.createStatement();
 			rs = st.executeQuery(query);
 			while(rs.next()) {
-				BeverageDescriptionPOJO res = new BeverageDescriptionPOJO(rs.getString("BevName"),rs.getDouble("price"), rs.getString("idRecipe"));
+				BeverageDescriptionPOJO res = new BeverageDescriptionPOJO(rs.getString("bevName"),rs.getDouble("price"), rs.getString("idRecipe"));
 				result.add(res);
 			}
 		} catch (SQLException e) {
@@ -498,7 +416,7 @@ public class RdbOperations {
 	 */
 	public BeverageDescriptionPOJO getBeverageDescriptionByBevName(String bevName) {
 		BeverageDescriptionPOJO result = null;
-		String whereStatement = "BevName = '"+bevName+"'";
+		String whereStatement = "bevName = '"+bevName+"'";
 		String query = QueryGenerator.getSelectFromWhereQuery("*", "BeverageDescription", whereStatement);
 		con = this.startConnection(con);
 		Statement st;
@@ -508,7 +426,7 @@ public class RdbOperations {
 			st = con.createStatement();
 			rs = st.executeQuery(query);
 			while(rs.next()) {
-				result = new BeverageDescriptionPOJO (rs.getString("BevName"),rs.getDouble("price"), rs.getString("idRecipe"));
+				result = new BeverageDescriptionPOJO (rs.getString("bevName"),rs.getDouble("price"), rs.getString("idRecipe"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -574,7 +492,7 @@ public class RdbOperations {
 			st = con.createStatement();
 			rs = st.executeQuery(query);
 			while(rs.next()) {
-				result.add(new IngredientRecipePOJO(rs.getString("idRecipe"),rs.getString("IngredientName"),rs.getDouble("Quantity")));
+				result.add(new IngredientRecipePOJO(rs.getString("idRecipe"),rs.getString("ingredientName"),rs.getDouble("quantity")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -590,7 +508,7 @@ public class RdbOperations {
 	 * @param newQuantity nuova quantit�
 	 */
 	public void updateIngredientRecipe(String idRecipe, String ingredientName, double newQuantity) {
-		String query = QueryGenerator.getUpdateSetQuery("IngredientRecipe", "Quantity = '"+newQuantity+"'", "idRecipe = '"+idRecipe+"'"+ "and "+ "IngredientName = '"+ingredientName+"'");
+		String query = QueryGenerator.getUpdateSetQuery("IngredientRecipe", "quantity = '"+newQuantity+"'", "idRecipe = '"+idRecipe+"'"+ "and "+ "ingredientName = '"+ingredientName+"'");
 		con = this.startConnection(con);
 		Statement st;	
 		try {
@@ -622,7 +540,7 @@ public class RdbOperations {
 			st = con.createStatement();
 			rs = st.executeQuery(query);
 			while(rs.next()) {
-				OperatorPOJO res = new OperatorPOJO(rs.getString("CF"), rs.getString("Name"), rs.getString("Password"), rs.getString("Type"));
+				OperatorPOJO res = new OperatorPOJO(rs.getString("cf"), rs.getString("name"), rs.getString("password"), rs.getString("type"));
 				result.add(res);
 			}
 		} catch (SQLException e) {
@@ -640,7 +558,7 @@ public class RdbOperations {
 	 */
 	public OperatorPOJO getOperator (String code) {
 		OperatorPOJO result=null;
-		String query = QueryGenerator.getSelectFromWhereQuery("*","Operator","CF= '"+code+"'");
+		String query = QueryGenerator.getSelectFromWhereQuery("*","Operator","cf= '"+code+"'");
 		
 		con = this.startConnection(con);
 		Statement st;
@@ -649,7 +567,7 @@ public class RdbOperations {
 			st = con.createStatement();
 			rs = st.executeQuery(query);
 			while (rs.next()) {
-				result = new OperatorPOJO(rs.getString("CF"), rs.getString("Name"), rs.getString("Password"), rs.getString("Type"));	
+				result = new OperatorPOJO(rs.getString("cf"), rs.getString("name"), rs.getString("password"), rs.getString("type"));	
 			}
 			
 		} catch (SQLException e) {
@@ -704,7 +622,7 @@ public class RdbOperations {
 			st = con.createStatement();
 			rs = st.executeQuery(query);
 			while(rs.next()) {
-				KeyPOJO res = new KeyPOJO(rs.getInt("Code"), rs.getDouble("Credit"));
+				KeyPOJO res = new KeyPOJO(rs.getInt("code"), rs.getDouble("credit"));
 				result.add(res);
 			}
 		} catch (SQLException e) {
@@ -722,7 +640,7 @@ public class RdbOperations {
 	 */
 	public KeyPOJO getKey (String serialCode) {
 		KeyPOJO result=null;
-		String query = QueryGenerator.getSelectFromWhereQuery("*","PaymentKey","Code="+serialCode);
+		String query = QueryGenerator.getSelectFromWhereQuery("*","PaymentKey","code="+serialCode);
 		
 		con = this.startConnection(con);
 		Statement st;
@@ -731,7 +649,7 @@ public class RdbOperations {
 			st = con.createStatement();
 			rs = st.executeQuery(query);
 			while (rs.next()) {
-				result = new KeyPOJO(rs.getInt("Code"), rs.getDouble("Credit"));
+				result = new KeyPOJO(rs.getInt("code"), rs.getDouble("credit"));
 			}	
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -770,7 +688,7 @@ public class RdbOperations {
 	 * @param newCredit nuovo credito
 	 */
 	public void updateKeyCredit(String serialCode, double newCredit) {
-		String query = QueryGenerator.getUpdateSetQuery("PaymentKey", "Credit = '"+newCredit+"'", "Code = '"+serialCode+"'");
+		String query = QueryGenerator.getUpdateSetQuery("PaymentKey", "credit = '"+newCredit+"'", "code = '"+serialCode+"'");
 		con = this.startConnection(con);
 		Statement st;	
 		try {
@@ -790,7 +708,7 @@ public class RdbOperations {
 	 */
 	public double getKeyCredit(String serialCode) {
 		double result = 0; 
-		String query = QueryGenerator.getSelectFromWhereQuery("Credit", "PaymentKey", "Code = '"+serialCode+"'");
+		String query = QueryGenerator.getSelectFromWhereQuery("credit", "PaymentKey", "code = '"+serialCode+"'");
 		
 		con = this.startConnection(con);
 		Statement st;
@@ -813,7 +731,7 @@ public class RdbOperations {
 	 * @param serialCode codice della chiave
 	 */
 	public void deactivateKey(String serialCode) {
-		String query = QueryGenerator.getDeleteWhereQuery("PaymentKey", "Code = '"+serialCode+"'");
+		String query = QueryGenerator.getDeleteWhereQuery("PaymentKey", "code = '"+serialCode+"'");
 		
 		con = this.startConnection(con);
 		Statement st;	
