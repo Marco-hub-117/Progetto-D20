@@ -40,14 +40,14 @@ public class CoinListener implements ActionListener {
 			if (value == -1) {
 				double buffCredit = vm.getCredit();
 				vm.dispenseCash();
-				JOptionPane.showMessageDialog(null, "Dispensed �" + String.format("%.2f", buffCredit));
+				JOptionPane.showMessageDialog(null, "Dispensed €" + String.format("%.2f", buffCredit));
 			} else
 				vm.insertCoin(this.value);
 		} catch (InsufficientCashForRestException | KeyRestException | InvalidCoinException e) {
 			JOptionPane.showMessageDialog(null, e.getMessage());
 		}
 		
-		//aggiorna la grafica solo se non � stato inserito un codice
+		//aggiorna la grafica solo se non è stato inserito un codice
 		if (gui.getDisplay().startsWith("E")) {
 			double credit = vm.getCredit();
 			String creditToString = String.format("%.2f", credit);
