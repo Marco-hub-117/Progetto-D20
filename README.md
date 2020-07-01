@@ -8,7 +8,7 @@ Per poter utilizzare correttamente il programma bisogna seguire i seguenti passi
  
  - Dopo aver aperto nell' IDE il file precedentemente scaricato, procedere facendo partire la classe it.unipv.ingsw.d20.company.CompanyLauncher. Questo attiverà il server della compagnia e la web app;
  
- - Fare partire la classe it.unipv.ingsw.d20.vendingmachine.VendingMachineLauncher che permetterà di utilizzare il distributore vero e proprio.
+ - Fare partire la classe it.unipv.ingsw.d20.vendingmachine.VendingMachineLauncher che permetterà di utilizzare il distributore vero e proprio (la grafica è ottimizzata per Ubuntu).
  
  - Per la parte di web app, accedere da un browser a http://localhost:8080/d20/. Credenziali valide per l'accesso sono:
  
