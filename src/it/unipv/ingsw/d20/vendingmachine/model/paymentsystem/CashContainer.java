@@ -29,11 +29,11 @@ public class CashContainer {
 	/**
 	 * Questo metodo aggiunge una moneta alla cassa del distributore.
 	 * @param coin valore della moneta
-	 * @throws InvalidCoinException eccezione che viene lanciata se la moneta non � valida
+	 * @throws InvalidCoinException eccezione che viene lanciata se la moneta non è valida
 	 */
 	public void addCoin(double coin) throws InvalidCoinException {
-		if (Math.random() < 0.05) //5% di probabilit� che la moneta non sia valida
-			throw new InvalidCoinException("La moneta inserita non � valida.");
+		if (Math.random() < 0.05) //5% di probabilitï¿½ che la moneta non sia valida
+			throw new InvalidCoinException("La moneta inserita non è valida.");
 		
 		int index;
 		for (index = 0; index < coinValue.length; index++) {
@@ -67,7 +67,7 @@ public class CashContainer {
 			throw new InsufficientCashForRestException();
 		}
 		
-		for (int i = coinValue.length - 1; i >= 0; i--) { //dispensa le monete partendo da quelle pi� grandi
+		for (int i = coinValue.length - 1; i >= 0; i--) { //dispensa le monete partendo da quelle piï¿½ grandi
 			while (creditX100 >= (int) (coinValue[i] * 100)) {
 				if (coinNumber[i] == 0) {
 					break;
@@ -77,7 +77,7 @@ public class CashContainer {
 			}
 		}
 		
-		System.out.println("Dispensed �" + credit);
+		System.out.println("Dispensed €" + credit);
 		
 		refreshTotalAmount();
 	}
