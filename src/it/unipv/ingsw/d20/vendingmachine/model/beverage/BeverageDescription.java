@@ -87,12 +87,10 @@ public class BeverageDescription {
 	 */
 	public String toStringGui() {
 		String description;
-		if (name.length() <= 8)
-			description = "Cod  " + code + "	" + name +  "			€" + String.format("%.2f", price) + "\n\n";
-		else if (name.length() <= 16)
-			description = "Cod  " + code + "	" + name +  "		€" + String.format("%.2f", price) + "\n\n";
-		else
-			description = "Cod  " + code + "	" + name +  "	€" + String.format("%.2f", price) + "\n\n";
+		if (name.length() > 10)
+			description = "Cod  " + code + "		" + name +  "	€" + String.format("%.2f", price) + "\n\n";
+		else 
+			description = "Cod  " + code + "		" + name +  "		€" + String.format("%.2f", price) + "\n\n";
 		return description;
 	}
 
