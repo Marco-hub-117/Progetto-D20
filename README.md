@@ -4,7 +4,7 @@
 
 Per poter utilizzare correttamente il programma bisogna seguire i seguenti passi:
 
- - Scaricare uno dei due file presenti nella sezione Release di GitHub (l'unica differenza tra i due consiste nei cataloghi di bevande disponibili);
+ - Scaricare uno dei due file presenti nella sezione Release di GitHub (l'unica differenza tra i due consiste nei cataloghi di bevande disponibili). ATTENZIONE: Se si vogliono testare solo le funzionalità offline del distributore (con Company e DB disattivi), clonare il branch master e avviare la classe it.unipv.ingsw.d20.vendingmachine.VendingMachineLauncher, non sono necessari i seguenti passaggi.
  
  - Accedere a Google Cloud Platform (https://cloud.google.com) con l'account Google abilitato: nell'angolo in alto a destra, di fianco all'icona del profilo Google, accedere a "Console";
 
