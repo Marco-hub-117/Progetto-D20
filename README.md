@@ -12,6 +12,6 @@ Per poter utilizzare correttamente il programma bisogna seguire i seguenti passi
  
  - Per la parte di web app, accedere da un browser a http://localhost:8080/d20/. Credenziali valide per l'accesso sono:
  
- username: adm
+   username: adm
  
- password: adm
+   password: adm
