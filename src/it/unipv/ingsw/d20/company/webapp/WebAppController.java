@@ -8,7 +8,7 @@ import it.unipv.ingsw.d20.company.Company;
 import it.unipv.ingsw.d20.company.VendingMachineInfo;
 import it.unipv.ingsw.d20.company.webapp.exceptions.InvalidPasswordException;
 import it.unipv.ingsw.d20.company.webapp.exceptions.InvalidUserException;
-import it.unipv.ingsw.d20.util.persistence.PersistenceDAOFactory;
+import it.unipv.ingsw.d20.util.persistence.PersistenceFactory;
 import it.unipv.ingsw.d20.util.persistence.beveragedescription.BeverageDescriptionPOJO;
 import it.unipv.ingsw.d20.util.persistence.beveragedescription.IBeverageDescriptionDao;
 import it.unipv.ingsw.d20.util.persistence.ingredientrecipe.IIngredientRecipeDao;
@@ -26,7 +26,7 @@ import it.unipv.ingsw.d20.vendingmachine.model.tanks.Tank;
  *
  */
 public class WebAppController {
-	private PersistenceDAOFactory sourceDAO;
+	private PersistenceFactory sourceDAO;
 	private IVendingDao vendingsManager;
 	private IOperatorDao operatorsManager;
 	private IKeyDao keysManager;
@@ -64,7 +64,7 @@ public class WebAppController {
 	 * Il costruttore inizializza gli attributi DAO per poter svolgere le operazioni su DB, oltre alla lista dei report.
 	 */
 	public WebAppController() {
-		sourceDAO= PersistenceDAOFactory.getInstance();
+		sourceDAO= PersistenceFactory.getInstance();
 		vendingsManager=sourceDAO.getVendingDao();
 		operatorsManager=sourceDAO.getOperatorDao();
 		keysManager=sourceDAO.getKeyDao();

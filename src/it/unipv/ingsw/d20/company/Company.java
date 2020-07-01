@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
 import it.unipv.ingsw.d20.company.constants.Cities;
 import it.unipv.ingsw.d20.company.constants.Streets;
 import it.unipv.ingsw.d20.company.net.CompanyServer;
-import it.unipv.ingsw.d20.util.persistence.PersistenceDAOFactory;
+import it.unipv.ingsw.d20.util.persistence.PersistenceFactory;
 import it.unipv.ingsw.d20.util.persistence.vending.IVendingDao;
 import it.unipv.ingsw.d20.util.persistence.vending.VendingPOJO;
 
@@ -48,7 +48,7 @@ public class Company {
         CompanyServer server = new CompanyServer(port);
         server.start();
         
-        PersistenceDAOFactory pf = PersistenceDAOFactory.getInstance();
+        PersistenceFactory pf = PersistenceFactory.getInstance();
         IVendingDao v = pf.getVendingDao();
         ArrayList<VendingPOJO> vendingList = v.getAllVendings();
         
@@ -69,7 +69,7 @@ public class Company {
 		String IDNumber = generateNewID();
 		String location = generateNewLocation();
 		
-		PersistenceDAOFactory pf = PersistenceDAOFactory.getInstance();
+		PersistenceFactory pf = PersistenceFactory.getInstance();
 		IVendingDao ivd = pf.getVendingDao();
 		ivd.addVending(new VendingPOJO(IDNumber, location, type));
 		

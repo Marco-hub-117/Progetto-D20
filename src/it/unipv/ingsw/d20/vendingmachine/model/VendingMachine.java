@@ -1,7 +1,7 @@
 package it.unipv.ingsw.d20.vendingmachine.model;
 
 
-import it.unipv.ingsw.d20.util.persistence.PersistenceDAOFactory;
+import it.unipv.ingsw.d20.util.persistence.PersistenceFactory;
 import it.unipv.ingsw.d20.util.persistence.local.VendingLocalIO;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.BeverageCatalog;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.BeverageDescription;
@@ -183,7 +183,7 @@ public class VendingMachine {
 	 * Metodo che permette di ottenere il catalogo delle bevande dalla persistenza locale.
 	 */
 	public BeverageCatalog getCatalogFromLocal() {
-		PersistenceDAOFactory pf = PersistenceDAOFactory.getInstance();
+		PersistenceFactory pf = PersistenceFactory.getInstance();
 		VendingLocalIO v = pf.getVendingLocalIO();
 		return v.getCatalogFromLocal();
 	}
@@ -192,7 +192,7 @@ public class VendingMachine {
 	 * Metodo che permette di salvare nella persistenza locale il catalogo delle bevande.
 	 */
 	public void saveCatalogIntoLocal () {
-		PersistenceDAOFactory pf = PersistenceDAOFactory.getInstance();
+		PersistenceFactory pf = PersistenceFactory.getInstance();
 		VendingLocalIO v = pf.getVendingLocalIO();
 		v.saveCatalogIntoLocal(bvCatalog);
 	}
@@ -201,7 +201,7 @@ public class VendingMachine {
 	 * Metodo che permette di ottenere i serbatoi dalla persistenza locale.
 	 */
 	public HashMap<Ingredients,Tank> getTanksFromLocal() {
-		PersistenceDAOFactory pf = PersistenceDAOFactory.getInstance();
+		PersistenceFactory pf = PersistenceFactory.getInstance();
 		VendingLocalIO v = pf.getVendingLocalIO();
 		return v.getTanksFromLocal();
 	}
@@ -210,7 +210,7 @@ public class VendingMachine {
 	 * Metodo che permette di salvare nella persistenza locale i serbatoi.
 	 */
 	public void saveTankIntoLocal() {
-		PersistenceDAOFactory pf = PersistenceDAOFactory.getInstance();
+		PersistenceFactory pf = PersistenceFactory.getInstance();
 		VendingLocalIO v = pf.getVendingLocalIO();
 		v.saveTankIntoLocal(tankHandler.getTankList());
 	}
@@ -219,7 +219,7 @@ public class VendingMachine {
 	 * Metodo che permette di ottenere la classe di gestione del denaro dalla persistenza locale.
 	 */
 	private CashContainer getCashContainerFromLocal() {
-		PersistenceDAOFactory pf = PersistenceDAOFactory.getInstance();
+		PersistenceFactory pf = PersistenceFactory.getInstance();
 		VendingLocalIO v = pf.getVendingLocalIO();
 		return v.getCashContainerFromLocal();
 	}
@@ -228,7 +228,7 @@ public class VendingMachine {
 	 * Metodo che permette di salvare nella persistenza locale la classe di gestione del denaro.
 	 */
 	public void saveCashContainerIntoLocal() {
-		PersistenceDAOFactory pf = PersistenceDAOFactory.getInstance();
+		PersistenceFactory pf = PersistenceFactory.getInstance();
 		VendingLocalIO v = pf.getVendingLocalIO();
 		v.saveCashContainerIntoLocal(cashContainer);
 	}
@@ -280,7 +280,7 @@ public class VendingMachine {
 	 * Metodo che permette di salvare nella persistenza locale gli oggetti Sale
 	 */
 	public void saveSaleIntoLocal(Sale sale) {
-		PersistenceDAOFactory pf = PersistenceDAOFactory.getInstance();
+		PersistenceFactory pf = PersistenceFactory.getInstance();
 		VendingLocalIO v = pf.getVendingLocalIO();
 		v.saveSaleIntoLocal(sale);
 	}

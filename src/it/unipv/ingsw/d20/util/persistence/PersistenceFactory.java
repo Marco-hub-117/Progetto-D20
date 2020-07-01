@@ -18,9 +18,9 @@ import it.unipv.ingsw.d20.util.persistence.vending.*;
  * Con questa classe e' possibile ottenere tutti i DAO.
  * Implementata come un singleton, utilizzando il pattern "Factory".
  */
-public class PersistenceDAOFactory {
+public class PersistenceFactory {
 	
-	private static PersistenceDAOFactory instance;
+	private static PersistenceFactory instance;
 	
 	private final RdbOperations operations;
 	private final IVendingDao vendingMachine;
@@ -32,7 +32,7 @@ public class PersistenceDAOFactory {
 	private final IOperatorDao operator;
 	private final VendingLocalIO localMachine;
 	
-	private PersistenceDAOFactory() {
+	private PersistenceFactory() {
 		operations=new RdbOperations();
 		vendingMachine = new VendingRdbDao(operations);
 		sale = new SaleRdbDao(operations);
@@ -44,10 +44,10 @@ public class PersistenceDAOFactory {
 		localMachine = new VendingLocalIO();
 	}
 	
-	public static synchronized PersistenceDAOFactory getInstance() {
+	public static synchronized PersistenceFactory getInstance() {
 		
 		if(instance == null) {
-			instance = new PersistenceDAOFactory();
+			instance = new PersistenceFactory();
 		}
 		return instance;
 	}
