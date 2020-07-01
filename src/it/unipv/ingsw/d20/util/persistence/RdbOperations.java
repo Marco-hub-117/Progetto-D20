@@ -47,8 +47,11 @@ public class RdbOperations {
 		
 		DbDriver = "com.mysql.cj.jdbc.Driver";
 		DbUrl = "jdbc:mysql://34.65.222.216:3306/prova"; // ï¿½ possibile implementare una connessione a uno schema particolare, in questo caso usiamo di default lo schema "prova"
+		//DbUrl = "jdbc:mysql://db4free.net:3306/d20database";
 		username = "root";
+		//username = "ingswd20";
 		password = "";
+		//password = "ingswd2020";
 		if (isOpen (conn)) // se la connessione al database ï¿½ giï¿½ aperta viene chiusa, per poi riaprirne una nuova
 			closeConnection(conn); // conn viene chiusa.
 		
@@ -584,7 +587,7 @@ public class RdbOperations {
 	 * Aggiorna la composizione di un ingrediente, modificando la quantita'.
 	 * @param idRecipe id ricetta
 	 * @param ingredientName nome ingrediente
-	 * @param newQuantity nuova quantità
+	 * @param newQuantity nuova quantitï¿½
 	 */
 	public void updateIngredientRecipe(String idRecipe, String ingredientName, double newQuantity) {
 		String query = QueryGenerator.getUpdateSetQuery("IngredientRecipe", "Quantity = '"+newQuantity+"'", "idRecipe = '"+idRecipe+"'"+ "and "+ "IngredientName = '"+ingredientName+"'");
