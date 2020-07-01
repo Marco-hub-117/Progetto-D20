@@ -82,15 +82,17 @@ public class BeverageDescription {
 	}
 	
 	/**
-	 * Un metodo toString per la visualizzazione nella GUI
+	 * Un metodo toString per la visualizzazione del catalogo nella GUI.
 	 * @return description descrizione della bevanda
 	 */
 	public String toStringGui() {
 		String description;
-		if (name.length() > 10)
-			description = "Cod. " + code +"		" + name +  "	€" + String.format("%.2f", price) + "\n\n";
-		else 
-			description = "Cod. " + code +"		" + name +  "		€" + String.format("%.2f", price) + "\n\n";
+		if (name.length() <= 8)
+			description = "Cod  " + code + "	" + name +  "			€" + String.format("%.2f", price) + "\n\n";
+		else if (name.length() <= 16)
+			description = "Cod  " + code + "	" + name +  "		€" + String.format("%.2f", price) + "\n\n";
+		else
+			description = "Cod  " + code + "	" + name +  "	€" + String.format("%.2f", price) + "\n\n";
 		return description;
 	}
 
