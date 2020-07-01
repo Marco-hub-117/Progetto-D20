@@ -101,8 +101,8 @@ public class RdbOperations {
 		return conn; // se tutto va a buon fine, la connessione viene chiusa e viene restituito il valore null.
 	}
 	
-	// DI SEGUITO CI SARANNO LE QUERY RELATIVA ALLA TABLE VENDING
 	
+	// DI SEGUITO CI SARANNO LE QUERY RELATIVA ALLA TABLE VENDING
 	
 	/**
 	 * Recupera tutte le VendingMachine dal DB
@@ -179,8 +179,7 @@ public class RdbOperations {
 		this.closeConnection(con);
 		
 	}
-	
-	
+		
 	/**
 	 * OBSOLETO.
 	 * Aggiorna il saldo della VendingMachine sul DB
@@ -604,7 +603,7 @@ public class RdbOperations {
 		this.closeConnection(con);
 	}
 	
-	// DI SEGUITO LE QUERY RELATIVE ALLA TABLE Key
+	// DI SEGUITO LE QUERY RELATIVE ALLA TABLE PaymentKey
 	
 	/**
 	 * Ottiene tutte le chiavette salvate sul DB.
