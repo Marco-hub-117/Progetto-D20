@@ -19,6 +19,7 @@ public class VendingMachineInfo {
 	private double currentAmount;
 	private List<Tank> tankList = new ArrayList<>();
 	private VendingMachineStatus status;
+	private boolean tempsSetPointModified;
 	
 	/**
 	 * Costruttore che imposta solo l'ammontare corrente a 0 e lo status su OFF.
@@ -89,14 +90,19 @@ public class VendingMachineInfo {
 		for (int i = 0; i < tankList.size(); i++) {
 			tankList.get(i).setTemperature(updatedTanksTemps.get(i));
 		}
+		tempsSetPointModified=true;
 	}
 	
+	/**
+	 * Restituisce una stringa con le temperatura aggiornate.
+	 * @return stringa di temperature separate da spazi
+	 */
 	public String getUpdatedTemps() {
-		String updatedTemps = "";
+		StringBuilder updatedTemps = new StringBuilder();
 		for (Tank tank : tankList) {
-			updatedTemps = tank.getTemperature() + " ";
+			updatedTemps.append(tank.getTemperature() + " ");
 		}
-		return updatedTemps;
+		return updatedTemps.toString();
 	}
 	
 	public VendingMachineStatus getStatus() {
@@ -113,6 +119,14 @@ public class VendingMachineInfo {
 	
 	public void setStatusString(String statusInfo) {
 		status = VendingMachineStatus.valueOf(statusInfo);
+	}
+
+	public boolean isTempsSetPointModified() {
+		return tempsSetPointModified;
+	}
+	
+	public void setTempsSetPointModified(boolean bool) {
+		tempsSetPointModified=bool;
 	}
 
 }

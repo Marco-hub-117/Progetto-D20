@@ -44,8 +44,14 @@ public class ConnectedClient extends Thread {
 				if (msgParts.length == 1) { 
 					out.println(Company.registerNewVendingMachine(vmMessage)); //registra la nuova vending e le restituisce il suo ID
 				} else if (msgParts.length == 4) {
-					out.println(Company.vendingMachineInfoList.get(msgParts[0]).getUpdatedTemps()); //manda le nuove temperature alla vending
-					Company.vendingMachineInfoList.replace(msgParts[0], new VendingMachineInfo(msgParts[1], msgParts[2], msgParts[3])); //aggiorna le info della vm che ha mandato il messaggio
+					if (Company.isSetpointModified(msgParts[0])) { //ci sono aggiornamenti da inviare
+						out.println(Company.getVendingInfo(msgParts[0]).getUpdatedTemps()); //manda le nuove temperature alla vending
+					}
+					else {
+						out.println(""); //manda un messaggio vuoto: non ci sono aggiornamenti
+						Company.vendingMachineInfoList.replace(msgParts[0], new VendingMachineInfo(msgParts[1], msgParts[2], msgParts[3])); //aggiorna le info della vm che ha mandato il messaggio
+					}
+					Company.setSetpointModified(msgParts[0], false); //fatto l'aggiornamento, reimposta il boolean a falso
 				}
 			}
         

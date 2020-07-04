@@ -13,8 +13,9 @@ import it.unipv.ingsw.d20.vendingmachine.model.net.VendingMachineClient;
 
 /**
  * Periodicamente questa classe aggiorna la company con le informazioni attuali
- * della macchinetta, aggiorna il catalogo nel caso sia stato modificato e 
- * carica la lista delle vendite effettuate sul database.
+ * della macchinetta, riceve i setpoint delle temperature dei tank, aggiorna il 
+ * catalogo nel caso sia stato modificato e carica la lista delle vendite 
+ * effettuate sul database.
  *
  */
 public class UpdateInfoTimerTask extends TimerTask {
@@ -37,6 +38,10 @@ public class UpdateInfoTimerTask extends TimerTask {
 		try {
 			VendingMachineClient vmc = new VendingMachineClient();
 			String setpointList = vmc.notifyServer(vendingMachine.getInfo()); //invia le informazioni al server della company e riceve i nuovi setpoint delle temperature dei tank
+			if (!setpointList.equals("")) { //ci sono aggiornamenti
+				vendingMachine.modifyTankSettings(setpointList);
+				vendingMachine.rebuildInfo();
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

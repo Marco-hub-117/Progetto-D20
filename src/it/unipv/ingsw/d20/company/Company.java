@@ -105,4 +105,26 @@ public class Company {
 		return location; 
 	}
 	
+	/**
+	 * Restituisce il boolean che indica se il setpoint dei tank di una vending è stato modificato
+	 * @param id id della vending
+	 * @return true se il setpoint è stato modificato
+	 */
+	public static boolean isSetpointModified(String id) {
+		return vendingMachineInfoList.get(id).isTempsSetPointModified();
+	}
+	
+	/**
+	 * Imposta il boolean che indica se il setpoint dei tank di una vending è stato modificato
+	 * @param id id della vending
+	 * @param bool boolean che indica se il setpoint dei tank di una vending è stato modificato
+	 */
+	public static void setSetpointModified(String id, boolean bool) {
+		vendingMachineInfoList.get(id).setTempsSetPointModified(bool);
+	}
+	
+	public static VendingMachineInfo getVendingInfo(String id) {
+		return vendingMachineInfoList.get(id);
+	}
+	
 }
