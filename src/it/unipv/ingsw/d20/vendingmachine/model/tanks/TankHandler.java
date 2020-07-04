@@ -34,10 +34,19 @@ public class TankHandler {
 	public boolean isAvailable(BeverageDescription bvDesc) {
 		Map<Ingredients, Double> recipe = bvDesc.getIngredients();
 		
-		for (Entry<Ingredients, Double> entry : recipe.entrySet()) {
-			if (tankList.get(entry.getKey()).getLevel() < entry.getValue()) {
-				return false;
+		if (tankList.size() < bvDesc.getIngredients().size()) {
+			return false;
+		}
+		
+		try {
+			for (Entry<Ingredients, Double> entry : recipe.entrySet()) {
+				if (tankList.get(entry.getKey()).getLevel() < entry.getValue()) {
+					return false;
+				}
 			}
+		}
+		catch(NullPointerException e) {
+			return false;
 		}
 		
 		return true;
@@ -59,13 +68,21 @@ public class TankHandler {
 	 */	
 	public void modifyTankSettings(String setpointList) {
 		String[] setpoints = setpointList.split(" ");
+		int max=tankList.values().size();
+		if (tankList.values().size()>setpoints.length) {
+			max = setpoints.length;
+		}
+		
 		int i = 0;
+		
 		for (Tank tank : tankList.values()) {
 			tank.setTemperature(Double.parseDouble(setpoints[i]));
 			i++;
+			if (i>=max){
+				break;
+			}
 		}
 	}
-	
 	
 	/**
 	 * Metodo che ritorna una mappa con i livelli attuali dei tank.

@@ -41,7 +41,12 @@ public class BeverageDescription {
 	 * @param q Quantita' 
 	 */
 	public void addIngredient(Ingredients i, double q) {
-		ingredients.put(i, q);
+		if (q>0){
+			ingredients.put(i, q);
+		}
+		else {
+			ingredients.put(i, 0.0);
+		}
 	}
 	
 	/**
@@ -50,7 +55,17 @@ public class BeverageDescription {
 	 * @param q Quantita' nuova
 	 */
 	public void changeQuantity(Ingredients i, double q){ 
-		ingredients.replace(i, q);
+		try {
+			if (q>0){
+				ingredients.replace(i, q);
+			}
+			else {
+				ingredients.replace(i, 0.0);
+			}
+		}
+		catch (NullPointerException e) {
+			
+		}
 	}
 	
 	public String getName() {
@@ -63,6 +78,15 @@ public class BeverageDescription {
 
 	public Map<Ingredients, Double> getIngredients() {
 		return ingredients;
+	}
+	
+	public double getIngredientQuant(Ingredients ingr) {
+		try {
+			return ingredients.get(ingr);
+		}
+		catch (NullPointerException e) {
+			return 0.0;
+		}
 	}
 
 	public double getPrice() {

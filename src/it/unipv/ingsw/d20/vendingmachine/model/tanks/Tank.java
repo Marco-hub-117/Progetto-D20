@@ -46,7 +46,9 @@ public class Tank {
 	 * @param quantity quantità da diminuire
 	 */
 	public void lowerLevelBy(double quantity) {
-		level = level - quantity*100/volume;
+		if (quantity>0) {
+			level = level - quantity*100/volume;
+		}
 	}
 	
 	/**
