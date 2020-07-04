@@ -3,6 +3,11 @@ package it.unipv.ingsw.d20.vendingmachine.commandline.command;
 import it.unipv.ingsw.d20.vendingmachine.commandline.exception.CommandFormatException;
 import it.unipv.ingsw.d20.vendingmachine.model.VendingMachine;
 
+/**
+ * Comando che permette di riempire il serbatoio il cui ID viene
+ * passato come argomento.
+ *
+ */
 public class RefillTankCommand implements ICommand {
 
 	@Override

@@ -5,6 +5,10 @@ import it.unipv.ingsw.d20.vendingmachine.model.VendingMachine;
 import it.unipv.ingsw.d20.vendingmachine.model.exceptions.KeyRestException;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.InsufficientCashForRestException;
 
+/**
+ * Comando che permette di ricevere il resto.
+ *
+ */
 public class DispenseRestCommand implements ICommand {
 
 	@Override

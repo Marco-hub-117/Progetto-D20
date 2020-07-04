@@ -4,6 +4,10 @@ import it.unipv.ingsw.d20.vendingmachine.commandline.exception.CommandFormatExce
 import it.unipv.ingsw.d20.vendingmachine.model.VendingMachine;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.InvalidCoinException;
 
+/**
+ * Comando che permette di inserire una moneta.
+ *
+ */
 public class AddCoinCommand implements ICommand {
 
 	@Override

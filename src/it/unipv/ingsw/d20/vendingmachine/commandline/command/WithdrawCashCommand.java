@@ -3,6 +3,11 @@ package it.unipv.ingsw.d20.vendingmachine.commandline.command;
 import it.unipv.ingsw.d20.vendingmachine.commandline.exception.CommandFormatException;
 import it.unipv.ingsw.d20.vendingmachine.model.VendingMachine;
 
+/**
+ * Comando che permette all'operatore fisico di ritirare le
+ * monete.
+ *
+ */
 public class WithdrawCashCommand implements ICommand {
 
 	@Override

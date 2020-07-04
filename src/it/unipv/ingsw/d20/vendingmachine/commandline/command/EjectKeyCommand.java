@@ -4,6 +4,10 @@ import it.unipv.ingsw.d20.vendingmachine.commandline.exception.CommandFormatExce
 import it.unipv.ingsw.d20.vendingmachine.model.VendingMachine;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.KeyNotInsertedException;
 
+/**
+ * Comando che permette di espellere la chiavetta inserita.
+ *
+ */
 public class EjectKeyCommand implements ICommand {
 
 	@Override

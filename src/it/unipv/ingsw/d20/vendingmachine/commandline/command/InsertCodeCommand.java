@@ -5,6 +5,10 @@ import it.unipv.ingsw.d20.vendingmachine.model.exceptions.InsufficientIngredient
 import it.unipv.ingsw.d20.vendingmachine.model.exceptions.NonExistentCodeException;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.InsufficientCreditException;
 
+/**
+ * Comando che permette di inserire il codice e far partire l'erogazione.
+ *
+ */
 public class InsertCodeCommand implements ICommand {
 
 	@Override

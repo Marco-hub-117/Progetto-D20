@@ -4,6 +4,11 @@ import it.unipv.ingsw.d20.vendingmachine.commandline.exception.CommandFormatExce
 import it.unipv.ingsw.d20.vendingmachine.model.VendingMachine;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.UnrecognisedKeyException;
 
+/**
+ * Comando che permette di inserire una chiavetta, recuperandola
+ * dal database.
+ *
+ */
 public class InsertKeyCommand implements ICommand {
 
 	@Override

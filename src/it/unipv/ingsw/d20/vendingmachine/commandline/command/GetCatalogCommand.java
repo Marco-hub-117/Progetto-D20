@@ -3,6 +3,10 @@ package it.unipv.ingsw.d20.vendingmachine.commandline.command;
 import it.unipv.ingsw.d20.vendingmachine.commandline.exception.CommandFormatException;
 import it.unipv.ingsw.d20.vendingmachine.model.VendingMachine;
 
+/**
+ * Comando che permette di visualizzare il catalogo della macchinetta.
+ *
+ */
 public class GetCatalogCommand implements ICommand {
 
 	@Override
