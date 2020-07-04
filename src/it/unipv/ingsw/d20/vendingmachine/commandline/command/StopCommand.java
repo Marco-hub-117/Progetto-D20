@@ -17,7 +17,7 @@ public class StopCommand implements ICommand {
 			
 			vm.setStatus(VendingMachineStatus.OFF);
 			VendingMachineClient vmc = new VendingMachineClient();
-			vmc.connectToServer(vm.getInfo());
+			vmc.notifyServer(vm.getInfo());
 			
 			System.exit(0);
 		} catch (CommandFormatException e) {

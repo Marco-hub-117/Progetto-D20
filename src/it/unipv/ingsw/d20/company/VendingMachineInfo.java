@@ -91,10 +91,10 @@ public class VendingMachineInfo {
 		}
 	}
 	
-	public double[] getUpdatedTemps() {
-		double[] updatedTemps = new double[tankList.size()];
-		for (int i = 0; i < tankList.size(); i++) {
-			updatedTemps[i] = tankList.get(i).getTemperature();
+	public String getUpdatedTemps() {
+		String updatedTemps = "";
+		for (Tank tank : tankList) {
+			updatedTemps = tank.getTemperature() + " ";
 		}
 		return updatedTemps;
 	}

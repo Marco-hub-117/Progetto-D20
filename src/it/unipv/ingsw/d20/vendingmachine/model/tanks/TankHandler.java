@@ -52,18 +52,14 @@ public class TankHandler {
 	}
 	
 	/**
-	 * Metodo che permette di modificare la temperatura di un serbatoio.
-	 * @param id Id del serbatoio
-	 * @param temp nuova temperatura
-	 * @throws TankAbsentException eccezione lanciata se il tank non esiste
+	 * Metodo che permette di modificare la temperatura dei serbatoi.
+	 * @param setpointList lista delle nuove temperature
 	 */	
-	public void modifyTankSettings(String id, double temp) throws TankAbsentException {
-		Ingredients ingredient = Ingredients.valueOf(id);
-		
-		if(tankList.containsKey(ingredient)) {
-			tankList.get(ingredient).setTemperature(temp);
-		}else {
-			throw new TankAbsentException("Tank non presente");
+	public void modifyTankSettings(String setpointList) {
+		String[] setpoints = setpointList.split(" ");
+		int i = 0;
+		for (Tank tank : tankList.values()) {
+			tank.setTemperature(Double.parseDouble(setpoints[i]));
 		}
 	}
 	

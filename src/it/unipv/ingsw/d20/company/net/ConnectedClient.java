@@ -44,6 +44,7 @@ public class ConnectedClient extends Thread {
 				if (msgParts.length == 1) { 
 					out.println(Company.registerNewVendingMachine(vmMessage)); //registra la nuova vending e le restituisce il suo ID
 				} else if (msgParts.length == 4) {
+					out.println(Company.vendingMachineInfoList.get(msgParts[0]).getUpdatedTemps()); //manda le nuove temperature alla vending
 					Company.vendingMachineInfoList.replace(msgParts[0], new VendingMachineInfo(msgParts[1], msgParts[2], msgParts[3])); //aggiorna le info della vm che ha mandato il messaggio
 				}
 			}

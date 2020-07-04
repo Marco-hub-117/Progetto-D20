@@ -32,8 +32,9 @@ public class VendingMachineClient {
 	 * @param info informazioni sullo stato della vending machine
 	 * @throws IOException eccezione di IO
 	 */
-	public void connectToServer(String info) throws IOException {
+	public String notifyServer(String info) throws IOException {
 		out.println(info);
+		return in.readLine();
 	}
 
 	/**
@@ -43,7 +44,7 @@ public class VendingMachineClient {
 	 * @return ID id della vending machine
 	 * @throws IOException eccezione di IO
 	 */
-	public String firstConnectionToServer(String type) throws IOException {
+	public String getIdFromServer(String type) throws IOException {
 		out.println(type);
 		return in.readLine();
 	}

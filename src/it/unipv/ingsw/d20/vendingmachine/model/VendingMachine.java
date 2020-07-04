@@ -167,16 +167,11 @@ public class VendingMachine {
 	}
 
 	/**
-	 * Modifica la temperatura di un Tank
-	 * @param id Id del tank
-	 * @param temp Nuova temperatura 
+	 * Modifica la temperatura dei tank.
+	 * @param setpointList lista delle nuove temperature
 	 */
-	public void modifyTankSettings(String id, Double temp) { 
-		try {
-			tankHandler.modifyTankSettings(id, temp);
-		} catch (TankAbsentException e) {
-			System.out.println(e.getMessage());
-		}
+	public void modifyTankSettings(String setpointList) { 
+		tankHandler.modifyTankSettings(setpointList);
 	}
 	
 	/**

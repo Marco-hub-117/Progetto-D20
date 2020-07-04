@@ -36,7 +36,7 @@ public class UpdateInfoTimerTask extends TimerTask {
 		
 		try {
 			VendingMachineClient vmc = new VendingMachineClient();
-			vmc.connectToServer(vendingMachine.getInfo()); //invia le informazioni al server della company
+			String setpointList = vmc.notifyServer(vendingMachine.getInfo()); //invia le informazioni al server della company e riceve i nuovi setpoint delle temperature dei tank
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

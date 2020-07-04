@@ -37,7 +37,7 @@ public class VendingMachineLauncher {
 			if (IDNumber.equals("")) {
 				VendingMachineClient client = new VendingMachineClient();
 				
-			    IDNumber = client.firstConnectionToServer(String.valueOf(type)); //manda al DB il tipo e riceve un ID
+			    IDNumber = client.getIdFromServer(String.valueOf(type)); //manda al DB il tipo e riceve un ID
 				v.saveVendingIDIntoLocal(IDNumber);
 				System.out.println("Registration completed.");
 				
