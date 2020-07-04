@@ -9,7 +9,6 @@ import it.unipv.ingsw.d20.vendingmachine.model.beverage.Ingredients;
 import it.unipv.ingsw.d20.vendingmachine.model.exceptions.InsufficientIngredientsException;
 import it.unipv.ingsw.d20.vendingmachine.model.exceptions.KeyRestException;
 import it.unipv.ingsw.d20.vendingmachine.model.exceptions.NonExistentCodeException;
-import it.unipv.ingsw.d20.vendingmachine.model.exceptions.TankAbsentException;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.CashContainer;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.KeyHandler;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.Sale;
@@ -133,7 +132,7 @@ public class VendingMachine {
 		Sale sale = new Sale(id, bvDesc, credit);
 		saveCashContainerIntoLocal();
 		tankHandler.scaleTanksLevel(bvDesc);
-		saveTankIntoLocal();
+		saveTanksIntoLocal();
 		rebuildInfo();
 		
 		credit = sale.getRest();
@@ -151,7 +150,7 @@ public class VendingMachine {
 	 */
 	public void refillTank(String id){
 		tankHandler.refillTank(id); 
-		saveTankIntoLocal();
+		saveTanksIntoLocal();
 		rebuildInfo();
 	}
 	
@@ -172,6 +171,7 @@ public class VendingMachine {
 	 */
 	public void modifyTankSettings(String setpointList) { 
 		tankHandler.modifyTankSettings(setpointList);
+		saveTanksIntoLocal();
 	}
 	
 	/**
@@ -204,7 +204,7 @@ public class VendingMachine {
 	/**
 	 * Metodo che permette di salvare nella persistenza locale i serbatoi.
 	 */
-	public void saveTankIntoLocal() {
+	public void saveTanksIntoLocal() {
 		PersistenceFactory pf = PersistenceFactory.getInstance();
 		VendingLocalIO v = pf.getVendingLocalIO();
 		v.saveTankIntoLocal(tankHandler.getTankList());
@@ -287,7 +287,7 @@ public class VendingMachine {
 	/**
 	 * Aggiorna l'attributo info con le informazioni attuali della macchinetta.
 	 */
-	private void rebuildInfo() {
+	public void rebuildInfo() {
 		StringBuilder infoBuilder = new StringBuilder();
 		
 		infoBuilder.append(id); infoBuilder.append("/");

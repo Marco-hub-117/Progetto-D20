@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import it.unipv.ingsw.d20.util.persistence.PersistenceFactory;
+import it.unipv.ingsw.d20.util.persistence.local.VendingLocalIO;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.BeverageDescription;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.Ingredients;
 import it.unipv.ingsw.d20.vendingmachine.model.exceptions.TankAbsentException;
@@ -60,8 +62,10 @@ public class TankHandler {
 		int i = 0;
 		for (Tank tank : tankList.values()) {
 			tank.setTemperature(Double.parseDouble(setpoints[i]));
+			i++;
 		}
 	}
+	
 	
 	/**
 	 * Metodo che ritorna una mappa con i livelli attuali dei tank.
