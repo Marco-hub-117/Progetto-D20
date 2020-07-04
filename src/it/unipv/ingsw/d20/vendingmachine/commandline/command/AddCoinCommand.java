@@ -4,6 +4,10 @@ import it.unipv.ingsw.d20.vendingmachine.commandline.exception.CommandFormatExce
 import it.unipv.ingsw.d20.vendingmachine.model.VendingMachine;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.InvalidCoinException;
 
+/**
+ * Comando che permette di inserire una moneta.
+ *
+ */
 public class AddCoinCommand implements ICommand {
 
 	@Override
@@ -19,7 +23,7 @@ public class AddCoinCommand implements ICommand {
 			return e.getMessage();
 		}
 		
-		return "Moneta inserita. Credito attuale: €" + String.format("%.2f", vm.getCredit());
+		return "Moneta inserita correttamente. Credito attuale: €" + String.format("%.2f", vm.getCredit());
 	}
 
 }

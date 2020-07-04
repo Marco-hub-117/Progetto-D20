@@ -15,6 +15,7 @@ import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.Sale;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.InsufficientCashForRestException;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.InsufficientCreditException;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.InvalidCoinException;
+import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.KeyNotInsertedException;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.UnrecognisedKeyException;
 import it.unipv.ingsw.d20.vendingmachine.model.tanks.Tank;
 import it.unipv.ingsw.d20.vendingmachine.model.tanks.TankHandler;
@@ -81,8 +82,9 @@ public class VendingMachine {
 	
 	/**
 	 * Metodo per espellere una chiavetta.
+	 * @throws KeyNotInsertedException 
 	 */
-	public void ejectKey() { 
+	public void ejectKey() throws KeyNotInsertedException { 
 		keyHandler.ejectKey(credit);
 		credit = 0.0;
 	}
@@ -146,9 +148,9 @@ public class VendingMachine {
 	
 	/**
 	 * Riempie il tank indicato dal parametro.
-	 * @param id Id del Tank da riempire 
+	 * @param id Id del Tank da riempire  
 	 */
-	public void refillTank(String id){
+	public void refillTank(String id) {
 		tankHandler.refillTank(id); 
 		saveTanksIntoLocal();
 		rebuildInfo();

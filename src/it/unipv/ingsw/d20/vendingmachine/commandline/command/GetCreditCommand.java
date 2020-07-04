@@ -4,24 +4,24 @@ import it.unipv.ingsw.d20.vendingmachine.commandline.exception.CommandFormatExce
 import it.unipv.ingsw.d20.vendingmachine.model.VendingMachine;
 
 /**
- * Comando che permette di visualizzare il catalogo della macchinetta.
+ * Comando che permette di ottenere il credito attuale nella macchinetta.
  *
  */
-public class GetCatalogCommand implements ICommand {
+public class GetCreditCommand implements ICommand {
 
 	@Override
 	public String execute(VendingMachine vm, String args) {
-		String catalog;
+		double credit;
 		try {
 			if (args != null)
-				throw new CommandFormatException("Argomento non valido per il comando 'getcatalog'");
+				throw new CommandFormatException("Argomento non valido per il comando 'getcredit'");
 			
-			catalog = vm.getCatalog().toString();
+			credit = vm.getCredit();
 		} catch (CommandFormatException e) {
 			return e.getMessage();
-		} 
+		}
 		
-		return catalog;
+		return "Il credito corrente ammonta a €" + String.format("%.2f", credit);
 	}
 
 }

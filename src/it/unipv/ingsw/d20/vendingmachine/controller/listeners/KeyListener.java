@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 
 import it.unipv.ingsw.d20.vendingmachine.model.VendingMachine;
+import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.KeyNotInsertedException;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.UnrecognisedKeyException;
 import it.unipv.ingsw.d20.vendingmachine.view.customer.CustomerGui;
 
@@ -42,9 +43,13 @@ public class KeyListener implements ActionListener {
 				JOptionPane.showMessageDialog(null, e.getMessage());
 			}
 		} else { //se value == true il listener tratta l'espulsione della chiavetta
-			vm.ejectKey();
-			gui.getInsertKeyButton().setEnabled(true);
-			gui.getEjectKeyButton().setEnabled(false);
+			try {
+				vm.ejectKey();
+				gui.getInsertKeyButton().setEnabled(true);
+				gui.getEjectKeyButton().setEnabled(false);
+			} catch (KeyNotInsertedException e) {
+				e.printStackTrace();
+			}
 		}
 		
 		//aggiorna la grafica

@@ -7,6 +7,11 @@ import it.unipv.ingsw.d20.vendingmachine.model.VendingMachine;
 import it.unipv.ingsw.d20.vendingmachine.model.VendingMachineStatus;
 import it.unipv.ingsw.d20.vendingmachine.model.net.VendingMachineClient;
 
+/**
+ * Comando che ferma l'esecuzione del programma, tentando di inviare
+ * le informazioni alla Company prima dello spegnimento.
+ *
+ */
 public class StopCommand implements ICommand {
 
 	@Override
