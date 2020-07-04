@@ -190,7 +190,6 @@ class TankHandlerTest {
 			build.append(entry.getValue().getTemperature()+" ");
 		}
 		String expected=temps.substring(0, 12)+" "+th.getTankTemp(i4);
-		System.out.println(th.getTankTemp(i4)); 
 		String real=build.toString().trim();
 		assertEquals(expected, real); //fallisce solo se eseguiti tutti i test in gruppo, perchè?
 	}
