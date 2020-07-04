@@ -6,7 +6,6 @@ import java.util.Map.Entry;
 
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.BeverageDescription;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.Ingredients;
-import it.unipv.ingsw.d20.vendingmachine.model.exceptions.TankAbsentException;
 
 /**
  * La classe ha il compito di gestire i serbatoi del distributore automatico.
@@ -83,7 +82,7 @@ public class TankHandler {
 	 */
 	public void refillTank(String id) {
 		Ingredients ingredient = Ingredients.valueOf(id);
-		tankList.get(ingredient).refill();		
+		tankList.get(ingredient).refill();
 	}
 	
 	public HashMap<Ingredients, Tank> getTankList() {

@@ -77,7 +77,7 @@ public class BeverageDescription {
 		   ingredientList = ingredientList + "Ingredient: " + entry.getKey() + " | Quantity: " + entry.getValue() + "\n";
 	    }
 		
-		description = "Code: " + code +" | Nome: " + name +  " | Price: " + price + " | Ingredients:\n" + ingredientList + "\n";
+		description = "Cod. " + code +" | " + name +  " | €" + String.format("%.2f", price) + "\n";
 		return description;
 	}
 	

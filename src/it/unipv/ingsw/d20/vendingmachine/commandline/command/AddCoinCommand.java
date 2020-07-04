@@ -19,7 +19,7 @@ public class AddCoinCommand implements ICommand {
 			return e.getMessage();
 		}
 		
-		return "Moneta inserita. Credito attuale: €" + String.format("%.2f", vm.getCredit());
+		return "Moneta inserita correttamente. Credito attuale: €" + String.format("%.2f", vm.getCredit());
 	}
 
 }

@@ -57,11 +57,9 @@ public class BeverageCatalog {
 
 	public String toString() {
 		String beverageList = "";
-		int c = 1;
-		
+
 		for (BeverageDescription bvDesc : catalog.values()) {
-			beverageList = beverageList + "BEVANDA_" + c + ":\n" + bvDesc.toString();
-			c++;
+			beverageList = beverageList + bvDesc.toString();
 		}
 
 		return beverageList;

@@ -6,6 +6,7 @@ import java.util.Random;
 import it.unipv.ingsw.d20.util.persistence.PersistenceFactory;
 import it.unipv.ingsw.d20.util.persistence.paymentKey.IKeyDao;
 import it.unipv.ingsw.d20.util.persistence.paymentKey.KeyPOJO;
+import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.KeyNotInsertedException;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.exceptions.UnrecognisedKeyException;
 
 /**
@@ -46,6 +47,7 @@ public class KeyHandler {
 			KeyPOJO key = keyList.get(index);
 			keySerialCode = key.getSerialCode();
 			creditOnKey = key.getCredit() + credit;
+			keyInserted = true;
 		}
 	}
 	
@@ -53,17 +55,22 @@ public class KeyHandler {
 	 * Aggiorna il credito residuo della chiavetta sul database
 	 * e la espelle dalla macchinetta.
 	 * @param residualCredit credito residuo sulla chiavetta
+	 * @throws KeyNotInsertedException 
 	 * 
 	 */
-	public void ejectKey(double residualCredit) {
-		PersistenceFactory pf = PersistenceFactory.getInstance();
-		IKeyDao kDao = pf.getKeyDao();
-		kDao.updateCredit(String.valueOf(keySerialCode), residualCredit); //aggiorna il credito sul DB
+	public void ejectKey(double residualCredit) throws KeyNotInsertedException {
+		if (keyInserted) {
+			PersistenceFactory pf = PersistenceFactory.getInstance();
+			IKeyDao kDao = pf.getKeyDao();
+			kDao.updateCredit(String.valueOf(keySerialCode), residualCredit); //aggiorna il credito sul DB
+			
+			//reinizializza le variabili di classe
+			keySerialCode = 0;
+			creditOnKey = 0.0; 
+			keyInserted = false; 
+		} else
+			throw new KeyNotInsertedException();
 		
-		//reinizializza le variabili di classe
-		keySerialCode = 0;
-		creditOnKey = 0.0; 
-		keyInserted = false; 
 	}
 
 	public double getCreditOnKey() {
