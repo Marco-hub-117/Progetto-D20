@@ -142,7 +142,8 @@ public class BeverageDescriptionTest {
 	void testChangeQuantityAbsent() {
 		init();
 		b1.changeQuantity(Ingredients.LEMON_TEA, 5);
-		assertEquals(null, b1.getIngredientQuant(Ingredients.LEMON_TEA));
+		double expected=0;
+		assertEquals(expected, b1.getIngredientQuant(Ingredients.LEMON_TEA));
 	}
 }
 

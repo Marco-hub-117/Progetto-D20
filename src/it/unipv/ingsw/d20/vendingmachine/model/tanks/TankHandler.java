@@ -97,6 +97,10 @@ public class TankHandler {
 		return tanksLevel;
 	}
 	
+	public double getTankTemp (Ingredients ingr){
+		return tankList.get(ingr).getTemperature();
+	}
+	
 	/**
 	 * Metodo che riempie il serbatoio indicato.
 	 * @param id Id del serbatoio da riempire

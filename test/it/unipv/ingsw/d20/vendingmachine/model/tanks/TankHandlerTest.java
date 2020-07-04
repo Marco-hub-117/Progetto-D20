@@ -21,11 +21,12 @@ class TankHandlerTest {
 	private Ingredients i2=Ingredients.COFFEE;
 	private Ingredients i3=Ingredients.MILK;
 	private Ingredients i4=Ingredients.WATER;
+	private Ingredients i5=Ingredients.WATER;
 	private Tank t1=new Tank(i1,50.05,35.0, 10);
 	private Tank t2=new Tank(i2,75.41,40.0, 20);
 	private Tank t3=new Tank(i3,100, 15, 15);
 	private Tank t4=new Tank(i4,100, 20, 40);
-	private Tank t5=new Tank(i4,0, 20, 40);
+	private Tank t5=new Tank(i5,0, 20, 40);
 	private BeverageDescription b1=new BeverageDescription("a1","caffe macchiato",0.5);
 	private TankHandler th;
 	
@@ -188,9 +189,10 @@ class TankHandlerTest {
 		for (Map.Entry<Ingredients, Tank> entry : th.getTankList().entrySet()) {
 			build.append(entry.getValue().getTemperature()+" ");
 		}
-		String expected=temps.substring(0, 12)+" "+th.getTankList().get(i4).getTemperature();
+		String expected=temps.substring(0, 12)+" "+th.getTankTemp(i4);
+		System.out.println(th.getTankTemp(i4)); 
 		String real=build.toString().trim();
-		assertEquals(expected, real);
+		assertEquals(expected, real); //fallisce solo se eseguiti tutti i test in gruppo, perchè?
 	}
 
 }
