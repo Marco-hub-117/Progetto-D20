@@ -14,6 +14,8 @@ public class CashContainer {
 	
 	private double totalAmount;
 	
+	private static final int MIN_COIN_NUMBER = 10;
+	
 	/**
 	 * Costruttore della classe CashContainer.
 	 * @param cashQuantity numero di monete, presenti nel distributore, per ogni valore
@@ -32,7 +34,7 @@ public class CashContainer {
 	 * @throws InvalidCoinException eccezione che viene lanciata se la moneta non è valida
 	 */
 	public void addCoin(double coin) throws InvalidCoinException {
-		if (Math.random() < 0.05) //5% di probabilitï¿½ che la moneta non sia valida
+		if (Math.random() < 0.05) //5% di probabilità che la moneta non sia valida
 			throw new InvalidCoinException("La moneta inserita non è valida.");
 		
 		int index;
@@ -90,10 +92,10 @@ public class CashContainer {
 		double total = 0;
 		
 		for (int i = 0; i < coinValue.length; i++) {
-			int difference = coinNumber[i] - 10; 
+			int difference = coinNumber[i] - MIN_COIN_NUMBER; 
 			if (difference > 0) { //fa in modo di lasciare sempre almeno 10 monete di ogni tipo
 				total += difference * coinValue[i];
-				coinNumber[i] = 10;
+				coinNumber[i] = MIN_COIN_NUMBER;
 			}
 		}
 		
