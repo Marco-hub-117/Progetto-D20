@@ -3,6 +3,7 @@ package it.unipv.ingsw.d20.vendingmachine.controller.listeners;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
+import java.net.ConnectException;
 
 import it.unipv.ingsw.d20.vendingmachine.model.VendingMachine;
 import it.unipv.ingsw.d20.vendingmachine.model.VendingMachineStatus;
@@ -36,7 +37,7 @@ public class WindowClosingListener extends WindowAdapter {
 			VendingMachineClient vmc = new VendingMachineClient();
 			vmc.notifyServer(vm.getInfo());
 		} catch (IOException e1) {
-			e1.printStackTrace();
+			//e1.printStackTrace();
 		}
 	}
 

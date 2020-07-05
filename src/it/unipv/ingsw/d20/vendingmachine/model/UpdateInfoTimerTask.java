@@ -42,7 +42,7 @@ public class UpdateInfoTimerTask extends TimerTask {
 				vendingMachine.modifyTankSettings(setpointList);
 			}
 		} catch (IOException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 		
 		//aggiornamento del catalogo
@@ -65,7 +65,7 @@ public class UpdateInfoTimerTask extends TimerTask {
 				
 				v.emptyLocalSale(); //svuota il file locale con le sale, sono ormai nel database
 			} catch (Exception e) {
-				e.printStackTrace();
+				//e.printStackTrace();
 			}
 		}
 	}

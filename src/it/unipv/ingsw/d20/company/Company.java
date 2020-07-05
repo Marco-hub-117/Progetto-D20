@@ -25,8 +25,11 @@ public class Company {
 	
 	@SuppressWarnings("unused")
 	private String name;
-	private final static String ID_PREF="IDN";
-	private final static String LOC_PREF=", Via ";
+	
+	private static final int PORT = 8888;
+	
+	private final static String ID_PREF = "IDN";
+	private final static String LOC_PREF = ", Via ";
 	
 	/**
 	 * Questa mappa contiene la lista di tutte le macchinette attualmente registrate
@@ -46,8 +49,7 @@ public class Company {
 
 		vendingMachineInfoList = new HashMap<>();
 		
-		int port = 8888;
-        CompanyServer server = new CompanyServer(port);
+        CompanyServer server = new CompanyServer(PORT);
         server.start();
         
         PersistenceFactory pf = PersistenceFactory.getInstance();
