@@ -36,13 +36,10 @@ public class TablesConstants {
 	
 	public static String operatorTable = "Operator";
 	public static String cfAttr = "cf";
-<<<<<<< HEAD
+
     public static String nameAttr= "name";
     public static String passwordAttr= "password";
-=======
-    public static String nameAttr = "name";
-    public static String passwordAttr = "password";
->>>>>>> 694b9822fbad6bfcec459a7946be924284acf21f
+
     public static String typeOpAttr = "type";
 
 }
