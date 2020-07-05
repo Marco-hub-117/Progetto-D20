@@ -1,4 +1,3 @@
-it.unipv.ingsw.d20
 it.unipv.ingsw.d20.company
 it.unipv.ingsw.d20.company.constants
 it.unipv.ingsw.d20.company.net
@@ -16,6 +15,9 @@ it.unipv.ingsw.d20.util.persistence.paymentKey
 it.unipv.ingsw.d20.util.persistence.sale
 it.unipv.ingsw.d20.util.persistence.vending
 it.unipv.ingsw.d20.vendingmachine
+it.unipv.ingsw.d20.vendingmachine.commandline
+it.unipv.ingsw.d20.vendingmachine.commandline.command
+it.unipv.ingsw.d20.vendingmachine.commandline.exception
 it.unipv.ingsw.d20.vendingmachine.controller
 it.unipv.ingsw.d20.vendingmachine.controller.listeners
 it.unipv.ingsw.d20.vendingmachine.model

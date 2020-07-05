@@ -27,7 +27,7 @@ public interface IIngredientRecipeDao {
 	 * Aggiorna l'ingrediente specificato come parametro, aggiornando la quantita'.
 	 * @param idRecipe id della ricetta
 	 * @param ingredientName nome dell'ingrediente
-	 * @param quantity quantit‡ dell'ingrediente
+	 * @param quantity quantit√† dell'ingrediente
 	 * @return boolean esito dell'operazione
 	 */
 	public boolean updateIngredientRecipe(String idRecipe, String ingredientName, double quantity);
