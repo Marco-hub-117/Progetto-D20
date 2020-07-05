@@ -16,13 +16,16 @@ public class VendingMachineClient {
 	private BufferedReader in;
 	private PrintWriter out;
 	
+	private static final String IP_ADDRESS = "localhost";
+	private static final int PORT = 8888;
+	
 	/**
 	 * Costruttore della classe VendingMachineClient. 
 	 * Istanzia la socket, il BufferedReader e il PrintWriter.
 	 * @throws IOException eccezione di IO
 	 */
 	public VendingMachineClient() throws IOException {
-		socket = new Socket("localhost", 8888);
+		socket = new Socket(IP_ADDRESS, PORT);
 		in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 		out = new PrintWriter(socket.getOutputStream(), true);
 	}
