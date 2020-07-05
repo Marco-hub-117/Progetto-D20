@@ -3,6 +3,10 @@ package it.unipv.ingsw.d20.vendingmachine.commandline.command;
 import it.unipv.ingsw.d20.vendingmachine.commandline.exception.CommandFormatException;
 import it.unipv.ingsw.d20.vendingmachine.model.VendingMachine;
 
+/**
+ * Comando che permette di uscire dalla modalità operatore.
+ *
+ */
 public class ExitOperatorModeCommand implements ICommand {
 
 	@Override

@@ -1,5 +1,9 @@
 package it.unipv.ingsw.d20.vendingmachine.commandline;
 
+/**
+ * Classe con la lista di tutti i comandi ammessi dall'interfaccia testuale.
+ *
+ */
 public class Commands {
 	
 	private Commands() {}

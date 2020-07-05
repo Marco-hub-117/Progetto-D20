@@ -3,6 +3,11 @@ package it.unipv.ingsw.d20.vendingmachine.commandline.command;
 import it.unipv.ingsw.d20.vendingmachine.commandline.exception.CommandFormatException;
 import it.unipv.ingsw.d20.vendingmachine.model.VendingMachine;
 
+/**
+ * Classe che permette di entrare in modalità operatore, a patto
+ * che venga inserita la chiave corretta.
+ *
+ */
 public class EnterOperatorModeCommand implements ICommand {
 
 	@Override
