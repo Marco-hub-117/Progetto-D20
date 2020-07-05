@@ -110,7 +110,7 @@ public class RdbOperations {
 	 */
 	public ArrayList<VendingPOJO> getAllVendings () {
 		ArrayList<VendingPOJO> result = new ArrayList<>();
-		String query = "SELECT * FROM"+ TablesConstants.vendingTable;
+		String query = "SELECT * FROM "+ TablesConstants.vendingTable;
 		
 		con = this.startConnection(con);
 		Statement st;
