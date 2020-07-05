@@ -19,7 +19,7 @@ public class InsertCodeCommand implements ICommand {
 			return e.getMessage();
 		}
 		
-		return vm.getCatalog().getBeverageDesc(args).getName() + " erogata";
+		return vm.getCatalog().getBevName(args) + " erogata";
 	}
 
 }

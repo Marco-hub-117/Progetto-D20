@@ -76,10 +76,16 @@ public class BeverageDescription {
 		return code;
 	}
 
+
 	public Map<Ingredients, Double> getIngredients() {
 		return ingredients;
 	}
 	
+	/**
+	 * Restituisce la quantita' di un ingrediente richiesto
+	 * @param ingr ingrediente
+	 * @return quantità
+	 */
 	public double getIngredientQuant(Ingredients ingr) {
 		try {
 			return ingredients.get(ingr);

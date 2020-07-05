@@ -41,7 +41,7 @@ public class BeverageDescriptionTest {
 		int real = b1.getIngredients().size();
 		assertEquals(expected , real);
 		double secondExpected = 5.2;
-		double secondReal = b1.getIngredients().get(Ingredients.SUGAR);
+		double secondReal = b1.getIngredientQuant(Ingredients.SUGAR);
 		assertEquals(secondExpected, secondReal);
 	}
 	

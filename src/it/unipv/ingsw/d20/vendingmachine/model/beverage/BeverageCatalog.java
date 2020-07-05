@@ -79,4 +79,23 @@ public class BeverageCatalog {
 		return beverageList;
 	}
 	
+	/**
+	 * Restituisce il nome della bevanda dato il codice
+	 * @param code codice della bevanda
+	 * @return nome della bevanda
+	 */
+	public String getBevName(String code) {
+		return catalog.get(code).getName();
+	}
+	
+	/**
+	 * Restituisce la quantità dell'ingrediente dato il codice della bevanda e l'ingrediente richiesto
+	 * @param code codice della bevanda
+	 * @ingr ingr ingrediente di cui si vuole conoscere la quantità
+	 * @return quantità dell'ingrediente
+	 */
+	public Double getIngrQuant(String code, Ingredients ingr) {
+		return getBeverageDesc(code).getIngredientQuant(ingr);
+	}
+	
 }

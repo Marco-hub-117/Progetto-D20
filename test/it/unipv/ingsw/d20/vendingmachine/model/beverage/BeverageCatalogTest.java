@@ -48,8 +48,7 @@ public class BeverageCatalogTest {
 		init();
 		cat.setIngredient("J1", Ingredients.LEMON_TEA, 4.0);
 		double expected=4.0;
-		BeverageDescription bev=cat.getCatalog().get("J1");
-		double real=bev.getIngredients().get(Ingredients.LEMON_TEA);
+		double real=cat.getIngrQuant("J1", Ingredients.LEMON_TEA);
 		assertEquals(expected, real);
 	}
 	
@@ -62,8 +61,7 @@ public class BeverageCatalogTest {
 		init();
 		cat.setIngredient("CM1", Ingredients.CHOCOLATE, 0.0);
 		double expected=0;
-		BeverageDescription bev=cat.getCatalog().get("CM1");
-		double real=bev.getIngredients().get(Ingredients.CHOCOLATE);
+		double real=cat.getIngrQuant("CM1", Ingredients.CHOCOLATE);
 		assertEquals(expected, real);
 	}
 		
@@ -76,7 +74,7 @@ public class BeverageCatalogTest {
 		init();
 		cat.setIngredient("CM1", Ingredients.CHOCOLATE, -8.0);
 		double expected=0;
-		double real=cat.getBeverageDesc("CM1").getIngredientQuant(Ingredients.CHOCOLATE);
+		double real=cat.getIngrQuant("CM1", Ingredients.CHOCOLATE);
 		assertEquals(expected, real);
 	}
 	
@@ -88,7 +86,7 @@ public class BeverageCatalogTest {
 	void testSetIngredientAbsentBev() {
 		init();
 		cat.setIngredient("CM2", Ingredients.CHOCOLATE, 2.0);
-		assertEquals(null, cat.getCatalog().get("CM2"));
+		assertEquals(null, cat.getBeverageDesc("CM2"));
 	}
 	
 	/**
@@ -100,7 +98,7 @@ public class BeverageCatalogTest {
 		init();
 		cat.setIngredient("CM1", Ingredients.SPARKLING_WATER, 1.0);
 		double expected = 0;
-		double real = cat.getBeverageDesc("CM1").getIngredientQuant(Ingredients.SPARKLING_WATER);
+		double real=cat.getIngrQuant("CM1", Ingredients.SPARKLING_WATER);
 		assertEquals(expected, real);
 	}
 	

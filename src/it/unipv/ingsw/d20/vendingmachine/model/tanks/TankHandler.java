@@ -93,6 +93,11 @@ public class TankHandler {
 		return tanksLevel;
 	}
 	
+	/**
+	 * Restituisce la temperatura del serbatoio che contiene l'ingrediente richiesto.
+	 * @param ingr ingrediente
+	 * @return temperatura del serbatoio
+	 */
 	public double getTankTemp (Ingredients ingr){
 		return tankList.get(ingr).getTemperature();
 	}
