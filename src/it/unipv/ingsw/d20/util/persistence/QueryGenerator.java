@@ -5,13 +5,11 @@ import java.util.ArrayList;
 /**
  * Classe utilizzata per generare le stringhe relative alle query.
  * 
- *
  */
 public class QueryGenerator {
 	
-	public QueryGenerator() {
-		
-	}
+	public QueryGenerator() {}
+	
 	/**
 	 * Restituisce una query "select from" sottoforma di stringa: 
 	 * SELECT attributes
@@ -20,13 +18,11 @@ public class QueryGenerator {
 	 * @param tableName tabella da cui estrapolare le informazioni
 	 * @return Stringa formattata per generare una query di questo tipo.
 	 */
-	public static String getSelectFromQuery(String attributes,String tableName) {
+	public static String getSelectFromQuery(String attributes, String tableName) {
 		String query = null;
-		query = "SELECT "+attributes+" FROM "+tableName;
+		query = "SELECT " + attributes + " FROM " + tableName;
 		return query;
 	}
-	
-	
 	
 	/**
 	 * Restituisce una query "select from where" sottoforma di stringa: 
@@ -36,20 +32,19 @@ public class QueryGenerator {
 	 * @param attributes attributi della "tabelName" desiderati.
 	 * @param tableName tabella da cui estrapolare le informazioni
 	 * @param whereStatement clausola da inserire nel where
-	 * @return
+	 * @return query
 	 */
-	public static String getSelectFromWhereQuery(String attributes,String tableName,String whereStatement) {
+	public static String getSelectFromWhereQuery(String attributes, String tableName, String whereStatement) {
 		String query = null;
-		query = "SELECT "+attributes+" FROM "+tableName+" WHERE "+whereStatement;
+		query = "SELECT " + attributes + " FROM " + tableName + " WHERE " + whereStatement;
 		return query;
 	}
-	
 	
 	/**
 	 * Crea una query "Insert into table values" sottoforma di stringa.
 	 * @param tableName Stringa che contiene il nome della table in cui inserire le informazioni
 	 * @param values arraylist di stringhe che contiene gli attributi del record da inserire.
-	 * 
+	 * @return query
 	 */
 	public static String getInsertIntoValuesQuery(String tableName, ArrayList<String> values) {
 		StringBuilder query = new StringBuilder();
@@ -70,7 +65,6 @@ public class QueryGenerator {
 				query.append("'");
 			}
 		}
-		
 		query.append(")");
 		
 		return query.toString();
@@ -88,6 +82,7 @@ public class QueryGenerator {
 		query = "UPDATE "+tableName+" SET "+set+ " WHERE "+whereStatement;
 		return query;
 	}
+	
 	/**
 	 * Crea una query Delete from e la restituisce sottoforma di stringa.
 	 * @param tableName Nome della tabella
@@ -97,4 +92,5 @@ public class QueryGenerator {
 	public static String getDeleteWhereQuery(String tableName, String whereStatement) {
 		return "DELETE FROM "+tableName+" WHERE "+whereStatement;
 	}
+	
 }
