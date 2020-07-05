@@ -34,7 +34,7 @@ public class TablesConstants {
     public static String creditAttr= "credit";
 	
 	public static String operatorTable = "Operator";
-	public static String cfAttr = "cd";
+	public static String cfAttr = "cf";
     public static String nameAttr= "name";
     public static String passwordAttr= "password";
     public static String typeOpAttr = "type";

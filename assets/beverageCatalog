@@ -1,8 +1,8 @@
 1,Acqua frizzante,0.5,SPARKLING_WATER,1.0
 2,Acqua naturale,0.5,WATER,1.0
-3,Aranciata,1.5,WATER,1.0,SUGAR,1.0,ORANGE_JUICE,1.0
+3,Aranciata,1.5,ORANGE_JUICE,1.0,SUGAR,1.0,WATER,1.0
 4,Coca cola,1.5,WATER,1.0,COLA,1.0
-5,Limonata,1.5,WATER,1.0,SUGAR,1.0,LEMON_JUICE,1.0
+5,Limonata,1.5,SUGAR,1.0,WATER,1.0,LEMON_JUICE,1.0
 6,Sprite,1.5,WATER,1.0,SPRITE,1.0
-7,Tea freddo limone,1.5,WATER,1.0,LEMON_TEA,1.0
-8,Tea freddo pesca,1.5,WATER,1.0,PEACH_TEA,1.0
+7,Tea freddo limone,1.5,LEMON_TEA,1.0,WATER,1.0
+8,Tea freddo pesca,1.5,PEACH_TEA,1.0,WATER,1.0
