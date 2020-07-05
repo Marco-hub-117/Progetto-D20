@@ -50,14 +50,14 @@ public class CodeListener implements ActionListener {
 			} finally {
 				double credit = vm.getCredit();
 				String creditToString = String.format("%.2f", credit);
-				gui.setDisplay("E" + creditToString); //dopo che è stato premuto il tasto Ok viene sempre visualizzato il credito
+				gui.setDisplay("E" + creditToString); //dopo che Ã¨ stato premuto il tasto Ok viene sempre visualizzato il credito
 				gui.setEnabled(true);
 			}
 		}
 		else if (intValue == -1) { //tasto Canc
 			StringBuilder displayBuilder = new StringBuilder(gui.getDisplay());
 			displayBuilder.deleteCharAt(displayBuilder.length() - 1); //cancella l'ultimo carattere del display
-			if (displayBuilder.toString().isEmpty() || displayBuilder.toString().startsWith("E")) { //se il display è vuoto o inizia per E (credito) mostra il credito
+			if (displayBuilder.toString().isEmpty() || displayBuilder.toString().startsWith("E")) { //se il display Ã¨ vuoto o inizia per E (credito) mostra il credito
 				Double credit = vm.getCredit();
 				String creditToString = String.format("%.2f", credit);
 				gui.setDisplay("E" + creditToString);
