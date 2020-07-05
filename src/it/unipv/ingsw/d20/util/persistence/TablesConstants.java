@@ -29,7 +29,7 @@ public class TablesConstants {
     public static String ingredientNameAttr= "ingredientName";
     public static String quantityAttr= "quantity";
 			
-	public static String paymentTable = "PaymentKey";
+	public static String paymentKeyTable = "PaymentKey";
 	public static String codeAttr = "code";
     public static String creditAttr= "credit";
 	

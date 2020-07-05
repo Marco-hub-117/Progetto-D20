@@ -110,7 +110,7 @@ public class RdbOperations {
 	 */
 	public ArrayList<VendingPOJO> getAllVendings () {
 		ArrayList<VendingPOJO> result = new ArrayList<>();
-		String query = "SELECT * FROM Vending";
+		String query = "SELECT * FROM"+ TablesConstants.vendingTable;
 		
 		con = this.startConnection(con);
 		Statement st;
@@ -239,8 +239,8 @@ public class RdbOperations {
 	 */
 	public SalePOJO getSaleByKey (String idVending,String date) {
 		SalePOJO result = null;
-		String whereStatement = "idVending = '"+idVending+"' and date = '"+date+"'";
-		String query = QueryGenerator.getSelectFromWhereQuery("*", "Sale", whereStatement);
+		String whereStatement = TablesConstants.idVendingSaleAttr +" = '"+idVending+"' and "+ TablesConstants.dateAttr +" = '"+date+"'";
+		String query = QueryGenerator.getSelectFromWhereQuery("*", TablesConstants.saleTable, whereStatement);
 		con = this.startConnection(con);
 		Statement st;
 		ResultSet rs;
@@ -267,8 +267,8 @@ public class RdbOperations {
 	 */
 	public ArrayList<SalePOJO> getAllSalesByIdVending (String idVending) {
 		ArrayList<SalePOJO> result = new ArrayList<>();
-		String whereStatement = "idVending = '" +idVending+"'";
-		String query = QueryGenerator.getSelectFromWhereQuery("*", "Sale", whereStatement);
+		String whereStatement = TablesConstants.idVendingSaleAttr +" = '" +idVending+"'";
+		String query = QueryGenerator.getSelectFromWhereQuery("*", TablesConstants.saleTable, whereStatement);
 		
 		con = this.startConnection(con);
 		Statement st;
@@ -277,7 +277,7 @@ public class RdbOperations {
 			st = con.createStatement();
 			rs = st.executeQuery(query);
 			while(rs.next()) {
-				SalePOJO res =  new SalePOJO (rs.getString("idVending"),rs.getString("idBeverage"),rs.getString("date"));
+				SalePOJO res =  new SalePOJO (rs.getString(TablesConstants.idVendingSaleAttr),rs.getString(TablesConstants.idBeverageSaleAttr),rs.getString(TablesConstants.dateAttr));
 				result.add(res);
 			}
 		} catch (SQLException e) {
@@ -298,8 +298,8 @@ public class RdbOperations {
 	 */
 	public ArrayList<BvCatalogPOJO> getBeverageCatalogByType(int type) {
 		ArrayList<BvCatalogPOJO> result = new ArrayList<>();
-		String whereStatement = "type = '" +type +"'";
-		String query = QueryGenerator.getSelectFromWhereQuery("*", "BvCatalog", whereStatement);
+		String whereStatement = TablesConstants.typeCatAttr+" = '" +type +"'";
+		String query = QueryGenerator.getSelectFromWhereQuery("*", TablesConstants.beverageCatalogTable, whereStatement);
 		
 		con = this.startConnection(con);
 		Statement st;
@@ -308,7 +308,7 @@ public class RdbOperations {
 			st = con.createStatement();
 			rs = st.executeQuery(query);
 			while(rs.next()) {
-				BvCatalogPOJO res = new BvCatalogPOJO (rs.getString("idBvDesc"),rs.getInt("type"));
+				BvCatalogPOJO res = new BvCatalogPOJO (rs.getString(TablesConstants.idBvDescAttr),rs.getInt(TablesConstants.typeCatAttr));
 				result.add(res);
 			}
 		} catch (SQLException e) {
@@ -327,8 +327,8 @@ public class RdbOperations {
 	 */
 	public double getPriceByBevName(String bevName) {
 		double result = 0;
-		String whereStatement = "bevName = '"+bevName+"'";
-		String query = QueryGenerator.getSelectFromWhereQuery("price", "BeverageDescription", whereStatement);
+		String whereStatement = TablesConstants.bevNameAttr+" = '"+bevName+"'";
+		String query = QueryGenerator.getSelectFromWhereQuery(TablesConstants.priceAttr, TablesConstants.beverageDescriptionTable, whereStatement);
 		
 		con = this.startConnection(con);
 		Statement st;
@@ -337,7 +337,7 @@ public class RdbOperations {
 			st = con.createStatement();
 			rs = st.executeQuery(query);
 			while(rs.next()) {
-				result = rs.getDouble("price");
+				result = rs.getDouble(TablesConstants.priceAttr);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -356,7 +356,7 @@ public class RdbOperations {
 		values.add(String.valueOf(bv.getPrice())); // secondo attributo nella table
 		values.add(bv.getIdRecipe()); // terzo attributo nella table
 
-		String query = QueryGenerator.getInsertIntoValuesQuery("BeverageDescription", values);	
+		String query = QueryGenerator.getInsertIntoValuesQuery(TablesConstants.beverageDescriptionTable, values);	
 
 		con = this.startConnection(con);
 		Statement st;	
@@ -388,7 +388,7 @@ public class RdbOperations {
 	 */
 	public ArrayList<BeverageDescriptionPOJO> getAllBeverageDescriptions () {
 		ArrayList<BeverageDescriptionPOJO> result = new ArrayList<>();
-		String query = "SELECT * FROM BeverageDescription";
+		String query = "SELECT * FROM "+TablesConstants.beverageDescriptionTable;
 		
 		con = this.startConnection(con);
 		Statement st;
@@ -397,7 +397,7 @@ public class RdbOperations {
 			st = con.createStatement();
 			rs = st.executeQuery(query);
 			while(rs.next()) {
-				BeverageDescriptionPOJO res = new BeverageDescriptionPOJO(rs.getString("bevName"),rs.getDouble("price"), rs.getString("idRecipe"));
+				BeverageDescriptionPOJO res = new BeverageDescriptionPOJO(rs.getString(TablesConstants.bevNameAttr),rs.getDouble(TablesConstants.priceAttr), rs.getString(TablesConstants.idRecipeDescAttr));
 				result.add(res);
 			}
 		} catch (SQLException e) {
@@ -415,8 +415,8 @@ public class RdbOperations {
 	 */
 	public BeverageDescriptionPOJO getBeverageDescriptionByBevName(String bevName) {
 		BeverageDescriptionPOJO result = null;
-		String whereStatement = "bevName = '"+bevName+"'";
-		String query = QueryGenerator.getSelectFromWhereQuery("*", "BeverageDescription", whereStatement);
+		String whereStatement = TablesConstants.bevNameAttr+" = '"+bevName+"'";
+		String query = QueryGenerator.getSelectFromWhereQuery("*", TablesConstants.beverageDescriptionTable, whereStatement);
 		con = this.startConnection(con);
 		Statement st;
 		ResultSet rs;
@@ -425,7 +425,7 @@ public class RdbOperations {
 			st = con.createStatement();
 			rs = st.executeQuery(query);
 			while(rs.next()) {
-				result = new BeverageDescriptionPOJO (rs.getString("bevName"),rs.getDouble("price"), rs.getString("idRecipe"));
+				result = new BeverageDescriptionPOJO (rs.getString(TablesConstants.bevNameAttr),rs.getDouble(TablesConstants.priceAttr), rs.getString(TablesConstants.idRecipeDescAttr));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -448,7 +448,7 @@ public class RdbOperations {
 		values.add(ingr.getIdRecipe()); // primo attributo nella table
 		values.add(ingr.getIngredientName()); // secondo attributo nella table
 		values.add(String.valueOf(ingr.getQuantity())); // terzo attributo nella table
-		String query = QueryGenerator.getInsertIntoValuesQuery("IngredientRecipe", values);	
+		String query = QueryGenerator.getInsertIntoValuesQuery(TablesConstants.ingredientRecipeTable, values);	
 		
 		con = this.startConnection(con);
 		Statement st;	
@@ -481,8 +481,8 @@ public class RdbOperations {
 	 */
 	public ArrayList<IngredientRecipePOJO> getAllIngredientRecipeByIdRecipe(String idRecipe) {
 		ArrayList<IngredientRecipePOJO> result = new ArrayList<>();
-		String whereStatement = "idRecipe = '"+idRecipe+"'";
-		String query = QueryGenerator.getSelectFromWhereQuery("*", "IngredientRecipe", whereStatement);
+		String whereStatement = TablesConstants.idRecipeAttr+" = '"+idRecipe+"'";
+		String query = QueryGenerator.getSelectFromWhereQuery("*", TablesConstants.ingredientRecipeTable, whereStatement);
 		con = this.startConnection(con);
 		Statement st;
 		ResultSet rs;
@@ -491,7 +491,7 @@ public class RdbOperations {
 			st = con.createStatement();
 			rs = st.executeQuery(query);
 			while(rs.next()) {
-				result.add(new IngredientRecipePOJO(rs.getString("idRecipe"),rs.getString("ingredientName"),rs.getDouble("quantity")));
+				result.add(new IngredientRecipePOJO(rs.getString(TablesConstants.idRecipeAttr),rs.getString(TablesConstants.ingredientNameAttr),rs.getDouble(TablesConstants.quantityAttr)));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -507,7 +507,7 @@ public class RdbOperations {
 	 * @param newQuantity nuova quantit�
 	 */
 	public void updateIngredientRecipe(String idRecipe, String ingredientName, double newQuantity) {
-		String query = QueryGenerator.getUpdateSetQuery("IngredientRecipe", "quantity = '"+newQuantity+"'", "idRecipe = '"+idRecipe+"'"+ "and "+ "ingredientName = '"+ingredientName+"'");
+		String query = QueryGenerator.getUpdateSetQuery(TablesConstants.ingredientRecipeTable, TablesConstants.quantityAttr+" = '"+newQuantity+"'", TablesConstants.idRecipeAttr+" = '"+idRecipe+"'"+ "and "+ TablesConstants.ingredientNameAttr+ " = '"+ingredientName+"'");
 		con = this.startConnection(con);
 		Statement st;	
 		try {
@@ -530,7 +530,7 @@ public class RdbOperations {
 	 */
 	public ArrayList<OperatorPOJO> getAllOperators () {
 		ArrayList<OperatorPOJO> result = new ArrayList<>();
-		String query = "SELECT * FROM Operator";
+		String query = "SELECT * FROM "+ TablesConstants.operatorTable;
 		
 		con = this.startConnection(con);
 		Statement st;
@@ -539,7 +539,7 @@ public class RdbOperations {
 			st = con.createStatement();
 			rs = st.executeQuery(query);
 			while(rs.next()) {
-				OperatorPOJO res = new OperatorPOJO(rs.getString("cf"), rs.getString("name"), rs.getString("password"), rs.getString("type"));
+				OperatorPOJO res = new OperatorPOJO(rs.getString(TablesConstants.cfAttr), rs.getString(TablesConstants.nameAttr), rs.getString(TablesConstants.passwordAttr), rs.getString(TablesConstants.typeOpAttr));
 				result.add(res);
 			}
 		} catch (SQLException e) {
@@ -557,7 +557,7 @@ public class RdbOperations {
 	 */
 	public OperatorPOJO getOperator (String code) {
 		OperatorPOJO result=null;
-		String query = QueryGenerator.getSelectFromWhereQuery("*","Operator","cf= '"+code+"'");
+		String query = QueryGenerator.getSelectFromWhereQuery("*",TablesConstants.operatorTable,TablesConstants.cfAttr+"= '"+code+"'");
 		
 		con = this.startConnection(con);
 		Statement st;
@@ -566,7 +566,7 @@ public class RdbOperations {
 			st = con.createStatement();
 			rs = st.executeQuery(query);
 			while (rs.next()) {
-				result = new OperatorPOJO(rs.getString("cf"), rs.getString("name"), rs.getString("password"), rs.getString("type"));	
+				result = new OperatorPOJO(rs.getString(TablesConstants.cfAttr), rs.getString(TablesConstants.nameAttr), rs.getString(TablesConstants.passwordAttr), rs.getString(TablesConstants.typeOpAttr));	
 			}
 			
 		} catch (SQLException e) {
@@ -588,7 +588,7 @@ public class RdbOperations {
 		values.add(operator.getName()); 
 		values.add(operator.getPassword());
 		values.add(operator.getType());
-		String query = QueryGenerator.getInsertIntoValuesQuery("Operator", values);	
+		String query = QueryGenerator.getInsertIntoValuesQuery(TablesConstants.operatorTable, values);	
 		
 		con = this.startConnection(con);
 		Statement st;	
@@ -612,7 +612,7 @@ public class RdbOperations {
 	public ArrayList<KeyPOJO> getAllKeys() {
 		
 		ArrayList<KeyPOJO> result = new ArrayList<>();
-		String query = "SELECT * FROM PaymentKey";
+		String query = "SELECT * FROM "+TablesConstants.paymentKeyTable;
 		
 		con = this.startConnection(con);
 		Statement st;
@@ -621,7 +621,7 @@ public class RdbOperations {
 			st = con.createStatement();
 			rs = st.executeQuery(query);
 			while(rs.next()) {
-				KeyPOJO res = new KeyPOJO(rs.getInt("code"), rs.getDouble("credit"));
+				KeyPOJO res = new KeyPOJO(rs.getInt(TablesConstants.codeAttr), rs.getDouble(TablesConstants.creditAttr));
 				result.add(res);
 			}
 		} catch (SQLException e) {
@@ -639,7 +639,7 @@ public class RdbOperations {
 	 */
 	public KeyPOJO getKey (String serialCode) {
 		KeyPOJO result=null;
-		String query = QueryGenerator.getSelectFromWhereQuery("*","PaymentKey","code="+serialCode);
+		String query = QueryGenerator.getSelectFromWhereQuery("*",TablesConstants.paymentKeyTable,TablesConstants.codeAttr +"="+serialCode);
 		
 		con = this.startConnection(con);
 		Statement st;
@@ -648,7 +648,7 @@ public class RdbOperations {
 			st = con.createStatement();
 			rs = st.executeQuery(query);
 			while (rs.next()) {
-				result = new KeyPOJO(rs.getInt("code"), rs.getDouble("credit"));
+				result = new KeyPOJO(rs.getInt(TablesConstants.codeAttr), rs.getDouble(TablesConstants.creditAttr));
 			}	
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -666,7 +666,7 @@ public class RdbOperations {
 		ArrayList<String> values = new ArrayList<>();
 		values.add((String.valueOf(key.getSerialCode()))); 
 		values.add((String.valueOf(key.getCredit()))); 
-		String query = QueryGenerator.getInsertIntoValuesQuery("PaymentKey", values);	
+		String query = QueryGenerator.getInsertIntoValuesQuery(TablesConstants.paymentKeyTable, values);	
 		
 		con = this.startConnection(con);
 		Statement st;	
@@ -687,7 +687,7 @@ public class RdbOperations {
 	 * @param newCredit nuovo credito
 	 */
 	public void updateKeyCredit(String serialCode, double newCredit) {
-		String query = QueryGenerator.getUpdateSetQuery("PaymentKey", "credit = '"+newCredit+"'", "code = '"+serialCode+"'");
+		String query = QueryGenerator.getUpdateSetQuery(TablesConstants.paymentKeyTable, TablesConstants.creditAttr+" = '"+newCredit+"'", TablesConstants.codeAttr+" = '"+serialCode+"'");
 		con = this.startConnection(con);
 		Statement st;	
 		try {
@@ -707,7 +707,7 @@ public class RdbOperations {
 	 */
 	public double getKeyCredit(String serialCode) {
 		double result = 0; 
-		String query = QueryGenerator.getSelectFromWhereQuery("credit", "PaymentKey", "code = '"+serialCode+"'");
+		String query = QueryGenerator.getSelectFromWhereQuery(TablesConstants.creditAttr, TablesConstants.paymentKeyTable, TablesConstants.codeAttr+" = '"+serialCode+"'");
 		
 		con = this.startConnection(con);
 		Statement st;
@@ -716,7 +716,7 @@ public class RdbOperations {
 			st = con.createStatement();
 			rs = st.executeQuery(query);
 			while(rs.next()) {
-				result = rs.getDouble("credit");
+				result = rs.getDouble(TablesConstants.creditAttr);
 			}	
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -730,7 +730,7 @@ public class RdbOperations {
 	 * @param serialCode codice della chiave
 	 */
 	public void deactivateKey(String serialCode) {
-		String query = QueryGenerator.getDeleteWhereQuery("PaymentKey", "code = '"+serialCode+"'");
+		String query = QueryGenerator.getDeleteWhereQuery(TablesConstants.paymentKeyTable, TablesConstants.codeAttr+" = '"+serialCode+"'");
 		
 		con = this.startConnection(con);
 		Statement st;	
