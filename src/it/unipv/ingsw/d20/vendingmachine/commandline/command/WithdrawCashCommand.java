@@ -2,6 +2,7 @@ package it.unipv.ingsw.d20.vendingmachine.commandline.command;
 
 import it.unipv.ingsw.d20.vendingmachine.commandline.exception.CommandFormatException;
 import it.unipv.ingsw.d20.vendingmachine.model.VendingMachine;
+import it.unipv.ingsw.d20.vendingmachine.model.exceptions.InsufficientPermissionsException;
 
 /**
  * Comando che permette all'operatore fisico di ritirare le
@@ -18,13 +19,13 @@ public class WithdrawCashCommand implements ICommand {
 				throw new CommandFormatException("Argomento non valido per il comando 'withdrawcash'");
 			
 			cash = vm.withdrawAmount();
-		} catch (CommandFormatException e) {
+		} catch (CommandFormatException | InsufficientPermissionsException e) {
 			return e.getMessage();
 		}
 		
 		String returnString;
 		if (cash > 0)
-			returnString = "Sono stati restituiti €" + String.format("%.2f", cash);
+			returnString = "Sono stati prelevati €" + String.format("%.2f", cash);
 		else
 			returnString = "Non possono essere ritirate ulteriori monete";
 		return returnString;

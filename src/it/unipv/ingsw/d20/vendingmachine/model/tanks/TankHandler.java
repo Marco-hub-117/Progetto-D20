@@ -4,8 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import it.unipv.ingsw.d20.util.persistence.PersistenceFactory;
-import it.unipv.ingsw.d20.util.persistence.local.VendingLocalIO;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.BeverageDescription;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.Ingredients;
 
@@ -33,15 +31,13 @@ public class TankHandler {
 	public boolean isAvailable(BeverageDescription bvDesc) {
 		Map<Ingredients, Double> recipe = bvDesc.getIngredients();
 		
-		if (tankList.size() < bvDesc.getIngredients().size()) {
+		if (tankList.size() < bvDesc.getIngredients().size())
 			return false;
-		}
 		
 		try {
 			for (Entry<Ingredients, Double> entry : recipe.entrySet()) {
-				if (tankList.get(entry.getKey()).getLevel() < entry.getValue()) {
+				if (tankList.get(entry.getKey()).getLevel() < entry.getValue()) 
 					return false;
-				}
 			}
 		}
 		catch(NullPointerException e) {

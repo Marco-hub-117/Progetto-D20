@@ -7,6 +7,7 @@ import it.unipv.ingsw.d20.vendingmachine.model.beverage.BeverageCatalog;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.BeverageDescription;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.Ingredients;
 import it.unipv.ingsw.d20.vendingmachine.model.exceptions.InsufficientIngredientsException;
+import it.unipv.ingsw.d20.vendingmachine.model.exceptions.InsufficientPermissionsException;
 import it.unipv.ingsw.d20.vendingmachine.model.exceptions.KeyRestException;
 import it.unipv.ingsw.d20.vendingmachine.model.exceptions.NonExistentCodeException;
 import it.unipv.ingsw.d20.vendingmachine.model.paymentsystem.CashContainer;
@@ -37,8 +38,8 @@ public class VendingMachine {
 	private BeverageCatalog bvCatalog;	//catalogo delle bevande
 	private CashContainer cashContainer;
 	private KeyHandler keyHandler;
-	
 	private String info = "";
+	private boolean operatorMode;
 	
 	/**
 	 * Costruttore della classe VendingMachine. Istanzia tutte le componenti che servono per far funzionare un distributore.
@@ -53,6 +54,7 @@ public class VendingMachine {
 		bvCatalog = getCatalogFromLocal();//la vending istanzia il catalogo delle bevande prendedolo dal file locale
 		tankHandler = new TankHandler(getTanksFromLocal());
 		cashContainer = getCashContainerFromLocal(); 
+		operatorMode = false;
 
 		rebuildInfo();
 		Timer timer = new Timer();
@@ -149,8 +151,12 @@ public class VendingMachine {
 	/**
 	 * Riempie il tank indicato dal parametro.
 	 * @param id Id del Tank da riempire  
+	 * @throws InsufficientPermissionsException 
 	 */
-	public void refillTank(String id) {
+	public void refillTank(String id) throws InsufficientPermissionsException {
+		if (!operatorMode) 
+			throw new InsufficientPermissionsException("Permessi insufficienti: devi essere un operatore per poter riempire i tank");
+		
 		tankHandler.refillTank(id); 
 		saveTanksIntoLocal();
 		rebuildInfo();
@@ -160,7 +166,10 @@ public class VendingMachine {
 	 * Metodo che gestisce il ritiro del credito dalla VendingMachine.
 	 *
 	 */
-	public double withdrawAmount() { 
+	public double withdrawAmount() throws InsufficientPermissionsException { 
+		if (!operatorMode) 
+			throw new InsufficientPermissionsException("Permessi insufficienti: devi essere un operatore per poter ritirare i soldi");
+		
 		double withdrawnAmount = cashContainer.withdrawAmount();
 		saveCashContainerIntoLocal();
 		rebuildInfo();
@@ -174,30 +183,22 @@ public class VendingMachine {
 	public void modifyTankSettings(String setpointList) { 
 		tankHandler.modifyTankSettings(setpointList);
 		saveTanksIntoLocal();
+		rebuildInfo();
 	}
 	
 	/**
 	 * Metodo che permette di ottenere il catalogo delle bevande dalla persistenza locale.
 	 */
-	public BeverageCatalog getCatalogFromLocal() {
+	private BeverageCatalog getCatalogFromLocal() {
 		PersistenceFactory pf = PersistenceFactory.getInstance();
 		VendingLocalIO v = pf.getVendingLocalIO();
 		return v.getCatalogFromLocal();
 	}
 	
 	/**
-	 * Metodo che permette di salvare nella persistenza locale il catalogo delle bevande.
-	 */
-	public void saveCatalogIntoLocal () {
-		PersistenceFactory pf = PersistenceFactory.getInstance();
-		VendingLocalIO v = pf.getVendingLocalIO();
-		v.saveCatalogIntoLocal(bvCatalog);
-	}
-	
-	/**
 	 * Metodo che permette di ottenere i serbatoi dalla persistenza locale.
 	 */
-	public HashMap<Ingredients,Tank> getTanksFromLocal() {
+	private HashMap<Ingredients,Tank> getTanksFromLocal() {
 		PersistenceFactory pf = PersistenceFactory.getInstance();
 		VendingLocalIO v = pf.getVendingLocalIO();
 		return v.getTanksFromLocal();
@@ -206,7 +207,7 @@ public class VendingMachine {
 	/**
 	 * Metodo che permette di salvare nella persistenza locale i serbatoi.
 	 */
-	public void saveTanksIntoLocal() {
+	private void saveTanksIntoLocal() {
 		PersistenceFactory pf = PersistenceFactory.getInstance();
 		VendingLocalIO v = pf.getVendingLocalIO();
 		v.saveTankIntoLocal(tankHandler.getTankList());
@@ -224,7 +225,7 @@ public class VendingMachine {
 	/**
 	 * Metodo che permette di salvare nella persistenza locale la classe di gestione del denaro.
 	 */
-	public void saveCashContainerIntoLocal() {
+	private void saveCashContainerIntoLocal() {
 		PersistenceFactory pf = PersistenceFactory.getInstance();
 		VendingLocalIO v = pf.getVendingLocalIO();
 		v.saveCashContainerIntoLocal(cashContainer);
@@ -235,14 +236,21 @@ public class VendingMachine {
 	}
 	
 	/**
-	 * Verifica che la stringa ricevuta come parametro corrisponda all'ID.
+	 * Verifica che la stringa ricevuta come parametro corrisponda all'ID, se la condizione
+	 * è verificata entra in modalità operatore.
 	 * @param insertedId Id inserito
 	 */
-	public boolean isCorrectId(String insertedId) {
+	public boolean enterOperatorMode(String insertedId) {
 		if (id.equals(insertedId)) 
-			return true;
-		else
-			return false;
+			operatorMode = true;
+		return operatorMode;
+	}
+	
+	/**
+	 * Esce dalla modalità operatore.
+	 */
+	public void exitOperatorMode() {
+		operatorMode = false;
 	}
 
 	public String getId() {
@@ -289,7 +297,7 @@ public class VendingMachine {
 	/**
 	 * Aggiorna l'attributo info con le informazioni attuali della macchinetta.
 	 */
-	public void rebuildInfo() {
+	private void rebuildInfo() {
 		StringBuilder infoBuilder = new StringBuilder();
 		
 		infoBuilder.append(id); infoBuilder.append("/");

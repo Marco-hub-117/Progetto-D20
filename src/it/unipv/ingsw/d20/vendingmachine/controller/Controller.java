@@ -12,6 +12,7 @@ import it.unipv.ingsw.d20.vendingmachine.controller.listeners.ToOperatorListener
 import it.unipv.ingsw.d20.vendingmachine.controller.listeners.WindowClosingListener;
 import it.unipv.ingsw.d20.vendingmachine.model.VendingMachine;
 import it.unipv.ingsw.d20.vendingmachine.model.beverage.Ingredients;
+import it.unipv.ingsw.d20.vendingmachine.model.exceptions.InsufficientPermissionsException;
 import it.unipv.ingsw.d20.vendingmachine.view.customer.CustomerButton;
 import it.unipv.ingsw.d20.vendingmachine.view.customer.CustomerGui;
 import it.unipv.ingsw.d20.vendingmachine.view.operator.OperatorButton;
@@ -121,11 +122,15 @@ public class Controller {
 
 	private void addWithdrawCashListener() {
 		opGui.getWithdrawCashButton().addActionListener(al -> {
-			double buffAmount = vm.withdrawAmount();
-			if (buffAmount > 0) 
-				JOptionPane.showMessageDialog(null, "Sono stati ritirati €" + String.format("%.2f", buffAmount));
-			else 
-				JOptionPane.showMessageDialog(null, "Non si possono ritirare ulteriori monete.");
+			try {
+				double buffAmount = vm.withdrawAmount();
+				if (buffAmount > 0) 
+					JOptionPane.showMessageDialog(null, "Sono stati ritirati €" + String.format("%.2f", buffAmount));
+				else 
+					JOptionPane.showMessageDialog(null, "Non si possono ritirare ulteriori monete.");
+			} catch (InsufficientPermissionsException e) {
+				e.printStackTrace();
+			}
 		});
 	}
 

@@ -2,6 +2,7 @@ package it.unipv.ingsw.d20.vendingmachine.commandline.command;
 
 import it.unipv.ingsw.d20.vendingmachine.commandline.exception.CommandFormatException;
 import it.unipv.ingsw.d20.vendingmachine.model.VendingMachine;
+import it.unipv.ingsw.d20.vendingmachine.model.exceptions.InsufficientPermissionsException;
 
 /**
  * Comando che permette di riempire il serbatoio il cui ID viene
@@ -17,7 +18,7 @@ public class RefillTankCommand implements ICommand {
 				throw new CommandFormatException("Argomento non valido per il comando 'refilltank'");
 			
 			vm.refillTank(args);
-		} catch (CommandFormatException e) {
+		} catch (CommandFormatException | InsufficientPermissionsException e) {
 			return e.getMessage();
 		} catch (IllegalArgumentException e) {
 			return "Il tank " + args + " non esiste";

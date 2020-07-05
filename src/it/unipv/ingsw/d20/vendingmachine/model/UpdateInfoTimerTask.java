@@ -40,7 +40,6 @@ public class UpdateInfoTimerTask extends TimerTask {
 			String setpointList = vmc.notifyServer(vendingMachine.getInfo()); //invia le informazioni al server della company e riceve i nuovi setpoint delle temperature dei tank
 			if (!setpointList.equals("")) { //ci sono aggiornamenti
 				vendingMachine.modifyTankSettings(setpointList);
-				vendingMachine.rebuildInfo();
 			}
 		} catch (IOException e) {
 			e.printStackTrace();

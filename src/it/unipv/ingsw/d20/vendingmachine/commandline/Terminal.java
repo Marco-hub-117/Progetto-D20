@@ -31,9 +31,10 @@ public class Terminal extends JFrame {
 		panel.setLayout(new BorderLayout());
 		
 		commandLine = new JTextArea();
+		setInitString();
 		setPrompt();
 		commandLine.setFont(commandLine.getFont().deriveFont(Font.PLAIN, 18));
-		commandLine.setForeground(Color.LIGHT_GRAY);
+		commandLine.setForeground(Color.GREEN);
 		commandLine.setBackground(Color.BLACK);
 		commandLine.setLineWrap(true);
 		commandLine.setWrapStyleWord(true);
@@ -76,6 +77,10 @@ public class Terminal extends JFrame {
 	 */
 	public void print(String string) {
 		commandLine.append(string);
+	}
+	
+	private void setInitString() {
+		commandLine.append("Utilizzare il comando 'help' per informazioni\n");
 	}
 	
 	public JTextArea getCommandLine() {
