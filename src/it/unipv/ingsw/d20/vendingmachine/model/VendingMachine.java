@@ -58,7 +58,7 @@ public class VendingMachine {
 
 		rebuildInfo();
 		Timer timer = new Timer();
-		timer.schedule(new UpdateInfoTimerTask(this), new Date(), TimeUnit.MINUTES.toMillis(1)); //ogni minuto viene notificata la company
+		timer.schedule(new UpdateInfoTimerTask(this), new Date(), TimeUnit.SECONDS.toMillis(20)); //ogni 20 secondi viene notificata la company
 	}
 	
 	/**

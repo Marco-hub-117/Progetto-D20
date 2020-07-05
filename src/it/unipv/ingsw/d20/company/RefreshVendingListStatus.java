@@ -30,7 +30,7 @@ public class RefreshVendingListStatus extends TimerTask {
 			VendingMachineStatus currentStatus = info.getStatus();
 			
 			if ((currentStatus != VendingMachineStatus.OFF) && //se lo status � diverso da OFF
-					(now.getTime() - lastUpdate.getTime()) > TimeUnit.MINUTES.toMillis(2)) { //e sono passati più di 2 minuti dall'ultimo update
+					(now.getTime() - lastUpdate.getTime()) > TimeUnit.SECONDS.toMillis(35)) { //se sono passati più di 35 secondi dall'ultimo update
 						info.setStatus(VendingMachineStatus.DISCONNECTED); //imposta lo status della relativa macchinetta nel database su DISCONNECTED
 			}
 		}
