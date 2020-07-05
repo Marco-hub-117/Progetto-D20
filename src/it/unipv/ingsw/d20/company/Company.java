@@ -25,6 +25,8 @@ public class Company {
 	
 	@SuppressWarnings("unused")
 	private String name;
+	private final static String ID_PREF="IDN";
+	private final static String LOC_PREF=", Via ";
 	
 	/**
 	 * Questa mappa contiene la lista di tutte le macchinette attualmente registrate
@@ -86,7 +88,7 @@ public class Company {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
 		String vendingIDNumber = sdf.format(new Date());
 		
-		String fileName = "IDN" + vendingIDNumber;
+		String fileName = ID_PREF + vendingIDNumber;
 		return fileName; 
 	}
 	
@@ -101,7 +103,7 @@ public class Company {
 		String street = Streets.values()[j].toString();
 		int number = (int) (Math.random() * 100);
 	
-		String location = city + ", Via " + street + " " + number ;
+		String location = city + LOC_PREF + street + " " + number ;
 		return location; 
 	}
 	
