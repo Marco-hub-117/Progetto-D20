@@ -110,7 +110,7 @@ public class RdbOperations {
 	 */
 	public ArrayList<VendingPOJO> getAllVendings () {
 		ArrayList<VendingPOJO> result = new ArrayList<>();
-		String query = "SELECT * FROM"+ TablesConstants.vendingTable;
+		String query = QueryGenerator.getSelectFromQuery("*", TablesConstants.vendingTable);
 		
 		con = this.startConnection(con);
 		Statement st;
@@ -530,7 +530,7 @@ public class RdbOperations {
 	 */
 	public ArrayList<OperatorPOJO> getAllOperators () {
 		ArrayList<OperatorPOJO> result = new ArrayList<>();
-		String query = "SELECT * FROM "+ TablesConstants.operatorTable;
+		String query = QueryGenerator.getSelectFromQuery("*", TablesConstants.operatorTable);
 		
 		con = this.startConnection(con);
 		Statement st;
@@ -610,9 +610,9 @@ public class RdbOperations {
 	 * @return keyList lista di tutte le chiavette
 	 */
 	public ArrayList<KeyPOJO> getAllKeys() {
-		
 		ArrayList<KeyPOJO> result = new ArrayList<>();
-		String query = "SELECT * FROM "+TablesConstants.paymentKeyTable;
+		String query = QueryGenerator.getSelectFromQuery("*", TablesConstants.paymentKeyTable);
+		
 		
 		con = this.startConnection(con);
 		Statement st;
