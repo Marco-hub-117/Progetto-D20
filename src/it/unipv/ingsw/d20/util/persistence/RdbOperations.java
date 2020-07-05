@@ -119,7 +119,7 @@ public class RdbOperations {
 			st = con.createStatement();
 			rs = st.executeQuery(query);
 			while(rs.next()) {
-				VendingPOJO res = new VendingPOJO(rs.getString("idVending"),rs.getString("location"),rs.getString("type"));
+				VendingPOJO res = new VendingPOJO(rs.getString(TablesConstants.idVendingAttr),rs.getString(TablesConstants.locationAttr),rs.getString(TablesConstants.typeAttr));
 				result.add(res);
 			}
 		} catch (SQLException e) {
@@ -137,7 +137,7 @@ public class RdbOperations {
 	 */
 	public VendingPOJO getVending (String idVending) {
 		VendingPOJO result=null;
-		String query = QueryGenerator.getSelectFromWhereQuery("*","Vending","idVending = '"+idVending+"'");
+		String query = QueryGenerator.getSelectFromWhereQuery("*",TablesConstants.vendingTable,TablesConstants.idVendingAttr +" = '"+idVending+"'");
 		con = this.startConnection(con);
 		Statement st;
 		ResultSet rs;
@@ -145,7 +145,7 @@ public class RdbOperations {
 			st = con.createStatement();
 			rs = st.executeQuery(query);
 			while(rs.next()) {
-				result = new VendingPOJO(rs.getString("idVending"),rs.getString("location"),rs.getString("type"));
+				result = new VendingPOJO(rs.getString(TablesConstants.idVendingAttr),rs.getString(TablesConstants.locationAttr),rs.getString(TablesConstants.typeAttr));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -164,7 +164,7 @@ public class RdbOperations {
 		values.add(vending.getId());
 		values.add(vending.getLocation());
 		values.add(vending.getType());
-		String query = QueryGenerator.getInsertIntoValuesQuery("Vending", values);
+		String query = QueryGenerator.getInsertIntoValuesQuery(TablesConstants.vendingTable, values);
 		
 		con = this.startConnection(con);
 		Statement st;	
@@ -189,7 +189,7 @@ public class RdbOperations {
 	public void updateVendingAmount(String idVending,double amount) {
 		String set = "Amount = '"+String.valueOf(amount)+"'";
 		String whereStatement = "idVending = '"+idVending+"'";
-		String query = QueryGenerator.getUpdateSetQuery("Vending", set, whereStatement);
+		String query = QueryGenerator.getUpdateSetQuery(TablesConstants.vendingTable, set, whereStatement);
 		con = this.startConnection(con);
 		Statement st;	
 		try {
@@ -217,7 +217,7 @@ public class RdbOperations {
 		values.add(sale.getIdBeverage()); // secondo attributo nella table
 		values.add(sale.getDate()); // terzo attributo nella table
 		
-		String query = QueryGenerator.getInsertIntoValuesQuery("Sale", values);	
+		String query = QueryGenerator.getInsertIntoValuesQuery(TablesConstants.saleTable, values);	
 		con = this.startConnection(con);
 		Statement st;	
 		//try {
@@ -249,7 +249,7 @@ public class RdbOperations {
 			st = con.createStatement();
 			rs = st.executeQuery(query);
 			while(rs.next()) {
-				result = new SalePOJO (rs.getString("idVending"),rs.getString("idBeverage"),rs.getString("date"));
+				result = new SalePOJO (rs.getString(TablesConstants.idVendingSaleAttr),rs.getString(TablesConstants.idBeverageSaleAttr),rs.getString(TablesConstants.dateAttr));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
